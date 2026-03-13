@@ -1,0 +1,2864 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic RESTful Management Services API
+  description: >-
+    RESTful API for managing and monitoring Oracle WebLogic Server domains,
+    servers, clusters, applications, data sources, JMS resources, and security
+    configuration. The API provides access to five bean trees: edit
+    (read/write configuration), serverConfig (read-only current config),
+    domainConfig (read-only last activated config), serverRuntime (server
+    monitoring), and domainRuntime (domain-wide monitoring). All configuration
+    changes are made through the edit tree using an edit session model with
+    startEdit, modify, and activate workflow.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+externalDocs:
+  description: Oracle WebLogic Server RESTful Management Services Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm
+servers:
+  - url: http://localhost:7001/management/weblogic/latest
+    description: WebLogic Administration Server (default)
+  - url: http://{host}:{port}/management/weblogic/{version}
+    description: WebLogic Administration Server (configurable)
+    variables:
+      host:
+        default: localhost
+        description: WebLogic admin server hostname
+      port:
+        default: '7001'
+        description: WebLogic admin server listen port
+      version:
+        default: latest
+        description: REST API version (e.g., latest, 12.2.1.3.0)
+security:
+  - basicAuth: []
+tags:
+  - name: Edit Session
+    description: Manage configuration edit sessions (start, save, activate, undo, cancel)
+  - name: Servers
+    description: Manage WebLogic Server instances
+  - name: Clusters
+    description: Manage WebLogic Server clusters and dynamic servers
+  - name: Machines
+    description: Manage machines and Node Manager configuration
+  - name: Server Templates
+    description: Manage server templates for dynamic server creation
+  - name: Data Sources
+    description: Manage JDBC system resources and data sources
+  - name: JMS
+    description: Manage JMS servers, system resources, queues, and connection factories
+  - name: Application Deployment
+    description: Deploy, configure, and manage application deployments
+  - name: Security
+    description: Manage security realms, authentication providers, and users
+  - name: Domain Configuration
+    description: View domain-level configuration
+  - name: Search
+    description: Query and search across configuration trees
+paths:
+  /edit/changeManager/startEdit:
+    post:
+      operationId: startEdit
+      summary: Start an edit session
+      description: >-
+        Acquires a lock on the domain configuration and starts an edit
+        session. All subsequent configuration changes are made within this
+        session until activated or cancelled.
+      tags:
+        - Edit Session
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                waitTimeInMillis:
+                  type: integer
+                  description: Maximum time to wait to acquire the edit lock
+                exclusive:
+                  type: boolean
+                  description: Whether to acquire an exclusive lock
+      responses:
+        '200':
+          description: Edit session started successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /edit/changeManager/activate:
+    post:
+      operationId: activateChanges
+      summary: Activate pending configuration changes
+      description: >-
+        Activates all pending configuration changes made in the current edit
+        session and releases the edit lock. Changes are distributed to all
+        running servers in the domain.
+      tags:
+        - Edit Session
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Changes activated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /edit/changeManager/cancelEdit:
+    post:
+      operationId: cancelEdit
+      summary: Cancel the current edit session
+      description: >-
+        Cancels all pending changes in the current edit session and releases
+        the edit lock without activating any changes.
+      tags:
+        - Edit Session
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Edit session cancelled successfully
+          content:
+            application/json:
+              schema:
+                type: object
+  /edit/changeManager/undoUnactivatedChanges:
+    post:
+      operationId: undoUnactivatedChanges
+      summary: Undo all unactivated changes
+      description: >-
+        Reverts all pending configuration changes that have not yet been
+        activated without releasing the edit lock.
+      tags:
+        - Edit Session
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Changes undone successfully
+          content:
+            application/json:
+              schema:
+                type: object
+  /edit/servers:
+    get:
+      operationId: listServers
+      summary: List all servers
+      description: Returns a collection of all server configurations in the domain.
+      tags:
+        - Servers
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/ExcludeFields'
+        - $ref: '#/components/parameters/Links'
+        - $ref: '#/components/parameters/ExcludeLinks'
+      responses:
+        '200':
+          description: Collection of servers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Server'
+                  links:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Link'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createServer
+      summary: Create a new server
+      description: >-
+        Creates a new server configuration in the domain. Requires an active
+        edit session.
+      tags:
+        - Servers
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+        - $ref: '#/components/parameters/SaveChanges'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerCreateRequest'
+      responses:
+        '201':
+          description: Server created successfully
+          headers:
+            Location:
+              description: URL of the newly created server resource
+              schema:
+                type: string
+                format: uri
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  item:
+                    $ref: '#/components/schemas/Server'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /edit/serverCreateForm:
+    get:
+      operationId: getServerCreateForm
+      summary: Get server creation form with defaults
+      description: Returns a pre-populated template with default values for creating a new server.
+      tags:
+        - Servers
+      parameters:
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Server create form with default values
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerCreateRequest'
+  /edit/servers/{serverName}:
+    get:
+      operationId: getServer
+      summary: Get a specific server configuration
+      description: Returns the configuration for the specified server.
+      tags:
+        - Servers
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+        - $ref: '#/components/parameters/ExpandedValues'
+      responses:
+        '200':
+          description: Server configuration details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Server'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateServer
+      summary: Update a server configuration
+      description: >-
+        Modifies the configuration of an existing server. Requires an active
+        edit session.
+      tags:
+        - Servers
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/XRequestedBy'
+        - $ref: '#/components/parameters/ExpandedValues'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerUpdateRequest'
+      responses:
+        '200':
+          description: Server updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Message'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    delete:
+      operationId: deleteServer
+      summary: Delete a server
+      description: >-
+        Removes a server configuration from the domain. Requires an active
+        edit session.
+      tags:
+        - Servers
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: Server deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /edit/servers/{serverName}/SSL:
+    get:
+      operationId: getServerSSL
+      summary: Get SSL configuration for a server
+      description: Returns the SSL/TLS configuration for the specified server.
+      tags:
+        - Servers
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: SSL configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSLConfiguration'
+    post:
+      operationId: updateServerSSL
+      summary: Update SSL configuration for a server
+      tags:
+        - Servers
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SSLConfiguration'
+      responses:
+        '200':
+          description: SSL configuration updated
+  /edit/servers/{serverName}/serverStart:
+    get:
+      operationId: getServerStart
+      summary: Get server start configuration
+      description: Returns startup configuration including arguments and classpath.
+      tags:
+        - Servers
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+      responses:
+        '200':
+          description: Server start configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerStart'
+    post:
+      operationId: updateServerStart
+      summary: Update server start configuration
+      tags:
+        - Servers
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerStart'
+      responses:
+        '200':
+          description: Server start configuration updated
+  /edit/servers/{serverName}/networkAccessPoints:
+    get:
+      operationId: listNetworkAccessPoints
+      summary: List network access points for a server
+      description: Returns network channels configured for the specified server.
+      tags:
+        - Servers
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+      responses:
+        '200':
+          description: Collection of network access points
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NetworkAccessPoint'
+    post:
+      operationId: createNetworkAccessPoint
+      summary: Create a network access point
+      tags:
+        - Servers
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NetworkAccessPoint'
+      responses:
+        '201':
+          description: Network access point created
+  /edit/clusters:
+    get:
+      operationId: listClusters
+      summary: List all clusters
+      description: Returns a collection of all cluster configurations in the domain.
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of clusters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Cluster'
+    post:
+      operationId: createCluster
+      summary: Create a new cluster
+      description: Creates a new cluster configuration. Requires an active edit session.
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClusterCreateRequest'
+      responses:
+        '201':
+          description: Cluster created successfully
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+  /edit/clusterCreateForm:
+    get:
+      operationId: getClusterCreateForm
+      summary: Get cluster creation form with defaults
+      tags:
+        - Clusters
+      responses:
+        '200':
+          description: Cluster create form with default values
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterCreateRequest'
+  /edit/clusters/{clusterName}:
+    get:
+      operationId: getCluster
+      summary: Get a specific cluster configuration
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/ClusterName'
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Cluster configuration details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateCluster
+      summary: Update a cluster configuration
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/ClusterName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClusterUpdateRequest'
+      responses:
+        '200':
+          description: Cluster updated
+    delete:
+      operationId: deleteCluster
+      summary: Delete a cluster
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/ClusterName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: Cluster deleted
+  /edit/clusters/{clusterName}/dynamicServers:
+    get:
+      operationId: getDynamicServers
+      summary: Get dynamic server configuration for a cluster
+      description: Returns the dynamic server configuration for the specified cluster.
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/ClusterName'
+      responses:
+        '200':
+          description: Dynamic servers configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DynamicServers'
+    post:
+      operationId: updateDynamicServers
+      summary: Configure dynamic servers for a cluster
+      tags:
+        - Clusters
+      parameters:
+        - $ref: '#/components/parameters/ClusterName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DynamicServers'
+      responses:
+        '200':
+          description: Dynamic servers configuration updated
+  /edit/machines:
+    get:
+      operationId: listMachines
+      summary: List all machines
+      description: Returns a collection of all machine configurations in the domain.
+      tags:
+        - Machines
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of machines
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Machine'
+    post:
+      operationId: createMachine
+      summary: Create a new machine
+      tags:
+        - Machines
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineCreateRequest'
+      responses:
+        '201':
+          description: Machine created successfully
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+  /edit/machines/{machineName}:
+    get:
+      operationId: getMachine
+      summary: Get a specific machine configuration
+      tags:
+        - Machines
+      parameters:
+        - $ref: '#/components/parameters/MachineName'
+      responses:
+        '200':
+          description: Machine configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Machine'
+    post:
+      operationId: updateMachine
+      summary: Update a machine configuration
+      tags:
+        - Machines
+      parameters:
+        - $ref: '#/components/parameters/MachineName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Machine'
+      responses:
+        '200':
+          description: Machine updated
+    delete:
+      operationId: deleteMachine
+      summary: Delete a machine
+      tags:
+        - Machines
+      parameters:
+        - $ref: '#/components/parameters/MachineName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: Machine deleted
+  /edit/machines/{machineName}/nodeManager:
+    get:
+      operationId: getNodeManager
+      summary: Get Node Manager configuration for a machine
+      tags:
+        - Machines
+      parameters:
+        - $ref: '#/components/parameters/MachineName'
+      responses:
+        '200':
+          description: Node Manager configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeManager'
+    post:
+      operationId: updateNodeManager
+      summary: Update Node Manager configuration
+      tags:
+        - Machines
+      parameters:
+        - $ref: '#/components/parameters/MachineName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodeManager'
+      responses:
+        '200':
+          description: Node Manager configuration updated
+  /edit/serverTemplates:
+    get:
+      operationId: listServerTemplates
+      summary: List all server templates
+      tags:
+        - Server Templates
+      responses:
+        '200':
+          description: Collection of server templates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ServerTemplate'
+    post:
+      operationId: createServerTemplate
+      summary: Create a new server template
+      tags:
+        - Server Templates
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerTemplateCreateRequest'
+      responses:
+        '201':
+          description: Server template created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+  /edit/serverTemplates/{templateName}:
+    get:
+      operationId: getServerTemplate
+      summary: Get a server template configuration
+      tags:
+        - Server Templates
+      parameters:
+        - name: templateName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Server template configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerTemplate'
+    post:
+      operationId: updateServerTemplate
+      summary: Update a server template
+      tags:
+        - Server Templates
+      parameters:
+        - name: templateName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerTemplate'
+      responses:
+        '200':
+          description: Server template updated
+    delete:
+      operationId: deleteServerTemplate
+      summary: Delete a server template
+      tags:
+        - Server Templates
+      parameters:
+        - name: templateName
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: Server template deleted
+  /edit/JDBCSystemResources:
+    get:
+      operationId: listJDBCSystemResources
+      summary: List all JDBC system resources
+      tags:
+        - Data Sources
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of JDBC system resources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JDBCSystemResource'
+    post:
+      operationId: createJDBCSystemResource
+      summary: Create a JDBC system resource
+      description: >-
+        Creates a new JDBC data source system resource. Requires an active
+        edit session.
+      tags:
+        - Data Sources
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+        - $ref: '#/components/parameters/SaveChanges'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JDBCSystemResourceCreateRequest'
+      responses:
+        '201':
+          description: JDBC system resource created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+  /edit/JDBCSystemResources/{resourceName}:
+    get:
+      operationId: getJDBCSystemResource
+      summary: Get a JDBC system resource
+      tags:
+        - Data Sources
+      parameters:
+        - $ref: '#/components/parameters/ResourceName'
+      responses:
+        '200':
+          description: JDBC system resource details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JDBCSystemResource'
+    delete:
+      operationId: deleteJDBCSystemResource
+      summary: Delete a JDBC system resource
+      tags:
+        - Data Sources
+      parameters:
+        - $ref: '#/components/parameters/ResourceName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: JDBC system resource deleted
+  /edit/JDBCSystemResources/{resourceName}/JDBCResource:
+    get:
+      operationId: getJDBCResource
+      summary: Get JDBC resource configuration
+      tags:
+        - Data Sources
+      parameters:
+        - $ref: '#/components/parameters/ResourceName'
+      responses:
+        '200':
+          description: JDBC resource configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JDBCResource'
+    post:
+      operationId: updateJDBCResource
+      summary: Update JDBC resource configuration
+      tags:
+        - Data Sources
+      parameters:
+        - $ref: '#/components/parameters/ResourceName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JDBCResource'
+      responses:
+        '200':
+          description: JDBC resource updated
+  /edit/JDBCSystemResources/{resourceName}/JDBCResource/JDBCDataSourceParams:
+    get:
+      operationId: getJDBCDataSourceParams
+      summary: Get JDBC data source parameters
+      tags:
+        - Data Sources
+      parameters:
+        - $ref: '#/components/parameters/ResourceName'
+      responses:
+        '200':
+          description: JDBC data source parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JDBCDataSourceParams'
+    post:
+      operationId: updateJDBCDataSourceParams
+      summary: Update JDBC data source parameters
+      tags:
+        - Data Sources
+      parameters:
+        - $ref: '#/components/parameters/ResourceName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JDBCDataSourceParams'
+      responses:
+        '200':
+          description: JDBC data source parameters updated
+  /edit/JDBCSystemResources/{resourceName}/JDBCResource/JDBCDriverParams:
+    get:
+      operationId: getJDBCDriverParams
+      summary: Get JDBC driver parameters
+      tags:
+        - Data Sources
+      parameters:
+        - $ref: '#/components/parameters/ResourceName'
+      responses:
+        '200':
+          description: JDBC driver parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JDBCDriverParams'
+    post:
+      operationId: updateJDBCDriverParams
+      summary: Update JDBC driver parameters
+      tags:
+        - Data Sources
+      parameters:
+        - $ref: '#/components/parameters/ResourceName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JDBCDriverParams'
+      responses:
+        '200':
+          description: JDBC driver parameters updated
+  /edit/JDBCSystemResources/{resourceName}/JDBCResource/JDBCDriverParams/properties/properties:
+    get:
+      operationId: listJDBCProperties
+      summary: List JDBC driver properties
+      tags:
+        - Data Sources
+      parameters:
+        - $ref: '#/components/parameters/ResourceName'
+      responses:
+        '200':
+          description: Collection of JDBC driver properties
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Property'
+    post:
+      operationId: createJDBCProperty
+      summary: Add a JDBC driver property
+      tags:
+        - Data Sources
+      parameters:
+        - $ref: '#/components/parameters/ResourceName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Property'
+      responses:
+        '201':
+          description: Property created
+  /edit/JMSServers:
+    get:
+      operationId: listJMSServers
+      summary: List all JMS servers
+      tags:
+        - JMS
+      responses:
+        '200':
+          description: Collection of JMS servers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JMSServer'
+    post:
+      operationId: createJMSServer
+      summary: Create a JMS server
+      tags:
+        - JMS
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JMSServerCreateRequest'
+      responses:
+        '201':
+          description: JMS server created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+  /edit/JMSServers/{jmsServerName}:
+    get:
+      operationId: getJMSServer
+      summary: Get a JMS server configuration
+      tags:
+        - JMS
+      parameters:
+        - $ref: '#/components/parameters/JMSServerName'
+      responses:
+        '200':
+          description: JMS server configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JMSServer'
+    delete:
+      operationId: deleteJMSServer
+      summary: Delete a JMS server
+      tags:
+        - JMS
+      parameters:
+        - $ref: '#/components/parameters/JMSServerName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: JMS server deleted
+  /edit/JMSSystemResources:
+    get:
+      operationId: listJMSSystemResources
+      summary: List all JMS system resources
+      tags:
+        - JMS
+      responses:
+        '200':
+          description: Collection of JMS system resources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JMSSystemResource'
+    post:
+      operationId: createJMSSystemResource
+      summary: Create a JMS system resource
+      tags:
+        - JMS
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JMSSystemResourceCreateRequest'
+      responses:
+        '201':
+          description: JMS system resource created
+  /edit/JMSSystemResources/{jmsResourceName}/JMSResource/connectionFactories:
+    get:
+      operationId: listJMSConnectionFactories
+      summary: List JMS connection factories
+      tags:
+        - JMS
+      parameters:
+        - $ref: '#/components/parameters/JMSResourceName'
+      responses:
+        '200':
+          description: Collection of connection factories
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JMSConnectionFactory'
+    post:
+      operationId: createJMSConnectionFactory
+      summary: Create a JMS connection factory
+      tags:
+        - JMS
+      parameters:
+        - $ref: '#/components/parameters/JMSResourceName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JMSConnectionFactoryCreateRequest'
+      responses:
+        '201':
+          description: Connection factory created
+  /edit/JMSSystemResources/{jmsResourceName}/JMSResource/uniformDistributedQueues:
+    get:
+      operationId: listJMSDistributedQueues
+      summary: List JMS uniform distributed queues
+      tags:
+        - JMS
+      parameters:
+        - $ref: '#/components/parameters/JMSResourceName'
+      responses:
+        '200':
+          description: Collection of distributed queues
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JMSDistributedQueue'
+    post:
+      operationId: createJMSDistributedQueue
+      summary: Create a JMS uniform distributed queue
+      tags:
+        - JMS
+      parameters:
+        - $ref: '#/components/parameters/JMSResourceName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JMSDistributedQueueCreateRequest'
+      responses:
+        '201':
+          description: Distributed queue created
+  /edit/JMSSystemResources/{jmsResourceName}/subDeployments:
+    get:
+      operationId: listJMSSubDeployments
+      summary: List JMS sub-deployments
+      tags:
+        - JMS
+      parameters:
+        - $ref: '#/components/parameters/JMSResourceName'
+      responses:
+        '200':
+          description: Collection of sub-deployments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JMSSubDeployment'
+    post:
+      operationId: createJMSSubDeployment
+      summary: Create a JMS sub-deployment
+      tags:
+        - JMS
+      parameters:
+        - $ref: '#/components/parameters/JMSResourceName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JMSSubDeploymentCreateRequest'
+      responses:
+        '201':
+          description: Sub-deployment created
+  /edit/fileStores:
+    get:
+      operationId: listFileStores
+      summary: List all file stores
+      tags:
+        - JMS
+      responses:
+        '200':
+          description: Collection of file stores
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FileStore'
+    post:
+      operationId: createFileStore
+      summary: Create a file store
+      tags:
+        - JMS
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileStoreCreateRequest'
+      responses:
+        '201':
+          description: File store created
+  /edit/appDeployments:
+    get:
+      operationId: listAppDeployments
+      summary: List all application deployments
+      tags:
+        - Application Deployment
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of application deployments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppDeployment'
+    post:
+      operationId: createAppDeployment
+      summary: Deploy an application
+      description: >-
+        Deploys an application to the domain. The application source must be
+        accessible from the admin server. Requires an active edit session.
+      tags:
+        - Application Deployment
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppDeploymentCreateRequest'
+      responses:
+        '201':
+          description: Application deployed successfully
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+  /edit/appDeployments/{appName}:
+    get:
+      operationId: getAppDeployment
+      summary: Get an application deployment
+      tags:
+        - Application Deployment
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+      responses:
+        '200':
+          description: Application deployment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDeployment'
+    post:
+      operationId: updateAppDeployment
+      summary: Update an application deployment
+      tags:
+        - Application Deployment
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppDeployment'
+      responses:
+        '200':
+          description: Application deployment updated
+    delete:
+      operationId: deleteAppDeployment
+      summary: Undeploy an application
+      description: Removes the application deployment from the domain configuration.
+      tags:
+        - Application Deployment
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: Application undeployed
+  /edit/libDeployments:
+    get:
+      operationId: listLibDeployments
+      summary: List all library deployments
+      tags:
+        - Application Deployment
+      responses:
+        '200':
+          description: Collection of library deployments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LibDeployment'
+    post:
+      operationId: createLibDeployment
+      summary: Deploy a shared library
+      tags:
+        - Application Deployment
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LibDeploymentCreateRequest'
+      responses:
+        '201':
+          description: Library deployed
+  /edit/securityConfiguration/realms:
+    get:
+      operationId: listSecurityRealms
+      summary: List all security realms
+      tags:
+        - Security
+      responses:
+        '200':
+          description: Collection of security realms
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SecurityRealm'
+    post:
+      operationId: createSecurityRealm
+      summary: Create a security realm
+      tags:
+        - Security
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityRealmCreateRequest'
+      responses:
+        '201':
+          description: Security realm created
+  /edit/securityConfiguration/realms/{realmName}:
+    get:
+      operationId: getSecurityRealm
+      summary: Get a security realm configuration
+      tags:
+        - Security
+      parameters:
+        - $ref: '#/components/parameters/RealmName'
+      responses:
+        '200':
+          description: Security realm configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityRealm'
+    post:
+      operationId: updateSecurityRealm
+      summary: Update a security realm
+      tags:
+        - Security
+      parameters:
+        - $ref: '#/components/parameters/RealmName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecurityRealm'
+      responses:
+        '200':
+          description: Security realm updated
+  /edit/securityConfiguration/realms/{realmName}/authenticationProviders:
+    get:
+      operationId: listAuthenticationProviders
+      summary: List authentication providers for a realm
+      tags:
+        - Security
+      parameters:
+        - $ref: '#/components/parameters/RealmName'
+      responses:
+        '200':
+          description: Collection of authentication providers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AuthenticationProvider'
+    post:
+      operationId: createAuthenticationProvider
+      summary: Create an authentication provider
+      tags:
+        - Security
+      parameters:
+        - $ref: '#/components/parameters/RealmName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationProviderCreateRequest'
+      responses:
+        '201':
+          description: Authentication provider created
+  /serverConfig/securityConfiguration/realms/{realmName}/authenticationProviders/{providerName}/createUser:
+    post:
+      operationId: createUser
+      summary: Create a user in an authentication provider
+      description: >-
+        Creates a new user in the specified authentication provider. This is
+        an operation invoked on the serverConfig tree.
+      tags:
+        - Security
+      parameters:
+        - $ref: '#/components/parameters/RealmName'
+        - $ref: '#/components/parameters/ProviderName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - userName
+                - password
+              properties:
+                userName:
+                  type: string
+                  description: Username for the new user
+                password:
+                  type: string
+                  format: password
+                  description: Password for the new user
+                description:
+                  type: string
+                  description: Description of the user
+      responses:
+        '200':
+          description: User created successfully
+  /serverConfig/securityConfiguration/realms/{realmName}/authenticationProviders/{providerName}/addMemberToGroup:
+    post:
+      operationId: addMemberToGroup
+      summary: Add a user or group to a security group
+      tags:
+        - Security
+      parameters:
+        - $ref: '#/components/parameters/RealmName'
+        - $ref: '#/components/parameters/ProviderName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - groupName
+                - memberUserOrGroupName
+              properties:
+                groupName:
+                  type: string
+                  description: Name of the group to add the member to
+                memberUserOrGroupName:
+                  type: string
+                  description: Name of the user or group to add
+      responses:
+        '200':
+          description: Member added to group
+  /edit:
+    get:
+      operationId: getEditRoot
+      summary: Get the edit tree root (domain configuration)
+      description: Returns the root of the edit configuration tree representing the domain.
+      tags:
+        - Domain Configuration
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Domain edit tree root
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Domain'
+  /serverConfig:
+    get:
+      operationId: getServerConfig
+      summary: Get the server configuration tree root
+      description: Returns the root of the current server configuration (read-only).
+      tags:
+        - Domain Configuration
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Server configuration root
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Domain'
+  /domainConfig:
+    get:
+      operationId: getDomainConfig
+      summary: Get the last activated domain configuration
+      description: Returns the last activated domain configuration (read-only).
+      tags:
+        - Domain Configuration
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Domain configuration root
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Domain'
+  /edit/search:
+    post:
+      operationId: searchEditTree
+      summary: Search the edit configuration tree
+      description: >-
+        Performs a structured query against the edit configuration tree.
+        Supports field filtering, child traversal, and collection filtering.
+      tags:
+        - Search
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchQuery'
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+  /domainConfig/search:
+    post:
+      operationId: searchDomainConfigTree
+      summary: Search the domain configuration tree
+      tags:
+        - Search
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchQuery'
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+  /serverConfig/search:
+    post:
+      operationId: searchServerConfigTree
+      summary: Search the server configuration tree
+      tags:
+        - Search
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchQuery'
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+  /edit/virtualTargets:
+    get:
+      operationId: listVirtualTargets
+      summary: List all virtual targets
+      tags:
+        - Domain Configuration
+      responses:
+        '200':
+          description: Collection of virtual targets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VirtualTarget'
+    post:
+      operationId: createVirtualTarget
+      summary: Create a virtual target
+      tags:
+        - Domain Configuration
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VirtualTargetCreateRequest'
+      responses:
+        '201':
+          description: Virtual target created
+  /edit/partitions:
+    get:
+      operationId: listPartitions
+      summary: List all partitions
+      tags:
+        - Domain Configuration
+      responses:
+        '200':
+          description: Collection of partitions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Partition'
+    post:
+      operationId: createPartition
+      summary: Create a partition
+      tags:
+        - Domain Configuration
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartitionCreateRequest'
+      responses:
+        '201':
+          description: Partition created
+  /edit/partitions/{partitionName}/resourceGroups:
+    get:
+      operationId: listResourceGroups
+      summary: List resource groups for a partition
+      tags:
+        - Domain Configuration
+      parameters:
+        - $ref: '#/components/parameters/PartitionName'
+      responses:
+        '200':
+          description: Collection of resource groups
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ResourceGroup'
+    post:
+      operationId: createResourceGroup
+      summary: Create a resource group in a partition
+      tags:
+        - Domain Configuration
+      parameters:
+        - $ref: '#/components/parameters/PartitionName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceGroupCreateRequest'
+      responses:
+        '201':
+          description: Resource group created
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic authentication using WebLogic Server credentials. Users
+        must have appropriate roles (Admin, Operator, Deployer, or Monitor).
+  parameters:
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include in the response
+      schema:
+        type: string
+      example: name,listenPort
+    ExcludeFields:
+      name: excludeFields
+      in: query
+      description: Comma-separated list of property names to exclude from the response
+      schema:
+        type: string
+    Links:
+      name: links
+      in: query
+      description: >-
+        Comma-separated list of link relations to include (e.g., self,
+        parent, canonical). Use 'none' to exclude all links.
+      schema:
+        type: string
+      example: none
+    ExcludeLinks:
+      name: excludeLinks
+      in: query
+      description: Comma-separated list of link relations to exclude
+      schema:
+        type: string
+    ExpandedValues:
+      name: expandedValues
+      in: query
+      description: >-
+        When true, properties are returned as objects with set and value
+        fields indicating whether the property has been explicitly set.
+      schema:
+        type: boolean
+        default: false
+    SaveChanges:
+      name: saveChanges
+      in: query
+      description: >-
+        When false, changes are saved to the edit session but not validated
+        until explicitly saved or activated.
+      schema:
+        type: boolean
+        default: true
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+    ClusterName:
+      name: clusterName
+      in: path
+      required: true
+      description: Name of the cluster
+      schema:
+        type: string
+    MachineName:
+      name: machineName
+      in: path
+      required: true
+      description: Name of the machine
+      schema:
+        type: string
+    ResourceName:
+      name: resourceName
+      in: path
+      required: true
+      description: Name of the resource
+      schema:
+        type: string
+    JMSServerName:
+      name: jmsServerName
+      in: path
+      required: true
+      description: Name of the JMS server
+      schema:
+        type: string
+    JMSResourceName:
+      name: jmsResourceName
+      in: path
+      required: true
+      description: Name of the JMS system resource
+      schema:
+        type: string
+    AppName:
+      name: appName
+      in: path
+      required: true
+      description: Name of the application deployment
+      schema:
+        type: string
+    RealmName:
+      name: realmName
+      in: path
+      required: true
+      description: Name of the security realm
+      schema:
+        type: string
+    ProviderName:
+      name: providerName
+      in: path
+      required: true
+      description: Name of the authentication provider
+      schema:
+        type: string
+    PartitionName:
+      name: partitionName
+      in: path
+      required: true
+      description: Name of the domain partition
+      schema:
+        type: string
+    EditSession:
+      name: weblogic.edit.session
+      in: header
+      description: >-
+        Specifies the edit session to use. Use 'default' for the default
+        session or a custom session name.
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request - malformed parameters or validation errors
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required or invalid credentials
+    Forbidden:
+      description: User does not have the required role
+    NotFound:
+      description: Requested resource does not exist
+    MethodNotAllowed:
+      description: HTTP method not supported for this resource
+  schemas:
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: URL of the linked resource
+        title:
+          type: string
+          description: Human-readable title for the link
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+          description: Bean identity path as an array of path segments
+    Message:
+      type: object
+      properties:
+        severity:
+          type: string
+          enum:
+            - SUCCESS
+            - WARNING
+            - FAILURE
+        field:
+          type: string
+          description: Property name associated with this message
+        message:
+          type: string
+          description: Detailed message text
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+          enum:
+            - ERRORS
+        status:
+          type: integer
+        wls:errorsDetails:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              title:
+                type: string
+              detail:
+                type: string
+              o:errorPath:
+                type: string
+    Domain:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Domain name
+        configurationVersion:
+          type: string
+          description: Domain configuration version
+        domainVersion:
+          type: string
+          description: WebLogic Server version
+        adminServerName:
+          type: string
+          description: Name of the administration server
+        productionModeEnabled:
+          type: boolean
+          description: Whether the domain is in production mode
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Server:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Server name
+        listenPort:
+          type: integer
+          description: Listen port for the server
+          default: 7001
+        listenAddress:
+          type: string
+          description: IP address or hostname the server listens on
+        listenPortEnabled:
+          type: boolean
+          description: Whether the non-SSL listen port is enabled
+          default: true
+        SSLListenPort:
+          type: integer
+          description: SSL listen port
+        administrationPort:
+          type: integer
+          description: Administration port
+        defaultProtocol:
+          type: string
+          description: Default network protocol
+          enum:
+            - t3
+            - t3s
+            - http
+            - https
+            - iiop
+            - iiops
+        machine:
+          $ref: '#/components/schemas/Identity'
+        cluster:
+          $ref: '#/components/schemas/Identity'
+        candidateMachines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        idleConnectionTimeout:
+          type: integer
+          description: Idle connection timeout in seconds
+        replicationGroup:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ServerCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Name for the new server
+        listenPort:
+          type: integer
+          description: Listen port
+          default: 7001
+        listenAddress:
+          type: string
+          description: Listen address
+        defaultProtocol:
+          type: string
+          enum:
+            - t3
+            - t3s
+            - http
+            - https
+            - iiop
+            - iiops
+        machine:
+          type: array
+          items:
+            type: string
+          description: Machine reference as identity path
+        cluster:
+          type: array
+          items:
+            type: string
+          description: Cluster reference as identity path
+    ServerUpdateRequest:
+      type: object
+      properties:
+        listenPort:
+          type: integer
+        listenAddress:
+          type: string
+        administrationPort:
+          type: integer
+        machine:
+          type: array
+          items:
+            type: string
+          description: Machine reference as identity path (set to null to remove)
+        cluster:
+          type: array
+          items:
+            type: string
+          description: Cluster reference as identity path
+        candidateMachines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    SSLConfiguration:
+      type: object
+      properties:
+        name:
+          type: string
+        enabled:
+          type: boolean
+          description: Whether SSL is enabled
+        listenPort:
+          type: integer
+          description: SSL listen port
+        identityAndTrustLocations:
+          type: string
+          description: Where identity and trust keystores are stored
+        serverPrivateKeyAlias:
+          type: string
+        serverPrivateKeyPassPhrase:
+          type: string
+          format: password
+        twoWaySSLEnabled:
+          type: boolean
+        clientCertificateEnforced:
+          type: boolean
+        hostnameVerificationIgnored:
+          type: boolean
+    ServerStart:
+      type: object
+      properties:
+        arguments:
+          type: string
+          description: JVM arguments for server startup
+        classPath:
+          type: string
+          description: Classpath for server startup
+        javaHome:
+          type: string
+          description: Java home directory
+        javaVendor:
+          type: string
+          description: Java vendor
+        beaHome:
+          type: string
+          description: BEA/Oracle home directory
+    NetworkAccessPoint:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Network channel name
+        protocol:
+          type: string
+          description: Network protocol
+        listenPort:
+          type: integer
+        listenAddress:
+          type: string
+        publicPort:
+          type: integer
+        publicAddress:
+          type: string
+        enabled:
+          type: boolean
+    Cluster:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Cluster name
+        clusterMessagingMode:
+          type: string
+          description: Messaging mode for the cluster
+          enum:
+            - unicast
+            - multicast
+        clusterBroadcastChannel:
+          type: string
+        defaultLoadAlgorithm:
+          type: string
+          enum:
+            - round-robin
+            - weight-based
+            - random
+            - round-robin-affinity
+            - weight-based-affinity
+        weblogicPluginEnabled:
+          type: boolean
+        frontendHost:
+          type: string
+        frontendHTTPPort:
+          type: integer
+        frontendHTTPSPort:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ClusterCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Cluster name
+        clusterMessagingMode:
+          type: string
+          enum:
+            - unicast
+            - multicast
+    ClusterUpdateRequest:
+      type: object
+      properties:
+        clusterMessagingMode:
+          type: string
+          enum:
+            - unicast
+            - multicast
+        defaultLoadAlgorithm:
+          type: string
+          enum:
+            - round-robin
+            - weight-based
+            - random
+        weblogicPluginEnabled:
+          type: boolean
+    DynamicServers:
+      type: object
+      properties:
+        serverTemplate:
+          type: array
+          items:
+            type: string
+          description: Server template reference as identity path
+        dynamicClusterSize:
+          type: integer
+          description: Number of dynamic server instances
+        maxDynamicClusterSize:
+          type: integer
+          description: Maximum number of dynamic server instances
+        serverNamePrefix:
+          type: string
+          description: Prefix for dynamically created server names
+        calculateListenPorts:
+          type: boolean
+          description: Whether to auto-calculate listen ports
+    Machine:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Machine name
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    MachineCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Machine name
+    NodeManager:
+      type: object
+      properties:
+        NMType:
+          type: string
+          description: Node Manager type
+          enum:
+            - SSL
+            - Plain
+            - ssh
+          default: SSL
+        listenAddress:
+          type: string
+          description: Listen address for Node Manager
+          default: localhost
+        listenPort:
+          type: integer
+          description: Listen port for Node Manager
+          default: 5556
+    ServerTemplate:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        listenPort:
+          type: integer
+        listenAddress:
+          type: string
+        machine:
+          type: array
+          items:
+            type: string
+        cluster:
+          type: array
+          items:
+            type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ServerTemplateCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Server template name
+        listenPort:
+          type: integer
+        listenAddress:
+          type: string
+        machine:
+          type: array
+          items:
+            type: string
+          description: Machine reference as identity path
+        cluster:
+          type: array
+          items:
+            type: string
+          description: Cluster reference as identity path
+    JDBCSystemResource:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: JDBC system resource name
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+          description: Deployment targets
+        descriptorFileName:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    JDBCSystemResourceCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: JDBC data source name
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+          description: Deployment targets (servers or clusters)
+    JDBCResource:
+      type: object
+      properties:
+        name:
+          type: string
+          description: JDBC resource name
+    JDBCDataSourceParams:
+      type: object
+      properties:
+        JNDINames:
+          type: array
+          items:
+            type: string
+          description: JNDI names for the data source
+        globalTransactionsProtocol:
+          type: string
+          description: Global transaction protocol
+          enum:
+            - TwoPhaseCommit
+            - LoggingLastResource
+            - EmulateTwoPhaseCommit
+            - OnePhaseCommit
+            - None
+    JDBCDriverParams:
+      type: object
+      properties:
+        driverName:
+          type: string
+          description: Fully qualified JDBC driver class name
+        url:
+          type: string
+          description: JDBC connection URL
+        password:
+          type: string
+          format: password
+          description: Database password (encrypted)
+    Property:
+      type: object
+      required:
+        - name
+        - value
+      properties:
+        name:
+          type: string
+          description: Property name
+        value:
+          type: string
+          description: Property value
+    JMSServer:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: JMS server name
+        messagesMaximum:
+          type: integer
+          description: Maximum number of messages
+        bytesMaximum:
+          type: integer
+          description: Maximum bytes
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        persistentStore:
+          type: array
+          items:
+            type: string
+          description: Persistent store reference as identity path
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    JMSServerCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: JMS server name
+        messagesMaximum:
+          type: integer
+        bytesMaximum:
+          type: integer
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        persistentStore:
+          type: array
+          items:
+            type: string
+    JMSSystemResource:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    JMSSystemResourceCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    JMSConnectionFactory:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Connection factory name
+        JNDIName:
+          type: string
+          description: JNDI name
+        subDeploymentName:
+          type: string
+          description: Sub-deployment name for targeting
+    JMSConnectionFactoryCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        subDeploymentName:
+          type: string
+    JMSDistributedQueue:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Distributed queue name
+        JNDIName:
+          type: string
+          description: JNDI name
+        subDeploymentName:
+          type: string
+    JMSDistributedQueueCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        subDeploymentName:
+          type: string
+    JMSSubDeployment:
+      type: object
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    JMSSubDeploymentCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    FileStore:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        directory:
+          type: string
+          description: Directory for the file store
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    FileStoreCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        directory:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    AppDeployment:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Application name
+        sourcePath:
+          type: string
+          description: Path to the application archive or directory
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+          description: Deployment targets
+        deploymentOrder:
+          type: integer
+          description: Order in which applications are deployed
+        planPath:
+          type: string
+          description: Path to the deployment plan
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    AppDeploymentCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Application name
+        sourceURL:
+          type: string
+          description: URL or file path to the application archive
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        planPath:
+          type: string
+    LibDeployment:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        sourcePath:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    LibDeploymentCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        sourceURL:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    SecurityRealm:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Security realm name
+        managementIdentityDomain:
+          type: string
+          description: Identity domain for management
+        certPathBuilder:
+          type: array
+          items:
+            type: string
+          description: Certificate path builder reference
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    SecurityRealmCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Security realm name
+        managementIdentityDomain:
+          type: string
+    AuthenticationProvider:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Provider name
+        type:
+          type: string
+          description: Fully qualified provider type class
+    AuthenticationProviderCreateRequest:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          description: >-
+            Provider type (e.g.,
+            weblogic.security.providers.authentication.DefaultAuthenticator)
+        activeTypes:
+          type: array
+          items:
+            type: string
+          description: Active identity assertion types
+    VirtualTarget:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        hostNames:
+          type: array
+          items:
+            type: string
+        uriPrefix:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    VirtualTargetCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        hostNames:
+          type: array
+          items:
+            type: string
+        uriPrefix:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    Partition:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        realm:
+          type: array
+          items:
+            type: string
+          description: Security realm reference
+        primaryIdentityDomain:
+          type: string
+        availableTargets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        defaultTargets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        resourceManagerRef:
+          type: array
+          items:
+            type: string
+    PartitionCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        realm:
+          type: array
+          items:
+            type: string
+        primaryIdentityDomain:
+          type: string
+        availableTargets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        defaultTargets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        resourceManagerRef:
+          type: array
+          items:
+            type: string
+    ResourceGroup:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    ResourceGroupCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    SearchQuery:
+      type: object
+      description: >-
+        Structured query object for searching configuration and runtime
+        trees. Supports field filtering, link filtering, child traversal,
+        and collection item filtering.
+      properties:
+        fields:
+          type: array
+          items:
+            type: string
+          description: List of property names to include
+        links:
+          type: array
+          items:
+            type: string
+          description: List of link relations to include
+        children:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/SearchQuery'
+          description: Child collections to traverse
+        names:
+          type: array
+          items:
+            type: string
+          description: Filter collection items by name
+        mergeCollection:
+          type: boolean
+          description: Merge results from multiple servers
+        mergeOn:
+          type: string
+          description: Property name to merge collection items on

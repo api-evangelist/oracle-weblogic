@@ -1,0 +1,377 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.oracle.com/weblogic/jms-configuration",
+  "title": "Oracle WebLogic JMS Configuration",
+  "description": "Schema for WebLogic Server JMS (Java Message Service) system resource configuration including JMS servers, connection factories, queues, topics, and related resources as managed through the RESTful Management API.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "identity": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "name": {
+      "type": "string",
+      "description": "JMS system resource name"
+    },
+    "targets": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/identityObject" },
+      "description": "Target servers or clusters for this JMS system resource"
+    },
+    "JMSResource": {
+      "$ref": "#/$defs/jmsResource",
+      "description": "JMS resource definition containing destinations and connection factories"
+    },
+    "subDeployments": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/subDeployment" },
+      "description": "Sub-deployments for targeting JMS destinations to specific JMS servers"
+    },
+    "links": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/link" }
+    }
+  },
+  "$defs": {
+    "identityObject": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["identity"]
+    },
+    "link": {
+      "type": "object",
+      "properties": {
+        "rel": { "type": "string" },
+        "href": { "type": "string", "format": "uri" },
+        "title": { "type": "string" }
+      },
+      "required": ["rel", "href"]
+    },
+    "jmsResource": {
+      "type": "object",
+      "description": "JMS resource module containing destinations and connection factories",
+      "properties": {
+        "connectionFactories": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/connectionFactory" },
+          "description": "JMS connection factories"
+        },
+        "uniformDistributedQueues": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/distributedQueue" },
+          "description": "Uniform distributed queues for clustered messaging"
+        },
+        "uniformDistributedTopics": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/distributedTopic" },
+          "description": "Uniform distributed topics for clustered pub/sub messaging"
+        },
+        "queues": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/queue" },
+          "description": "Standalone JMS queues"
+        },
+        "topics": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/topic" },
+          "description": "Standalone JMS topics"
+        }
+      }
+    },
+    "connectionFactory": {
+      "type": "object",
+      "description": "JMS connection factory for creating JMS connections",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Connection factory name"
+        },
+        "JNDIName": {
+          "type": "string",
+          "description": "JNDI name for application lookup"
+        },
+        "subDeploymentName": {
+          "type": "string",
+          "description": "Sub-deployment name for targeting"
+        },
+        "defaultTargetingEnabled": {
+          "type": "boolean",
+          "description": "Whether to use the parent module's targets"
+        },
+        "clientParams": {
+          "$ref": "#/$defs/clientParams"
+        },
+        "transactionParams": {
+          "$ref": "#/$defs/transactionParams"
+        },
+        "flowControlParams": {
+          "$ref": "#/$defs/flowControlParams"
+        }
+      }
+    },
+    "clientParams": {
+      "type": "object",
+      "description": "Client configuration parameters for a connection factory",
+      "properties": {
+        "clientId": {
+          "type": "string",
+          "description": "Client identifier for durable subscriptions"
+        },
+        "acknowledgePolicy": {
+          "type": "string",
+          "enum": ["All", "Previous"],
+          "description": "Message acknowledgment policy"
+        },
+        "allowCloseInOnMessage": {
+          "type": "boolean"
+        },
+        "messagesMaximum": {
+          "type": "integer",
+          "minimum": -1,
+          "description": "Maximum messages buffered per consumer (-1 for unlimited)"
+        },
+        "reconnectPolicy": {
+          "type": "string",
+          "enum": ["producer", "none", "all"],
+          "description": "Automatic reconnect policy"
+        }
+      }
+    },
+    "transactionParams": {
+      "type": "object",
+      "description": "Transaction settings for a connection factory",
+      "properties": {
+        "transactionTimeout": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Transaction timeout in seconds (0 means use domain default)"
+        },
+        "XAConnectionFactoryEnabled": {
+          "type": "boolean",
+          "description": "Whether this connection factory supports XA transactions"
+        }
+      }
+    },
+    "flowControlParams": {
+      "type": "object",
+      "description": "Flow control settings for producers",
+      "properties": {
+        "flowControlEnabled": {
+          "type": "boolean",
+          "description": "Whether to enable producer flow control"
+        },
+        "flowMinimum": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Minimum number of messages per second for flow control"
+        },
+        "flowMaximum": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum number of messages per second for flow control"
+        }
+      }
+    },
+    "distributedQueue": {
+      "type": "object",
+      "description": "Uniform distributed queue providing clustered point-to-point messaging",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Distributed queue name"
+        },
+        "JNDIName": {
+          "type": "string",
+          "description": "JNDI name for application lookup"
+        },
+        "subDeploymentName": {
+          "type": "string",
+          "description": "Sub-deployment for JMS server targeting"
+        },
+        "defaultTargetingEnabled": { "type": "boolean" },
+        "loadBalancingPolicy": {
+          "type": "string",
+          "enum": ["Round-Robin", "Random"],
+          "description": "How messages are distributed across queue members"
+        },
+        "forwardDelay": {
+          "type": "integer",
+          "description": "Delay in seconds before forwarding messages to other members"
+        },
+        "resetDeliveryCountOnForward": {
+          "type": "boolean"
+        },
+        "deliveryParamsOverrides": {
+          "$ref": "#/$defs/deliveryOverrides"
+        },
+        "deliveryFailureParams": {
+          "$ref": "#/$defs/deliveryFailureParams"
+        }
+      }
+    },
+    "distributedTopic": {
+      "type": "object",
+      "description": "Uniform distributed topic providing clustered publish/subscribe messaging",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Distributed topic name"
+        },
+        "JNDIName": { "type": "string" },
+        "subDeploymentName": { "type": "string" },
+        "defaultTargetingEnabled": { "type": "boolean" },
+        "forwardingPolicy": {
+          "type": "string",
+          "enum": ["Replicated", "Partitioned"],
+          "description": "How messages are forwarded across topic members"
+        }
+      }
+    },
+    "queue": {
+      "type": "object",
+      "description": "Standalone JMS queue for point-to-point messaging",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "JNDIName": { "type": "string" },
+        "subDeploymentName": { "type": "string" },
+        "deliveryParamsOverrides": {
+          "$ref": "#/$defs/deliveryOverrides"
+        },
+        "deliveryFailureParams": {
+          "$ref": "#/$defs/deliveryFailureParams"
+        }
+      }
+    },
+    "topic": {
+      "type": "object",
+      "description": "Standalone JMS topic for publish/subscribe messaging",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "JNDIName": { "type": "string" },
+        "subDeploymentName": { "type": "string" }
+      }
+    },
+    "deliveryOverrides": {
+      "type": "object",
+      "description": "Override delivery parameters for a destination",
+      "properties": {
+        "deliveryMode": {
+          "type": "string",
+          "enum": ["Persistent", "Non-Persistent", "No-Delivery"],
+          "description": "Delivery mode override"
+        },
+        "timeToLive": {
+          "type": "integer",
+          "minimum": -1,
+          "description": "Time to live in milliseconds (-1 for unlimited)"
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9,
+          "description": "Message priority (0-9)"
+        },
+        "redeliveryDelay": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Delay in milliseconds before redelivering a message"
+        }
+      }
+    },
+    "deliveryFailureParams": {
+      "type": "object",
+      "description": "Configuration for handling message delivery failures",
+      "properties": {
+        "redeliveryLimit": {
+          "type": "integer",
+          "minimum": -1,
+          "description": "Maximum redelivery attempts (-1 for unlimited)"
+        },
+        "expirationPolicy": {
+          "type": "string",
+          "enum": ["Discard", "Log", "Redirect"],
+          "description": "What to do with expired messages"
+        },
+        "errorDestination": {
+          "type": "string",
+          "description": "Error destination for failed messages"
+        }
+      }
+    },
+    "subDeployment": {
+      "type": "object",
+      "description": "Sub-deployment for targeting JMS destinations to specific JMS servers",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "targets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/identityObject" },
+          "description": "JMS server targets for this sub-deployment"
+        }
+      }
+    },
+    "jmsServer": {
+      "type": "object",
+      "description": "JMS server instance that hosts JMS destinations",
+      "required": ["name"],
+      "properties": {
+        "identity": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "name": { "type": "string" },
+        "messagesMaximum": {
+          "type": "integer",
+          "minimum": -1,
+          "description": "Maximum messages across all destinations (-1 for unlimited)"
+        },
+        "bytesMaximum": {
+          "type": "integer",
+          "minimum": -1,
+          "description": "Maximum bytes across all destinations (-1 for unlimited)"
+        },
+        "targets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/identityObject" }
+        },
+        "persistentStore": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Persistent store reference for durable messaging"
+        }
+      }
+    },
+    "fileStore": {
+      "type": "object",
+      "description": "File-based persistent store for JMS messages and transaction logs",
+      "required": ["name"],
+      "properties": {
+        "identity": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "name": { "type": "string" },
+        "directory": {
+          "type": "string",
+          "description": "Directory path for the file store data"
+        },
+        "targets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/identityObject" }
+        }
+      }
+    }
+  }
+}

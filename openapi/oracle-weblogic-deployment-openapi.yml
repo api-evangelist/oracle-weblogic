@@ -1,0 +1,911 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Deployment API
+  description: >-
+    RESTful API for deploying, undeploying, and managing application and
+    library deployments on Oracle WebLogic Server. Supports deploying
+    enterprise applications (EAR, WAR), shared libraries, and managing
+    deployment lifecycle including start, stop, and redeploy operations.
+    All deployment configuration changes require an active edit session
+    with startEdit/activate workflow. Runtime deployment lifecycle
+    operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm
+servers:
+  - url: http://localhost:7001/management/weblogic/latest
+    description: WebLogic Administration Server (default)
+  - url: http://{host}:{port}/management/weblogic/{version}
+    description: WebLogic Administration Server (configurable)
+    variables:
+      host:
+        default: localhost
+      port:
+        default: '7001'
+      version:
+        default: latest
+security:
+  - basicAuth: []
+tags:
+  - name: Application Deployments
+    description: >-
+      Deploy, configure, and manage enterprise application deployments
+      (EAR, WAR files)
+  - name: Library Deployments
+    description: Deploy and manage shared library deployments
+  - name: Deployment Lifecycle
+    description: Start, stop, and manage deployed application lifecycle
+  - name: Deployment Configuration
+    description: Configure deployment targets and settings
+  - name: Edit Session
+    description: Manage edit sessions for deployment changes
+paths:
+  /edit/changeManager/startEdit:
+    post:
+      operationId: startEdit
+      summary: Start an edit session for deployment changes
+      description: >-
+        Acquires a configuration lock and starts an edit session. Required
+        before making any deployment configuration changes.
+      tags:
+        - Edit Session
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                waitTimeInMillis:
+                  type: integer
+                  description: Maximum time to wait for the edit lock
+                exclusive:
+                  type: boolean
+      responses:
+        '200':
+          description: Edit session started
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /edit/changeManager/activate:
+    post:
+      operationId: activateDeploymentChanges
+      summary: Activate pending deployment changes
+      description: >-
+        Activates all pending deployment changes and distributes them to
+        targeted servers.
+      tags:
+        - Edit Session
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Changes activated
+          content:
+            application/json:
+              schema:
+                type: object
+  /edit/appDeployments:
+    get:
+      operationId: listAppDeployments
+      summary: List all application deployments
+      description: >-
+        Returns all application deployments configured in the domain
+        including their targets and deployment settings.
+      tags:
+        - Application Deployments
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of application deployments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppDeployment'
+                  links:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Link'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: deployApplication
+      summary: Deploy an application
+      description: >-
+        Deploys a new application to the domain. The application source
+        (EAR, WAR, or exploded directory) must be accessible from the
+        admin server filesystem. Requires an active edit session.
+      tags:
+        - Application Deployments
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+        - $ref: '#/components/parameters/SaveChanges'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppDeploymentCreateRequest'
+            examples:
+              deployToCluster:
+                summary: Deploy to a cluster
+                value:
+                  name: MyApplication
+                  targets:
+                    - identity:
+                        - clusters
+                        - Cluster1
+              deployToServer:
+                summary: Deploy to a specific server
+                value:
+                  name: MyApplication
+                  sourceURL: file:///path/to/myapp.ear
+                  targets:
+                    - identity:
+                        - servers
+                        - Server-0
+      responses:
+        '201':
+          description: Application deployed successfully
+          headers:
+            Location:
+              description: URL of the new application deployment resource
+              schema:
+                type: string
+                format: uri
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  item:
+                    $ref: '#/components/schemas/AppDeployment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /edit/appDeploymentCreateForm:
+    get:
+      operationId: getAppDeploymentCreateForm
+      summary: Get application deployment creation form
+      description: Returns a pre-populated template with default values for deploying an application.
+      tags:
+        - Application Deployments
+      parameters:
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Deployment create form with defaults
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDeploymentCreateRequest'
+  /edit/appDeployments/{appName}:
+    get:
+      operationId: getAppDeployment
+      summary: Get application deployment details
+      description: Returns the deployment configuration for the specified application.
+      tags:
+        - Application Deployments
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Application deployment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDeployment'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateAppDeployment
+      summary: Update application deployment configuration
+      description: >-
+        Modifies the deployment configuration such as targets or deployment
+        plan. Requires an active edit session.
+      tags:
+        - Application Deployments
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppDeploymentUpdateRequest'
+      responses:
+        '200':
+          description: Deployment updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Message'
+    delete:
+      operationId: undeployApplication
+      summary: Undeploy an application
+      description: >-
+        Removes the application deployment from the domain configuration.
+        Requires an active edit session and must be followed by activation.
+      tags:
+        - Application Deployments
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: Application undeployed
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /edit/libDeployments:
+    get:
+      operationId: listLibDeployments
+      summary: List all shared library deployments
+      description: Returns all shared library deployments configured in the domain.
+      tags:
+        - Library Deployments
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of library deployments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LibDeployment'
+    post:
+      operationId: deployLibrary
+      summary: Deploy a shared library
+      description: >-
+        Deploys a shared library that can be referenced by applications.
+        Requires an active edit session.
+      tags:
+        - Library Deployments
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LibDeploymentCreateRequest'
+      responses:
+        '201':
+          description: Library deployed
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+  /edit/libDeployments/{libName}:
+    get:
+      operationId: getLibDeployment
+      summary: Get shared library deployment details
+      tags:
+        - Library Deployments
+      parameters:
+        - $ref: '#/components/parameters/LibName'
+      responses:
+        '200':
+          description: Library deployment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LibDeployment'
+    delete:
+      operationId: undeployLibrary
+      summary: Remove a shared library deployment
+      tags:
+        - Library Deployments
+      parameters:
+        - $ref: '#/components/parameters/LibName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: Library undeployed
+  /domainRuntime/appDeploymentRuntimes:
+    get:
+      operationId: listDeploymentRuntimes
+      summary: List deployment runtimes
+      description: Returns runtime status for all deployed applications.
+      tags:
+        - Deployment Lifecycle
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of deployment runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppDeploymentRuntime'
+  /domainRuntime/appDeploymentRuntimes/{appName}/start:
+    post:
+      operationId: startApplication
+      summary: Start a deployed application
+      description: >-
+        Starts the specified application on all its configured targets.
+        Returns a task object for monitoring the operation progress.
+      tags:
+        - Deployment Lifecycle
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+        - $ref: '#/components/parameters/XRequestedBy'
+        - $ref: '#/components/parameters/Prefer'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Application started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+        '202':
+          description: Start operation accepted and in progress
+          headers:
+            Location:
+              description: URL to poll for task status
+              schema:
+                type: string
+                format: uri
+  /domainRuntime/appDeploymentRuntimes/{appName}/stop:
+    post:
+      operationId: stopApplication
+      summary: Stop a deployed application
+      description: Stops the specified application on all its configured targets.
+      tags:
+        - Deployment Lifecycle
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+        - $ref: '#/components/parameters/XRequestedBy'
+        - $ref: '#/components/parameters/Prefer'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Application stopped successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+  /domainRuntime/appDeploymentRuntimes/{appName}/redeploy:
+    post:
+      operationId: redeployApplication
+      summary: Redeploy an application
+      description: >-
+        Redeploys the specified application, refreshing its deployment
+        from the source location.
+      tags:
+        - Deployment Lifecycle
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+        - $ref: '#/components/parameters/XRequestedBy'
+        - $ref: '#/components/parameters/Prefer'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Application redeployed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+  /domainRuntime/appDeploymentRuntimes/{appName}/update:
+    post:
+      operationId: updateApplication
+      summary: Update an application deployment
+      description: Updates the application with a new deployment plan or configuration.
+      tags:
+        - Deployment Lifecycle
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                planPath:
+                  type: string
+                  description: Path to the new deployment plan
+      responses:
+        '200':
+          description: Application updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+  /domainRuntime/appDeploymentRuntimes/{appName}/tasks/{taskId}:
+    get:
+      operationId: getDeploymentTaskStatus
+      summary: Get deployment task status
+      description: Returns the current status of a deployment lifecycle operation.
+      tags:
+        - Deployment Lifecycle
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+        - name: taskId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Task status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+  /domainRuntime/serverRuntimes/{serverName}/applicationRuntimes:
+    get:
+      operationId: listServerApplicationRuntimes
+      summary: List application runtimes on a server
+      description: >-
+        Returns runtime information for all applications deployed on the
+        specified server.
+      tags:
+        - Deployment Lifecycle
+      parameters:
+        - $ref: '#/components/parameters/ServerNamePath'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Collection of application runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApplicationRuntime'
+  /edit/appDeployments/{appName}/subDeployments:
+    get:
+      operationId: listAppSubDeployments
+      summary: List sub-deployments for an application
+      tags:
+        - Deployment Configuration
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+      responses:
+        '200':
+          description: Collection of sub-deployments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SubDeployment'
+    post:
+      operationId: createAppSubDeployment
+      summary: Create a sub-deployment for an application
+      tags:
+        - Deployment Configuration
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubDeploymentCreateRequest'
+      responses:
+        '201':
+          description: Sub-deployment created
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic authentication. Deployer role required for deployment
+        operations, Operator role for lifecycle operations.
+  parameters:
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header
+      schema:
+        type: string
+        example: MyClient
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
+      schema:
+        type: string
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include
+      schema:
+        type: string
+    SaveChanges:
+      name: saveChanges
+      in: query
+      description: Whether to validate and save changes immediately
+      schema:
+        type: boolean
+        default: true
+    Prefer:
+      name: Prefer
+      in: header
+      description: Controls async behavior for long-running operations
+      schema:
+        type: string
+    AppName:
+      name: appName
+      in: path
+      required: true
+      description: Name of the application
+      schema:
+        type: string
+    LibName:
+      name: libName
+      in: path
+      required: true
+      description: Name of the shared library
+      schema:
+        type: string
+    ServerNamePath:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters or deployment source not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication required or invalid credentials
+    NotFound:
+      description: Application or resource not found
+  schemas:
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+    Message:
+      type: object
+      properties:
+        severity:
+          type: string
+          enum:
+            - SUCCESS
+            - WARNING
+            - FAILURE
+        field:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        wls:errorsDetails:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              title:
+                type: string
+              detail:
+                type: string
+              o:errorPath:
+                type: string
+    AppDeployment:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Application deployment name
+        sourcePath:
+          type: string
+          description: Path to the application source on the server
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+          description: Servers or clusters the application is targeted to
+        deploymentOrder:
+          type: integer
+          description: >-
+            Order in which applications are deployed during startup (lower
+            numbers deploy first)
+        planPath:
+          type: string
+          description: Path to the deployment plan XML file
+        securityDDModel:
+          type: string
+          description: Security deployment descriptor model
+          enum:
+            - DDOnly
+            - CustomRoles
+            - CustomRolesAndPolicies
+            - Advanced
+        stagingMode:
+          type: string
+          description: How application files are made available to managed servers
+          enum:
+            - stage
+            - nostage
+            - external_stage
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    AppDeploymentCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Application name
+        sourceURL:
+          type: string
+          description: >-
+            URL or file path to the application archive (EAR, WAR) or
+            exploded directory
+        sourcePath:
+          type: string
+          description: Filesystem path to the application source
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+          description: Deployment targets (servers or clusters)
+        planPath:
+          type: string
+          description: Path to deployment plan XML
+        deploymentOrder:
+          type: integer
+          description: Deployment order priority
+        stagingMode:
+          type: string
+          enum:
+            - stage
+            - nostage
+            - external_stage
+        securityDDModel:
+          type: string
+          enum:
+            - DDOnly
+            - CustomRoles
+            - CustomRolesAndPolicies
+            - Advanced
+    AppDeploymentUpdateRequest:
+      type: object
+      properties:
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        planPath:
+          type: string
+        deploymentOrder:
+          type: integer
+        stagingMode:
+          type: string
+          enum:
+            - stage
+            - nostage
+            - external_stage
+    LibDeployment:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Library name
+        sourcePath:
+          type: string
+          description: Path to the library archive
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        deploymentOrder:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    LibDeploymentCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Library name
+        sourceURL:
+          type: string
+          description: URL or file path to the library archive
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    AppDeploymentRuntime:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Application name
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ApplicationRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+        healthState:
+          type: object
+          properties:
+            state:
+              type: string
+              enum:
+                - HEALTH_OK
+                - HEALTH_WARN
+                - HEALTH_CRITICAL
+                - HEALTH_FAILED
+                - HEALTH_OVERLOADED
+            subsystemName:
+              type: string
+        state:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    SubDeployment:
+      type: object
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    SubDeploymentCreateRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    TaskStatus:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        taskStatus:
+          type: string
+          description: Status text (e.g., TASK COMPLETED)
+        progress:
+          type: string
+          description: Progress indicator (e.g., success, processing)
+        description:
+          type: string
+        operation:
+          type: string
+        running:
+          type: boolean
+        completed:
+          type: boolean
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'

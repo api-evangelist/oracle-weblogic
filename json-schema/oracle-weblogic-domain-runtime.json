@@ -1,0 +1,437 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.oracle.com/weblogic/domain-runtime",
+  "title": "Oracle WebLogic Domain Runtime",
+  "description": "Schema for WebLogic Server domain runtime monitoring data as exposed through the domainRuntime and serverRuntime REST API trees.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Domain name"
+    },
+    "activationTime": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Timestamp when the domain was last activated"
+    },
+    "serverRuntimes": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/serverRuntime" }
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/link" }
+    }
+  },
+  "$defs": {
+    "link": {
+      "type": "object",
+      "properties": {
+        "rel": { "type": "string" },
+        "href": { "type": "string", "format": "uri" },
+        "title": { "type": "string" }
+      },
+      "required": ["rel", "href"]
+    },
+    "serverRuntime": {
+      "type": "object",
+      "description": "Runtime information for a WebLogic Server instance",
+      "properties": {
+        "identity": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "name": {
+          "type": "string",
+          "description": "Server name"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "RUNNING",
+            "STANDBY",
+            "ADMIN",
+            "SHUTDOWN",
+            "FAILED",
+            "STARTING",
+            "SHUTTING_DOWN",
+            "SUSPENDING",
+            "FORCE_SHUTTING_DOWN",
+            "RESUMING"
+          ],
+          "description": "Current server state"
+        },
+        "healthState": {
+          "$ref": "#/$defs/healthState"
+        },
+        "weblogicVersion": {
+          "type": "string",
+          "description": "WebLogic Server version string"
+        },
+        "openSocketsCurrentCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Current open socket count"
+        },
+        "activationTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "currentDirectory": {
+          "type": "string",
+          "description": "Server working directory"
+        },
+        "adminServer": {
+          "type": "boolean",
+          "description": "True if this is the administration server"
+        },
+        "adminServerHost": { "type": "string" },
+        "adminServerListenPort": { "type": "integer" },
+        "restartRequired": {
+          "type": "boolean",
+          "description": "True if a restart is needed to apply pending changes"
+        },
+        "links": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/link" }
+        }
+      }
+    },
+    "healthState": {
+      "type": "object",
+      "description": "Health status of a WebLogic resource",
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "HEALTH_OK",
+            "HEALTH_WARN",
+            "HEALTH_CRITICAL",
+            "HEALTH_FAILED",
+            "HEALTH_OVERLOADED"
+          ],
+          "description": "Overall health state"
+        },
+        "subsystemName": {
+          "type": "string",
+          "description": "Name of the subsystem reporting health"
+        },
+        "partitionName": {
+          "type": "string",
+          "description": "Partition name if applicable"
+        },
+        "symptoms": {
+          "type": "array",
+          "items": { "type": "object" },
+          "description": "Detailed symptoms contributing to the health state"
+        }
+      }
+    },
+    "serverLifeCycleRuntime": {
+      "type": "object",
+      "description": "Server lifecycle state information",
+      "properties": {
+        "identity": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "name": { "type": "string" },
+        "state": {
+          "type": "string",
+          "enum": [
+            "RUNNING",
+            "SHUTDOWN",
+            "STANDBY",
+            "ADMIN",
+            "FAILED",
+            "STARTING",
+            "SHUTTING_DOWN",
+            "SUSPENDING",
+            "FORCE_SHUTTING_DOWN",
+            "RESUMING",
+            "UNKNOWN"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "const": "ServerLifeCycleRuntime"
+        },
+        "nodeManagerRestartCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "applicationRuntime": {
+      "type": "object",
+      "description": "Runtime data for a deployed application",
+      "properties": {
+        "name": { "type": "string" },
+        "healthState": { "$ref": "#/$defs/healthState" },
+        "state": { "type": "string" },
+        "componentRuntimes": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/componentRuntime" }
+            }
+          }
+        }
+      }
+    },
+    "componentRuntime": {
+      "type": "object",
+      "description": "Runtime data for an application component (web module, EJB, etc.)",
+      "properties": {
+        "name": { "type": "string" },
+        "moduleId": { "type": "string" },
+        "type": { "type": "string" },
+        "contextRoot": {
+          "type": "string",
+          "description": "Web application context root"
+        },
+        "healthState": { "$ref": "#/$defs/healthState" },
+        "openSessionsCurrentCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Current number of open HTTP sessions"
+        },
+        "openSessionsHighCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Peak number of open sessions"
+        },
+        "sessionsOpenedTotalCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total sessions opened since deployment"
+        },
+        "servlets": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/servletRuntime" }
+            }
+          }
+        }
+      }
+    },
+    "servletRuntime": {
+      "type": "object",
+      "description": "Runtime data for a servlet",
+      "properties": {
+        "servletName": { "type": "string" },
+        "invocationTotalCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total servlet invocations"
+        },
+        "executionTimeTotal": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total execution time in milliseconds"
+        },
+        "executionTimeHigh": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Peak execution time in milliseconds"
+        },
+        "executionTimeLow": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Lowest execution time in milliseconds"
+        },
+        "executionTimeAverage": {
+          "type": "number",
+          "minimum": 0
+        },
+        "reloadTotalCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "jdbcDataSourceRuntime": {
+      "type": "object",
+      "description": "Runtime statistics for a JDBC data source",
+      "properties": {
+        "name": { "type": "string" },
+        "state": {
+          "type": "string",
+          "enum": ["Running", "Suspended", "Shutdown", "Overloaded", "Unknown"]
+        },
+        "enabled": { "type": "boolean" },
+        "activeConnectionsCurrentCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Current active connections checked out from pool"
+        },
+        "activeConnectionsHighCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Peak active connections"
+        },
+        "activeConnectionsAverageCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "connectionsTotalCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total connections created since data source initialization"
+        },
+        "currCapacity": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Current capacity of the connection pool"
+        },
+        "numAvailable": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of available (idle) connections"
+        },
+        "numUnavailable": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of connections currently in use"
+        },
+        "highestNumAvailable": { "type": "integer", "minimum": 0 },
+        "highestNumUnavailable": { "type": "integer", "minimum": 0 },
+        "waitingForConnectionCurrentCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Threads currently waiting for a connection"
+        },
+        "waitingForConnectionHighCount": { "type": "integer", "minimum": 0 },
+        "waitSecondsHighCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Longest wait time for a connection in seconds"
+        },
+        "connectionDelayTime": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Average time to create a physical connection in milliseconds"
+        },
+        "failedReserveRequestCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failuresToReconnectCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "leakedConnectionCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of connection leaks detected"
+        },
+        "prepStmtCacheCurrentSize": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Current size of the prepared statement cache"
+        }
+      }
+    },
+    "threadPoolRuntime": {
+      "type": "object",
+      "description": "Runtime statistics for the server thread pool",
+      "properties": {
+        "name": { "type": "string" },
+        "executeThreadTotalCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total execute threads in the pool"
+        },
+        "executeThreadIdleCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Idle execute threads"
+        },
+        "hoggingThreadCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Threads exceeding the stuck thread detection threshold"
+        },
+        "standbyThreadCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "pendingUserRequestCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "queueLength": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of requests waiting in the queue"
+        },
+        "completedRequestCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "throughput": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Request throughput (requests per second)"
+        },
+        "healthState": { "$ref": "#/$defs/healthState" }
+      }
+    },
+    "taskStatus": {
+      "type": "object",
+      "description": "Status of an asynchronous operation (server start/stop, deployment, etc.)",
+      "properties": {
+        "identity": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "taskStatus": {
+          "type": "string",
+          "description": "Task status text (e.g., 'TASK COMPLETED')"
+        },
+        "progress": {
+          "type": "string",
+          "description": "Progress indicator (e.g., 'success', 'processing')"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of the task"
+        },
+        "operation": {
+          "type": "string",
+          "description": "Operation type (e.g., 'start', 'shutdown', 'START')"
+        },
+        "running": {
+          "type": "boolean",
+          "description": "True if the task is still executing"
+        },
+        "completed": {
+          "type": "boolean",
+          "description": "True if the task has finished"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the task started"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when the task completed"
+        },
+        "links": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/link" }
+        }
+      }
+    }
+  }
+}

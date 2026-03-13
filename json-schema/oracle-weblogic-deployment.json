@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.oracle.com/weblogic/deployment",
+  "title": "Oracle WebLogic Deployment Configuration",
+  "description": "Schema for WebLogic Server application and library deployment configurations as exposed through the RESTful Management API.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "identity": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Bean identity path"
+    },
+    "name": {
+      "type": "string",
+      "description": "Application deployment name"
+    },
+    "sourcePath": {
+      "type": "string",
+      "description": "Filesystem path to the application source (EAR, WAR, or exploded directory)"
+    },
+    "sourceURL": {
+      "type": "string",
+      "description": "URL or file path for deploying the application (used during creation)"
+    },
+    "targets": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/identityObject" },
+      "description": "Deployment targets (servers and/or clusters)"
+    },
+    "deploymentOrder": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Order in which applications are deployed during domain startup. Lower values deploy first."
+    },
+    "planPath": {
+      "type": ["string", "null"],
+      "description": "Path to the deployment plan XML file for customizing deployment descriptors"
+    },
+    "securityDDModel": {
+      "type": "string",
+      "enum": ["DDOnly", "CustomRoles", "CustomRolesAndPolicies", "Advanced"],
+      "description": "Security deployment descriptor model that determines how security roles and policies are sourced"
+    },
+    "stagingMode": {
+      "type": "string",
+      "enum": ["stage", "nostage", "external_stage"],
+      "description": "How application files are distributed to managed servers: stage copies files, nostage uses the source directly, external_stage uses a pre-staged location"
+    },
+    "subDeployments": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/subDeployment" },
+      "description": "Sub-deployments for module-level targeting"
+    },
+    "links": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/link" }
+    }
+  },
+  "$defs": {
+    "identityObject": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Identity path (e.g., ['servers', 'Server-0'] or ['clusters', 'Cluster1'])"
+        }
+      },
+      "required": ["identity"]
+    },
+    "link": {
+      "type": "object",
+      "properties": {
+        "rel": { "type": "string" },
+        "href": { "type": "string", "format": "uri" },
+        "title": { "type": "string" }
+      },
+      "required": ["rel", "href"]
+    },
+    "subDeployment": {
+      "type": "object",
+      "description": "Sub-deployment targeting configuration for individual modules within an application",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Sub-deployment name (typically matches the module name)"
+        },
+        "targets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/identityObject" },
+          "description": "Targets for this sub-deployment"
+        }
+      }
+    },
+    "libraryDeployment": {
+      "type": "object",
+      "description": "Shared library deployment configuration",
+      "required": ["name"],
+      "properties": {
+        "identity": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "name": {
+          "type": "string",
+          "description": "Library deployment name"
+        },
+        "sourcePath": {
+          "type": "string",
+          "description": "Filesystem path to the library archive"
+        },
+        "sourceURL": {
+          "type": "string",
+          "description": "URL or file path for deploying the library"
+        },
+        "targets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/identityObject" }
+        },
+        "deploymentOrder": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "links": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/link" }
+        }
+      }
+    }
+  }
+}

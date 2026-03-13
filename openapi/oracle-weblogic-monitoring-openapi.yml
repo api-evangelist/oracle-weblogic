@@ -1,0 +1,1344 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Monitoring and Diagnostics API
+  description: >-
+    RESTful API for accessing runtime monitoring data, diagnostics
+    information, and performance metrics for Oracle WebLogic Server domains.
+    Provides read-only access to the domainRuntime and serverRuntime bean
+    trees for monitoring server states, application runtimes, JDBC data
+    source health, JMS statistics, thread pool utilization, and server
+    lifecycle management operations.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+externalDocs:
+  description: WebLogic Server Monitoring Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm
+servers:
+  - url: http://localhost:7001/management/weblogic/latest
+    description: WebLogic Administration Server (default)
+  - url: http://{host}:{port}/management/weblogic/{version}
+    description: WebLogic Server (configurable)
+    variables:
+      host:
+        default: localhost
+      port:
+        default: '7001'
+      version:
+        default: latest
+security:
+  - basicAuth: []
+tags:
+  - name: Domain Runtime
+    description: Domain-wide runtime monitoring available from the admin server
+  - name: Server Runtime
+    description: Individual server runtime monitoring
+  - name: Server Lifecycle
+    description: Server lifecycle operations (start, stop, suspend, resume)
+  - name: Application Runtime
+    description: Monitor application deployment status and health
+  - name: JDBC Runtime
+    description: Monitor JDBC data source runtime statistics
+  - name: JMS Runtime
+    description: Monitor JMS server and destination runtime statistics
+  - name: Thread Pool Runtime
+    description: Monitor thread pool utilization
+  - name: Runtime Search
+    description: Structured queries against runtime trees
+  - name: Tasks
+    description: Monitor asynchronous task status
+paths:
+  /domainRuntime:
+    get:
+      operationId: getDomainRuntime
+      summary: Get domain runtime information
+      description: >-
+        Returns the root of the domain runtime tree, providing access to
+        domain-wide monitoring data including all server runtimes.
+      tags:
+        - Domain Runtime
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Domain runtime information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainRuntime'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /domainRuntime/serverRuntimes:
+    get:
+      operationId: listServerRuntimes
+      summary: List all server runtimes
+      description: >-
+        Returns runtime information for all running servers in the domain
+        including state, health, and performance data.
+      tags:
+        - Domain Runtime
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of server runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ServerRuntime'
+  /domainRuntime/serverRuntimes/{serverName}:
+    get:
+      operationId: getServerRuntimeByName
+      summary: Get runtime for a specific server
+      description: Returns runtime information for the specified running server.
+      tags:
+        - Domain Runtime
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Server runtime information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerRuntime'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /serverRuntime:
+    get:
+      operationId: getServerRuntime
+      summary: Get current server runtime
+      description: >-
+        Returns the runtime information for the server receiving this
+        request. Available on both admin and managed servers.
+      tags:
+        - Server Runtime
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Current server runtime information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerRuntime'
+  /domainRuntime/serverLifeCycleRuntimes:
+    get:
+      operationId: listServerLifeCycleRuntimes
+      summary: List all server lifecycle runtimes
+      description: >-
+        Returns lifecycle state for all servers in the domain including
+        their current state (RUNNING, SHUTDOWN, STANDBY, etc.).
+      tags:
+        - Server Lifecycle
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of server lifecycle runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ServerLifeCycleRuntime'
+  /domainRuntime/serverLifeCycleRuntimes/{serverName}:
+    get:
+      operationId: getServerLifeCycleRuntime
+      summary: Get lifecycle runtime for a specific server
+      tags:
+        - Server Lifecycle
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+      responses:
+        '200':
+          description: Server lifecycle runtime
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerLifeCycleRuntime'
+  /domainRuntime/serverLifeCycleRuntimes/{serverName}/start:
+    post:
+      operationId: startServer
+      summary: Start a managed server
+      description: >-
+        Starts the specified managed server. This is an asynchronous
+        operation that returns a task for monitoring progress.
+      tags:
+        - Server Lifecycle
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/XRequestedBy'
+        - $ref: '#/components/parameters/Prefer'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Server started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+        '202':
+          description: Start operation accepted and in progress
+          headers:
+            Location:
+              description: URL to poll for task status
+              schema:
+                type: string
+                format: uri
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+  /domainRuntime/serverLifeCycleRuntimes/{serverName}/shutdown:
+    post:
+      operationId: shutdownServer
+      summary: Shut down a managed server
+      description: Gracefully shuts down the specified managed server.
+      tags:
+        - Server Lifecycle
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/XRequestedBy'
+        - $ref: '#/components/parameters/Prefer'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                timeout:
+                  type: integer
+                  description: Timeout in seconds to wait for graceful shutdown
+                ignoreSessions:
+                  type: boolean
+                  description: Whether to ignore active sessions during shutdown
+                waitForAllSessions:
+                  type: boolean
+                  description: Whether to wait for all sessions to complete
+      responses:
+        '200':
+          description: Server shut down successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+        '202':
+          description: Shutdown operation accepted and in progress
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+  /domainRuntime/serverLifeCycleRuntimes/{serverName}/forceShutdown:
+    post:
+      operationId: forceShutdownServer
+      summary: Force shut down a managed server
+      description: Immediately shuts down the specified server without waiting for graceful completion.
+      tags:
+        - Server Lifecycle
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Server force shutdown initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+  /domainRuntime/serverLifeCycleRuntimes/{serverName}/suspend:
+    post:
+      operationId: suspendServer
+      summary: Suspend a managed server
+      description: Suspends the specified server, placing it in admin mode.
+      tags:
+        - Server Lifecycle
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                timeout:
+                  type: integer
+                ignoreSessions:
+                  type: boolean
+      responses:
+        '200':
+          description: Server suspended
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+  /domainRuntime/serverLifeCycleRuntimes/{serverName}/resume:
+    post:
+      operationId: resumeServer
+      summary: Resume a suspended server
+      description: Resumes a server that was previously suspended, returning it to running state.
+      tags:
+        - Server Lifecycle
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Server resumed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+  /domainRuntime/serverLifeCycleRuntimes/{serverName}/restartSSL:
+    post:
+      operationId: restartServerSSL
+      summary: Restart SSL on a server
+      description: Restarts the SSL subsystem on the specified server.
+      tags:
+        - Server Lifecycle
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: SSL restarted
+  /domainRuntime/serverRuntimes/{serverName}/getURL:
+    post:
+      operationId: getServerURL
+      summary: Get the URL for a server
+      description: Returns the URL for accessing the specified server using the given protocol.
+      tags:
+        - Server Runtime
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                protocol:
+                  type: string
+                  description: Protocol to use (http, https, t3, t3s)
+      responses:
+        '200':
+          description: Server URL
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  return:
+                    type: string
+                    format: uri
+                    description: The server URL for the specified protocol
+  /domainRuntime/appDeploymentRuntimes:
+    get:
+      operationId: listAppDeploymentRuntimes
+      summary: List application deployment runtimes
+      description: Returns runtime status for all deployed applications in the domain.
+      tags:
+        - Application Runtime
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of application deployment runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppDeploymentRuntime'
+  /domainRuntime/appDeploymentRuntimes/{appName}:
+    get:
+      operationId: getAppDeploymentRuntime
+      summary: Get runtime for a specific application
+      tags:
+        - Application Runtime
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Application deployment runtime
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDeploymentRuntime'
+  /domainRuntime/appDeploymentRuntimes/{appName}/start:
+    post:
+      operationId: startApplication
+      summary: Start a deployed application
+      description: Starts the specified application across its configured targets.
+      tags:
+        - Application Runtime
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Application started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+  /domainRuntime/appDeploymentRuntimes/{appName}/stop:
+    post:
+      operationId: stopApplication
+      summary: Stop a deployed application
+      description: Stops the specified application across its configured targets.
+      tags:
+        - Application Runtime
+      parameters:
+        - $ref: '#/components/parameters/AppName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Application stopped
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+  /domainRuntime/serverRuntimes/{serverName}/applicationRuntimes:
+    get:
+      operationId: listApplicationRuntimes
+      summary: List application runtimes on a server
+      description: Returns runtime information for all applications deployed on the specified server.
+      tags:
+        - Application Runtime
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Collection of application runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApplicationRuntime'
+  /domainRuntime/serverRuntimes/{serverName}/applicationRuntimes/{appName}/componentRuntimes:
+    get:
+      operationId: listComponentRuntimes
+      summary: List component runtimes for an application
+      description: >-
+        Returns runtime information for all components (web modules, EJBs)
+        within the specified application on the specified server.
+      tags:
+        - Application Runtime
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/AppName'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Collection of component runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ComponentRuntime'
+  /domainRuntime/serverRuntimes/{serverName}/JDBCServiceRuntime:
+    get:
+      operationId: getJDBCServiceRuntime
+      summary: Get JDBC service runtime for a server
+      description: Returns the JDBC service runtime for the specified server.
+      tags:
+        - JDBC Runtime
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: JDBC service runtime
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JDBCServiceRuntime'
+  /domainRuntime/serverRuntimes/{serverName}/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans:
+    get:
+      operationId: listJDBCDataSourceRuntimes
+      summary: List JDBC data source runtimes
+      description: Returns runtime status for all JDBC data sources on the specified server.
+      tags:
+        - JDBC Runtime
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Collection of JDBC data source runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JDBCDataSourceRuntime'
+  /domainRuntime/serverRuntimes/{serverName}/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans/{dataSourceName}:
+    get:
+      operationId: getJDBCDataSourceRuntime
+      summary: Get runtime for a specific data source
+      tags:
+        - JDBC Runtime
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+        - name: dataSourceName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: JDBC data source runtime
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JDBCDataSourceRuntime'
+  /domainRuntime/serverRuntimes/{serverName}/JMSRuntime:
+    get:
+      operationId: getJMSRuntime
+      summary: Get JMS runtime for a server
+      description: Returns the JMS runtime for the specified server.
+      tags:
+        - JMS Runtime
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+      responses:
+        '200':
+          description: JMS runtime information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JMSRuntime'
+  /domainRuntime/serverRuntimes/{serverName}/JMSRuntime/JMSServersRuntime:
+    get:
+      operationId: listJMSServerRuntimes
+      summary: List JMS server runtimes
+      tags:
+        - JMS Runtime
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+      responses:
+        '200':
+          description: Collection of JMS server runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JMSServerRuntime'
+  /domainRuntime/serverRuntimes/{serverName}/threadPoolRuntime:
+    get:
+      operationId: getThreadPoolRuntime
+      summary: Get thread pool runtime for a server
+      description: Returns thread pool statistics for the specified server.
+      tags:
+        - Thread Pool Runtime
+      parameters:
+        - $ref: '#/components/parameters/ServerName'
+      responses:
+        '200':
+          description: Thread pool runtime
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadPoolRuntime'
+  /domainRuntime/search:
+    post:
+      operationId: searchDomainRuntime
+      summary: Search the domain runtime tree
+      description: >-
+        Performs a structured query against the domain runtime tree.
+        Supports field filtering, child traversal, collection filtering,
+        and result merging across servers.
+      tags:
+        - Runtime Search
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+        - name: requestMaxWaitMillis
+          in: query
+          description: Maximum time in milliseconds to wait for search results
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuntimeSearchQuery'
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+  /serverRuntime/search:
+    post:
+      operationId: searchServerRuntime
+      summary: Search the server runtime tree
+      description: >-
+        Performs a structured query against the current server's runtime
+        tree.
+      tags:
+        - Runtime Search
+      parameters:
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuntimeSearchQuery'
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+  /domainRuntime/domainPartitionRuntimes:
+    get:
+      operationId: listPartitionRuntimes
+      summary: List partition runtimes
+      description: Returns runtime status for all partitions in the domain.
+      tags:
+        - Domain Runtime
+      parameters:
+        - $ref: '#/components/parameters/Fields'
+        - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of partition runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PartitionRuntime'
+  /domainRuntime/domainPartitionRuntimes/{partitionName}:
+    get:
+      operationId: getPartitionRuntime
+      summary: Get runtime for a specific partition
+      tags:
+        - Domain Runtime
+      parameters:
+        - $ref: '#/components/parameters/PartitionName'
+      responses:
+        '200':
+          description: Partition runtime
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartitionRuntime'
+  /domainRuntime/domainPartitionRuntimes/{partitionName}/partitionLifeCycleRuntime:
+    get:
+      operationId: getPartitionLifeCycleRuntime
+      summary: Get partition lifecycle runtime
+      tags:
+        - Domain Runtime
+      parameters:
+        - $ref: '#/components/parameters/PartitionName'
+      responses:
+        '200':
+          description: Partition lifecycle runtime
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartitionLifeCycleRuntime'
+  /domainRuntime/domainPartitionRuntimes/{partitionName}/partitionLifeCycleRuntime/start:
+    post:
+      operationId: startPartition
+      summary: Start a partition
+      tags:
+        - Domain Runtime
+      parameters:
+        - $ref: '#/components/parameters/PartitionName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Partition started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+  /domainRuntime/domainPartitionRuntimes/{partitionName}/partitionLifeCycleRuntime/stop:
+    post:
+      operationId: stopPartition
+      summary: Stop a partition
+      tags:
+        - Domain Runtime
+      parameters:
+        - $ref: '#/components/parameters/PartitionName'
+        - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Partition stopped
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+  /domainRuntime/tasks/{taskId}:
+    get:
+      operationId: getTaskStatus
+      summary: Get status of an asynchronous task
+      description: >-
+        Returns the current status of an asynchronous operation. Used to
+        poll for completion of long-running operations like server
+        start/stop.
+      tags:
+        - Tasks
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          description: Task identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Task status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication with WebLogic Server credentials
+  parameters:
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+    AppName:
+      name: appName
+      in: path
+      required: true
+      description: Name of the deployed application
+      schema:
+        type: string
+    PartitionName:
+      name: partitionName
+      in: path
+      required: true
+      description: Name of the domain partition
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
+      schema:
+        type: string
+    Links:
+      name: links
+      in: query
+      description: >-
+        Comma-separated list of link relations to include. Use 'none' to
+        exclude all links.
+      schema:
+        type: string
+    Prefer:
+      name: Prefer
+      in: header
+      description: >-
+        Controls async behavior. Use 'respond-async' for immediate return
+        or 'wait=N' to wait N seconds.
+      schema:
+        type: string
+        examples:
+          - respond-async
+          - wait=10
+  responses:
+    Unauthorized:
+      description: Authentication required or invalid credentials
+    Forbidden:
+      description: User does not have the required role
+    NotFound:
+      description: Requested resource does not exist
+  schemas:
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
+    DomainRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Domain name
+        activationTime:
+          type: integer
+          format: int64
+          description: Time when the domain was last activated
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ServerRuntime:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Server name
+        state:
+          type: string
+          description: Current server state
+          enum:
+            - RUNNING
+            - STANDBY
+            - ADMIN
+            - SHUTDOWN
+            - FAILED
+            - STARTING
+            - SHUTTING_DOWN
+            - SUSPENDING
+            - FORCE_SHUTTING_DOWN
+            - RESUMING
+        healthState:
+          $ref: '#/components/schemas/HealthState'
+        weblogicVersion:
+          type: string
+          description: WebLogic Server version
+        openSocketsCurrentCount:
+          type: integer
+          description: Current number of open sockets
+        activationTime:
+          type: integer
+          format: int64
+          description: Time when the server was activated
+        currentDirectory:
+          type: string
+          description: Current working directory
+        adminServer:
+          type: boolean
+          description: Whether this server is the admin server
+        adminServerHost:
+          type: string
+        adminServerListenPort:
+          type: integer
+        restartRequired:
+          type: boolean
+          description: Whether a restart is required for pending changes
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ServerLifeCycleRuntime:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Server name
+        state:
+          type: string
+          description: Current lifecycle state
+          enum:
+            - RUNNING
+            - SHUTDOWN
+            - STANDBY
+            - ADMIN
+            - FAILED
+            - STARTING
+            - SHUTTING_DOWN
+            - SUSPENDING
+            - FORCE_SHUTTING_DOWN
+            - RESUMING
+            - UNKNOWN
+        type:
+          type: string
+          description: Runtime type identifier
+          enum:
+            - ServerLifeCycleRuntime
+        nodeManagerRestartCount:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    HealthState:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+            - HEALTH_OK
+            - HEALTH_WARN
+            - HEALTH_CRITICAL
+            - HEALTH_FAILED
+            - HEALTH_OVERLOADED
+        subsystemName:
+          type: string
+        partitionName:
+          type: string
+        symptoms:
+          type: array
+          items:
+            type: object
+    AppDeploymentRuntime:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Application name
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ApplicationRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Application name
+        healthState:
+          $ref: '#/components/schemas/HealthState'
+        state:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ComponentRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Component name
+        moduleId:
+          type: string
+          description: Module identifier
+        type:
+          type: string
+          description: Component type
+        contextRoot:
+          type: string
+          description: Web application context root
+        healthState:
+          $ref: '#/components/schemas/HealthState'
+        openSessionsCurrentCount:
+          type: integer
+          description: Current number of open sessions
+        openSessionsHighCount:
+          type: integer
+          description: Peak number of open sessions
+        sessionsOpenedTotalCount:
+          type: integer
+          description: Total sessions opened since deployment
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ServletRuntime:
+      type: object
+      properties:
+        servletName:
+          type: string
+          description: Servlet name
+        invocationTotalCount:
+          type: integer
+          description: Total number of invocations
+        executionTimeTotal:
+          type: integer
+          description: Total execution time in milliseconds
+        executionTimeHigh:
+          type: integer
+          description: Highest execution time
+        executionTimeLow:
+          type: integer
+          description: Lowest execution time
+        executionTimeAverage:
+          type: number
+          description: Average execution time
+        reloadTotalCount:
+          type: integer
+          description: Total number of reloads
+    JDBCServiceRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: JDBC service name
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    JDBCDataSourceRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Data source name
+        state:
+          type: string
+          description: Data source state
+          enum:
+            - Running
+            - Suspended
+            - Shutdown
+            - Overloaded
+            - Unknown
+        enabled:
+          type: boolean
+        activeConnectionsCurrentCount:
+          type: integer
+          description: Current number of active connections
+        activeConnectionsHighCount:
+          type: integer
+          description: Highest number of active connections
+        activeConnectionsAverageCount:
+          type: integer
+          description: Average number of active connections
+        connectionsTotalCount:
+          type: integer
+          description: Total connections created
+        currCapacity:
+          type: integer
+          description: Current connection pool capacity
+        numAvailable:
+          type: integer
+          description: Number of available connections
+        numUnavailable:
+          type: integer
+          description: Number of unavailable connections
+        highestNumAvailable:
+          type: integer
+        highestNumUnavailable:
+          type: integer
+        waitingForConnectionCurrentCount:
+          type: integer
+          description: Current threads waiting for a connection
+        waitingForConnectionHighCount:
+          type: integer
+        waitSecondsHighCount:
+          type: integer
+          description: Highest wait time in seconds for a connection
+        connectionDelayTime:
+          type: integer
+          description: Average time to create a connection
+        failedReserveRequestCount:
+          type: integer
+          description: Number of failed connection reserve requests
+        failuresToReconnectCount:
+          type: integer
+          description: Number of failed reconnection attempts
+        leakedConnectionCount:
+          type: integer
+          description: Number of leaked connections detected
+        prepStmtCacheCurrentSize:
+          type: integer
+          description: Current prepared statement cache size
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    JMSRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+        connectionsCurrentCount:
+          type: integer
+          description: Current JMS connections
+        connectionsHighCount:
+          type: integer
+        connectionsTotalCount:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    JMSServerRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: JMS server name
+        messagesCurrentCount:
+          type: integer
+          description: Current messages in the JMS server
+        messagesHighCount:
+          type: integer
+        messagesPendingCount:
+          type: integer
+        messagesReceivedCount:
+          type: integer
+        bytesCurrentCount:
+          type: integer
+        bytesHighCount:
+          type: integer
+        bytesPendingCount:
+          type: integer
+        bytesReceivedCount:
+          type: integer
+        destinationsCurrentCount:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ThreadPoolRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+        executeThreadTotalCount:
+          type: integer
+          description: Total number of execute threads
+        executeThreadIdleCount:
+          type: integer
+          description: Number of idle execute threads
+        hoggingThreadCount:
+          type: integer
+          description: Number of threads that are hogging resources
+        standbyThreadCount:
+          type: integer
+          description: Number of standby threads
+        pendingUserRequestCount:
+          type: integer
+          description: Number of pending user requests
+        queueLength:
+          type: integer
+          description: Work manager queue length
+        completedRequestCount:
+          type: integer
+          description: Total completed requests
+        throughput:
+          type: number
+          description: Request throughput
+        healthState:
+          $ref: '#/components/schemas/HealthState'
+    PartitionRuntime:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        state:
+          type: string
+          enum:
+            - RUNNING
+            - SHUTDOWN
+            - BOOTING
+            - SHUTTING_DOWN
+        restartRequired:
+          type: boolean
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    PartitionLifeCycleRuntime:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+            - RUNNING
+            - SHUTDOWN
+            - BOOTING
+            - SHUTTING_DOWN
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    TaskStatus:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        taskStatus:
+          type: string
+          description: Current status of the task
+        progress:
+          type: string
+          description: Progress description
+        description:
+          type: string
+          description: Human-readable task description
+        operation:
+          type: string
+          description: Operation name
+        running:
+          type: boolean
+          description: Whether the task is still running
+        completed:
+          type: boolean
+          description: Whether the task has completed
+        startTime:
+          type: string
+          format: date-time
+          description: Time when the task started
+        endTime:
+          type: string
+          format: date-time
+          description: Time when the task completed
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    RuntimeSearchQuery:
+      type: object
+      description: >-
+        Structured query for searching runtime trees. Supports field
+        filtering, child traversal, collection filtering, and result
+        merging for consolidated views across servers.
+      properties:
+        fields:
+          type: array
+          items:
+            oneOf:
+              - type: string
+              - type: object
+                properties:
+                  name:
+                    type: string
+                  sameValue:
+                    type: boolean
+                  total:
+                    type: boolean
+          description: Properties to include in results
+        links:
+          type: array
+          items:
+            type: string
+        children:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/RuntimeSearchQuery'
+        name:
+          type: array
+          items:
+            type: string
+          description: Filter collection by specific names
+        names:
+          type: array
+          items:
+            type: string
+          description: Filter collection by specific names
+        mergeCollection:
+          type: boolean
+          description: Merge items from the same collection across servers
+        mergeOn:
+          type: string
+          description: Property to merge collection items on

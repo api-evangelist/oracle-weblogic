@@ -1,0 +1,268 @@
+{
+  "@context": {
+    "@vocab": "https://schema.oracle.com/weblogic/",
+    "wls": "https://schema.oracle.com/weblogic/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+
+    "Domain": "wls:Domain",
+    "Server": "wls:Server",
+    "Cluster": "wls:Cluster",
+    "Machine": "wls:Machine",
+    "ServerTemplate": "wls:ServerTemplate",
+    "AppDeployment": "wls:AppDeployment",
+    "LibDeployment": "wls:LibDeployment",
+    "JDBCSystemResource": "wls:JDBCSystemResource",
+    "JDBCResource": "wls:JDBCResource",
+    "JDBCDataSourceParams": "wls:JDBCDataSourceParams",
+    "JDBCDriverParams": "wls:JDBCDriverParams",
+    "JDBCConnectionPoolParams": "wls:JDBCConnectionPoolParams",
+    "JMSSystemResource": "wls:JMSSystemResource",
+    "JMSServer": "wls:JMSServer",
+    "JMSResource": "wls:JMSResource",
+    "ConnectionFactory": "wls:ConnectionFactory",
+    "UniformDistributedQueue": "wls:UniformDistributedQueue",
+    "UniformDistributedTopic": "wls:UniformDistributedTopic",
+    "FileStore": "wls:FileStore",
+    "SecurityRealm": "wls:SecurityRealm",
+    "AuthenticationProvider": "wls:AuthenticationProvider",
+    "VirtualTarget": "wls:VirtualTarget",
+    "Partition": "wls:Partition",
+    "ResourceGroup": "wls:ResourceGroup",
+    "NodeManager": "wls:NodeManager",
+    "SSLConfiguration": "wls:SSLConfiguration",
+    "NetworkAccessPoint": "wls:NetworkAccessPoint",
+    "DynamicServers": "wls:DynamicServers",
+
+    "ServerRuntime": "wls:ServerRuntime",
+    "ServerLifeCycleRuntime": "wls:ServerLifeCycleRuntime",
+    "ApplicationRuntime": "wls:ApplicationRuntime",
+    "ComponentRuntime": "wls:ComponentRuntime",
+    "ServletRuntime": "wls:ServletRuntime",
+    "JDBCServiceRuntime": "wls:JDBCServiceRuntime",
+    "JDBCDataSourceRuntime": "wls:JDBCDataSourceRuntime",
+    "JMSRuntime": "wls:JMSRuntime",
+    "JMSServerRuntime": "wls:JMSServerRuntime",
+    "ThreadPoolRuntime": "wls:ThreadPoolRuntime",
+    "HealthState": "wls:HealthState",
+    "TaskStatus": "wls:TaskStatus",
+
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "identity": {
+      "@id": "wls:identity",
+      "@container": "@list"
+    },
+    "state": {
+      "@id": "wls:state",
+      "@type": "xsd:string"
+    },
+    "listenPort": {
+      "@id": "wls:listenPort",
+      "@type": "xsd:integer"
+    },
+    "listenAddress": {
+      "@id": "wls:listenAddress",
+      "@type": "xsd:string"
+    },
+    "listenPortEnabled": {
+      "@id": "wls:listenPortEnabled",
+      "@type": "xsd:boolean"
+    },
+    "SSLListenPort": {
+      "@id": "wls:SSLListenPort",
+      "@type": "xsd:integer"
+    },
+    "administrationPort": {
+      "@id": "wls:administrationPort",
+      "@type": "xsd:integer"
+    },
+    "defaultProtocol": {
+      "@id": "wls:defaultProtocol",
+      "@type": "xsd:string"
+    },
+    "machine": {
+      "@id": "wls:machine",
+      "@type": "@id"
+    },
+    "cluster": {
+      "@id": "wls:cluster",
+      "@type": "@id"
+    },
+    "targets": {
+      "@id": "wls:targets",
+      "@container": "@set"
+    },
+    "sourcePath": {
+      "@id": "wls:sourcePath",
+      "@type": "xsd:string"
+    },
+    "deploymentOrder": {
+      "@id": "wls:deploymentOrder",
+      "@type": "xsd:integer"
+    },
+    "planPath": {
+      "@id": "wls:planPath",
+      "@type": "xsd:string"
+    },
+    "JNDINames": {
+      "@id": "wls:JNDINames",
+      "@container": "@list"
+    },
+    "JNDIName": {
+      "@id": "wls:JNDIName",
+      "@type": "xsd:string"
+    },
+    "driverName": {
+      "@id": "wls:driverName",
+      "@type": "xsd:string"
+    },
+    "url": {
+      "@id": "schema:url",
+      "@type": "xsd:string"
+    },
+    "messagesMaximum": {
+      "@id": "wls:messagesMaximum",
+      "@type": "xsd:integer"
+    },
+    "bytesMaximum": {
+      "@id": "wls:bytesMaximum",
+      "@type": "xsd:integer"
+    },
+    "persistentStore": {
+      "@id": "wls:persistentStore",
+      "@type": "@id"
+    },
+    "clusterMessagingMode": {
+      "@id": "wls:clusterMessagingMode",
+      "@type": "xsd:string"
+    },
+    "dynamicClusterSize": {
+      "@id": "wls:dynamicClusterSize",
+      "@type": "xsd:integer"
+    },
+    "serverTemplate": {
+      "@id": "wls:serverTemplate",
+      "@type": "@id"
+    },
+    "serverNamePrefix": {
+      "@id": "wls:serverNamePrefix",
+      "@type": "xsd:string"
+    },
+    "NMType": {
+      "@id": "wls:NMType",
+      "@type": "xsd:string"
+    },
+    "hostNames": {
+      "@id": "wls:hostNames",
+      "@container": "@list"
+    },
+    "uriPrefix": {
+      "@id": "wls:uriPrefix",
+      "@type": "xsd:string"
+    },
+    "realm": {
+      "@id": "wls:realm",
+      "@type": "@id"
+    },
+    "primaryIdentityDomain": {
+      "@id": "wls:primaryIdentityDomain",
+      "@type": "xsd:string"
+    },
+    "healthState": {
+      "@id": "wls:healthState",
+      "@type": "wls:HealthState"
+    },
+    "weblogicVersion": {
+      "@id": "wls:weblogicVersion",
+      "@type": "xsd:string"
+    },
+    "adminServer": {
+      "@id": "wls:adminServer",
+      "@type": "xsd:boolean"
+    },
+    "restartRequired": {
+      "@id": "wls:restartRequired",
+      "@type": "xsd:boolean"
+    },
+    "running": {
+      "@id": "wls:running",
+      "@type": "xsd:boolean"
+    },
+    "completed": {
+      "@id": "wls:completed",
+      "@type": "xsd:boolean"
+    },
+    "taskStatus": {
+      "@id": "wls:taskStatus",
+      "@type": "xsd:string"
+    },
+    "progress": {
+      "@id": "wls:progress",
+      "@type": "xsd:string"
+    },
+    "operation": {
+      "@id": "wls:operation",
+      "@type": "xsd:string"
+    },
+    "startTime": {
+      "@id": "wls:startTime",
+      "@type": "xsd:dateTime"
+    },
+    "endTime": {
+      "@id": "wls:endTime",
+      "@type": "xsd:dateTime"
+    },
+    "activeConnectionsCurrentCount": {
+      "@id": "wls:activeConnectionsCurrentCount",
+      "@type": "xsd:integer"
+    },
+    "currCapacity": {
+      "@id": "wls:currCapacity",
+      "@type": "xsd:integer"
+    },
+    "numAvailable": {
+      "@id": "wls:numAvailable",
+      "@type": "xsd:integer"
+    },
+    "executeThreadTotalCount": {
+      "@id": "wls:executeThreadTotalCount",
+      "@type": "xsd:integer"
+    },
+    "hoggingThreadCount": {
+      "@id": "wls:hoggingThreadCount",
+      "@type": "xsd:integer"
+    },
+    "throughput": {
+      "@id": "wls:throughput",
+      "@type": "xsd:double"
+    },
+    "openSessionsCurrentCount": {
+      "@id": "wls:openSessionsCurrentCount",
+      "@type": "xsd:integer"
+    },
+    "invocationTotalCount": {
+      "@id": "wls:invocationTotalCount",
+      "@type": "xsd:integer"
+    },
+    "links": {
+      "@id": "wls:links",
+      "@container": "@set"
+    },
+    "rel": {
+      "@id": "wls:rel",
+      "@type": "xsd:string"
+    },
+    "href": {
+      "@id": "wls:href",
+      "@type": "@id"
+    }
+  }
+}

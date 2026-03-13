@@ -3,7 +3,8 @@ description: APIs for managing and monitoring Oracle WebLogic Server - a leading
 image: https://www.oracle.com/a/ocom/img/weblogic-server.png
 url: https://www.oracle.com/middleware/weblogic/
 created: '2024'
-modified: '2024'
+modified: '2026-03-04'
+specificationVersion: '0.18'
 tags:
 - Application Server
 - Java EE
@@ -24,9 +25,17 @@ apis:
   - type: Documentation
     url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: OpenAPI
-    url: http://localhost:7001/management/weblogic/latest/swagger.json
+    url: openapi/oracle-weblogic-management-openapi.yml
   - type: Authentication
     url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+  - type: JSONSchema
+    url: json-schema/oracle-weblogic-server-configuration.json
+  - type: JSONSchema
+    url: json-schema/oracle-weblogic-data-source.json
+  - type: JSONSchema
+    url: json-schema/oracle-weblogic-jms-configuration.json
+  - type: JSON-LD
+    url: json-ld/oracle-weblogic-context.jsonld
 - name: WebLogic Monitoring and Diagnostics API
   description: API for accessing runtime monitoring data, diagnostics information, and performance metrics
   humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
@@ -41,6 +50,10 @@ apis:
     url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
     url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+  - type: OpenAPI
+    url: openapi/oracle-weblogic-monitoring-openapi.yml
+  - type: JSONSchema
+    url: json-schema/oracle-weblogic-domain-runtime.json
 - name: WebLogic Deployment API
   description: API for deploying, undeploying, and managing application deployments on WebLogic Server
   humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/op-management-weblogic-latest-edit-appdeployments-post.html
@@ -54,6 +67,10 @@ apis:
     url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
     url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+  - type: OpenAPI
+    url: openapi/oracle-weblogic-deployment-openapi.yml
+  - type: JSONSchema
+    url: json-schema/oracle-weblogic-deployment.json
 - name: WebLogic WLST (WebLogic Scripting Tool) API
   description: Python-based scripting interface for automating WebLogic Server administration tasks
   humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlstc/index.html
@@ -85,9 +102,9 @@ apis:
   - type: Examples
     url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/examples.html
 maintainers:
-- name: Oracle Corporation
-  email: weblogic_info_ww@oracle.com
-  url: https://www.oracle.com/middleware/weblogic/
+- FN: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com
 common:
 - type: Support
   url: https://support.oracle.com/
@@ -101,3 +118,19 @@ common:
   url: https://www.oracle.com/downloads/licenses/standard-license.html
 - type: Blog
   url: https://blogs.oracle.com/weblogicserver/
+- type: Website
+  url: https://www.oracle.com/middleware/technologies/weblogic.html
+- type: Terms of Service
+  url: https://www.oracle.com/legal/terms.html
+- type: Privacy Policy
+  url: https://www.oracle.com/legal/privacy/
+- type: GitHub Organization
+  url: https://github.com/oracle
+- type: Stack Overflow
+  url: https://stackoverflow.com/questions/tagged/weblogic
+- type: YouTube
+  url: https://www.youtube.com/@OracleDevelopers
+- type: Sign Up
+  url: https://cloud.oracle.com/
+- type: Status
+  url: https://ocistatus.oraclecloud.com/

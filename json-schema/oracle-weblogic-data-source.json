@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.oracle.com/weblogic/data-source",
+  "title": "Oracle WebLogic JDBC Data Source Configuration",
+  "description": "Schema for WebLogic Server JDBC system resource and data source configuration as managed through the RESTful Management API.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "identity": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "name": {
+      "type": "string",
+      "description": "JDBC system resource name"
+    },
+    "targets": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/identityObject" },
+      "description": "Deployment targets for this data source"
+    },
+    "descriptorFileName": {
+      "type": "string",
+      "description": "Name of the JDBC descriptor XML file"
+    },
+    "JDBCResource": {
+      "$ref": "#/$defs/jdbcResource",
+      "description": "JDBC resource configuration"
+    },
+    "links": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/link" }
+    }
+  },
+  "$defs": {
+    "identityObject": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["identity"]
+    },
+    "link": {
+      "type": "object",
+      "properties": {
+        "rel": { "type": "string" },
+        "href": { "type": "string", "format": "uri" },
+        "title": { "type": "string" }
+      },
+      "required": ["rel", "href"]
+    },
+    "jdbcResource": {
+      "type": "object",
+      "description": "JDBC resource configuration containing data source parameters and driver settings",
+      "properties": {
+        "name": { "type": "string" },
+        "JDBCDataSourceParams": {
+          "$ref": "#/$defs/jdbcDataSourceParams"
+        },
+        "JDBCDriverParams": {
+          "$ref": "#/$defs/jdbcDriverParams"
+        },
+        "JDBCConnectionPoolParams": {
+          "$ref": "#/$defs/jdbcConnectionPoolParams"
+        }
+      }
+    },
+    "jdbcDataSourceParams": {
+      "type": "object",
+      "description": "Data source parameters including JNDI names and transaction settings",
+      "properties": {
+        "JNDINames": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "JNDI names bound to this data source for application lookup"
+        },
+        "globalTransactionsProtocol": {
+          "type": "string",
+          "enum": [
+            "TwoPhaseCommit",
+            "LoggingLastResource",
+            "EmulateTwoPhaseCommit",
+            "OnePhaseCommit",
+            "None"
+          ],
+          "description": "Protocol used for participating in global (XA) transactions"
+        },
+        "rowPrefetch": {
+          "type": "boolean",
+          "description": "Whether to enable row prefetching for improved performance"
+        },
+        "rowPrefetchSize": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of rows to prefetch"
+        },
+        "scope": {
+          "type": "string",
+          "enum": ["Global", "Application"],
+          "description": "Data source scope"
+        }
+      }
+    },
+    "jdbcDriverParams": {
+      "type": "object",
+      "description": "JDBC driver configuration including class name, URL, and connection properties",
+      "properties": {
+        "driverName": {
+          "type": "string",
+          "description": "Fully qualified JDBC driver class name (e.g., oracle.jdbc.OracleDriver)"
+        },
+        "url": {
+          "type": "string",
+          "description": "JDBC connection URL (e.g., jdbc:oracle:thin:@//host:1521/service)"
+        },
+        "password": {
+          "type": "string",
+          "description": "Database password (stored encrypted in WebLogic configuration)"
+        },
+        "useXaDataSourceInterface": {
+          "type": "boolean",
+          "description": "Whether to use the XA data source interface"
+        },
+        "properties": {
+          "type": "object",
+          "description": "JDBC driver connection properties",
+          "properties": {
+            "properties": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/property" }
+            }
+          }
+        }
+      }
+    },
+    "jdbcConnectionPoolParams": {
+      "type": "object",
+      "description": "Connection pool configuration parameters",
+      "properties": {
+        "initialCapacity": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of physical database connections to create at pool initialization"
+        },
+        "maxCapacity": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum number of physical database connections in the pool"
+        },
+        "minCapacity": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Minimum number of physical connections maintained in the pool"
+        },
+        "capacityIncrement": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of connections created when demand exceeds supply"
+        },
+        "testConnectionsOnReserve": {
+          "type": "boolean",
+          "description": "Whether to test connections when they are reserved from the pool"
+        },
+        "testTableName": {
+          "type": "string",
+          "description": "Table name or SQL query used to test connections (e.g., 'SQL ISVALID')"
+        },
+        "testFrequencySeconds": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Seconds between connection pool health tests"
+        },
+        "shrinkFrequencySeconds": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Seconds between attempts to shrink the pool"
+        },
+        "connectionCreationRetryFrequencySeconds": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Seconds between retries when connection creation fails"
+        },
+        "connectionReserveTimeoutSeconds": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Maximum seconds to wait for a connection from the pool"
+        },
+        "inactiveConnectionTimeoutSeconds": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Seconds before an inactive connection is reclaimed"
+        },
+        "statementCacheSize": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of prepared/callable statements cached per connection"
+        },
+        "statementCacheType": {
+          "type": "string",
+          "enum": ["LRU", "FIXED"],
+          "description": "Statement cache eviction strategy"
+        },
+        "removeInfectedConnections": {
+          "type": "boolean",
+          "description": "Whether to remove connections that have been involved in errors"
+        },
+        "secondsToTrustAnIdlePoolConnection": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Seconds a connection can remain idle and still be trusted"
+        }
+      }
+    },
+    "property": {
+      "type": "object",
+      "description": "Key-value property for JDBC driver configuration",
+      "required": ["name", "value"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Property name (e.g., portNumber, databaseName, serverName)"
+        },
+        "value": {
+          "type": "string",
+          "description": "Property value"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.oracle.com/weblogic/server-configuration",
+  "title": "Oracle WebLogic Server Configuration",
+  "description": "Schema for WebLogic Server instance configuration as exposed through the RESTful Management API edit tree.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "identity": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Bean identity path as an array of path segments (e.g., ['domain', 'servers', 'Server-0'])"
+    },
+    "name": {
+      "type": "string",
+      "description": "Unique name identifying this server within the domain"
+    },
+    "listenPort": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 65535,
+      "default": 7001,
+      "description": "Non-SSL listen port for the server"
+    },
+    "listenAddress": {
+      "type": "string",
+      "description": "IP address or DNS hostname the server listens on. Empty string means all network interfaces."
+    },
+    "listenPortEnabled": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the non-SSL listen port is enabled"
+    },
+    "SSLListenPort": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 65535,
+      "description": "SSL listen port for the server"
+    },
+    "administrationPort": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 65535,
+      "description": "Domain-wide administration port (SSL-only)"
+    },
+    "defaultProtocol": {
+      "type": "string",
+      "enum": ["t3", "t3s", "http", "https", "iiop", "iiops"],
+      "description": "Default network protocol for server communication"
+    },
+    "machine": {
+      "$ref": "#/$defs/beanReference",
+      "description": "Reference to the machine this server runs on"
+    },
+    "cluster": {
+      "$ref": "#/$defs/beanReference",
+      "description": "Reference to the cluster this server belongs to"
+    },
+    "candidateMachines": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/identityObject" },
+      "description": "Candidate machines for server migration"
+    },
+    "idleConnectionTimeout": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Idle connection timeout in seconds"
+    },
+    "replicationGroup": {
+      "type": ["string", "null"],
+      "description": "Replication group name for session state replication"
+    },
+    "SSL": {
+      "$ref": "#/$defs/SSLConfiguration",
+      "description": "SSL/TLS configuration for this server"
+    },
+    "serverStart": {
+      "$ref": "#/$defs/serverStart",
+      "description": "Startup configuration including JVM arguments"
+    },
+    "networkAccessPoints": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/networkAccessPoint" },
+      "description": "Network channels configured for this server"
+    },
+    "links": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/link" }
+    }
+  },
+  "$defs": {
+    "beanReference": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Bean reference as an identity path array (e.g., ['machines', 'Machine-0'])"
+    },
+    "identityObject": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["identity"]
+    },
+    "link": {
+      "type": "object",
+      "properties": {
+        "rel": {
+          "type": "string",
+          "description": "Link relation type (self, canonical, parent, action, etc.)"
+        },
+        "href": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the linked resource"
+        },
+        "title": {
+          "type": "string",
+          "description": "Human-readable title"
+        }
+      },
+      "required": ["rel", "href"]
+    },
+    "SSLConfiguration": {
+      "type": "object",
+      "description": "SSL/TLS configuration for a WebLogic Server",
+      "properties": {
+        "name": { "type": "string" },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether SSL is enabled"
+        },
+        "listenPort": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535,
+          "description": "SSL listen port"
+        },
+        "identityAndTrustLocations": {
+          "type": "string",
+          "description": "Location of identity and trust keystores"
+        },
+        "serverPrivateKeyAlias": {
+          "type": "string",
+          "description": "Alias for the server private key in the keystore"
+        },
+        "serverPrivateKeyPassPhrase": {
+          "type": "string",
+          "description": "Passphrase for the server private key (encrypted)"
+        },
+        "twoWaySSLEnabled": {
+          "type": "boolean",
+          "description": "Whether mutual (two-way) SSL is enabled"
+        },
+        "clientCertificateEnforced": {
+          "type": "boolean",
+          "description": "Whether client certificates are required"
+        },
+        "hostnameVerificationIgnored": {
+          "type": "boolean",
+          "description": "Whether hostname verification is skipped"
+        }
+      }
+    },
+    "serverStart": {
+      "type": "object",
+      "description": "Server startup configuration",
+      "properties": {
+        "arguments": {
+          "type": "string",
+          "description": "JVM arguments for server startup (e.g., -Xmx512m)"
+        },
+        "classPath": {
+          "type": "string",
+          "description": "Additional classpath entries"
+        },
+        "javaHome": {
+          "type": "string",
+          "description": "Java home directory path"
+        },
+        "javaVendor": {
+          "type": "string",
+          "description": "Java vendor name"
+        },
+        "beaHome": {
+          "type": "string",
+          "description": "Oracle/BEA home directory path"
+        }
+      }
+    },
+    "networkAccessPoint": {
+      "type": "object",
+      "description": "Network channel configuration for a server",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Network channel name"
+        },
+        "protocol": {
+          "type": "string",
+          "description": "Network protocol (t3, t3s, http, https, iiop, iiops)"
+        },
+        "listenPort": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        },
+        "listenAddress": { "type": "string" },
+        "publicPort": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535,
+          "description": "External-facing port (for NAT/load balancer)"
+        },
+        "publicAddress": {
+          "type": "string",
+          "description": "External-facing address"
+        },
+        "enabled": { "type": "boolean" }
+      }
+    }
+  }
+}
