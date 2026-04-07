@@ -38,14 +38,14 @@ tags:
     description: >-
       Deploy, configure, and manage enterprise application deployments
       (EAR, WAR files)
-  - name: Library Deployments
-    description: Deploy and manage shared library deployments
-  - name: Deployment Lifecycle
-    description: Start, stop, and manage deployed application lifecycle
   - name: Deployment Configuration
     description: Configure deployment targets and settings
+  - name: Deployment Lifecycle
+    description: Start, stop, and manage deployed application lifecycle
   - name: Edit Session
     description: Manage edit sessions for deployment changes
+  - name: Library Deployments
+    description: Deploy and manage shared library deployments
 paths:
   /edit/changeManager/startEdit:
     post:

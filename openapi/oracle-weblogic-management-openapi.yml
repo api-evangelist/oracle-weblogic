@@ -39,28 +39,28 @@ servers:
 security:
   - basicAuth: []
 tags:
-  - name: Edit Session
-    description: Manage configuration edit sessions (start, save, activate, undo, cancel)
-  - name: Servers
-    description: Manage WebLogic Server instances
-  - name: Clusters
-    description: Manage WebLogic Server clusters and dynamic servers
-  - name: Machines
-    description: Manage machines and Node Manager configuration
-  - name: Server Templates
-    description: Manage server templates for dynamic server creation
-  - name: Data Sources
-    description: Manage JDBC system resources and data sources
-  - name: JMS
-    description: Manage JMS servers, system resources, queues, and connection factories
   - name: Application Deployment
     description: Deploy, configure, and manage application deployments
-  - name: Security
-    description: Manage security realms, authentication providers, and users
+  - name: Clusters
+    description: Manage WebLogic Server clusters and dynamic servers
+  - name: Data Sources
+    description: Manage JDBC system resources and data sources
   - name: Domain Configuration
     description: View domain-level configuration
+  - name: Edit Session
+    description: Manage configuration edit sessions (start, save, activate, undo, cancel)
+  - name: JMS
+    description: Manage JMS servers, system resources, queues, and connection factories
+  - name: Machines
+    description: Manage machines and Node Manager configuration
   - name: Search
     description: Query and search across configuration trees
+  - name: Security
+    description: Manage security realms, authentication providers, and users
+  - name: Server Templates
+    description: Manage server templates for dynamic server creation
+  - name: Servers
+    description: Manage WebLogic Server instances
 paths:
   /edit/changeManager/startEdit:
     post:

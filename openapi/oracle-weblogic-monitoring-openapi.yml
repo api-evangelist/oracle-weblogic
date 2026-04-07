@@ -33,24 +33,24 @@ servers:
 security:
   - basicAuth: []
 tags:
-  - name: Domain Runtime
-    description: Domain-wide runtime monitoring available from the admin server
-  - name: Server Runtime
-    description: Individual server runtime monitoring
-  - name: Server Lifecycle
-    description: Server lifecycle operations (start, stop, suspend, resume)
   - name: Application Runtime
     description: Monitor application deployment status and health
+  - name: Domain Runtime
+    description: Domain-wide runtime monitoring available from the admin server
   - name: JDBC Runtime
     description: Monitor JDBC data source runtime statistics
   - name: JMS Runtime
     description: Monitor JMS server and destination runtime statistics
-  - name: Thread Pool Runtime
-    description: Monitor thread pool utilization
   - name: Runtime Search
     description: Structured queries against runtime trees
+  - name: Server Lifecycle
+    description: Server lifecycle operations (start, stop, suspend, resume)
+  - name: Server Runtime
+    description: Individual server runtime monitoring
   - name: Tasks
     description: Monitor asynchronous task status
+  - name: Thread Pool Runtime
+    description: Monitor thread pool utilization
 paths:
   /domainRuntime:
     get:
