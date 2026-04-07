@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Oracle WebLogic Deployment API
+  title: Oracle WebLogic Server Oracle WebLogic Deployment API
   description: >-
     RESTful API for deploying, undeploying, and managing application and
     library deployments on Oracle WebLogic Server. Supports deploying
@@ -50,7 +50,7 @@ paths:
   /edit/changeManager/startEdit:
     post:
       operationId: startEdit
-      summary: Start an edit session for deployment changes
+      summary: Oracle WebLogic Server Start an edit session for deployment changes
       description: >-
         Acquires a configuration lock and starts an edit session. Required
         before making any deployment configuration changes.
@@ -82,7 +82,7 @@ paths:
   /edit/changeManager/activate:
     post:
       operationId: activateDeploymentChanges
-      summary: Activate pending deployment changes
+      summary: Oracle WebLogic Server Activate pending deployment changes
       description: >-
         Activates all pending deployment changes and distributes them to
         targeted servers.
@@ -106,7 +106,7 @@ paths:
   /edit/appDeployments:
     get:
       operationId: listAppDeployments
-      summary: List all application deployments
+      summary: Oracle WebLogic Server List all application deployments
       description: >-
         Returns all application deployments configured in the domain
         including their targets and deployment settings.
@@ -135,7 +135,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: deployApplication
-      summary: Deploy an application
+      summary: Oracle WebLogic Server Deploy an application
       description: >-
         Deploys a new application to the domain. The application source
         (EAR, WAR, or exploded directory) must be accessible from the
@@ -192,7 +192,7 @@ paths:
   /edit/appDeploymentCreateForm:
     get:
       operationId: getAppDeploymentCreateForm
-      summary: Get application deployment creation form
+      summary: Oracle WebLogic Server Get application deployment creation form
       description: Returns a pre-populated template with default values for deploying an application.
       tags:
         - Application Deployments
@@ -208,7 +208,7 @@ paths:
   /edit/appDeployments/{appName}:
     get:
       operationId: getAppDeployment
-      summary: Get application deployment details
+      summary: Oracle WebLogic Server Get application deployment details
       description: Returns the deployment configuration for the specified application.
       tags:
         - Application Deployments
@@ -227,7 +227,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: updateAppDeployment
-      summary: Update application deployment configuration
+      summary: Oracle WebLogic Server Update application deployment configuration
       description: >-
         Modifies the deployment configuration such as targets or deployment
         plan. Requires an active edit session.
@@ -256,7 +256,7 @@ paths:
                       $ref: '#/components/schemas/Message'
     delete:
       operationId: undeployApplication
-      summary: Undeploy an application
+      summary: Oracle WebLogic Server Undeploy an application
       description: >-
         Removes the application deployment from the domain configuration.
         Requires an active edit session and must be followed by activation.
@@ -273,7 +273,7 @@ paths:
   /edit/libDeployments:
     get:
       operationId: listLibDeployments
-      summary: List all shared library deployments
+      summary: Oracle WebLogic Server List all shared library deployments
       description: Returns all shared library deployments configured in the domain.
       tags:
         - Library Deployments
@@ -294,7 +294,7 @@ paths:
                       $ref: '#/components/schemas/LibDeployment'
     post:
       operationId: deployLibrary
-      summary: Deploy a shared library
+      summary: Oracle WebLogic Server Deploy a shared library
       description: >-
         Deploys a shared library that can be referenced by applications.
         Requires an active edit session.
@@ -319,7 +319,7 @@ paths:
   /edit/libDeployments/{libName}:
     get:
       operationId: getLibDeployment
-      summary: Get shared library deployment details
+      summary: Oracle WebLogic Server Get shared library deployment details
       tags:
         - Library Deployments
       parameters:
@@ -333,7 +333,7 @@ paths:
                 $ref: '#/components/schemas/LibDeployment'
     delete:
       operationId: undeployLibrary
-      summary: Remove a shared library deployment
+      summary: Oracle WebLogic Server Remove a shared library deployment
       tags:
         - Library Deployments
       parameters:
@@ -345,7 +345,7 @@ paths:
   /domainRuntime/appDeploymentRuntimes:
     get:
       operationId: listDeploymentRuntimes
-      summary: List deployment runtimes
+      summary: Oracle WebLogic Server List deployment runtimes
       description: Returns runtime status for all deployed applications.
       tags:
         - Deployment Lifecycle
@@ -367,7 +367,7 @@ paths:
   /domainRuntime/appDeploymentRuntimes/{appName}/start:
     post:
       operationId: startApplication
-      summary: Start a deployed application
+      summary: Oracle WebLogic Server Start a deployed application
       description: >-
         Starts the specified application on all its configured targets.
         Returns a task object for monitoring the operation progress.
@@ -400,7 +400,7 @@ paths:
   /domainRuntime/appDeploymentRuntimes/{appName}/stop:
     post:
       operationId: stopApplication
-      summary: Stop a deployed application
+      summary: Oracle WebLogic Server Stop a deployed application
       description: Stops the specified application on all its configured targets.
       tags:
         - Deployment Lifecycle
@@ -423,7 +423,7 @@ paths:
   /domainRuntime/appDeploymentRuntimes/{appName}/redeploy:
     post:
       operationId: redeployApplication
-      summary: Redeploy an application
+      summary: Oracle WebLogic Server Redeploy an application
       description: >-
         Redeploys the specified application, refreshing its deployment
         from the source location.
@@ -448,7 +448,7 @@ paths:
   /domainRuntime/appDeploymentRuntimes/{appName}/update:
     post:
       operationId: updateApplication
-      summary: Update an application deployment
+      summary: Oracle WebLogic Server Update an application deployment
       description: Updates the application with a new deployment plan or configuration.
       tags:
         - Deployment Lifecycle
@@ -474,7 +474,7 @@ paths:
   /domainRuntime/appDeploymentRuntimes/{appName}/tasks/{taskId}:
     get:
       operationId: getDeploymentTaskStatus
-      summary: Get deployment task status
+      summary: Oracle WebLogic Server Get deployment task status
       description: Returns the current status of a deployment lifecycle operation.
       tags:
         - Deployment Lifecycle
@@ -495,7 +495,7 @@ paths:
   /domainRuntime/serverRuntimes/{serverName}/applicationRuntimes:
     get:
       operationId: listServerApplicationRuntimes
-      summary: List application runtimes on a server
+      summary: Oracle WebLogic Server List application runtimes on a server
       description: >-
         Returns runtime information for all applications deployed on the
         specified server.
@@ -519,7 +519,7 @@ paths:
   /edit/appDeployments/{appName}/subDeployments:
     get:
       operationId: listAppSubDeployments
-      summary: List sub-deployments for an application
+      summary: Oracle WebLogic Server List sub-deployments for an application
       tags:
         - Deployment Configuration
       parameters:
@@ -538,7 +538,7 @@ paths:
                       $ref: '#/components/schemas/SubDeployment'
     post:
       operationId: createAppSubDeployment
-      summary: Create a sub-deployment for an application
+      summary: Oracle WebLogic Server Create a sub-deployment for an application
       tags:
         - Deployment Configuration
       parameters:

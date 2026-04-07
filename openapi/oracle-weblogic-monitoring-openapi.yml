@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Oracle WebLogic Monitoring and Diagnostics API
+  title: Oracle WebLogic Server Oracle WebLogic Monitoring and Diagnostics API
   description: >-
     RESTful API for accessing runtime monitoring data, diagnostics
     information, and performance metrics for Oracle WebLogic Server domains.
@@ -55,7 +55,7 @@ paths:
   /domainRuntime:
     get:
       operationId: getDomainRuntime
-      summary: Get domain runtime information
+      summary: Oracle WebLogic Server Get domain runtime information
       description: >-
         Returns the root of the domain runtime tree, providing access to
         domain-wide monitoring data including all server runtimes.
@@ -76,7 +76,7 @@ paths:
   /domainRuntime/serverRuntimes:
     get:
       operationId: listServerRuntimes
-      summary: List all server runtimes
+      summary: Oracle WebLogic Server List all server runtimes
       description: >-
         Returns runtime information for all running servers in the domain
         including state, health, and performance data.
@@ -100,7 +100,7 @@ paths:
   /domainRuntime/serverRuntimes/{serverName}:
     get:
       operationId: getServerRuntimeByName
-      summary: Get runtime for a specific server
+      summary: Oracle WebLogic Server Get runtime for a specific server
       description: Returns runtime information for the specified running server.
       tags:
         - Domain Runtime
@@ -120,7 +120,7 @@ paths:
   /serverRuntime:
     get:
       operationId: getServerRuntime
-      summary: Get current server runtime
+      summary: Oracle WebLogic Server Get current server runtime
       description: >-
         Returns the runtime information for the server receiving this
         request. Available on both admin and managed servers.
@@ -139,7 +139,7 @@ paths:
   /domainRuntime/serverLifeCycleRuntimes:
     get:
       operationId: listServerLifeCycleRuntimes
-      summary: List all server lifecycle runtimes
+      summary: Oracle WebLogic Server List all server lifecycle runtimes
       description: >-
         Returns lifecycle state for all servers in the domain including
         their current state (RUNNING, SHUTDOWN, STANDBY, etc.).
@@ -163,7 +163,7 @@ paths:
   /domainRuntime/serverLifeCycleRuntimes/{serverName}:
     get:
       operationId: getServerLifeCycleRuntime
-      summary: Get lifecycle runtime for a specific server
+      summary: Oracle WebLogic Server Get lifecycle runtime for a specific server
       tags:
         - Server Lifecycle
       parameters:
@@ -178,7 +178,7 @@ paths:
   /domainRuntime/serverLifeCycleRuntimes/{serverName}/start:
     post:
       operationId: startServer
-      summary: Start a managed server
+      summary: Oracle WebLogic Server Start a managed server
       description: >-
         Starts the specified managed server. This is an asynchronous
         operation that returns a task for monitoring progress.
@@ -215,7 +215,7 @@ paths:
   /domainRuntime/serverLifeCycleRuntimes/{serverName}/shutdown:
     post:
       operationId: shutdownServer
-      summary: Shut down a managed server
+      summary: Oracle WebLogic Server Shut down a managed server
       description: Gracefully shuts down the specified managed server.
       tags:
         - Server Lifecycle
@@ -255,7 +255,7 @@ paths:
   /domainRuntime/serverLifeCycleRuntimes/{serverName}/forceShutdown:
     post:
       operationId: forceShutdownServer
-      summary: Force shut down a managed server
+      summary: Oracle WebLogic Server Force shut down a managed server
       description: Immediately shuts down the specified server without waiting for graceful completion.
       tags:
         - Server Lifecycle
@@ -277,7 +277,7 @@ paths:
   /domainRuntime/serverLifeCycleRuntimes/{serverName}/suspend:
     post:
       operationId: suspendServer
-      summary: Suspend a managed server
+      summary: Oracle WebLogic Server Suspend a managed server
       description: Suspends the specified server, placing it in admin mode.
       tags:
         - Server Lifecycle
@@ -304,7 +304,7 @@ paths:
   /domainRuntime/serverLifeCycleRuntimes/{serverName}/resume:
     post:
       operationId: resumeServer
-      summary: Resume a suspended server
+      summary: Oracle WebLogic Server Resume a suspended server
       description: Resumes a server that was previously suspended, returning it to running state.
       tags:
         - Server Lifecycle
@@ -326,7 +326,7 @@ paths:
   /domainRuntime/serverLifeCycleRuntimes/{serverName}/restartSSL:
     post:
       operationId: restartServerSSL
-      summary: Restart SSL on a server
+      summary: Oracle WebLogic Server Restart SSL on a server
       description: Restarts the SSL subsystem on the specified server.
       tags:
         - Server Lifecycle
@@ -344,7 +344,7 @@ paths:
   /domainRuntime/serverRuntimes/{serverName}/getURL:
     post:
       operationId: getServerURL
-      summary: Get the URL for a server
+      summary: Oracle WebLogic Server Get the URL for a server
       description: Returns the URL for accessing the specified server using the given protocol.
       tags:
         - Server Runtime
@@ -376,7 +376,7 @@ paths:
   /domainRuntime/appDeploymentRuntimes:
     get:
       operationId: listAppDeploymentRuntimes
-      summary: List application deployment runtimes
+      summary: Oracle WebLogic Server List application deployment runtimes
       description: Returns runtime status for all deployed applications in the domain.
       tags:
         - Application Runtime
@@ -398,7 +398,7 @@ paths:
   /domainRuntime/appDeploymentRuntimes/{appName}:
     get:
       operationId: getAppDeploymentRuntime
-      summary: Get runtime for a specific application
+      summary: Oracle WebLogic Server Get runtime for a specific application
       tags:
         - Application Runtime
       parameters:
@@ -414,7 +414,7 @@ paths:
   /domainRuntime/appDeploymentRuntimes/{appName}/start:
     post:
       operationId: startApplication
-      summary: Start a deployed application
+      summary: Oracle WebLogic Server Start a deployed application
       description: Starts the specified application across its configured targets.
       tags:
         - Application Runtime
@@ -436,7 +436,7 @@ paths:
   /domainRuntime/appDeploymentRuntimes/{appName}/stop:
     post:
       operationId: stopApplication
-      summary: Stop a deployed application
+      summary: Oracle WebLogic Server Stop a deployed application
       description: Stops the specified application across its configured targets.
       tags:
         - Application Runtime
@@ -458,7 +458,7 @@ paths:
   /domainRuntime/serverRuntimes/{serverName}/applicationRuntimes:
     get:
       operationId: listApplicationRuntimes
-      summary: List application runtimes on a server
+      summary: Oracle WebLogic Server List application runtimes on a server
       description: Returns runtime information for all applications deployed on the specified server.
       tags:
         - Application Runtime
@@ -480,7 +480,7 @@ paths:
   /domainRuntime/serverRuntimes/{serverName}/applicationRuntimes/{appName}/componentRuntimes:
     get:
       operationId: listComponentRuntimes
-      summary: List component runtimes for an application
+      summary: Oracle WebLogic Server List component runtimes for an application
       description: >-
         Returns runtime information for all components (web modules, EJBs)
         within the specified application on the specified server.
@@ -505,7 +505,7 @@ paths:
   /domainRuntime/serverRuntimes/{serverName}/JDBCServiceRuntime:
     get:
       operationId: getJDBCServiceRuntime
-      summary: Get JDBC service runtime for a server
+      summary: Oracle WebLogic Server Get JDBC service runtime for a server
       description: Returns the JDBC service runtime for the specified server.
       tags:
         - JDBC Runtime
@@ -522,7 +522,7 @@ paths:
   /domainRuntime/serverRuntimes/{serverName}/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans:
     get:
       operationId: listJDBCDataSourceRuntimes
-      summary: List JDBC data source runtimes
+      summary: Oracle WebLogic Server List JDBC data source runtimes
       description: Returns runtime status for all JDBC data sources on the specified server.
       tags:
         - JDBC Runtime
@@ -544,7 +544,7 @@ paths:
   /domainRuntime/serverRuntimes/{serverName}/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans/{dataSourceName}:
     get:
       operationId: getJDBCDataSourceRuntime
-      summary: Get runtime for a specific data source
+      summary: Oracle WebLogic Server Get runtime for a specific data source
       tags:
         - JDBC Runtime
       parameters:
@@ -564,7 +564,7 @@ paths:
   /domainRuntime/serverRuntimes/{serverName}/JMSRuntime:
     get:
       operationId: getJMSRuntime
-      summary: Get JMS runtime for a server
+      summary: Oracle WebLogic Server Get JMS runtime for a server
       description: Returns the JMS runtime for the specified server.
       tags:
         - JMS Runtime
@@ -580,7 +580,7 @@ paths:
   /domainRuntime/serverRuntimes/{serverName}/JMSRuntime/JMSServersRuntime:
     get:
       operationId: listJMSServerRuntimes
-      summary: List JMS server runtimes
+      summary: Oracle WebLogic Server List JMS server runtimes
       tags:
         - JMS Runtime
       parameters:
@@ -600,7 +600,7 @@ paths:
   /domainRuntime/serverRuntimes/{serverName}/threadPoolRuntime:
     get:
       operationId: getThreadPoolRuntime
-      summary: Get thread pool runtime for a server
+      summary: Oracle WebLogic Server Get thread pool runtime for a server
       description: Returns thread pool statistics for the specified server.
       tags:
         - Thread Pool Runtime
@@ -616,7 +616,7 @@ paths:
   /domainRuntime/search:
     post:
       operationId: searchDomainRuntime
-      summary: Search the domain runtime tree
+      summary: Oracle WebLogic Server Search the domain runtime tree
       description: >-
         Performs a structured query against the domain runtime tree.
         Supports field filtering, child traversal, collection filtering,
@@ -646,7 +646,7 @@ paths:
   /serverRuntime/search:
     post:
       operationId: searchServerRuntime
-      summary: Search the server runtime tree
+      summary: Oracle WebLogic Server Search the server runtime tree
       description: >-
         Performs a structured query against the current server's runtime
         tree.
@@ -670,7 +670,7 @@ paths:
   /domainRuntime/domainPartitionRuntimes:
     get:
       operationId: listPartitionRuntimes
-      summary: List partition runtimes
+      summary: Oracle WebLogic Server List partition runtimes
       description: Returns runtime status for all partitions in the domain.
       tags:
         - Domain Runtime
@@ -692,7 +692,7 @@ paths:
   /domainRuntime/domainPartitionRuntimes/{partitionName}:
     get:
       operationId: getPartitionRuntime
-      summary: Get runtime for a specific partition
+      summary: Oracle WebLogic Server Get runtime for a specific partition
       tags:
         - Domain Runtime
       parameters:
@@ -707,7 +707,7 @@ paths:
   /domainRuntime/domainPartitionRuntimes/{partitionName}/partitionLifeCycleRuntime:
     get:
       operationId: getPartitionLifeCycleRuntime
-      summary: Get partition lifecycle runtime
+      summary: Oracle WebLogic Server Get partition lifecycle runtime
       tags:
         - Domain Runtime
       parameters:
@@ -722,7 +722,7 @@ paths:
   /domainRuntime/domainPartitionRuntimes/{partitionName}/partitionLifeCycleRuntime/start:
     post:
       operationId: startPartition
-      summary: Start a partition
+      summary: Oracle WebLogic Server Start a partition
       tags:
         - Domain Runtime
       parameters:
@@ -743,7 +743,7 @@ paths:
   /domainRuntime/domainPartitionRuntimes/{partitionName}/partitionLifeCycleRuntime/stop:
     post:
       operationId: stopPartition
-      summary: Stop a partition
+      summary: Oracle WebLogic Server Stop a partition
       tags:
         - Domain Runtime
       parameters:
@@ -764,7 +764,7 @@ paths:
   /domainRuntime/tasks/{taskId}:
     get:
       operationId: getTaskStatus
-      summary: Get status of an asynchronous task
+      summary: Oracle WebLogic Server Get status of an asynchronous task
       description: >-
         Returns the current status of an asynchronous operation. Used to
         poll for completion of long-running operations like server
