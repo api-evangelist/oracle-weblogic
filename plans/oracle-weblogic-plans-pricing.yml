@@ -4,181 +4,146 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Oracle WebLogic Server
 providerId: oracle-weblogic
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Application Server
-  - Enterprise
   - Java EE
   - Middleware
-  - Oracle
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+  - Oracle Cloud
+description: >-
+  Oracle WebLogic Server is delivered through three commercial paths.
+  On-premises (or BYOL on OCI) it is licensed by edition (WebLogic Standard,
+  WebLogic Enterprise, WebLogic Suite) per processor or per named-user-plus
+  on the Oracle Technology Global Price List, with separately purchased
+  annual support and update licenses. WebLogic Server for OCI is offered as
+  a Marketplace stack (UCM / paid) where customers either bring an existing
+  license (BYOL) or pay per OCPU-hour for the included WebLogic license,
+  layered on top of the underlying OCI compute, block storage, and
+  networking. There is no free or per-API public tier; the WebLogic
+  RESTful Management Services, monitoring, deployment, WLST, and JMX APIs
+  are all included with any active edition. Engage Oracle Sales for the
+  per-processor / per-OCPU rate.
+sources:
+  - https://www.oracle.com/java/weblogic/
+  - https://docs.oracle.com/en/middleware/standalone/weblogic-server/
+  - https://www.oracle.com/cloud/price-list/
+notes: >-
+  Oracle blocks programmatic fetches of www.oracle.com pricing pages (HTTP 403).
+  Plan structure preserved as one on-premises edition plan plus an OCI
+  Marketplace usage plan and an enterprise tier; replace per-processor and
+  per-OCPU prices with the verified Oracle Technology / Cloud Price List
+  values when available.
 plans:
-  - id: oracle-weblogic-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the Oracle WebLogic Server API surface. Intended for evaluation,
-      prototyping, and low-volume integrations. Real limits and pricing must be reconciled with the provider's
-      published plan documentation.
+  - id: oracle-weblogic-on-premises
+    name: WebLogic Server (On-Premises)
+    type: subscription
+    description: >-
+      On-premises Oracle WebLogic Server licensed by edition (Standard,
+      Enterprise, Suite) per processor or per named-user-plus on the Oracle
+      Technology Global Price List, with separately purchased annual
+      support and update licenses.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
+      - label: Per-Processor License (Standard / Enterprise / Suite)
+        name: per_processor_license
+        type: subscription
+        metric: processor
+        limit: -1
+        timeFrame: year
         geo: global
-        domains:
-          - http://localhost:7001/management/weblogic/latest
-          - http://localhost:7001/management/weblogic/latest/domainRuntime
-          - http://localhost:7001/management/weblogic/latest/edit/appDeployments
-          - https://localhost:5556
-          - service:jmx:rmi:///jndi/rmi://localhost:7001/jmxrmi
         unit: 1
-        price: '0.00'
+        price: contact sales
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
+      - label: Named User Plus License
+        name: named_user_plus
+        type: subscription
+        metric: user
+        limit: -1
+        timeFrame: year
         geo: global
-        domains:
-          - http://localhost:7001/management/weblogic/latest
-          - http://localhost:7001/management/weblogic/latest/domainRuntime
-          - http://localhost:7001/management/weblogic/latest/edit/appDeployments
-          - https://localhost:5556
-          - service:jmx:rmi:///jndi/rmi://localhost:7001/jmxrmi
         unit: 1
-        price: '0.00'
+        price: contact sales
+        userMultiplied: true
+      - label: Annual Support and Update License
+        name: support_update
+        type: subscription
+        metric: percent_of_license
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: contact sales
         userMultiplied: false
     elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
       - name: WebLogic RESTful Management Services API
       - name: WebLogic Monitoring and Diagnostics API
       - name: WebLogic Deployment API
       - name: WebLogic WLST (WebLogic Scripting Tool) API
       - name: WebLogic JMX API
-  - id: oracle-weblogic-pro
-    name: Professional
-    type: paid
-    description: Production tier for Oracle WebLogic Server. Provides higher quotas, priority support,
-      and access to the broader API portfolio. Pricing placeholder; align with the provider's pricing
-      page.
+  - id: oracle-weblogic-oci-marketplace
+    name: WebLogic Server for OCI (Marketplace)
+    type: usage-based
+    description: >-
+      Oracle WebLogic Server for OCI Marketplace stack. Customers either
+      bring an existing WebLogic license (BYOL) or pay per OCPU-hour for the
+      included license, on top of the underlying OCI compute, block
+      storage, and networking charges.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - http://localhost:7001/management/weblogic/latest
-          - http://localhost:7001/management/weblogic/latest/domainRuntime
-          - http://localhost:7001/management/weblogic/latest/edit/appDeployments
-          - https://localhost:5556
-          - service:jmx:rmi:///jndi/rmi://localhost:7001/jmxrmi
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - http://localhost:7001/management/weblogic/latest
-          - http://localhost:7001/management/weblogic/latest/domainRuntime
-          - http://localhost:7001/management/weblogic/latest/edit/appDeployments
-          - https://localhost:5556
-          - service:jmx:rmi:///jndi/rmi://localhost:7001/jmxrmi
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
+      - label: WebLogic OCPU (license included)
+        name: weblogic_ocpu_license_included
         type: metered
-        metric: requests
+        metric: ocpu-hour
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: see https://www.oracle.com/cloud/price-list/
+        userMultiplied: false
+      - label: OCI Compute (BYOL)
+        name: oci_compute_byol
+        type: metered
+        metric: ocpu-hour
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: see https://www.oracle.com/cloud/price-list/
+        userMultiplied: false
+      - label: OCI Block Storage
+        name: oci_block_storage
+        type: metered
+        metric: gb-month
         limit: -1
         timeFrame: month
         geo: global
-        domains:
-          - http://localhost:7001/management/weblogic/latest
-          - http://localhost:7001/management/weblogic/latest/domainRuntime
-          - http://localhost:7001/management/weblogic/latest/edit/appDeployments
-          - https://localhost:5556
-          - service:jmx:rmi:///jndi/rmi://localhost:7001/jmxrmi
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: see https://www.oracle.com/cloud/price-list/
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
       - name: WebLogic RESTful Management Services API
       - name: WebLogic Monitoring and Diagnostics API
       - name: WebLogic Deployment API
       - name: WebLogic WLST (WebLogic Scripting Tool) API
       - name: WebLogic JMX API
   - id: oracle-weblogic-enterprise
-    name: Enterprise
+    name: Enterprise Agreement
     type: enterprise
-    description: Custom-negotiated tier for Oracle WebLogic Server. Includes dedicated capacity, contractual
-      SLAs, security review, data residency options, and named technical account management.
+    description: >-
+      Negotiated enterprise agreement combining on-premises WebLogic
+      licenses with OCI capacity, with contractual SLAs, premier support,
+      and named technical account management.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: Negotiated License Volume
+        name: negotiated_licenses
+        type: subscription
+        metric: bundle
         limit: -1
-        timeFrame: month
+        timeFrame: year
         geo: configurable
-        domains:
-          - http://localhost:7001/management/weblogic/latest
-          - http://localhost:7001/management/weblogic/latest/domainRuntime
-          - http://localhost:7001/management/weblogic/latest/edit/appDeployments
-          - https://localhost:5556
-          - service:jmx:rmi:///jndi/rmi://localhost:7001/jmxrmi
-        unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - http://localhost:7001/management/weblogic/latest
-          - http://localhost:7001/management/weblogic/latest/domainRuntime
-          - http://localhost:7001/management/weblogic/latest/edit/appDeployments
-          - https://localhost:5556
-          - service:jmx:rmi:///jndi/rmi://localhost:7001/jmxrmi
         unit: 1
         price: custom
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
       - name: WebLogic RESTful Management Services API
       - name: WebLogic Monitoring and Diagnostics API
       - name: WebLogic Deployment API
@@ -187,4 +152,3 @@ plans:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
-    url: https://apievangelist.com
