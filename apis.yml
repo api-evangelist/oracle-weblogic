@@ -38,7 +38,7 @@ apis:
         url: json-schema/oracle-weblogic-data-source.json
       - type: JSONSchema
         url: json-schema/oracle-weblogic-jms-configuration.json
-      - type: JSON-LD
+      - type: JSONLD
         url: json-ld/oracle-weblogic-context.jsonld
   - name: WebLogic Monitoring and Diagnostics API
     description: >-
@@ -109,7 +109,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
-      - type: API Reference
+      - type: APIReference
         url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlapi/index.html
       - type: Examples
         url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/examples.html
@@ -132,17 +132,17 @@ common:
     url: https://blogs.oracle.com/weblogicserver/
   - type: Website
     url: https://www.oracle.com/middleware/technologies/weblogic.html
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.oracle.com/legal/terms.html
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.oracle.com/legal/privacy/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/oracle
-  - type: Stack Overflow
+  - type: StackOverflow
     url: https://stackoverflow.com/questions/tagged/weblogic
   - type: YouTube
     url: https://www.youtube.com/@OracleDevelopers
-  - type: Sign Up
+  - type: SignUp
     url: https://cloud.oracle.com/
-  - type: Status
+  - type: StatusPage
     url: https://ocistatus.oraclecloud.com/
