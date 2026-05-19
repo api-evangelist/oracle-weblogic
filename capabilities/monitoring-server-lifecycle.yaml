@@ -1,0 +1,357 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle WebLogic Server Oracle WebLogic Monitoring and Diagnostics API — Server Lifecycle
+  description: 'Oracle WebLogic Server Oracle WebLogic Monitoring and Diagnostics API — Server Lifecycle. 8 operations. Lead
+    operation: Oracle WebLogic Server List all server lifecycle runtimes. Self-contained Naftiko capability covering one Oracle
+    Weblogic business surface.'
+  tags:
+  - Oracle Weblogic
+  - Server Lifecycle
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_WEBLOGIC_API_KEY: ORACLE_WEBLOGIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: monitoring-server-lifecycle
+    baseUri: http://localhost:7001/management/weblogic/latest
+    description: Oracle WebLogic Server Oracle WebLogic Monitoring and Diagnostics API — Server Lifecycle business capability.
+      Self-contained, no shared references.
+    resources:
+    - name: domainRuntime-serverLifeCycleRuntimes
+      path: /domainRuntime/serverLifeCycleRuntimes
+      operations:
+      - name: listserverlifecycleruntimes
+        method: GET
+        description: Oracle WebLogic Server List all server lifecycle runtimes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: domainRuntime-serverLifeCycleRuntimes-serverName
+      path: /domainRuntime/serverLifeCycleRuntimes/{serverName}
+      operations:
+      - name: getserverlifecycleruntime
+        method: GET
+        description: Oracle WebLogic Server Get lifecycle runtime for a specific server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: domainRuntime-serverLifeCycleRuntimes-serverName-forceShutdown
+      path: /domainRuntime/serverLifeCycleRuntimes/{serverName}/forceShutdown
+      operations:
+      - name: forceshutdownserver
+        method: POST
+        description: Oracle WebLogic Server Force shut down a managed server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: domainRuntime-serverLifeCycleRuntimes-serverName-restartSSL
+      path: /domainRuntime/serverLifeCycleRuntimes/{serverName}/restartSSL
+      operations:
+      - name: restartserverssl
+        method: POST
+        description: Oracle WebLogic Server Restart SSL on a server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: domainRuntime-serverLifeCycleRuntimes-serverName-resume
+      path: /domainRuntime/serverLifeCycleRuntimes/{serverName}/resume
+      operations:
+      - name: resumeserver
+        method: POST
+        description: Oracle WebLogic Server Resume a suspended server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: domainRuntime-serverLifeCycleRuntimes-serverName-shutdown
+      path: /domainRuntime/serverLifeCycleRuntimes/{serverName}/shutdown
+      operations:
+      - name: shutdownserver
+        method: POST
+        description: Oracle WebLogic Server Shut down a managed server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: domainRuntime-serverLifeCycleRuntimes-serverName-start
+      path: /domainRuntime/serverLifeCycleRuntimes/{serverName}/start
+      operations:
+      - name: startserver
+        method: POST
+        description: Oracle WebLogic Server Start a managed server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: domainRuntime-serverLifeCycleRuntimes-serverName-suspend
+      path: /domainRuntime/serverLifeCycleRuntimes/{serverName}/suspend
+      operations:
+      - name: suspendserver
+        method: POST
+        description: Oracle WebLogic Server Suspend a managed server
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: basic
+      username: '{{env.ORACLE_WEBLOGIC_USER}}'
+      password: '{{env.ORACLE_WEBLOGIC_PASS}}'
+  exposes:
+  - type: rest
+    namespace: monitoring-server-lifecycle-rest
+    port: 8080
+    description: REST adapter for Oracle WebLogic Server Oracle WebLogic Monitoring and Diagnostics API — Server Lifecycle.
+      One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/domainruntime/serverlifecycleruntimes
+      name: domainruntime-serverlifecycleruntimes
+      description: REST surface for domainRuntime-serverLifeCycleRuntimes.
+      operations:
+      - method: GET
+        name: listserverlifecycleruntimes
+        description: Oracle WebLogic Server List all server lifecycle runtimes
+        call: monitoring-server-lifecycle.listserverlifecycleruntimes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/domainruntime/serverlifecycleruntimes/{servername}
+      name: domainruntime-serverlifecycleruntimes-servername
+      description: REST surface for domainRuntime-serverLifeCycleRuntimes-serverName.
+      operations:
+      - method: GET
+        name: getserverlifecycleruntime
+        description: Oracle WebLogic Server Get lifecycle runtime for a specific server
+        call: monitoring-server-lifecycle.getserverlifecycleruntime
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/domainruntime/serverlifecycleruntimes/{servername}/forceshutdown
+      name: domainruntime-serverlifecycleruntimes-servername-forceshutdown
+      description: REST surface for domainRuntime-serverLifeCycleRuntimes-serverName-forceShutdown.
+      operations:
+      - method: POST
+        name: forceshutdownserver
+        description: Oracle WebLogic Server Force shut down a managed server
+        call: monitoring-server-lifecycle.forceshutdownserver
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/domainruntime/serverlifecycleruntimes/{servername}/restartssl
+      name: domainruntime-serverlifecycleruntimes-servername-restartssl
+      description: REST surface for domainRuntime-serverLifeCycleRuntimes-serverName-restartSSL.
+      operations:
+      - method: POST
+        name: restartserverssl
+        description: Oracle WebLogic Server Restart SSL on a server
+        call: monitoring-server-lifecycle.restartserverssl
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/domainruntime/serverlifecycleruntimes/{servername}/resume
+      name: domainruntime-serverlifecycleruntimes-servername-resume
+      description: REST surface for domainRuntime-serverLifeCycleRuntimes-serverName-resume.
+      operations:
+      - method: POST
+        name: resumeserver
+        description: Oracle WebLogic Server Resume a suspended server
+        call: monitoring-server-lifecycle.resumeserver
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/domainruntime/serverlifecycleruntimes/{servername}/shutdown
+      name: domainruntime-serverlifecycleruntimes-servername-shutdown
+      description: REST surface for domainRuntime-serverLifeCycleRuntimes-serverName-shutdown.
+      operations:
+      - method: POST
+        name: shutdownserver
+        description: Oracle WebLogic Server Shut down a managed server
+        call: monitoring-server-lifecycle.shutdownserver
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/domainruntime/serverlifecycleruntimes/{servername}/start
+      name: domainruntime-serverlifecycleruntimes-servername-start
+      description: REST surface for domainRuntime-serverLifeCycleRuntimes-serverName-start.
+      operations:
+      - method: POST
+        name: startserver
+        description: Oracle WebLogic Server Start a managed server
+        call: monitoring-server-lifecycle.startserver
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/domainruntime/serverlifecycleruntimes/{servername}/suspend
+      name: domainruntime-serverlifecycleruntimes-servername-suspend
+      description: REST surface for domainRuntime-serverLifeCycleRuntimes-serverName-suspend.
+      operations:
+      - method: POST
+        name: suspendserver
+        description: Oracle WebLogic Server Suspend a managed server
+        call: monitoring-server-lifecycle.suspendserver
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: monitoring-server-lifecycle-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle WebLogic Server Oracle WebLogic Monitoring and Diagnostics API — Server Lifecycle.
+      One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-weblogic-server-list-all
+      description: Oracle WebLogic Server List all server lifecycle runtimes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: monitoring-server-lifecycle.listserverlifecycleruntimes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-get-lifecycle
+      description: Oracle WebLogic Server Get lifecycle runtime for a specific server
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: monitoring-server-lifecycle.getserverlifecycleruntime
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-force-shut
+      description: Oracle WebLogic Server Force shut down a managed server
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: monitoring-server-lifecycle.forceshutdownserver
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-restart-ssl
+      description: Oracle WebLogic Server Restart SSL on a server
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: monitoring-server-lifecycle.restartserverssl
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-resume-suspended
+      description: Oracle WebLogic Server Resume a suspended server
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: monitoring-server-lifecycle.resumeserver
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-shut-down
+      description: Oracle WebLogic Server Shut down a managed server
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: monitoring-server-lifecycle.shutdownserver
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-start-managed
+      description: Oracle WebLogic Server Start a managed server
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: monitoring-server-lifecycle.startserver
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-suspend-managed
+      description: Oracle WebLogic Server Suspend a managed server
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: monitoring-server-lifecycle.suspendserver
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

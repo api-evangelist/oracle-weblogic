@@ -1,0 +1,224 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Server Templates
+  description: 'Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Server Templates. 5 operations. Lead
+    operation: Oracle WebLogic Server List all server templates. Self-contained Naftiko capability covering one Oracle Weblogic
+    business surface.'
+  tags:
+  - Oracle Weblogic
+  - Server Templates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_WEBLOGIC_API_KEY: ORACLE_WEBLOGIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: management-server-templates
+    baseUri: http://localhost:7001/management/weblogic/latest
+    description: Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Server Templates business capability.
+      Self-contained, no shared references.
+    resources:
+    - name: edit-serverTemplates
+      path: /edit/serverTemplates
+      operations:
+      - name: listservertemplates
+        method: GET
+        description: Oracle WebLogic Server List all server templates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createservertemplate
+        method: POST
+        description: Oracle WebLogic Server Create a new server template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: edit-serverTemplates-templateName
+      path: /edit/serverTemplates/{templateName}
+      operations:
+      - name: getservertemplate
+        method: GET
+        description: Oracle WebLogic Server Get a server template configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: templateName
+          in: path
+          type: string
+          required: true
+      - name: updateservertemplate
+        method: POST
+        description: Oracle WebLogic Server Update a server template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: templateName
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteservertemplate
+        method: DELETE
+        description: Oracle WebLogic Server Delete a server template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: templateName
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.ORACLE_WEBLOGIC_USER}}'
+      password: '{{env.ORACLE_WEBLOGIC_PASS}}'
+  exposes:
+  - type: rest
+    namespace: management-server-templates-rest
+    port: 8080
+    description: REST adapter for Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Server Templates.
+      One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/edit/servertemplates
+      name: edit-servertemplates
+      description: REST surface for edit-serverTemplates.
+      operations:
+      - method: GET
+        name: listservertemplates
+        description: Oracle WebLogic Server List all server templates
+        call: management-server-templates.listservertemplates
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createservertemplate
+        description: Oracle WebLogic Server Create a new server template
+        call: management-server-templates.createservertemplate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/edit/servertemplates/{templatename}
+      name: edit-servertemplates-templatename
+      description: REST surface for edit-serverTemplates-templateName.
+      operations:
+      - method: GET
+        name: getservertemplate
+        description: Oracle WebLogic Server Get a server template configuration
+        call: management-server-templates.getservertemplate
+        with:
+          templateName: rest.templateName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updateservertemplate
+        description: Oracle WebLogic Server Update a server template
+        call: management-server-templates.updateservertemplate
+        with:
+          templateName: rest.templateName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteservertemplate
+        description: Oracle WebLogic Server Delete a server template
+        call: management-server-templates.deleteservertemplate
+        with:
+          templateName: rest.templateName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: management-server-templates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Server Templates.
+      One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-weblogic-server-list-all
+      description: Oracle WebLogic Server List all server templates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-server-templates.listservertemplates
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-create-new
+      description: Oracle WebLogic Server Create a new server template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-server-templates.createservertemplate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-get-server
+      description: Oracle WebLogic Server Get a server template configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-server-templates.getservertemplate
+      with:
+        templateName: tools.templateName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-update-server
+      description: Oracle WebLogic Server Update a server template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-server-templates.updateservertemplate
+      with:
+        templateName: tools.templateName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-delete-server
+      description: Oracle WebLogic Server Delete a server template
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: management-server-templates.deleteservertemplate
+      with:
+        templateName: tools.templateName
+      outputParameters:
+      - type: object
+        mapping: $.

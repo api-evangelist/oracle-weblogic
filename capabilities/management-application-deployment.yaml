@@ -1,0 +1,267 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Application Deployment
+  description: 'Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Application Deployment. 7 operations.
+    Lead operation: Oracle WebLogic Server List all application deployments. Self-contained Naftiko capability covering one
+    Oracle Weblogic business surface.'
+  tags:
+  - Oracle Weblogic
+  - Application Deployment
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_WEBLOGIC_API_KEY: ORACLE_WEBLOGIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: management-application-deployment
+    baseUri: http://localhost:7001/management/weblogic/latest
+    description: Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Application Deployment business
+      capability. Self-contained, no shared references.
+    resources:
+    - name: edit-appDeployments
+      path: /edit/appDeployments
+      operations:
+      - name: listappdeployments
+        method: GET
+        description: Oracle WebLogic Server List all application deployments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createappdeployment
+        method: POST
+        description: Oracle WebLogic Server Deploy an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: edit-appDeployments-appName
+      path: /edit/appDeployments/{appName}
+      operations:
+      - name: getappdeployment
+        method: GET
+        description: Oracle WebLogic Server Get an application deployment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateappdeployment
+        method: POST
+        description: Oracle WebLogic Server Update an application deployment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteappdeployment
+        method: DELETE
+        description: Oracle WebLogic Server Undeploy an application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: edit-libDeployments
+      path: /edit/libDeployments
+      operations:
+      - name: listlibdeployments
+        method: GET
+        description: Oracle WebLogic Server List all library deployments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createlibdeployment
+        method: POST
+        description: Oracle WebLogic Server Deploy a shared library
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.ORACLE_WEBLOGIC_USER}}'
+      password: '{{env.ORACLE_WEBLOGIC_PASS}}'
+  exposes:
+  - type: rest
+    namespace: management-application-deployment-rest
+    port: 8080
+    description: REST adapter for Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Application Deployment.
+      One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/edit/appdeployments
+      name: edit-appdeployments
+      description: REST surface for edit-appDeployments.
+      operations:
+      - method: GET
+        name: listappdeployments
+        description: Oracle WebLogic Server List all application deployments
+        call: management-application-deployment.listappdeployments
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createappdeployment
+        description: Oracle WebLogic Server Deploy an application
+        call: management-application-deployment.createappdeployment
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/edit/appdeployments/{appname}
+      name: edit-appdeployments-appname
+      description: REST surface for edit-appDeployments-appName.
+      operations:
+      - method: GET
+        name: getappdeployment
+        description: Oracle WebLogic Server Get an application deployment
+        call: management-application-deployment.getappdeployment
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updateappdeployment
+        description: Oracle WebLogic Server Update an application deployment
+        call: management-application-deployment.updateappdeployment
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteappdeployment
+        description: Oracle WebLogic Server Undeploy an application
+        call: management-application-deployment.deleteappdeployment
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/edit/libdeployments
+      name: edit-libdeployments
+      description: REST surface for edit-libDeployments.
+      operations:
+      - method: GET
+        name: listlibdeployments
+        description: Oracle WebLogic Server List all library deployments
+        call: management-application-deployment.listlibdeployments
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createlibdeployment
+        description: Oracle WebLogic Server Deploy a shared library
+        call: management-application-deployment.createlibdeployment
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: management-application-deployment-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Application Deployment.
+      One tool per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-weblogic-server-list-all
+      description: Oracle WebLogic Server List all application deployments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-application-deployment.listappdeployments
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-deploy-application
+      description: Oracle WebLogic Server Deploy an application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-application-deployment.createappdeployment
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-get-application
+      description: Oracle WebLogic Server Get an application deployment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-application-deployment.getappdeployment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-update-application
+      description: Oracle WebLogic Server Update an application deployment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-application-deployment.updateappdeployment
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-undeploy-application
+      description: Oracle WebLogic Server Undeploy an application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: management-application-deployment.deleteappdeployment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-list-all-2
+      description: Oracle WebLogic Server List all library deployments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-application-deployment.listlibdeployments
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-deploy-shared
+      description: Oracle WebLogic Server Deploy a shared library
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-application-deployment.createlibdeployment
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

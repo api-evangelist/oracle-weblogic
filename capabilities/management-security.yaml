@@ -1,0 +1,326 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Security
+  description: 'Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Security. 8 operations. Lead operation:
+    Oracle WebLogic Server List all security realms. Self-contained Naftiko capability covering one Oracle Weblogic business
+    surface.'
+  tags:
+  - Oracle Weblogic
+  - Security
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_WEBLOGIC_API_KEY: ORACLE_WEBLOGIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: management-security
+    baseUri: http://localhost:7001/management/weblogic/latest
+    description: Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Security business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: edit-securityConfiguration-realms
+      path: /edit/securityConfiguration/realms
+      operations:
+      - name: listsecurityrealms
+        method: GET
+        description: Oracle WebLogic Server List all security realms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createsecurityrealm
+        method: POST
+        description: Oracle WebLogic Server Create a security realm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: edit-securityConfiguration-realms-realmName
+      path: /edit/securityConfiguration/realms/{realmName}
+      operations:
+      - name: getsecurityrealm
+        method: GET
+        description: Oracle WebLogic Server Get a security realm configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatesecurityrealm
+        method: POST
+        description: Oracle WebLogic Server Update a security realm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: edit-securityConfiguration-realms-realmName-authenticationProviders
+      path: /edit/securityConfiguration/realms/{realmName}/authenticationProviders
+      operations:
+      - name: listauthenticationproviders
+        method: GET
+        description: Oracle WebLogic Server List authentication providers for a realm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createauthenticationprovider
+        method: POST
+        description: Oracle WebLogic Server Create an authentication provider
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: serverConfig-securityConfiguration-realms-realmName-authenticationProviders-prov
+      path: /serverConfig/securityConfiguration/realms/{realmName}/authenticationProviders/{providerName}/addMemberToGroup
+      operations:
+      - name: addmembertogroup
+        method: POST
+        description: Oracle WebLogic Server Add a user or group to a security group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: serverConfig-securityConfiguration-realms-realmName-authenticationProviders-prov
+      path: /serverConfig/securityConfiguration/realms/{realmName}/authenticationProviders/{providerName}/createUser
+      operations:
+      - name: createuser
+        method: POST
+        description: Oracle WebLogic Server Create a user in an authentication provider
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.ORACLE_WEBLOGIC_USER}}'
+      password: '{{env.ORACLE_WEBLOGIC_PASS}}'
+  exposes:
+  - type: rest
+    namespace: management-security-rest
+    port: 8080
+    description: REST adapter for Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Security. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/edit/securityconfiguration/realms
+      name: edit-securityconfiguration-realms
+      description: REST surface for edit-securityConfiguration-realms.
+      operations:
+      - method: GET
+        name: listsecurityrealms
+        description: Oracle WebLogic Server List all security realms
+        call: management-security.listsecurityrealms
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createsecurityrealm
+        description: Oracle WebLogic Server Create a security realm
+        call: management-security.createsecurityrealm
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/edit/securityconfiguration/realms/{realmname}
+      name: edit-securityconfiguration-realms-realmname
+      description: REST surface for edit-securityConfiguration-realms-realmName.
+      operations:
+      - method: GET
+        name: getsecurityrealm
+        description: Oracle WebLogic Server Get a security realm configuration
+        call: management-security.getsecurityrealm
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updatesecurityrealm
+        description: Oracle WebLogic Server Update a security realm
+        call: management-security.updatesecurityrealm
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/edit/securityconfiguration/realms/{realmname}/authenticationproviders
+      name: edit-securityconfiguration-realms-realmname-authenticationproviders
+      description: REST surface for edit-securityConfiguration-realms-realmName-authenticationProviders.
+      operations:
+      - method: GET
+        name: listauthenticationproviders
+        description: Oracle WebLogic Server List authentication providers for a realm
+        call: management-security.listauthenticationproviders
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createauthenticationprovider
+        description: Oracle WebLogic Server Create an authentication provider
+        call: management-security.createauthenticationprovider
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/serverconfig/securityconfiguration/realms/{realmname}/authenticationproviders/{providername}/addmembertogroup
+      name: serverconfig-securityconfiguration-realms-realmname-authenticationproviders-prov
+      description: REST surface for serverConfig-securityConfiguration-realms-realmName-authenticationProviders-prov.
+      operations:
+      - method: POST
+        name: addmembertogroup
+        description: Oracle WebLogic Server Add a user or group to a security group
+        call: management-security.addmembertogroup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/serverconfig/securityconfiguration/realms/{realmname}/authenticationproviders/{providername}/createuser
+      name: serverconfig-securityconfiguration-realms-realmname-authenticationproviders-prov
+      description: REST surface for serverConfig-securityConfiguration-realms-realmName-authenticationProviders-prov.
+      operations:
+      - method: POST
+        name: createuser
+        description: Oracle WebLogic Server Create a user in an authentication provider
+        call: management-security.createuser
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: management-security-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Security. One tool
+      per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-weblogic-server-list-all
+      description: Oracle WebLogic Server List all security realms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-security.listsecurityrealms
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-create-security
+      description: Oracle WebLogic Server Create a security realm
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-security.createsecurityrealm
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-get-security
+      description: Oracle WebLogic Server Get a security realm configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-security.getsecurityrealm
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-update-security
+      description: Oracle WebLogic Server Update a security realm
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-security.updatesecurityrealm
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-list-authentication
+      description: Oracle WebLogic Server List authentication providers for a realm
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-security.listauthenticationproviders
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-create-authentication
+      description: Oracle WebLogic Server Create an authentication provider
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-security.createauthenticationprovider
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-add-user
+      description: Oracle WebLogic Server Add a user or group to a security group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-security.addmembertogroup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-create-user
+      description: Oracle WebLogic Server Create a user in an authentication provider
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-security.createuser
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

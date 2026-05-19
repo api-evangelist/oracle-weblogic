@@ -1,0 +1,299 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Clusters
+  description: 'Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Clusters. 8 operations. Lead operation:
+    Oracle WebLogic Server Get cluster creation form with defaults. Self-contained Naftiko capability covering one Oracle
+    Weblogic business surface.'
+  tags:
+  - Oracle Weblogic
+  - Clusters
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_WEBLOGIC_API_KEY: ORACLE_WEBLOGIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: management-clusters
+    baseUri: http://localhost:7001/management/weblogic/latest
+    description: Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Clusters business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: edit-clusterCreateForm
+      path: /edit/clusterCreateForm
+      operations:
+      - name: getclustercreateform
+        method: GET
+        description: Oracle WebLogic Server Get cluster creation form with defaults
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: edit-clusters
+      path: /edit/clusters
+      operations:
+      - name: listclusters
+        method: GET
+        description: Oracle WebLogic Server List all clusters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createcluster
+        method: POST
+        description: Oracle WebLogic Server Create a new cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: edit-clusters-clusterName
+      path: /edit/clusters/{clusterName}
+      operations:
+      - name: getcluster
+        method: GET
+        description: Oracle WebLogic Server Get a specific cluster configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecluster
+        method: POST
+        description: Oracle WebLogic Server Update a cluster configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecluster
+        method: DELETE
+        description: Oracle WebLogic Server Delete a cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: edit-clusters-clusterName-dynamicServers
+      path: /edit/clusters/{clusterName}/dynamicServers
+      operations:
+      - name: getdynamicservers
+        method: GET
+        description: Oracle WebLogic Server Get dynamic server configuration for a cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatedynamicservers
+        method: POST
+        description: Oracle WebLogic Server Configure dynamic servers for a cluster
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.ORACLE_WEBLOGIC_USER}}'
+      password: '{{env.ORACLE_WEBLOGIC_PASS}}'
+  exposes:
+  - type: rest
+    namespace: management-clusters-rest
+    port: 8080
+    description: REST adapter for Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Clusters. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/edit/clustercreateform
+      name: edit-clustercreateform
+      description: REST surface for edit-clusterCreateForm.
+      operations:
+      - method: GET
+        name: getclustercreateform
+        description: Oracle WebLogic Server Get cluster creation form with defaults
+        call: management-clusters.getclustercreateform
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/edit/clusters
+      name: edit-clusters
+      description: REST surface for edit-clusters.
+      operations:
+      - method: GET
+        name: listclusters
+        description: Oracle WebLogic Server List all clusters
+        call: management-clusters.listclusters
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcluster
+        description: Oracle WebLogic Server Create a new cluster
+        call: management-clusters.createcluster
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/edit/clusters/{clustername}
+      name: edit-clusters-clustername
+      description: REST surface for edit-clusters-clusterName.
+      operations:
+      - method: GET
+        name: getcluster
+        description: Oracle WebLogic Server Get a specific cluster configuration
+        call: management-clusters.getcluster
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updatecluster
+        description: Oracle WebLogic Server Update a cluster configuration
+        call: management-clusters.updatecluster
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecluster
+        description: Oracle WebLogic Server Delete a cluster
+        call: management-clusters.deletecluster
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/edit/clusters/{clustername}/dynamicservers
+      name: edit-clusters-clustername-dynamicservers
+      description: REST surface for edit-clusters-clusterName-dynamicServers.
+      operations:
+      - method: GET
+        name: getdynamicservers
+        description: Oracle WebLogic Server Get dynamic server configuration for a cluster
+        call: management-clusters.getdynamicservers
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updatedynamicservers
+        description: Oracle WebLogic Server Configure dynamic servers for a cluster
+        call: management-clusters.updatedynamicservers
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: management-clusters-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle WebLogic Server Oracle WebLogic RESTful Management Services API — Clusters. One tool
+      per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-weblogic-server-get-cluster
+      description: Oracle WebLogic Server Get cluster creation form with defaults
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-clusters.getclustercreateform
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-list-all
+      description: Oracle WebLogic Server List all clusters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-clusters.listclusters
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-create-new
+      description: Oracle WebLogic Server Create a new cluster
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-clusters.createcluster
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-get-specific
+      description: Oracle WebLogic Server Get a specific cluster configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-clusters.getcluster
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-update-cluster
+      description: Oracle WebLogic Server Update a cluster configuration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-clusters.updatecluster
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-delete-cluster
+      description: Oracle WebLogic Server Delete a cluster
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: management-clusters.deletecluster
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-get-dynamic
+      description: Oracle WebLogic Server Get dynamic server configuration for a cluster
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: management-clusters.getdynamicservers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-weblogic-server-configure-dynamic
+      description: Oracle WebLogic Server Configure dynamic servers for a cluster
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: management-clusters.updatedynamicservers
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
