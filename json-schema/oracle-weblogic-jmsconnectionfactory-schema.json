@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JMSConnectionFactory",
+  "title": "JMSConnectionFactory",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Connection factory name"
+    },
+    "JNDIName": {
+      "type": "string",
+      "description": "JNDI name"
+    },
+    "subDeploymentName": {
+      "type": "string",
+      "description": "Sub-deployment name for targeting"
+    }
+  }
+}

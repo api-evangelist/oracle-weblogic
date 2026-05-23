@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NetworkAccessPoint",
+  "title": "NetworkAccessPoint",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Network channel name"
+    },
+    "protocol": {
+      "type": "string",
+      "description": "Network protocol"
+    },
+    "listenPort": {
+      "type": "integer"
+    },
+    "listenAddress": {
+      "type": "string"
+    },
+    "publicPort": {
+      "type": "integer"
+    },
+    "publicAddress": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    }
+  }
+}

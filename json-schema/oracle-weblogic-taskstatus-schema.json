@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaskStatus",
+  "title": "TaskStatus",
+  "type": "object",
+  "properties": {
+    "identity": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "taskStatus": {
+      "type": "string",
+      "description": "Status text (e.g., TASK COMPLETED)"
+    },
+    "progress": {
+      "type": "string",
+      "description": "Progress indicator (e.g., success, processing)"
+    },
+    "description": {
+      "type": "string"
+    },
+    "operation": {
+      "type": "string"
+    },
+    "running": {
+      "type": "boolean"
+    },
+    "completed": {
+      "type": "boolean"
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

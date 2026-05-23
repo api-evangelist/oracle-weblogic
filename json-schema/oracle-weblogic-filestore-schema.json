@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FileStore",
+  "title": "FileStore",
+  "type": "object",
+  "properties": {
+    "identity": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "directory": {
+      "type": "string",
+      "description": "Directory for the file store"
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Identity"
+      }
+    }
+  }
+}

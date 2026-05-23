@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Server",
+  "title": "Server",
+  "type": "object",
+  "properties": {
+    "identity": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "name": {
+      "type": "string",
+      "description": "Server name"
+    },
+    "listenPort": {
+      "type": "integer",
+      "description": "Listen port for the server",
+      "default": 7001
+    },
+    "listenAddress": {
+      "type": "string",
+      "description": "IP address or hostname the server listens on"
+    },
+    "listenPortEnabled": {
+      "type": "boolean",
+      "description": "Whether the non-SSL listen port is enabled",
+      "default": true
+    },
+    "SSLListenPort": {
+      "type": "integer",
+      "description": "SSL listen port"
+    },
+    "administrationPort": {
+      "type": "integer",
+      "description": "Administration port"
+    },
+    "defaultProtocol": {
+      "type": "string",
+      "description": "Default network protocol",
+      "enum": [
+        "t3",
+        "t3s",
+        "http",
+        "https",
+        "iiop",
+        "iiops"
+      ]
+    },
+    "machine": {
+      "$ref": "#/components/schemas/Identity"
+    },
+    "cluster": {
+      "$ref": "#/components/schemas/Identity"
+    },
+    "candidateMachines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Identity"
+      }
+    },
+    "idleConnectionTimeout": {
+      "type": "integer",
+      "description": "Idle connection timeout in seconds"
+    },
+    "replicationGroup": {
+      "type": "string"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

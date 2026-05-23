@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JDBCDataSourceParams",
+  "title": "JDBCDataSourceParams",
+  "type": "object",
+  "properties": {
+    "JNDINames": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "JNDI names for the data source"
+    },
+    "globalTransactionsProtocol": {
+      "type": "string",
+      "description": "Global transaction protocol",
+      "enum": [
+        "TwoPhaseCommit",
+        "LoggingLastResource",
+        "EmulateTwoPhaseCommit",
+        "OnePhaseCommit",
+        "None"
+      ]
+    }
+  }
+}

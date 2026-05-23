@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServletRuntime",
+  "title": "ServletRuntime",
+  "type": "object",
+  "properties": {
+    "servletName": {
+      "type": "string",
+      "description": "Servlet name"
+    },
+    "invocationTotalCount": {
+      "type": "integer",
+      "description": "Total number of invocations"
+    },
+    "executionTimeTotal": {
+      "type": "integer",
+      "description": "Total execution time in milliseconds"
+    },
+    "executionTimeHigh": {
+      "type": "integer",
+      "description": "Highest execution time"
+    },
+    "executionTimeLow": {
+      "type": "integer",
+      "description": "Lowest execution time"
+    },
+    "executionTimeAverage": {
+      "type": "number",
+      "description": "Average execution time"
+    },
+    "reloadTotalCount": {
+      "type": "integer",
+      "description": "Total number of reloads"
+    }
+  }
+}

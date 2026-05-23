@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServerTemplateCreateRequest",
+  "title": "ServerTemplateCreateRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Server template name"
+    },
+    "listenPort": {
+      "type": "integer"
+    },
+    "listenAddress": {
+      "type": "string"
+    },
+    "machine": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Machine reference as identity path"
+    },
+    "cluster": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Cluster reference as identity path"
+    }
+  }
+}

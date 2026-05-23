@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SSLConfiguration",
+  "title": "SSLConfiguration",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether SSL is enabled"
+    },
+    "listenPort": {
+      "type": "integer",
+      "description": "SSL listen port"
+    },
+    "identityAndTrustLocations": {
+      "type": "string",
+      "description": "Where identity and trust keystores are stored"
+    },
+    "serverPrivateKeyAlias": {
+      "type": "string"
+    },
+    "serverPrivateKeyPassPhrase": {
+      "type": "string",
+      "format": "password"
+    },
+    "twoWaySSLEnabled": {
+      "type": "boolean"
+    },
+    "clientCertificateEnforced": {
+      "type": "boolean"
+    },
+    "hostnameVerificationIgnored": {
+      "type": "boolean"
+    }
+  }
+}

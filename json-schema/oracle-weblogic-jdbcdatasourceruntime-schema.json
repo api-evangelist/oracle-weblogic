@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JDBCDataSourceRuntime",
+  "title": "JDBCDataSourceRuntime",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Data source name"
+    },
+    "state": {
+      "type": "string",
+      "description": "Data source state",
+      "enum": [
+        "Running",
+        "Suspended",
+        "Shutdown",
+        "Overloaded",
+        "Unknown"
+      ]
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "activeConnectionsCurrentCount": {
+      "type": "integer",
+      "description": "Current number of active connections"
+    },
+    "activeConnectionsHighCount": {
+      "type": "integer",
+      "description": "Highest number of active connections"
+    },
+    "activeConnectionsAverageCount": {
+      "type": "integer",
+      "description": "Average number of active connections"
+    },
+    "connectionsTotalCount": {
+      "type": "integer",
+      "description": "Total connections created"
+    },
+    "currCapacity": {
+      "type": "integer",
+      "description": "Current connection pool capacity"
+    },
+    "numAvailable": {
+      "type": "integer",
+      "description": "Number of available connections"
+    },
+    "numUnavailable": {
+      "type": "integer",
+      "description": "Number of unavailable connections"
+    },
+    "highestNumAvailable": {
+      "type": "integer"
+    },
+    "highestNumUnavailable": {
+      "type": "integer"
+    },
+    "waitingForConnectionCurrentCount": {
+      "type": "integer",
+      "description": "Current threads waiting for a connection"
+    },
+    "waitingForConnectionHighCount": {
+      "type": "integer"
+    },
+    "waitSecondsHighCount": {
+      "type": "integer",
+      "description": "Highest wait time in seconds for a connection"
+    },
+    "connectionDelayTime": {
+      "type": "integer",
+      "description": "Average time to create a connection"
+    },
+    "failedReserveRequestCount": {
+      "type": "integer",
+      "description": "Number of failed connection reserve requests"
+    },
+    "failuresToReconnectCount": {
+      "type": "integer",
+      "description": "Number of failed reconnection attempts"
+    },
+    "leakedConnectionCount": {
+      "type": "integer",
+      "description": "Number of leaked connections detected"
+    },
+    "prepStmtCacheCurrentSize": {
+      "type": "integer",
+      "description": "Current prepared statement cache size"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SecurityRealmCreateRequest",
+  "title": "SecurityRealmCreateRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Security realm name"
+    },
+    "managementIdentityDomain": {
+      "type": "string"
+    }
+  }
+}

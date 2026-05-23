@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NodeManager",
+  "title": "NodeManager",
+  "type": "object",
+  "properties": {
+    "NMType": {
+      "type": "string",
+      "description": "Node Manager type",
+      "enum": [
+        "SSL",
+        "Plain",
+        "ssh"
+      ],
+      "default": "SSL"
+    },
+    "listenAddress": {
+      "type": "string",
+      "description": "Listen address for Node Manager",
+      "default": "localhost"
+    },
+    "listenPort": {
+      "type": "integer",
+      "description": "Listen port for Node Manager",
+      "default": 5556
+    }
+  }
+}

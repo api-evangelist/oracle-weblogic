@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VirtualTargetCreateRequest",
+  "title": "VirtualTargetCreateRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "hostNames": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "uriPrefix": {
+      "type": "string"
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Identity"
+      }
+    }
+  }
+}

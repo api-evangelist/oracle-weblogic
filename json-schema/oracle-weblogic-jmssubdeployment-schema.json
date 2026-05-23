@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JMSSubDeployment",
+  "title": "JMSSubDeployment",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Identity"
+      }
+    }
+  }
+}

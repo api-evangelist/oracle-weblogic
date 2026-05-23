@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Partition",
+  "title": "Partition",
+  "type": "object",
+  "properties": {
+    "identity": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "realm": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Security realm reference"
+    },
+    "primaryIdentityDomain": {
+      "type": "string"
+    },
+    "availableTargets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Identity"
+      }
+    },
+    "defaultTargets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Identity"
+      }
+    },
+    "resourceManagerRef": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Cluster",
+  "title": "Cluster",
+  "type": "object",
+  "properties": {
+    "identity": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "name": {
+      "type": "string",
+      "description": "Cluster name"
+    },
+    "clusterMessagingMode": {
+      "type": "string",
+      "description": "Messaging mode for the cluster",
+      "enum": [
+        "unicast",
+        "multicast"
+      ]
+    },
+    "clusterBroadcastChannel": {
+      "type": "string"
+    },
+    "defaultLoadAlgorithm": {
+      "type": "string",
+      "enum": [
+        "round-robin",
+        "weight-based",
+        "random",
+        "round-robin-affinity",
+        "weight-based-affinity"
+      ]
+    },
+    "weblogicPluginEnabled": {
+      "type": "boolean"
+    },
+    "frontendHost": {
+      "type": "string"
+    },
+    "frontendHTTPPort": {
+      "type": "integer"
+    },
+    "frontendHTTPSPort": {
+      "type": "integer"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

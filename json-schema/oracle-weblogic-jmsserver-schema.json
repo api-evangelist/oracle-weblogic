@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JMSServer",
+  "title": "JMSServer",
+  "type": "object",
+  "properties": {
+    "identity": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "name": {
+      "type": "string",
+      "description": "JMS server name"
+    },
+    "messagesMaximum": {
+      "type": "integer",
+      "description": "Maximum number of messages"
+    },
+    "bytesMaximum": {
+      "type": "integer",
+      "description": "Maximum bytes"
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Identity"
+      }
+    },
+    "persistentStore": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Persistent store reference as identity path"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

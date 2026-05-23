@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ClusterUpdateRequest",
+  "title": "ClusterUpdateRequest",
+  "type": "object",
+  "properties": {
+    "clusterMessagingMode": {
+      "type": "string",
+      "enum": [
+        "unicast",
+        "multicast"
+      ]
+    },
+    "defaultLoadAlgorithm": {
+      "type": "string",
+      "enum": [
+        "round-robin",
+        "weight-based",
+        "random"
+      ]
+    },
+    "weblogicPluginEnabled": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JDBCSystemResourceCreateRequest",
+  "title": "JDBCSystemResourceCreateRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "JDBC data source name"
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Identity"
+      },
+      "description": "Deployment targets (servers or clusters)"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JMSDistributedQueue",
+  "title": "JMSDistributedQueue",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Distributed queue name"
+    },
+    "JNDIName": {
+      "type": "string",
+      "description": "JNDI name"
+    },
+    "subDeploymentName": {
+      "type": "string"
+    }
+  }
+}

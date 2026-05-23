@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JMSServerRuntime",
+  "title": "JMSServerRuntime",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "JMS server name"
+    },
+    "messagesCurrentCount": {
+      "type": "integer",
+      "description": "Current messages in the JMS server"
+    },
+    "messagesHighCount": {
+      "type": "integer"
+    },
+    "messagesPendingCount": {
+      "type": "integer"
+    },
+    "messagesReceivedCount": {
+      "type": "integer"
+    },
+    "bytesCurrentCount": {
+      "type": "integer"
+    },
+    "bytesHighCount": {
+      "type": "integer"
+    },
+    "bytesPendingCount": {
+      "type": "integer"
+    },
+    "bytesReceivedCount": {
+      "type": "integer"
+    },
+    "destinationsCurrentCount": {
+      "type": "integer"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

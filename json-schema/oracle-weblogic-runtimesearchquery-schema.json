@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RuntimeSearchQuery",
+  "title": "RuntimeSearchQuery",
+  "type": "object",
+  "description": "Structured query for searching runtime trees. Supports field filtering, child traversal, collection filtering, and result merging for consolidated views across servers.",
+  "properties": {
+    "fields": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "sameValue": {
+                "type": "boolean"
+              },
+              "total": {
+                "type": "boolean"
+              }
+            }
+          }
+        ]
+      },
+      "description": "Properties to include in results"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "children": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/RuntimeSearchQuery"
+      }
+    },
+    "name": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Filter collection by specific names"
+    },
+    "names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Filter collection by specific names"
+    },
+    "mergeCollection": {
+      "type": "boolean",
+      "description": "Merge items from the same collection across servers"
+    },
+    "mergeOn": {
+      "type": "string",
+      "description": "Property to merge collection items on"
+    }
+  }
+}

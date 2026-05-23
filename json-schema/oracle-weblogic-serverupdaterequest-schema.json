@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServerUpdateRequest",
+  "title": "ServerUpdateRequest",
+  "type": "object",
+  "properties": {
+    "listenPort": {
+      "type": "integer"
+    },
+    "listenAddress": {
+      "type": "string"
+    },
+    "administrationPort": {
+      "type": "integer"
+    },
+    "machine": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Machine reference as identity path (set to null to remove)"
+    },
+    "cluster": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Cluster reference as identity path"
+    },
+    "candidateMachines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Identity"
+      }
+    }
+  }
+}

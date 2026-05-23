@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JMSRuntime",
+  "title": "JMSRuntime",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "connectionsCurrentCount": {
+      "type": "integer",
+      "description": "Current JMS connections"
+    },
+    "connectionsHighCount": {
+      "type": "integer"
+    },
+    "connectionsTotalCount": {
+      "type": "integer"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

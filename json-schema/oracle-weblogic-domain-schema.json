@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Domain",
+  "title": "Domain",
+  "type": "object",
+  "properties": {
+    "identity": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "name": {
+      "type": "string",
+      "description": "Domain name"
+    },
+    "configurationVersion": {
+      "type": "string",
+      "description": "Domain configuration version"
+    },
+    "domainVersion": {
+      "type": "string",
+      "description": "WebLogic Server version"
+    },
+    "adminServerName": {
+      "type": "string",
+      "description": "Name of the administration server"
+    },
+    "productionModeEnabled": {
+      "type": "boolean",
+      "description": "Whether the domain is in production mode"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

@@ -1,0 +1,1171 @@
+{
+  "provider": "Oracle WebLogic Server",
+  "providerId": "oracle-weblogic",
+  "kind": "json-structure",
+  "description": "Structural overview of the Oracle WebLogic Server API surface; extracted from openapi/.",
+  "schemaCount": 53,
+  "operationCount": 89,
+  "schemas": [
+    {
+      "name": "Link",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Identity",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Message",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "Domain",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Server",
+      "type": "object",
+      "propertyCount": 14,
+      "required": []
+    },
+    {
+      "name": "ServerCreateRequest",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "ServerUpdateRequest",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "SSLConfiguration",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "ServerStart",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "NetworkAccessPoint",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "Cluster",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "ClusterCreateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "ClusterUpdateRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "DynamicServers",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "Machine",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "MachineCreateRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "NodeManager",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ServerTemplate",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "ServerTemplateCreateRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "JDBCSystemResource",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "JDBCSystemResourceCreateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "JDBCResource",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "JDBCDataSourceParams",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "JDBCDriverParams",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "Property",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name",
+        "value"
+      ]
+    },
+    {
+      "name": "JMSServer",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "JMSServerCreateRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "JMSSystemResource",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "JMSSystemResourceCreateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "JMSConnectionFactory",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "JMSConnectionFactoryCreateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "JMSDistributedQueue",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "JMSDistributedQueueCreateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "JMSSubDeployment",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "JMSSubDeploymentCreateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "FileStore",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "FileStoreCreateRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "AppDeployment",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "AppDeploymentCreateRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "LibDeployment",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "LibDeploymentCreateRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "SecurityRealm",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "SecurityRealmCreateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "AuthenticationProvider",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "AuthenticationProviderCreateRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name",
+        "type"
+      ]
+    },
+    {
+      "name": "VirtualTarget",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "VirtualTargetCreateRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "Partition",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "PartitionCreateRequest",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "ResourceGroup",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ResourceGroupCreateRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "SearchQuery",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/edit/changeManager/startEdit",
+      "operationId": "startEdit",
+      "summary": "Oracle WebLogic Server Start an edit session",
+      "tags": [
+        "Edit Session"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/changeManager/activate",
+      "operationId": "activateChanges",
+      "summary": "Oracle WebLogic Server Activate pending configuration changes",
+      "tags": [
+        "Edit Session"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/changeManager/cancelEdit",
+      "operationId": "cancelEdit",
+      "summary": "Oracle WebLogic Server Cancel the current edit session",
+      "tags": [
+        "Edit Session"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/changeManager/undoUnactivatedChanges",
+      "operationId": "undoUnactivatedChanges",
+      "summary": "Oracle WebLogic Server Undo all unactivated changes",
+      "tags": [
+        "Edit Session"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/servers",
+      "operationId": "listServers",
+      "summary": "Oracle WebLogic Server List all servers",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/servers",
+      "operationId": "createServer",
+      "summary": "Oracle WebLogic Server Create a new server",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/serverCreateForm",
+      "operationId": "getServerCreateForm",
+      "summary": "Oracle WebLogic Server Get server creation form with defaults",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/servers/{serverName}",
+      "operationId": "getServer",
+      "summary": "Oracle WebLogic Server Get a specific server configuration",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/servers/{serverName}",
+      "operationId": "updateServer",
+      "summary": "Oracle WebLogic Server Update a server configuration",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/edit/servers/{serverName}",
+      "operationId": "deleteServer",
+      "summary": "Oracle WebLogic Server Delete a server",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/servers/{serverName}/SSL",
+      "operationId": "getServerSSL",
+      "summary": "Oracle WebLogic Server Get SSL configuration for a server",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/servers/{serverName}/SSL",
+      "operationId": "updateServerSSL",
+      "summary": "Oracle WebLogic Server Update SSL configuration for a server",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/servers/{serverName}/serverStart",
+      "operationId": "getServerStart",
+      "summary": "Oracle WebLogic Server Get server start configuration",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/servers/{serverName}/serverStart",
+      "operationId": "updateServerStart",
+      "summary": "Oracle WebLogic Server Update server start configuration",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/servers/{serverName}/networkAccessPoints",
+      "operationId": "listNetworkAccessPoints",
+      "summary": "Oracle WebLogic Server List network access points for a server",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/servers/{serverName}/networkAccessPoints",
+      "operationId": "createNetworkAccessPoint",
+      "summary": "Oracle WebLogic Server Create a network access point",
+      "tags": [
+        "Servers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/clusters",
+      "operationId": "listClusters",
+      "summary": "Oracle WebLogic Server List all clusters",
+      "tags": [
+        "Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/clusters",
+      "operationId": "createCluster",
+      "summary": "Oracle WebLogic Server Create a new cluster",
+      "tags": [
+        "Clusters"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/clusterCreateForm",
+      "operationId": "getClusterCreateForm",
+      "summary": "Oracle WebLogic Server Get cluster creation form with defaults",
+      "tags": [
+        "Clusters"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/clusters/{clusterName}",
+      "operationId": "getCluster",
+      "summary": "Oracle WebLogic Server Get a specific cluster configuration",
+      "tags": [
+        "Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/clusters/{clusterName}",
+      "operationId": "updateCluster",
+      "summary": "Oracle WebLogic Server Update a cluster configuration",
+      "tags": [
+        "Clusters"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/edit/clusters/{clusterName}",
+      "operationId": "deleteCluster",
+      "summary": "Oracle WebLogic Server Delete a cluster",
+      "tags": [
+        "Clusters"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/clusters/{clusterName}/dynamicServers",
+      "operationId": "getDynamicServers",
+      "summary": "Oracle WebLogic Server Get dynamic server configuration for a cluster",
+      "tags": [
+        "Clusters"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/clusters/{clusterName}/dynamicServers",
+      "operationId": "updateDynamicServers",
+      "summary": "Oracle WebLogic Server Configure dynamic servers for a cluster",
+      "tags": [
+        "Clusters"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/machines",
+      "operationId": "listMachines",
+      "summary": "Oracle WebLogic Server List all machines",
+      "tags": [
+        "Machines"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/machines",
+      "operationId": "createMachine",
+      "summary": "Oracle WebLogic Server Create a new machine",
+      "tags": [
+        "Machines"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/machines/{machineName}",
+      "operationId": "getMachine",
+      "summary": "Oracle WebLogic Server Get a specific machine configuration",
+      "tags": [
+        "Machines"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/machines/{machineName}",
+      "operationId": "updateMachine",
+      "summary": "Oracle WebLogic Server Update a machine configuration",
+      "tags": [
+        "Machines"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/edit/machines/{machineName}",
+      "operationId": "deleteMachine",
+      "summary": "Oracle WebLogic Server Delete a machine",
+      "tags": [
+        "Machines"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/machines/{machineName}/nodeManager",
+      "operationId": "getNodeManager",
+      "summary": "Oracle WebLogic Server Get Node Manager configuration for a machine",
+      "tags": [
+        "Machines"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/machines/{machineName}/nodeManager",
+      "operationId": "updateNodeManager",
+      "summary": "Oracle WebLogic Server Update Node Manager configuration",
+      "tags": [
+        "Machines"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/serverTemplates",
+      "operationId": "listServerTemplates",
+      "summary": "Oracle WebLogic Server List all server templates",
+      "tags": [
+        "Server Templates"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/serverTemplates",
+      "operationId": "createServerTemplate",
+      "summary": "Oracle WebLogic Server Create a new server template",
+      "tags": [
+        "Server Templates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/serverTemplates/{templateName}",
+      "operationId": "getServerTemplate",
+      "summary": "Oracle WebLogic Server Get a server template configuration",
+      "tags": [
+        "Server Templates"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/serverTemplates/{templateName}",
+      "operationId": "updateServerTemplate",
+      "summary": "Oracle WebLogic Server Update a server template",
+      "tags": [
+        "Server Templates"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/edit/serverTemplates/{templateName}",
+      "operationId": "deleteServerTemplate",
+      "summary": "Oracle WebLogic Server Delete a server template",
+      "tags": [
+        "Server Templates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/JDBCSystemResources",
+      "operationId": "listJDBCSystemResources",
+      "summary": "Oracle WebLogic Server List all JDBC system resources",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/JDBCSystemResources",
+      "operationId": "createJDBCSystemResource",
+      "summary": "Oracle WebLogic Server Create a JDBC system resource",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/JDBCSystemResources/{resourceName}",
+      "operationId": "getJDBCSystemResource",
+      "summary": "Oracle WebLogic Server Get a JDBC system resource",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/edit/JDBCSystemResources/{resourceName}",
+      "operationId": "deleteJDBCSystemResource",
+      "summary": "Oracle WebLogic Server Delete a JDBC system resource",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/JDBCSystemResources/{resourceName}/JDBCResource",
+      "operationId": "getJDBCResource",
+      "summary": "Oracle WebLogic Server Get JDBC resource configuration",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/JDBCSystemResources/{resourceName}/JDBCResource",
+      "operationId": "updateJDBCResource",
+      "summary": "Oracle WebLogic Server Update JDBC resource configuration",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/JDBCSystemResources/{resourceName}/JDBCResource/JDBCDataSourceParams",
+      "operationId": "getJDBCDataSourceParams",
+      "summary": "Oracle WebLogic Server Get JDBC data source parameters",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/JDBCSystemResources/{resourceName}/JDBCResource/JDBCDataSourceParams",
+      "operationId": "updateJDBCDataSourceParams",
+      "summary": "Oracle WebLogic Server Update JDBC data source parameters",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/JDBCSystemResources/{resourceName}/JDBCResource/JDBCDriverParams",
+      "operationId": "getJDBCDriverParams",
+      "summary": "Oracle WebLogic Server Get JDBC driver parameters",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/JDBCSystemResources/{resourceName}/JDBCResource/JDBCDriverParams",
+      "operationId": "updateJDBCDriverParams",
+      "summary": "Oracle WebLogic Server Update JDBC driver parameters",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/JDBCSystemResources/{resourceName}/JDBCResource/JDBCDriverParams/properties/properties",
+      "operationId": "listJDBCProperties",
+      "summary": "Oracle WebLogic Server List JDBC driver properties",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/JDBCSystemResources/{resourceName}/JDBCResource/JDBCDriverParams/properties/properties",
+      "operationId": "createJDBCProperty",
+      "summary": "Oracle WebLogic Server Add a JDBC driver property",
+      "tags": [
+        "Data Sources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/JMSServers",
+      "operationId": "listJMSServers",
+      "summary": "Oracle WebLogic Server List all JMS servers",
+      "tags": [
+        "JMS"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/JMSServers",
+      "operationId": "createJMSServer",
+      "summary": "Oracle WebLogic Server Create a JMS server",
+      "tags": [
+        "JMS"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/JMSServers/{jmsServerName}",
+      "operationId": "getJMSServer",
+      "summary": "Oracle WebLogic Server Get a JMS server configuration",
+      "tags": [
+        "JMS"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/edit/JMSServers/{jmsServerName}",
+      "operationId": "deleteJMSServer",
+      "summary": "Oracle WebLogic Server Delete a JMS server",
+      "tags": [
+        "JMS"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/JMSSystemResources",
+      "operationId": "listJMSSystemResources",
+      "summary": "Oracle WebLogic Server List all JMS system resources",
+      "tags": [
+        "JMS"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/JMSSystemResources",
+      "operationId": "createJMSSystemResource",
+      "summary": "Oracle WebLogic Server Create a JMS system resource",
+      "tags": [
+        "JMS"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/JMSSystemResources/{jmsResourceName}/JMSResource/connectionFactories",
+      "operationId": "listJMSConnectionFactories",
+      "summary": "Oracle WebLogic Server List JMS connection factories",
+      "tags": [
+        "JMS"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/JMSSystemResources/{jmsResourceName}/JMSResource/connectionFactories",
+      "operationId": "createJMSConnectionFactory",
+      "summary": "Oracle WebLogic Server Create a JMS connection factory",
+      "tags": [
+        "JMS"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/JMSSystemResources/{jmsResourceName}/JMSResource/uniformDistributedQueues",
+      "operationId": "listJMSDistributedQueues",
+      "summary": "Oracle WebLogic Server List JMS uniform distributed queues",
+      "tags": [
+        "JMS"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/JMSSystemResources/{jmsResourceName}/JMSResource/uniformDistributedQueues",
+      "operationId": "createJMSDistributedQueue",
+      "summary": "Oracle WebLogic Server Create a JMS uniform distributed queue",
+      "tags": [
+        "JMS"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/JMSSystemResources/{jmsResourceName}/subDeployments",
+      "operationId": "listJMSSubDeployments",
+      "summary": "Oracle WebLogic Server List JMS sub-deployments",
+      "tags": [
+        "JMS"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/JMSSystemResources/{jmsResourceName}/subDeployments",
+      "operationId": "createJMSSubDeployment",
+      "summary": "Oracle WebLogic Server Create a JMS sub-deployment",
+      "tags": [
+        "JMS"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/fileStores",
+      "operationId": "listFileStores",
+      "summary": "Oracle WebLogic Server List all file stores",
+      "tags": [
+        "JMS"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/fileStores",
+      "operationId": "createFileStore",
+      "summary": "Oracle WebLogic Server Create a file store",
+      "tags": [
+        "JMS"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/appDeployments",
+      "operationId": "listAppDeployments",
+      "summary": "Oracle WebLogic Server List all application deployments",
+      "tags": [
+        "Application Deployment"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/appDeployments",
+      "operationId": "createAppDeployment",
+      "summary": "Oracle WebLogic Server Deploy an application",
+      "tags": [
+        "Application Deployment"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/appDeployments/{appName}",
+      "operationId": "getAppDeployment",
+      "summary": "Oracle WebLogic Server Get an application deployment",
+      "tags": [
+        "Application Deployment"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/appDeployments/{appName}",
+      "operationId": "updateAppDeployment",
+      "summary": "Oracle WebLogic Server Update an application deployment",
+      "tags": [
+        "Application Deployment"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/edit/appDeployments/{appName}",
+      "operationId": "deleteAppDeployment",
+      "summary": "Oracle WebLogic Server Undeploy an application",
+      "tags": [
+        "Application Deployment"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/libDeployments",
+      "operationId": "listLibDeployments",
+      "summary": "Oracle WebLogic Server List all library deployments",
+      "tags": [
+        "Application Deployment"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/libDeployments",
+      "operationId": "createLibDeployment",
+      "summary": "Oracle WebLogic Server Deploy a shared library",
+      "tags": [
+        "Application Deployment"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/securityConfiguration/realms",
+      "operationId": "listSecurityRealms",
+      "summary": "Oracle WebLogic Server List all security realms",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/securityConfiguration/realms",
+      "operationId": "createSecurityRealm",
+      "summary": "Oracle WebLogic Server Create a security realm",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/securityConfiguration/realms/{realmName}",
+      "operationId": "getSecurityRealm",
+      "summary": "Oracle WebLogic Server Get a security realm configuration",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/securityConfiguration/realms/{realmName}",
+      "operationId": "updateSecurityRealm",
+      "summary": "Oracle WebLogic Server Update a security realm",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/securityConfiguration/realms/{realmName}/authenticationProviders",
+      "operationId": "listAuthenticationProviders",
+      "summary": "Oracle WebLogic Server List authentication providers for a realm",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/securityConfiguration/realms/{realmName}/authenticationProviders",
+      "operationId": "createAuthenticationProvider",
+      "summary": "Oracle WebLogic Server Create an authentication provider",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/serverConfig/securityConfiguration/realms/{realmName}/authenticationProviders/{providerName}/createUser",
+      "operationId": "createUser",
+      "summary": "Oracle WebLogic Server Create a user in an authentication provider",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/serverConfig/securityConfiguration/realms/{realmName}/authenticationProviders/{providerName}/addMemberToGroup",
+      "operationId": "addMemberToGroup",
+      "summary": "Oracle WebLogic Server Add a user or group to a security group",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit",
+      "operationId": "getEditRoot",
+      "summary": "Oracle WebLogic Server Get the edit tree root (domain configuration)",
+      "tags": [
+        "Domain Configuration"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/serverConfig",
+      "operationId": "getServerConfig",
+      "summary": "Oracle WebLogic Server Get the server configuration tree root",
+      "tags": [
+        "Domain Configuration"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/domainConfig",
+      "operationId": "getDomainConfig",
+      "summary": "Oracle WebLogic Server Get the last activated domain configuration",
+      "tags": [
+        "Domain Configuration"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/search",
+      "operationId": "searchEditTree",
+      "summary": "Oracle WebLogic Server Search the edit configuration tree",
+      "tags": [
+        "Search"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/domainConfig/search",
+      "operationId": "searchDomainConfigTree",
+      "summary": "Oracle WebLogic Server Search the domain configuration tree",
+      "tags": [
+        "Search"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/serverConfig/search",
+      "operationId": "searchServerConfigTree",
+      "summary": "Oracle WebLogic Server Search the server configuration tree",
+      "tags": [
+        "Search"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/virtualTargets",
+      "operationId": "listVirtualTargets",
+      "summary": "Oracle WebLogic Server List all virtual targets",
+      "tags": [
+        "Domain Configuration"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/virtualTargets",
+      "operationId": "createVirtualTarget",
+      "summary": "Oracle WebLogic Server Create a virtual target",
+      "tags": [
+        "Domain Configuration"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/partitions",
+      "operationId": "listPartitions",
+      "summary": "Oracle WebLogic Server List all partitions",
+      "tags": [
+        "Domain Configuration"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/partitions",
+      "operationId": "createPartition",
+      "summary": "Oracle WebLogic Server Create a partition",
+      "tags": [
+        "Domain Configuration"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/edit/partitions/{partitionName}/resourceGroups",
+      "operationId": "listResourceGroups",
+      "summary": "Oracle WebLogic Server List resource groups for a partition",
+      "tags": [
+        "Domain Configuration"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/edit/partitions/{partitionName}/resourceGroups",
+      "operationId": "createResourceGroup",
+      "summary": "Oracle WebLogic Server Create a resource group in a partition",
+      "tags": [
+        "Domain Configuration"
+      ]
+    }
+  ]
+}

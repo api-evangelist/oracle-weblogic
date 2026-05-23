@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServerLifeCycleRuntime",
+  "title": "ServerLifeCycleRuntime",
+  "type": "object",
+  "properties": {
+    "identity": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "name": {
+      "type": "string",
+      "description": "Server name"
+    },
+    "state": {
+      "type": "string",
+      "description": "Current lifecycle state",
+      "enum": [
+        "RUNNING",
+        "SHUTDOWN",
+        "STANDBY",
+        "ADMIN",
+        "FAILED",
+        "STARTING",
+        "SHUTTING_DOWN",
+        "SUSPENDING",
+        "FORCE_SHUTTING_DOWN",
+        "RESUMING",
+        "UNKNOWN"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "description": "Runtime type identifier",
+      "enum": [
+        "ServerLifeCycleRuntime"
+      ]
+    },
+    "nodeManagerRestartCount": {
+      "type": "integer"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AppDeployment",
+  "title": "AppDeployment",
+  "type": "object",
+  "properties": {
+    "identity": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "name": {
+      "type": "string",
+      "description": "Application deployment name"
+    },
+    "sourcePath": {
+      "type": "string",
+      "description": "Path to the application source on the server"
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Identity"
+      },
+      "description": "Servers or clusters the application is targeted to"
+    },
+    "deploymentOrder": {
+      "type": "integer",
+      "description": "Order in which applications are deployed during startup (lower numbers deploy first)"
+    },
+    "planPath": {
+      "type": "string",
+      "description": "Path to the deployment plan XML file"
+    },
+    "securityDDModel": {
+      "type": "string",
+      "description": "Security deployment descriptor model",
+      "enum": [
+        "DDOnly",
+        "CustomRoles",
+        "CustomRolesAndPolicies",
+        "Advanced"
+      ]
+    },
+    "stagingMode": {
+      "type": "string",
+      "description": "How application files are made available to managed servers",
+      "enum": [
+        "stage",
+        "nostage",
+        "external_stage"
+      ]
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

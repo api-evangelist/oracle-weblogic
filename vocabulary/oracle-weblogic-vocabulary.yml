@@ -1,0 +1,27 @@
+name: Oracle WebLogic Server Domain Vocabulary
+provider: Oracle WebLogic Server
+providerId: oracle-weblogic
+description: Tag-derived vocabulary for the Oracle WebLogic Server API surface; sourced from openapi/ tags.
+terms:
+- term: Application Deployment
+  description: Deploy, configure, and manage application deployments
+- term: Clusters
+  description: Manage WebLogic Server clusters and dynamic servers
+- term: Data Sources
+  description: Manage JDBC system resources and data sources
+- term: Domain Configuration
+  description: View domain-level configuration
+- term: Edit Session
+  description: Manage configuration edit sessions (start, save, activate, undo, cancel)
+- term: JMS
+  description: Manage JMS servers, system resources, queues, and connection factories
+- term: Machines
+  description: Manage machines and Node Manager configuration
+- term: Search
+  description: Query and search across configuration trees
+- term: Security
+  description: Manage security realms, authentication providers, and users
+- term: Server Templates
+  description: Manage server templates for dynamic server creation
+- term: Servers
+  description: Manage WebLogic Server instances

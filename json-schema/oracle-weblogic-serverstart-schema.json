@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServerStart",
+  "title": "ServerStart",
+  "type": "object",
+  "properties": {
+    "arguments": {
+      "type": "string",
+      "description": "JVM arguments for server startup"
+    },
+    "classPath": {
+      "type": "string",
+      "description": "Classpath for server startup"
+    },
+    "javaHome": {
+      "type": "string",
+      "description": "Java home directory"
+    },
+    "javaVendor": {
+      "type": "string",
+      "description": "Java vendor"
+    },
+    "beaHome": {
+      "type": "string",
+      "description": "BEA/Oracle home directory"
+    }
+  }
+}

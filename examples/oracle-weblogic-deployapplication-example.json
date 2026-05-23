@@ -1,0 +1,40 @@
+{
+  "operationId": "deployApplication",
+  "method": "POST",
+  "path": "/edit/appDeployments",
+  "summary": "Oracle WebLogic Server Deploy an application",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "deployToCluster",
+      "example": {
+        "name": "MyApplication",
+        "targets": [
+          {
+            "identity": [
+              "clusters",
+              "Cluster1"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "contentType": "application/json",
+      "name": "deployToServer",
+      "example": {
+        "name": "MyApplication",
+        "sourceURL": "file:///path/to/myapp.ear",
+        "targets": [
+          {
+            "identity": [
+              "servers",
+              "Server-0"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": []
+}

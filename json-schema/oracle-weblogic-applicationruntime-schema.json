@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ApplicationRuntime",
+  "title": "ApplicationRuntime",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "healthState": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "HEALTH_OK",
+            "HEALTH_WARN",
+            "HEALTH_CRITICAL",
+            "HEALTH_FAILED",
+            "HEALTH_OVERLOADED"
+          ]
+        },
+        "subsystemName": {
+          "type": "string"
+        }
+      }
+    },
+    "state": {
+      "type": "string"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

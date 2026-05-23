@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HealthState",
+  "title": "HealthState",
+  "type": "object",
+  "properties": {
+    "state": {
+      "type": "string",
+      "enum": [
+        "HEALTH_OK",
+        "HEALTH_WARN",
+        "HEALTH_CRITICAL",
+        "HEALTH_FAILED",
+        "HEALTH_OVERLOADED"
+      ]
+    },
+    "subsystemName": {
+      "type": "string"
+    },
+    "partitionName": {
+      "type": "string"
+    },
+    "symptoms": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    }
+  }
+}

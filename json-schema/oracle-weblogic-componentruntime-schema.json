@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ComponentRuntime",
+  "title": "ComponentRuntime",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Component name"
+    },
+    "moduleId": {
+      "type": "string",
+      "description": "Module identifier"
+    },
+    "type": {
+      "type": "string",
+      "description": "Component type"
+    },
+    "contextRoot": {
+      "type": "string",
+      "description": "Web application context root"
+    },
+    "healthState": {
+      "$ref": "#/components/schemas/HealthState"
+    },
+    "openSessionsCurrentCount": {
+      "type": "integer",
+      "description": "Current number of open sessions"
+    },
+    "openSessionsHighCount": {
+      "type": "integer",
+      "description": "Peak number of open sessions"
+    },
+    "sessionsOpenedTotalCount": {
+      "type": "integer",
+      "description": "Total sessions opened since deployment"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

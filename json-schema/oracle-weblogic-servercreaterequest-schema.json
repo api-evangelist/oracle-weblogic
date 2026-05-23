@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServerCreateRequest",
+  "title": "ServerCreateRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name for the new server"
+    },
+    "listenPort": {
+      "type": "integer",
+      "description": "Listen port",
+      "default": 7001
+    },
+    "listenAddress": {
+      "type": "string",
+      "description": "Listen address"
+    },
+    "defaultProtocol": {
+      "type": "string",
+      "enum": [
+        "t3",
+        "t3s",
+        "http",
+        "https",
+        "iiop",
+        "iiops"
+      ]
+    },
+    "machine": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Machine reference as identity path"
+    },
+    "cluster": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Cluster reference as identity path"
+    }
+  }
+}

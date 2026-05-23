@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AppDeploymentUpdateRequest",
+  "title": "AppDeploymentUpdateRequest",
+  "type": "object",
+  "properties": {
+    "targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Identity"
+      }
+    },
+    "planPath": {
+      "type": "string"
+    },
+    "deploymentOrder": {
+      "type": "integer"
+    },
+    "stagingMode": {
+      "type": "string",
+      "enum": [
+        "stage",
+        "nostage",
+        "external_stage"
+      ]
+    }
+  }
+}

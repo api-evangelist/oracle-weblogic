@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ServerRuntime",
+  "title": "ServerRuntime",
+  "type": "object",
+  "properties": {
+    "identity": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "name": {
+      "type": "string",
+      "description": "Server name"
+    },
+    "state": {
+      "type": "string",
+      "description": "Current server state",
+      "enum": [
+        "RUNNING",
+        "STANDBY",
+        "ADMIN",
+        "SHUTDOWN",
+        "FAILED",
+        "STARTING",
+        "SHUTTING_DOWN",
+        "SUSPENDING",
+        "FORCE_SHUTTING_DOWN",
+        "RESUMING"
+      ]
+    },
+    "healthState": {
+      "$ref": "#/components/schemas/HealthState"
+    },
+    "weblogicVersion": {
+      "type": "string",
+      "description": "WebLogic Server version"
+    },
+    "openSocketsCurrentCount": {
+      "type": "integer",
+      "description": "Current number of open sockets"
+    },
+    "activationTime": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Time when the server was activated"
+    },
+    "currentDirectory": {
+      "type": "string",
+      "description": "Current working directory"
+    },
+    "adminServer": {
+      "type": "boolean",
+      "description": "Whether this server is the admin server"
+    },
+    "adminServerHost": {
+      "type": "string"
+    },
+    "adminServerListenPort": {
+      "type": "integer"
+    },
+    "restartRequired": {
+      "type": "boolean",
+      "description": "Whether a restart is required for pending changes"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

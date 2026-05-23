@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DynamicServers",
+  "title": "DynamicServers",
+  "type": "object",
+  "properties": {
+    "serverTemplate": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Server template reference as identity path"
+    },
+    "dynamicClusterSize": {
+      "type": "integer",
+      "description": "Number of dynamic server instances"
+    },
+    "maxDynamicClusterSize": {
+      "type": "integer",
+      "description": "Maximum number of dynamic server instances"
+    },
+    "serverNamePrefix": {
+      "type": "string",
+      "description": "Prefix for dynamically created server names"
+    },
+    "calculateListenPorts": {
+      "type": "boolean",
+      "description": "Whether to auto-calculate listen ports"
+    }
+  }
+}

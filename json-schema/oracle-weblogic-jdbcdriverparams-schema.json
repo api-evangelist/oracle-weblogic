@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JDBCDriverParams",
+  "title": "JDBCDriverParams",
+  "type": "object",
+  "properties": {
+    "driverName": {
+      "type": "string",
+      "description": "Fully qualified JDBC driver class name"
+    },
+    "url": {
+      "type": "string",
+      "description": "JDBC connection URL"
+    },
+    "password": {
+      "type": "string",
+      "format": "password",
+      "description": "Database password (encrypted)"
+    }
+  }
+}

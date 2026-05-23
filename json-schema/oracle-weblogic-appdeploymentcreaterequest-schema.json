@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AppDeploymentCreateRequest",
+  "title": "AppDeploymentCreateRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Application name"
+    },
+    "sourceURL": {
+      "type": "string",
+      "description": "URL or file path to the application archive (EAR, WAR) or exploded directory"
+    },
+    "sourcePath": {
+      "type": "string",
+      "description": "Filesystem path to the application source"
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Identity"
+      },
+      "description": "Deployment targets (servers or clusters)"
+    },
+    "planPath": {
+      "type": "string",
+      "description": "Path to deployment plan XML"
+    },
+    "deploymentOrder": {
+      "type": "integer",
+      "description": "Deployment order priority"
+    },
+    "stagingMode": {
+      "type": "string",
+      "enum": [
+        "stage",
+        "nostage",
+        "external_stage"
+      ]
+    },
+    "securityDDModel": {
+      "type": "string",
+      "enum": [
+        "DDOnly",
+        "CustomRoles",
+        "CustomRolesAndPolicies",
+        "Advanced"
+      ]
+    }
+  }
+}

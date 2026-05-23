@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PartitionCreateRequest",
+  "title": "PartitionCreateRequest",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "realm": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "primaryIdentityDomain": {
+      "type": "string"
+    },
+    "availableTargets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Identity"
+      }
+    },
+    "defaultTargets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Identity"
+      }
+    },
+    "resourceManagerRef": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
