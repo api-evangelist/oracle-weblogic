@@ -1,0 +1,2159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle WebLogic Server Oracle WebLogic RESTful Management Services API",
+    "version": "12.2.1.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Edit Session",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Start an edit session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/changeManager/startEdit",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Acquires a lock on the domain configuration and starts an edit session. All subsequent configuration changes are made within this session until activated or cancelled."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Activate pending configuration changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/changeManager/activate",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Activates all pending configuration changes made in the current edit session and releases the edit lock. Changes are distributed to all running servers in the domain."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Cancel the current edit session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/changeManager/cancelEdit",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels all pending changes in the current edit session and releases the edit lock without activating any changes."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Undo all unactivated changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/changeManager/undoUnactivatedChanges",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reverts all pending configuration changes that have not yet been activated without releasing the edit lock."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Servers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/servers",
+            "params": [
+              {
+                "name": "fields",
+                "value": "name,listenPort",
+                "type": "query",
+                "description": "Comma-separated list of property names to include in the response"
+              },
+              {
+                "name": "excludeFields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of property names to exclude from the response"
+              },
+              {
+                "name": "links",
+                "value": "none",
+                "type": "query",
+                "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+              },
+              {
+                "name": "excludeLinks",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of link relations to exclude"
+              }
+            ]
+          },
+          "docs": "Returns a collection of all server configurations in the domain."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a new server",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/servers",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "saveChanges",
+                "value": "",
+                "type": "query",
+                "description": "When false, changes are saved to the edit session but not validated until explicitly saved or activated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new server configuration in the domain. Requires an active edit session."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get server creation form with defaults",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/serverCreateForm",
+            "params": [
+              {
+                "name": "links",
+                "value": "none",
+                "type": "query",
+                "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+              }
+            ]
+          },
+          "docs": "Returns a pre-populated template with default values for creating a new server."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get a specific server configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/servers/:serverName",
+            "params": [
+              {
+                "name": "serverName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the WebLogic Server instance"
+              },
+              {
+                "name": "fields",
+                "value": "name,listenPort",
+                "type": "query",
+                "description": "Comma-separated list of property names to include in the response"
+              },
+              {
+                "name": "links",
+                "value": "none",
+                "type": "query",
+                "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+              },
+              {
+                "name": "expandedValues",
+                "value": "",
+                "type": "query",
+                "description": "When true, properties are returned as objects with set and value fields indicating whether the property has been explicitly set."
+              }
+            ]
+          },
+          "docs": "Returns the configuration for the specified server."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Update a server configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/servers/:serverName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "serverName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the WebLogic Server instance"
+              },
+              {
+                "name": "expandedValues",
+                "value": "",
+                "type": "query",
+                "description": "When true, properties are returned as objects with set and value fields indicating whether the property has been explicitly set."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modifies the configuration of an existing server. Requires an active edit session."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Delete a server",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/servers/:serverName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "serverName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the WebLogic Server instance"
+              }
+            ]
+          },
+          "docs": "Removes a server configuration from the domain. Requires an active edit session."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get SSL configuration for a server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/servers/:serverName/SSL",
+            "params": [
+              {
+                "name": "serverName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the WebLogic Server instance"
+              },
+              {
+                "name": "fields",
+                "value": "name,listenPort",
+                "type": "query",
+                "description": "Comma-separated list of property names to include in the response"
+              },
+              {
+                "name": "links",
+                "value": "none",
+                "type": "query",
+                "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+              }
+            ]
+          },
+          "docs": "Returns the SSL/TLS configuration for the specified server."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Update SSL configuration for a server",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/servers/:serverName/SSL",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "serverName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the WebLogic Server instance"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Update SSL configuration for a server"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get server start configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/servers/:serverName/serverStart",
+            "params": [
+              {
+                "name": "serverName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the WebLogic Server instance"
+              }
+            ]
+          },
+          "docs": "Returns startup configuration including arguments and classpath."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Update server start configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/servers/:serverName/serverStart",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "serverName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the WebLogic Server instance"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Update server start configuration"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List network access points for a server",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/servers/:serverName/networkAccessPoints",
+            "params": [
+              {
+                "name": "serverName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the WebLogic Server instance"
+              }
+            ]
+          },
+          "docs": "Returns network channels configured for the specified server."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a network access point",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/servers/:serverName/networkAccessPoints",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "serverName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the WebLogic Server instance"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Create a network access point"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Clusters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all clusters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/clusters",
+            "params": [
+              {
+                "name": "fields",
+                "value": "name,listenPort",
+                "type": "query",
+                "description": "Comma-separated list of property names to include in the response"
+              },
+              {
+                "name": "links",
+                "value": "none",
+                "type": "query",
+                "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+              }
+            ]
+          },
+          "docs": "Returns a collection of all cluster configurations in the domain."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a new cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/clusters",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new cluster configuration. Requires an active edit session."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get cluster creation form with defaults",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/clusterCreateForm"
+          },
+          "docs": "Oracle WebLogic Server Get cluster creation form with defaults"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get a specific cluster configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/clusters/:clusterName",
+            "params": [
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the cluster"
+              },
+              {
+                "name": "fields",
+                "value": "name,listenPort",
+                "type": "query",
+                "description": "Comma-separated list of property names to include in the response"
+              },
+              {
+                "name": "links",
+                "value": "none",
+                "type": "query",
+                "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Get a specific cluster configuration"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Update a cluster configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/clusters/:clusterName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the cluster"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Update a cluster configuration"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Delete a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/clusters/:clusterName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the cluster"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Delete a cluster"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get dynamic server configuration for a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/clusters/:clusterName/dynamicServers",
+            "params": [
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the cluster"
+              }
+            ]
+          },
+          "docs": "Returns the dynamic server configuration for the specified cluster."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Configure dynamic servers for a cluster",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/clusters/:clusterName/dynamicServers",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "clusterName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the cluster"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Configure dynamic servers for a cluster"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Machines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all machines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/machines",
+            "params": [
+              {
+                "name": "fields",
+                "value": "name,listenPort",
+                "type": "query",
+                "description": "Comma-separated list of property names to include in the response"
+              },
+              {
+                "name": "links",
+                "value": "none",
+                "type": "query",
+                "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+              }
+            ]
+          },
+          "docs": "Returns a collection of all machine configurations in the domain."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a new machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/machines",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Create a new machine"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get a specific machine configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/machines/:machineName",
+            "params": [
+              {
+                "name": "machineName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the machine"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Get a specific machine configuration"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Update a machine configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/machines/:machineName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "machineName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the machine"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Update a machine configuration"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Delete a machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/machines/:machineName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "machineName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the machine"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Delete a machine"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get Node Manager configuration for a machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/machines/:machineName/nodeManager",
+            "params": [
+              {
+                "name": "machineName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the machine"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Get Node Manager configuration for a machine"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Update Node Manager configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/machines/:machineName/nodeManager",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "machineName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the machine"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Update Node Manager configuration"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Server Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all server templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/serverTemplates"
+          },
+          "docs": "Oracle WebLogic Server List all server templates"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a new server template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/serverTemplates",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Create a new server template"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get a server template configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/serverTemplates/:templateName",
+            "params": [
+              {
+                "name": "templateName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Get a server template configuration"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Update a server template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/serverTemplates/:templateName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "templateName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Update a server template"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Delete a server template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/serverTemplates/:templateName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "templateName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Delete a server template"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all JDBC system resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JDBCSystemResources",
+            "params": [
+              {
+                "name": "fields",
+                "value": "name,listenPort",
+                "type": "query",
+                "description": "Comma-separated list of property names to include in the response"
+              },
+              {
+                "name": "links",
+                "value": "none",
+                "type": "query",
+                "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server List all JDBC system resources"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a JDBC system resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JDBCSystemResources",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "saveChanges",
+                "value": "",
+                "type": "query",
+                "description": "When false, changes are saved to the edit session but not validated until explicitly saved or activated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new JDBC data source system resource. Requires an active edit session."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get a JDBC system resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JDBCSystemResources/:resourceName",
+            "params": [
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Get a JDBC system resource"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Delete a JDBC system resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JDBCSystemResources/:resourceName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Delete a JDBC system resource"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get JDBC resource configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JDBCSystemResources/:resourceName/JDBCResource",
+            "params": [
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Get JDBC resource configuration"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Update JDBC resource configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JDBCSystemResources/:resourceName/JDBCResource",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Update JDBC resource configuration"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get JDBC data source parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDataSourceParams",
+            "params": [
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Get JDBC data source parameters"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Update JDBC data source parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDataSourceParams",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Update JDBC data source parameters"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get JDBC driver parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDriverParams",
+            "params": [
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Get JDBC driver parameters"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Update JDBC driver parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDriverParams",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Update JDBC driver parameters"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List JDBC driver properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDriverParams/properties/properties",
+            "params": [
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server List JDBC driver properties"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Add a JDBC driver property",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDriverParams/properties/properties",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "resourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Add a JDBC driver property"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "JMS",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all JMS servers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JMSServers"
+          },
+          "docs": "Oracle WebLogic Server List all JMS servers"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a JMS server",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JMSServers",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Create a JMS server"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get a JMS server configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JMSServers/:jmsServerName",
+            "params": [
+              {
+                "name": "jmsServerName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the JMS server"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Get a JMS server configuration"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Delete a JMS server",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JMSServers/:jmsServerName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "jmsServerName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the JMS server"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Delete a JMS server"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all JMS system resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JMSSystemResources"
+          },
+          "docs": "Oracle WebLogic Server List all JMS system resources"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a JMS system resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JMSSystemResources",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Create a JMS system resource"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List JMS connection factories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JMSSystemResources/:jmsResourceName/JMSResource/connectionFactories",
+            "params": [
+              {
+                "name": "jmsResourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the JMS system resource"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server List JMS connection factories"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a JMS connection factory",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JMSSystemResources/:jmsResourceName/JMSResource/connectionFactories",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "jmsResourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the JMS system resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Create a JMS connection factory"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List JMS uniform distributed queues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JMSSystemResources/:jmsResourceName/JMSResource/uniformDistributedQueues",
+            "params": [
+              {
+                "name": "jmsResourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the JMS system resource"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server List JMS uniform distributed queues"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a JMS uniform distributed queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JMSSystemResources/:jmsResourceName/JMSResource/uniformDistributedQueues",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "jmsResourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the JMS system resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Create a JMS uniform distributed queue"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List JMS sub-deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JMSSystemResources/:jmsResourceName/subDeployments",
+            "params": [
+              {
+                "name": "jmsResourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the JMS system resource"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server List JMS sub-deployments"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a JMS sub-deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/JMSSystemResources/:jmsResourceName/subDeployments",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "jmsResourceName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the JMS system resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Create a JMS sub-deployment"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all file stores",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/fileStores"
+          },
+          "docs": "Oracle WebLogic Server List all file stores"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a file store",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/fileStores",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Create a file store"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Application Deployment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all application deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/appDeployments",
+            "params": [
+              {
+                "name": "fields",
+                "value": "name,listenPort",
+                "type": "query",
+                "description": "Comma-separated list of property names to include in the response"
+              },
+              {
+                "name": "links",
+                "value": "none",
+                "type": "query",
+                "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server List all application deployments"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Deploy an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/appDeployments",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deploys an application to the domain. The application source must be accessible from the admin server. Requires an active edit session."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get an application deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/appDeployments/:appName",
+            "params": [
+              {
+                "name": "appName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the application deployment"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Get an application deployment"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Update an application deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/appDeployments/:appName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "appName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the application deployment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Update an application deployment"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Undeploy an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/appDeployments/:appName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "appName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the application deployment"
+              }
+            ]
+          },
+          "docs": "Removes the application deployment from the domain configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all library deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/libDeployments"
+          },
+          "docs": "Oracle WebLogic Server List all library deployments"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Deploy a shared library",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/libDeployments",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Deploy a shared library"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Security",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all security realms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/securityConfiguration/realms"
+          },
+          "docs": "Oracle WebLogic Server List all security realms"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a security realm",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/securityConfiguration/realms",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Create a security realm"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get a security realm configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/securityConfiguration/realms/:realmName",
+            "params": [
+              {
+                "name": "realmName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the security realm"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Get a security realm configuration"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Update a security realm",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/securityConfiguration/realms/:realmName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realmName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the security realm"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Update a security realm"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List authentication providers for a realm",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/securityConfiguration/realms/:realmName/authenticationProviders",
+            "params": [
+              {
+                "name": "realmName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the security realm"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server List authentication providers for a realm"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create an authentication provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/securityConfiguration/realms/:realmName/authenticationProviders",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realmName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the security realm"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Create an authentication provider"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a user in an authentication provider",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/serverConfig/securityConfiguration/realms/:realmName/authenticationProviders/:providerName/createUser",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realmName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the security realm"
+              },
+              {
+                "name": "providerName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the authentication provider"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new user in the specified authentication provider. This is an operation invoked on the serverConfig tree."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Add a user or group to a security group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/serverConfig/securityConfiguration/realms/:realmName/authenticationProviders/:providerName/addMemberToGroup",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "realmName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the security realm"
+              },
+              {
+                "name": "providerName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the authentication provider"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Add a user or group to a security group"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Domain Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get the edit tree root (domain configuration)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit",
+            "params": [
+              {
+                "name": "fields",
+                "value": "name,listenPort",
+                "type": "query",
+                "description": "Comma-separated list of property names to include in the response"
+              },
+              {
+                "name": "links",
+                "value": "none",
+                "type": "query",
+                "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+              }
+            ]
+          },
+          "docs": "Returns the root of the edit configuration tree representing the domain."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get the server configuration tree root",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/serverConfig",
+            "params": [
+              {
+                "name": "fields",
+                "value": "name,listenPort",
+                "type": "query",
+                "description": "Comma-separated list of property names to include in the response"
+              },
+              {
+                "name": "links",
+                "value": "none",
+                "type": "query",
+                "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+              }
+            ]
+          },
+          "docs": "Returns the root of the current server configuration (read-only)."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get the last activated domain configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/domainConfig",
+            "params": [
+              {
+                "name": "fields",
+                "value": "name,listenPort",
+                "type": "query",
+                "description": "Comma-separated list of property names to include in the response"
+              },
+              {
+                "name": "links",
+                "value": "none",
+                "type": "query",
+                "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+              }
+            ]
+          },
+          "docs": "Returns the last activated domain configuration (read-only)."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all virtual targets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/virtualTargets"
+          },
+          "docs": "Oracle WebLogic Server List all virtual targets"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a virtual target",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/virtualTargets",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Create a virtual target"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all partitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/partitions"
+          },
+          "docs": "Oracle WebLogic Server List all partitions"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a partition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/partitions",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Create a partition"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List resource groups for a partition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/partitions/:partitionName/resourceGroups",
+            "params": [
+              {
+                "name": "partitionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the domain partition"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server List resource groups for a partition"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a resource group in a partition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/partitions/:partitionName/resourceGroups",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "partitionName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the domain partition"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Create a resource group in a partition"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Search the edit configuration tree",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/search",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs a structured query against the edit configuration tree. Supports field filtering, child traversal, and collection filtering."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Search the domain configuration tree",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/domainConfig/search",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Search the domain configuration tree"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Search the server configuration tree",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/serverConfig/search",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Search the server configuration tree"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

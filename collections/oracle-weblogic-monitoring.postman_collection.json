@@ -1,0 +1,4212 @@
+{
+  "item": [
+    {
+      "id": "171e59a0-5647-4deb-83ea-bf2ddf85e549",
+      "name": "Application Runtime",
+      "description": {
+        "content": "Monitor application deployment status and health",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b7a6a800-c367-4850-b664-54b394f05133",
+          "name": "Oracle WebLogic Server List application deployment runtimes",
+          "request": {
+            "name": "Oracle WebLogic Server List application deployment runtimes",
+            "description": {
+              "content": "Returns runtime status for all deployed applications in the domain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "appDeploymentRuntimes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include. Use 'none' to exclude all links."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e9b0f7c-bb16-4d0f-bc6f-1ce5a6056893",
+              "name": "Collection of application deployment runtimes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "appDeploymentRuntimes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://rBhYfMDsiVnIdVHkBJzyiAiKOb.gjirtLa3WKnG-rd,ftaWlWppOC1u85BcJ5WZ7pItV4Y\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://TCbDVPhMvUMLACknlrXHks.ssWeMziDD0xHHuc+em0dwh1O1\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://ORhBKrjOkMuTYPEMqIJ.ntqdHow-v7iOXhR.OK4UtD\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://QzXyjnRkkVXPrmoJWZCnZTwdb.jcprS562TiVQfu\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9de39a15-2bcf-48a2-b6d7-f7b2dd0d862f",
+          "name": "Oracle WebLogic Server Get runtime for a specific application",
+          "request": {
+            "name": "Oracle WebLogic Server Get runtime for a specific application",
+            "description": {},
+            "url": {
+              "path": [
+                "domainRuntime",
+                "appDeploymentRuntimes",
+                ":appName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appName",
+                  "description": "(Required) Name of the deployed application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f299f97-1c4b-4fd9-8664-2f04cf20d8da",
+              "name": "Application deployment runtime",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "appDeploymentRuntimes",
+                    ":appName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appName",
+                      "description": "(Required) Name of the deployed application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://iBkbGoRUDuWgaWbIzqhhSfdtPmQBXRNPp.xppwLToSRArptzh+01cQgx1xEF2nb.2yP8OInD+Br,AyVLkLm.H7O\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://VCdCoxVol.yeebec8.uQZ7PFbxCERxCUo.LQwdXgKmm1w0JcuTlIG,fy\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3209265d-b237-49d0-a3d1-cda57206834e",
+          "name": "Oracle WebLogic Server Start a deployed application",
+          "request": {
+            "name": "Oracle WebLogic Server Start a deployed application",
+            "description": {
+              "content": "Starts the specified application across its configured targets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "appDeploymentRuntimes",
+                ":appName",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appName",
+                  "description": "(Required) Name of the deployed application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5e11231e-f4a9-4bef-9e47-89ad2d3bc817",
+              "name": "Application started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "appDeploymentRuntimes",
+                    ":appName",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appName",
+                      "description": "(Required) Name of the deployed application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": true,\n  \"completed\": false,\n  \"startTime\": \"2016-01-31T15:49:23.408Z\",\n  \"endTime\": \"2020-06-16T02:23:32.753Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://BxPrwfaHhGKnlJCIhuLTw.eeYpdB71CpJC5hdnHPBGJnGmsAlvv\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://TIllazdSCVifgANweevNwmJzXKddcU.aiH3HBnwiUZ-aHcqtYBsS.93XT0EPL\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "046360ba-a083-495b-bdda-e30958743285",
+          "name": "Oracle WebLogic Server Stop a deployed application",
+          "request": {
+            "name": "Oracle WebLogic Server Stop a deployed application",
+            "description": {
+              "content": "Stops the specified application across its configured targets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "appDeploymentRuntimes",
+                ":appName",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appName",
+                  "description": "(Required) Name of the deployed application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fa509620-cc12-418c-8ffb-954abfb1cb81",
+              "name": "Application stopped",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "appDeploymentRuntimes",
+                    ":appName",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appName",
+                      "description": "(Required) Name of the deployed application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": true,\n  \"completed\": false,\n  \"startTime\": \"2016-01-31T15:49:23.408Z\",\n  \"endTime\": \"2020-06-16T02:23:32.753Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://BxPrwfaHhGKnlJCIhuLTw.eeYpdB71CpJC5hdnHPBGJnGmsAlvv\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://TIllazdSCVifgANweevNwmJzXKddcU.aiH3HBnwiUZ-aHcqtYBsS.93XT0EPL\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc6e2029-f974-4380-b643-b80d1bd103ba",
+          "name": "Oracle WebLogic Server List application runtimes on a server",
+          "request": {
+            "name": "Oracle WebLogic Server List application runtimes on a server",
+            "description": {
+              "content": "Returns runtime information for all applications deployed on the specified server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverRuntimes",
+                ":serverName",
+                "applicationRuntimes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4fe2803-0452-4deb-8692-0c68eb7828c6",
+              "name": "Collection of application runtimes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverRuntimes",
+                    ":serverName",
+                    "applicationRuntimes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"healthState\": {\n        \"state\": \"HEALTH_OK\",\n        \"subsystemName\": \"string\",\n        \"partitionName\": \"string\"\n      },\n      \"state\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://yLhMNWAUsrQBrhoLMguNJgf.iorpLj1Wv8xv-vQsxtVdCzi3c4TrBrrD+kx17,DbD\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://CAyQvkJloSNNeb.azjRSHhMvSRA6WhO7zV\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"healthState\": {\n        \"state\": \"HEALTH_FAILED\",\n        \"subsystemName\": \"string\",\n        \"partitionName\": \"string\"\n      },\n      \"state\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://nDbEWEYxbIBvLwaEwaZEScZz.bxjelAIOtCoAiuYWe9tWcJj2eXbFRuUj-kO,lY.OFniXg8qTG9ZtI5Yxm\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://qTHstnGHjMBaomdNNUFrjYyTShAn.rpltLs1NvYP,Q0SJf9Kw\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad4ef45b-00cd-40c6-a524-155dd3c27030",
+          "name": "Oracle WebLogic Server List component runtimes for an application",
+          "request": {
+            "name": "Oracle WebLogic Server List component runtimes for an application",
+            "description": {
+              "content": "Returns runtime information for all components (web modules, EJBs) within the specified application on the specified server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverRuntimes",
+                ":serverName",
+                "applicationRuntimes",
+                ":appName",
+                "componentRuntimes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appName",
+                  "description": "(Required) Name of the deployed application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e69bff87-c080-4c53-8852-28853a3b8b09",
+              "name": "Collection of component runtimes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverRuntimes",
+                    ":serverName",
+                    "applicationRuntimes",
+                    ":appName",
+                    "componentRuntimes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appName",
+                      "description": "(Required) Name of the deployed application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"moduleId\": \"string\",\n      \"type\": \"string\",\n      \"contextRoot\": \"string\",\n      \"healthState\": {\n        \"state\": \"HEALTH_CRITICAL\",\n        \"subsystemName\": \"string\",\n        \"partitionName\": \"string\"\n      },\n      \"openSessionsCurrentCount\": 8878,\n      \"openSessionsHighCount\": 8205,\n      \"sessionsOpenedTotalCount\": 9324,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://HlONYbmEOIctWFaCyZWRmSSjqlE.yyamleUY3NpfEK2K\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://CjsgYiVNulOLIJVTfRbZP.mtxrYQo6x76ud5WaF2Fheq\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"moduleId\": \"string\",\n      \"type\": \"string\",\n      \"contextRoot\": \"string\",\n      \"healthState\": {\n        \"state\": \"HEALTH_WARN\",\n        \"subsystemName\": \"string\",\n        \"partitionName\": \"string\"\n      },\n      \"openSessionsCurrentCount\": 5897,\n      \"openSessionsHighCount\": 7312,\n      \"sessionsOpenedTotalCount\": 7984,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://CRFJjddGmpyULxoHalSoVNx.mbzfDRQFYyaheKjpobZ4-vetmPqPmNV9sXHzB4Yh.qK7cp2FcGg+D\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://kTOXgASdmZffImIkUFdgLwcJp.gothPIXvK1plNt.aVPKIJNzX9gCoT\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ec9ab0c1-17d9-482b-9fe0-1ae55f7bcdad",
+      "name": "Domain Runtime",
+      "description": {
+        "content": "Domain-wide runtime monitoring available from the admin server",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8fe9c137-52ef-4fd1-826d-82dca1d9eade",
+          "name": "Oracle WebLogic Server Get domain runtime information",
+          "request": {
+            "name": "Oracle WebLogic Server Get domain runtime information",
+            "description": {
+              "content": "Returns the root of the domain runtime tree, providing access to domain-wide monitoring data including all server runtimes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include. Use 'none' to exclude all links."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb723b87-50a1-421c-84f8-63c4ed33941f",
+              "name": "Domain runtime information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"activationTime\": 1793,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://zKIMLQFaZpQpjQWJrX.ajiWSiz-5eR3Tjc5S1evsjnungjtiFStJUt2pomVliLXTFd9lh8yzq-DPupvtW\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://YMvdBDwJVxjTgkSSgspe.aovvjeAx1mOj1RGMMl0VgvLZyjvtDms51YHLEUUalFjxkHWRnAoA\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e50b554-4a59-4bea-b794-6ffefc82c3a7",
+              "name": "Authentication required or invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b06c3b0-c855-4367-93a3-d7d5432bb29e",
+          "name": "Oracle WebLogic Server List all server runtimes",
+          "request": {
+            "name": "Oracle WebLogic Server List all server runtimes",
+            "description": {
+              "content": "Returns runtime information for all running servers in the domain including state, health, and performance data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverRuntimes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include. Use 'none' to exclude all links."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d9f77d7-fb15-4a42-804e-4bd9316f692d",
+              "name": "Collection of server runtimes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverRuntimes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"state\": \"SUSPENDING\",\n      \"healthState\": {\n        \"state\": \"HEALTH_OVERLOADED\",\n        \"subsystemName\": \"string\",\n        \"partitionName\": \"string\"\n      },\n      \"weblogicVersion\": \"string\",\n      \"openSocketsCurrentCount\": 8583,\n      \"activationTime\": 3138,\n      \"currentDirectory\": \"string\",\n      \"adminServer\": false,\n      \"adminServerHost\": \"string\",\n      \"adminServerListenPort\": 9661,\n      \"restartRequired\": false,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://FYLWmFhuVFKfPrLNfTglJMgggxFMjDzM.fuNqLxvadQTGSyi.okTDr\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://kGAhvLzHIizc.ackxC40mRZrF32AlMY4UPK7JJX+Zw\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"state\": \"STARTING\",\n      \"healthState\": {\n        \"state\": \"HEALTH_FAILED\",\n        \"subsystemName\": \"string\",\n        \"partitionName\": \"string\"\n      },\n      \"weblogicVersion\": \"string\",\n      \"openSocketsCurrentCount\": 2095,\n      \"activationTime\": 7458,\n      \"currentDirectory\": \"string\",\n      \"adminServer\": true,\n      \"adminServerHost\": \"string\",\n      \"adminServerListenPort\": 1470,\n      \"restartRequired\": false,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://BjosZirlb.qjfBeQkHzQlUTiO\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://ZvE.dyyeNImVnj4PwmtBwAZedm7AI3sa3m1NcEadxSR-ILFx\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4bbfd16-86ac-47b8-b9ca-063d609ea099",
+          "name": "Oracle WebLogic Server Get runtime for a specific server",
+          "request": {
+            "name": "Oracle WebLogic Server Get runtime for a specific server",
+            "description": {
+              "content": "Returns runtime information for the specified running server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverRuntimes",
+                ":serverName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include. Use 'none' to exclude all links."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e2a67d2-0778-4394-b89a-360d81fc8af1",
+              "name": "Server runtime information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverRuntimes",
+                    ":serverName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"state\": \"ADMIN\",\n  \"healthState\": {\n    \"state\": \"HEALTH_CRITICAL\",\n    \"subsystemName\": \"string\",\n    \"partitionName\": \"string\"\n  },\n  \"weblogicVersion\": \"string\",\n  \"openSocketsCurrentCount\": 6309,\n  \"activationTime\": 2363,\n  \"currentDirectory\": \"string\",\n  \"adminServer\": true,\n  \"adminServerHost\": \"string\",\n  \"adminServerListenPort\": 4358,\n  \"restartRequired\": false,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://fOzHesqsrXC.pzKJzVv8RsQ4vNCwW5DONZFnpEK+pN\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://huZzyOPdZJGSXZWRvP.ppRnPxApB,nrwBf\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdd1dd9d-390b-4004-92c3-23f30f4e7e55",
+              "name": "Requested resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverRuntimes",
+                    ":serverName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "441a76c7-1a44-48f2-b550-cd8c801ca9c2",
+          "name": "Oracle WebLogic Server List partition runtimes",
+          "request": {
+            "name": "Oracle WebLogic Server List partition runtimes",
+            "description": {
+              "content": "Returns runtime status for all partitions in the domain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "domainPartitionRuntimes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include. Use 'none' to exclude all links."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bcf573de-f7b1-4441-8ef6-073d2e1e6902",
+              "name": "Collection of partition runtimes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "domainPartitionRuntimes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"state\": \"BOOTING\",\n      \"restartRequired\": false,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://Jznny.wcpzIPClgmayVXSdket7s.Tv+SrVKH8LoWqXBF,FSP\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://mxqtFXzuyJLEShPGwIMeyXkk.adetrlNhcr7Lib6Iz7Kini5N-C0cNS63tG\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"state\": \"BOOTING\",\n      \"restartRequired\": false,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://RifXWpIisMeWSCHH.rbtai29Y,ouE.yf1xersJspTEtQC-pHYQbeSHCi.naN0DrQKqOlqwm5-H,Sq\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://eHSTFueYVAuwyTPVTUmFuJzOEbVPIcWw.wmxQCfxFI2fIgT\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35188499-75f9-425a-96a6-d8c8c089fd02",
+          "name": "Oracle WebLogic Server Get runtime for a specific partition",
+          "request": {
+            "name": "Oracle WebLogic Server Get runtime for a specific partition",
+            "description": {},
+            "url": {
+              "path": [
+                "domainRuntime",
+                "domainPartitionRuntimes",
+                ":partitionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partitionName",
+                  "description": "(Required) Name of the domain partition"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70aa1779-0e6a-4a99-ae21-1fed086b3c4a",
+              "name": "Partition runtime",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "domainPartitionRuntimes",
+                    ":partitionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "partitionName",
+                      "description": "(Required) Name of the domain partition"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"state\": \"SHUTDOWN\",\n  \"restartRequired\": true,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://nzPXuvXZ.abvCAqa4f6rOVOJYwHqtS5MmJs6pFGLsghTyaWcUEOhBzdzwl\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://pUIKNHpdc.plYe,G+s9l0IZss6M7HBH6o3D\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65b95eec-ddd7-4d3b-931c-8da8dcdfbaf9",
+          "name": "Oracle WebLogic Server Get partition lifecycle runtime",
+          "request": {
+            "name": "Oracle WebLogic Server Get partition lifecycle runtime",
+            "description": {},
+            "url": {
+              "path": [
+                "domainRuntime",
+                "domainPartitionRuntimes",
+                ":partitionName",
+                "partitionLifeCycleRuntime"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partitionName",
+                  "description": "(Required) Name of the domain partition"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f6c7236-d437-41d0-83b8-e222154bfc20",
+              "name": "Partition lifecycle runtime",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "domainPartitionRuntimes",
+                    ":partitionName",
+                    "partitionLifeCycleRuntime"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "partitionName",
+                      "description": "(Required) Name of the domain partition"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"state\": \"RUNNING\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://YuqEqRtUUEwlapNEfGdlTmHVUrE.pbkwVGo9HbYZcby6ex1iFi.gmNqu.qSt9P\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://ThqyNJxYo.zjporzBbwU-rw7YEKK4JwhNLdvV4AO0kxEef+7lMNVRqJSKe.L+B+Bgu,vVnhjlOzcZnS,JnUroxVn9K\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f16bd79d-2039-47fd-80b1-9ba9619e7cce",
+          "name": "Oracle WebLogic Server Start a partition",
+          "request": {
+            "name": "Oracle WebLogic Server Start a partition",
+            "description": {},
+            "url": {
+              "path": [
+                "domainRuntime",
+                "domainPartitionRuntimes",
+                ":partitionName",
+                "partitionLifeCycleRuntime",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partitionName",
+                  "description": "(Required) Name of the domain partition"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a7664a6c-7482-4c7b-9665-3fe4f8809f2a",
+              "name": "Partition started",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "domainPartitionRuntimes",
+                    ":partitionName",
+                    "partitionLifeCycleRuntime",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "partitionName",
+                      "description": "(Required) Name of the domain partition"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": true,\n  \"completed\": false,\n  \"startTime\": \"2016-01-31T15:49:23.408Z\",\n  \"endTime\": \"2020-06-16T02:23:32.753Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://BxPrwfaHhGKnlJCIhuLTw.eeYpdB71CpJC5hdnHPBGJnGmsAlvv\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://TIllazdSCVifgANweevNwmJzXKddcU.aiH3HBnwiUZ-aHcqtYBsS.93XT0EPL\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "386c2d53-9eaa-41a3-ab89-01eae367cf2f",
+          "name": "Oracle WebLogic Server Stop a partition",
+          "request": {
+            "name": "Oracle WebLogic Server Stop a partition",
+            "description": {},
+            "url": {
+              "path": [
+                "domainRuntime",
+                "domainPartitionRuntimes",
+                ":partitionName",
+                "partitionLifeCycleRuntime",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "partitionName",
+                  "description": "(Required) Name of the domain partition"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "31ce2a19-3490-4bca-a287-1a201b2ce257",
+              "name": "Partition stopped",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "domainPartitionRuntimes",
+                    ":partitionName",
+                    "partitionLifeCycleRuntime",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "partitionName",
+                      "description": "(Required) Name of the domain partition"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": true,\n  \"completed\": false,\n  \"startTime\": \"2016-01-31T15:49:23.408Z\",\n  \"endTime\": \"2020-06-16T02:23:32.753Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://BxPrwfaHhGKnlJCIhuLTw.eeYpdB71CpJC5hdnHPBGJnGmsAlvv\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://TIllazdSCVifgANweevNwmJzXKddcU.aiH3HBnwiUZ-aHcqtYBsS.93XT0EPL\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5b86c1bd-da83-4385-8bce-1bbdb6c9ee33",
+      "name": "JDBC Runtime",
+      "description": {
+        "content": "Monitor JDBC data source runtime statistics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "35228cdf-d139-45b4-89b5-220e2ea5febe",
+          "name": "Oracle WebLogic Server Get JDBC service runtime for a server",
+          "request": {
+            "name": "Oracle WebLogic Server Get JDBC service runtime for a server",
+            "description": {
+              "content": "Returns the JDBC service runtime for the specified server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverRuntimes",
+                ":serverName",
+                "JDBCServiceRuntime"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f12a58cb-6c17-4716-91c1-460f1e37fec1",
+              "name": "JDBC service runtime",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverRuntimes",
+                    ":serverName",
+                    "JDBCServiceRuntime"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://owxDxvGYAwodSuxQwcTUjfdSjL.qyycXe4brDqkuOA8JbhkBQwhVNGsxULwSNd972vLyaSEOgvJEIyEVWLKG\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://uKMhkrpTxIPQmvuSbPMDQgNybhiZo.muvgRUNoZfIWN\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9a628c7-85e4-4042-bcb6-97cb4d2c9cb8",
+          "name": "Oracle WebLogic Server List JDBC data source runtimes",
+          "request": {
+            "name": "Oracle WebLogic Server List JDBC data source runtimes",
+            "description": {
+              "content": "Returns runtime status for all JDBC data sources on the specified server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverRuntimes",
+                ":serverName",
+                "JDBCServiceRuntime",
+                "JDBCDataSourceRuntimeMBeans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32e2c293-585a-4045-8ae5-32811ff8f52a",
+              "name": "Collection of JDBC data source runtimes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverRuntimes",
+                    ":serverName",
+                    "JDBCServiceRuntime",
+                    "JDBCDataSourceRuntimeMBeans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"state\": \"Running\",\n      \"enabled\": true,\n      \"activeConnectionsCurrentCount\": 5347,\n      \"activeConnectionsHighCount\": 1027,\n      \"activeConnectionsAverageCount\": 8593,\n      \"connectionsTotalCount\": 1344,\n      \"currCapacity\": 9822,\n      \"numAvailable\": 1627,\n      \"numUnavailable\": 3689,\n      \"highestNumAvailable\": 671,\n      \"highestNumUnavailable\": 5672,\n      \"waitingForConnectionCurrentCount\": 6419,\n      \"waitingForConnectionHighCount\": 4266,\n      \"waitSecondsHighCount\": 2510,\n      \"connectionDelayTime\": 8480,\n      \"failedReserveRequestCount\": 8629,\n      \"failuresToReconnectCount\": 4953,\n      \"leakedConnectionCount\": 1031,\n      \"prepStmtCacheCurrentSize\": 2399,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://RerllFhQTBuqiyzABVhCdhqzmCKf.hvsYMgXrOCew\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://OSWhgsJwNdRWgNVIgFksGoGkYcuDTuw.wiuPJ2t0aj74uDGx43aLb06QlzR\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"state\": \"Suspended\",\n      \"enabled\": true,\n      \"activeConnectionsCurrentCount\": 8500,\n      \"activeConnectionsHighCount\": 4326,\n      \"activeConnectionsAverageCount\": 4567,\n      \"connectionsTotalCount\": 6897,\n      \"currCapacity\": 9521,\n      \"numAvailable\": 476,\n      \"numUnavailable\": 4692,\n      \"highestNumAvailable\": 6725,\n      \"highestNumUnavailable\": 1723,\n      \"waitingForConnectionCurrentCount\": 8685,\n      \"waitingForConnectionHighCount\": 5540,\n      \"waitSecondsHighCount\": 13,\n      \"connectionDelayTime\": 6575,\n      \"failedReserveRequestCount\": 2016,\n      \"failuresToReconnectCount\": 813,\n      \"leakedConnectionCount\": 2800,\n      \"prepStmtCacheCurrentSize\": 5675,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://ADdpSFzYaQnGQWtZAck.mzhaRTRtOzroKn9laE+T0NkOaTCPtNN-ZeFA-A1IQrwG\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://IxHmoWqinrDvsRDN.omplNqW+tuq\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a3a794fc-8376-4ef2-8f44-03d9523032a9",
+          "name": "Oracle WebLogic Server Get runtime for a specific data source",
+          "request": {
+            "name": "Oracle WebLogic Server Get runtime for a specific data source",
+            "description": {},
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverRuntimes",
+                ":serverName",
+                "JDBCServiceRuntime",
+                "JDBCDataSourceRuntimeMBeans",
+                ":dataSourceName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataSourceName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ded0e015-45fd-486e-b9a7-c699747af860",
+              "name": "JDBC data source runtime",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverRuntimes",
+                    ":serverName",
+                    "JDBCServiceRuntime",
+                    "JDBCDataSourceRuntimeMBeans",
+                    ":dataSourceName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataSourceName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"state\": \"Suspended\",\n  \"enabled\": true,\n  \"activeConnectionsCurrentCount\": 3818,\n  \"activeConnectionsHighCount\": 1284,\n  \"activeConnectionsAverageCount\": 5079,\n  \"connectionsTotalCount\": 9700,\n  \"currCapacity\": 574,\n  \"numAvailable\": 8087,\n  \"numUnavailable\": 5370,\n  \"highestNumAvailable\": 5832,\n  \"highestNumUnavailable\": 7926,\n  \"waitingForConnectionCurrentCount\": 3070,\n  \"waitingForConnectionHighCount\": 6062,\n  \"waitSecondsHighCount\": 159,\n  \"connectionDelayTime\": 4532,\n  \"failedReserveRequestCount\": 736,\n  \"failuresToReconnectCount\": 2003,\n  \"leakedConnectionCount\": 100,\n  \"prepStmtCacheCurrentSize\": 5713,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://XyWDZvOhoLQPmCB.lwiKS48U1RmvzqRaRM+fKZx3yybHFtF,14gU9HYQtPn7PeCZIzNc-pG,6ZFlJXWK,NTSphgDyCt3U13mVQr0I4Wdi\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://qltODqTQnMeQUiXWwnENXDH.nuD3WwbG3irwKuATek6ECp928Q\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2318f1b1-3209-47ba-8062-77cb2c6b10cf",
+      "name": "JMS Runtime",
+      "description": {
+        "content": "Monitor JMS server and destination runtime statistics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7eee9c98-ee5e-400d-b603-d3f71cf6db1f",
+          "name": "Oracle WebLogic Server Get JMS runtime for a server",
+          "request": {
+            "name": "Oracle WebLogic Server Get JMS runtime for a server",
+            "description": {
+              "content": "Returns the JMS runtime for the specified server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverRuntimes",
+                ":serverName",
+                "JMSRuntime"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50e62576-5337-40c6-a4e2-244752c01e2f",
+              "name": "JMS runtime information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverRuntimes",
+                    ":serverName",
+                    "JMSRuntime"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"connectionsCurrentCount\": 8706,\n  \"connectionsHighCount\": 3746,\n  \"connectionsTotalCount\": 2386,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://nQVQKq.dojiUrbo6p6hrcAI5H5.sshiB2OhRfmZ+.S.\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://sDXldaEIfv.zmwlXnfYccJ,gdhkUPuVvy\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2f9ce15-ca92-4879-849c-234e2fb79190",
+          "name": "Oracle WebLogic Server List JMS server runtimes",
+          "request": {
+            "name": "Oracle WebLogic Server List JMS server runtimes",
+            "description": {},
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverRuntimes",
+                ":serverName",
+                "JMSRuntime",
+                "JMSServersRuntime"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ad6ce7f-80ca-4a86-ba6e-27ceadb02094",
+              "name": "Collection of JMS server runtimes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverRuntimes",
+                    ":serverName",
+                    "JMSRuntime",
+                    "JMSServersRuntime"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"messagesCurrentCount\": 1306,\n      \"messagesHighCount\": 6395,\n      \"messagesPendingCount\": 5454,\n      \"messagesReceivedCount\": 4761,\n      \"bytesCurrentCount\": 2803,\n      \"bytesHighCount\": 4637,\n      \"bytesPendingCount\": 7829,\n      \"bytesReceivedCount\": 7632,\n      \"destinationsCurrentCount\": 5838,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://LLczPSnIfNrbWQ.gxwyuI7WmMXlcgSEVQAqes87ixwTIF\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://iLRTIubOAUiaZbSL.asmuMBZiQtGWaVjdNny+\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"messagesCurrentCount\": 8,\n      \"messagesHighCount\": 8605,\n      \"messagesPendingCount\": 7783,\n      \"messagesReceivedCount\": 2896,\n      \"bytesCurrentCount\": 96,\n      \"bytesHighCount\": 9718,\n      \"bytesPendingCount\": 8254,\n      \"bytesReceivedCount\": 1602,\n      \"destinationsCurrentCount\": 2287,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://mgeZTEKQB.xmobFHyOsZ2JgR1H0Mo.XQ3JfQcAFnGPza49wA\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://PtBvXMIrLNdpqDH.weZQTm8ApQ1WqniKIyS.tUeDrsoDkUq+-QkeaHj,\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d41dabf8-d179-4203-9baa-ef54645d7d46",
+      "name": "Runtime Search",
+      "description": {
+        "content": "Structured queries against runtime trees",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a573f00-5b8f-489f-b375-60a44e014612",
+          "name": "Oracle WebLogic Server Search the domain runtime tree",
+          "request": {
+            "name": "Oracle WebLogic Server Search the domain runtime tree",
+            "description": {
+              "content": "Performs a structured query against the domain runtime tree. Supports field filtering, child traversal, collection filtering, and result merging across servers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "requestMaxWaitMillis",
+                  "value": "<integer>",
+                  "description": "Maximum time in milliseconds to wait for search results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"key_0\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    },\n    \"key_1\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    }\n  },\n  \"name\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6ca5756e-31ba-44a9-bdef-7bd0afc0cc75",
+              "name": "Search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestMaxWaitMillis",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"key_0\": {\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_2\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mergeCollection\": false,\n      \"mergeOn\": \"string\"\n    },\n    \"key_1\": {\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mergeCollection\": false,\n      \"mergeOn\": \"string\"\n    }\n  },\n  \"name\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fac3dcee-bb8a-4d8d-bb70-b289b7f97dbf",
+          "name": "Oracle WebLogic Server Search the server runtime tree",
+          "request": {
+            "name": "Oracle WebLogic Server Search the server runtime tree",
+            "description": {
+              "content": "Performs a structured query against the current server's runtime tree.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "serverRuntime",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"key_0\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    },\n    \"key_1\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    }\n  },\n  \"name\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "92707666-4d4c-4282-9844-237dace9a5ab",
+              "name": "Search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "serverRuntime",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"key_0\": {\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_2\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mergeCollection\": false,\n      \"mergeOn\": \"string\"\n    },\n    \"key_1\": {\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mergeCollection\": false,\n      \"mergeOn\": \"string\"\n    }\n  },\n  \"name\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6ddb960f-324f-4bca-837b-2b771e918869",
+      "name": "Server Lifecycle",
+      "description": {
+        "content": "Server lifecycle operations (start, stop, suspend, resume)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1e5a4a5d-0deb-4666-9066-9a8b808e66cc",
+          "name": "Oracle WebLogic Server List all server lifecycle runtimes",
+          "request": {
+            "name": "Oracle WebLogic Server List all server lifecycle runtimes",
+            "description": {
+              "content": "Returns lifecycle state for all servers in the domain including their current state (RUNNING, SHUTDOWN, STANDBY, etc.).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverLifeCycleRuntimes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include. Use 'none' to exclude all links."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "419f834b-2426-40cb-a7ea-60a7dc14f1d9",
+              "name": "Collection of server lifecycle runtimes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverLifeCycleRuntimes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"state\": \"SHUTDOWN\",\n      \"type\": \"ServerLifeCycleRuntime\",\n      \"nodeManagerRestartCount\": 4916,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://fgXVcmGJjVIgEFfkRhfMkbHbaxrAdPmF.ege7iOZB9sRvPTotTnkpZxK5as3TSeD\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://OhCALXeOxBoQGadGhwu.kbFHyg-q5VlHOG06lBDUyF,s6QBII7ahE.6dif,kKUY\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"state\": \"FAILED\",\n      \"type\": \"ServerLifeCycleRuntime\",\n      \"nodeManagerRestartCount\": 7502,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://gOxxSrMc.akpfAZbATg3td9UK5hpm9fatryPlNarZyBEOp\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://PSHNthdtuwiGIWgjaEOi.cqgtLTCUHatmFIllGXiGOhRNnkqRG-OzfBiBxKrsJPXrR-.\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07bd0683-1fc8-4910-a0a0-f4126dfc1b95",
+          "name": "Oracle WebLogic Server Get lifecycle runtime for a specific server",
+          "request": {
+            "name": "Oracle WebLogic Server Get lifecycle runtime for a specific server",
+            "description": {},
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverLifeCycleRuntimes",
+                ":serverName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "372b4df1-1450-4e5e-ba91-12e5fec4cd23",
+              "name": "Server lifecycle runtime",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverLifeCycleRuntimes",
+                    ":serverName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"state\": \"STANDBY\",\n  \"type\": \"ServerLifeCycleRuntime\",\n  \"nodeManagerRestartCount\": 4864,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://mUclvnfIXJokabNyJnLruqRMOySyh.lcqtjrzkkEaVIBjuVGEPKH,GfZ1CMFOhHBhStXjV2rYl4VEfsVyOtCIXxhQODRyaRyPv7yLSOSWw7A\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://NdHvCuyGkSyfszx.dqklBxj5-uughHzmh8rVZzwQv\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54f6858f-da6b-4d33-a651-5120879efba1",
+          "name": "Oracle WebLogic Server Start a managed server",
+          "request": {
+            "name": "Oracle WebLogic Server Start a managed server",
+            "description": {
+              "content": "Starts the specified managed server. This is an asynchronous operation that returns a task for monitoring progress.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverLifeCycleRuntimes",
+                ":serverName",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Controls async behavior. Use 'respond-async' for immediate return or 'wait=N' to wait N seconds.",
+                "key": "Prefer",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "869ad24e-93c0-418e-8437-b849da999d97",
+              "name": "Server started successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverLifeCycleRuntimes",
+                    ":serverName",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Controls async behavior. Use 'respond-async' for immediate return or 'wait=N' to wait N seconds.",
+                    "key": "Prefer",
+                    "value": "respond-async"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": true,\n  \"completed\": false,\n  \"startTime\": \"2016-01-31T15:49:23.408Z\",\n  \"endTime\": \"2020-06-16T02:23:32.753Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://BxPrwfaHhGKnlJCIhuLTw.eeYpdB71CpJC5hdnHPBGJnGmsAlvv\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://TIllazdSCVifgANweevNwmJzXKddcU.aiH3HBnwiUZ-aHcqtYBsS.93XT0EPL\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8f88b68-66b0-48fe-b6cd-c24fde27b589",
+              "name": "Start operation accepted and in progress",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverLifeCycleRuntimes",
+                    ":serverName",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Controls async behavior. Use 'respond-async' for immediate return or 'wait=N' to wait N seconds.",
+                    "key": "Prefer",
+                    "value": "respond-async"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URL to poll for task status",
+                  "key": "Location",
+                  "value": "https://tbUezICDgJcjtxZbjxFYae.hzV6O-yZj"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": true,\n  \"completed\": false,\n  \"startTime\": \"2016-01-31T15:49:23.408Z\",\n  \"endTime\": \"2020-06-16T02:23:32.753Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://BxPrwfaHhGKnlJCIhuLTw.eeYpdB71CpJC5hdnHPBGJnGmsAlvv\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://TIllazdSCVifgANweevNwmJzXKddcU.aiH3HBnwiUZ-aHcqtYBsS.93XT0EPL\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27a0e55c-f361-4b84-a410-67e38bf414e2",
+          "name": "Oracle WebLogic Server Shut down a managed server",
+          "request": {
+            "name": "Oracle WebLogic Server Shut down a managed server",
+            "description": {
+              "content": "Gracefully shuts down the specified managed server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverLifeCycleRuntimes",
+                ":serverName",
+                "shutdown"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Controls async behavior. Use 'respond-async' for immediate return or 'wait=N' to wait N seconds.",
+                "key": "Prefer",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"timeout\": \"<integer>\",\n  \"ignoreSessions\": \"<boolean>\",\n  \"waitForAllSessions\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b228b98d-cd03-48a8-8e1e-ca833df4de00",
+              "name": "Server shut down successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverLifeCycleRuntimes",
+                    ":serverName",
+                    "shutdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Controls async behavior. Use 'respond-async' for immediate return or 'wait=N' to wait N seconds.",
+                    "key": "Prefer",
+                    "value": "respond-async"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timeout\": \"<integer>\",\n  \"ignoreSessions\": \"<boolean>\",\n  \"waitForAllSessions\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": true,\n  \"completed\": false,\n  \"startTime\": \"2016-01-31T15:49:23.408Z\",\n  \"endTime\": \"2020-06-16T02:23:32.753Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://BxPrwfaHhGKnlJCIhuLTw.eeYpdB71CpJC5hdnHPBGJnGmsAlvv\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://TIllazdSCVifgANweevNwmJzXKddcU.aiH3HBnwiUZ-aHcqtYBsS.93XT0EPL\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2a170d1-faeb-429e-9c01-7a94aa284a13",
+              "name": "Shutdown operation accepted and in progress",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverLifeCycleRuntimes",
+                    ":serverName",
+                    "shutdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Controls async behavior. Use 'respond-async' for immediate return or 'wait=N' to wait N seconds.",
+                    "key": "Prefer",
+                    "value": "respond-async"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timeout\": \"<integer>\",\n  \"ignoreSessions\": \"<boolean>\",\n  \"waitForAllSessions\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Location",
+                  "value": "https://tbUezICDgJcjtxZbjxFYae.hzV6O-yZj",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9adab819-db5a-4ffb-b78b-b63ae6b774f7",
+          "name": "Oracle WebLogic Server Force shut down a managed server",
+          "request": {
+            "name": "Oracle WebLogic Server Force shut down a managed server",
+            "description": {
+              "content": "Immediately shuts down the specified server without waiting for graceful completion.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverLifeCycleRuntimes",
+                ":serverName",
+                "forceShutdown"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "38c4e655-4aab-47e6-8d0e-fa228252568f",
+              "name": "Server force shutdown initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverLifeCycleRuntimes",
+                    ":serverName",
+                    "forceShutdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": true,\n  \"completed\": false,\n  \"startTime\": \"2016-01-31T15:49:23.408Z\",\n  \"endTime\": \"2020-06-16T02:23:32.753Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://BxPrwfaHhGKnlJCIhuLTw.eeYpdB71CpJC5hdnHPBGJnGmsAlvv\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://TIllazdSCVifgANweevNwmJzXKddcU.aiH3HBnwiUZ-aHcqtYBsS.93XT0EPL\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d256f40-055b-41e0-b8d7-5a382c0944d3",
+          "name": "Oracle WebLogic Server Suspend a managed server",
+          "request": {
+            "name": "Oracle WebLogic Server Suspend a managed server",
+            "description": {
+              "content": "Suspends the specified server, placing it in admin mode.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverLifeCycleRuntimes",
+                ":serverName",
+                "suspend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"timeout\": \"<integer>\",\n  \"ignoreSessions\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "53281f70-dcea-408a-a55e-29ba835979a8",
+              "name": "Server suspended",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverLifeCycleRuntimes",
+                    ":serverName",
+                    "suspend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timeout\": \"<integer>\",\n  \"ignoreSessions\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": true,\n  \"completed\": false,\n  \"startTime\": \"2016-01-31T15:49:23.408Z\",\n  \"endTime\": \"2020-06-16T02:23:32.753Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://BxPrwfaHhGKnlJCIhuLTw.eeYpdB71CpJC5hdnHPBGJnGmsAlvv\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://TIllazdSCVifgANweevNwmJzXKddcU.aiH3HBnwiUZ-aHcqtYBsS.93XT0EPL\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a202e1d9-1cc1-42d6-9c25-d30dffd2025e",
+          "name": "Oracle WebLogic Server Resume a suspended server",
+          "request": {
+            "name": "Oracle WebLogic Server Resume a suspended server",
+            "description": {
+              "content": "Resumes a server that was previously suspended, returning it to running state.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverLifeCycleRuntimes",
+                ":serverName",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ac1fc144-f20e-46cd-a5da-eefb3d5bbfb5",
+              "name": "Server resumed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverLifeCycleRuntimes",
+                    ":serverName",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": true,\n  \"completed\": false,\n  \"startTime\": \"2016-01-31T15:49:23.408Z\",\n  \"endTime\": \"2020-06-16T02:23:32.753Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://BxPrwfaHhGKnlJCIhuLTw.eeYpdB71CpJC5hdnHPBGJnGmsAlvv\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://TIllazdSCVifgANweevNwmJzXKddcU.aiH3HBnwiUZ-aHcqtYBsS.93XT0EPL\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa94e066-87c3-4633-9070-5a9e8f980b1d",
+          "name": "Oracle WebLogic Server Restart SSL on a server",
+          "request": {
+            "name": "Oracle WebLogic Server Restart SSL on a server",
+            "description": {
+              "content": "Restarts the SSL subsystem on the specified server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverLifeCycleRuntimes",
+                ":serverName",
+                "restartSSL"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "03e68e74-fb3b-40b4-9148-5af93d852cb3",
+              "name": "SSL restarted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverLifeCycleRuntimes",
+                    ":serverName",
+                    "restartSSL"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "670d179f-26c2-4a55-aa73-4002d63202b4",
+      "name": "Server Runtime",
+      "description": {
+        "content": "Individual server runtime monitoring",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7e2dab9d-7d82-4084-82ae-4a2065becab0",
+          "name": "Oracle WebLogic Server Get current server runtime",
+          "request": {
+            "name": "Oracle WebLogic Server Get current server runtime",
+            "description": {
+              "content": "Returns the runtime information for the server receiving this request. Available on both admin and managed servers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "serverRuntime"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include. Use 'none' to exclude all links."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0d223d5-ac50-4037-b177-1a3615accc41",
+              "name": "Current server runtime information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "serverRuntime"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"state\": \"ADMIN\",\n  \"healthState\": {\n    \"state\": \"HEALTH_CRITICAL\",\n    \"subsystemName\": \"string\",\n    \"partitionName\": \"string\"\n  },\n  \"weblogicVersion\": \"string\",\n  \"openSocketsCurrentCount\": 6309,\n  \"activationTime\": 2363,\n  \"currentDirectory\": \"string\",\n  \"adminServer\": true,\n  \"adminServerHost\": \"string\",\n  \"adminServerListenPort\": 4358,\n  \"restartRequired\": false,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://fOzHesqsrXC.pzKJzVv8RsQ4vNCwW5DONZFnpEK+pN\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://huZzyOPdZJGSXZWRvP.ppRnPxApB,nrwBf\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e81e1ba-4f27-457d-9f10-545a1e1158ce",
+          "name": "Oracle WebLogic Server Get the URL for a server",
+          "request": {
+            "name": "Oracle WebLogic Server Get the URL for a server",
+            "description": {
+              "content": "Returns the URL for accessing the specified server using the given protocol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverRuntimes",
+                ":serverName",
+                "getURL"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"protocol\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0985834e-fb00-4e11-9ea0-9df4be050863",
+              "name": "Server URL",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverRuntimes",
+                    ":serverName",
+                    "getURL"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"protocol\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"return\": \"http://TnbMKyNyFAwwbkFdSdZAlUEXosXuktn.gkrwDdtvwg7rhD.fxXzbojx3rEsWTXeHpCAlk.kojt\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c22e1c7f-c184-4837-8468-a6a2d2006f67",
+      "name": "Tasks",
+      "description": {
+        "content": "Monitor asynchronous task status",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "17321aa7-0f7c-4a8d-a143-29d5829a3a3b",
+          "name": "Oracle WebLogic Server Get status of an asynchronous task",
+          "request": {
+            "name": "Oracle WebLogic Server Get status of an asynchronous task",
+            "description": {
+              "content": "Returns the current status of an asynchronous operation. Used to poll for completion of long-running operations like server start/stop.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "tasks",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) Task identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "adc2b791-f221-414d-9d57-6e7d7618ba90",
+              "name": "Task status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) Task identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": true,\n  \"completed\": false,\n  \"startTime\": \"2016-01-31T15:49:23.408Z\",\n  \"endTime\": \"2020-06-16T02:23:32.753Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://BxPrwfaHhGKnlJCIhuLTw.eeYpdB71CpJC5hdnHPBGJnGmsAlvv\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://TIllazdSCVifgANweevNwmJzXKddcU.aiH3HBnwiUZ-aHcqtYBsS.93XT0EPL\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d233b494-3f85-413a-a285-ce77b98c41a8",
+      "name": "Thread Pool Runtime",
+      "description": {
+        "content": "Monitor thread pool utilization",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5ae120ea-6879-4bb1-aa9a-4f5c72731cc6",
+          "name": "Oracle WebLogic Server Get thread pool runtime for a server",
+          "request": {
+            "name": "Oracle WebLogic Server Get thread pool runtime for a server",
+            "description": {
+              "content": "Returns thread pool statistics for the specified server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverRuntimes",
+                ":serverName",
+                "threadPoolRuntime"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "978713d6-a87e-4084-885a-3fe4f64cea12",
+              "name": "Thread pool runtime",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverRuntimes",
+                    ":serverName",
+                    "threadPoolRuntime"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"executeThreadTotalCount\": 8434,\n  \"executeThreadIdleCount\": 8526,\n  \"hoggingThreadCount\": 8399,\n  \"standbyThreadCount\": 6554,\n  \"pendingUserRequestCount\": 819,\n  \"queueLength\": 1859,\n  \"completedRequestCount\": 1911,\n  \"throughput\": 5747.699020037537,\n  \"healthState\": {\n    \"state\": \"HEALTH_OVERLOADED\",\n    \"subsystemName\": \"string\",\n    \"partitionName\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:7001/management/weblogic/latest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2f07dcca-d2e1-40fe-bdb6-3a6d5811a1bf",
+    "name": "Oracle WebLogic Server Oracle WebLogic Monitoring and Diagnostics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for accessing runtime monitoring data, diagnostics information, and performance metrics for Oracle WebLogic Server domains. Provides read-only access to the domainRuntime and serverRuntime bean trees for monitoring server states, application runtimes, JDBC data source health, JMS statistics, thread pool utilization, and server lifecycle management operations.\n\nContact Support:\n Name: Oracle Support",
+      "type": "text/plain"
+    }
+  }
+}
