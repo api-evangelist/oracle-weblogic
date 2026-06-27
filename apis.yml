@@ -133,7 +133,7 @@ common:
     url: https://stackoverflow.com/questions/tagged/weblogic
   - type: YouTube
     url: https://www.youtube.com/@OracleDevelopers
-  - type: SignUp
+  - type: Signup
     url: https://cloud.oracle.com/
   - type: StatusPage
     url: https://ocistatus.oraclecloud.com/
