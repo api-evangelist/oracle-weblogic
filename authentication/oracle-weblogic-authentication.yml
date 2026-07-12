@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/oracle-weblogic-deployment-openapi.yml, openapi/oracle-weblogic-management-openapi.yml,
+  openapi/oracle-weblogic-monitoring-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication. Deployer role required for deployment operations,
+    Operator role for lifecycle operations.
+  sources:
+  - openapi/oracle-weblogic-deployment-openapi.yml
+  - openapi/oracle-weblogic-management-openapi.yml
+  - openapi/oracle-weblogic-monitoring-openapi.yml

@@ -109,6 +109,10 @@ maintainers:
     email: kin@apievangelist.com
     url: https://apievangelist.com
 common:
+  - type: DomainSecurity
+    url: security/oracle-weblogic-domain-security.yml
+  - type: Authentication
+    url: authentication/oracle-weblogic-authentication.yml
   - type: Support
     url: https://support.oracle.com/
   - type: Documentation
