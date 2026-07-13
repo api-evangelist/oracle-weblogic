@@ -2,11 +2,13 @@
   "repo": "oracle-weblogic",
   "feeds": [
     {
-      "source": "https://blogs.oracle.com/weblogicserver/",
+      "source": "https://www.oracle.com/downloads/licenses/standard-license.html",
+      "feed_url": "https://www.oracle.com/downloads/licenses/standard-license.html",
+      "title": "",
       "saved": 0,
-      "error": "HTTP 403 Forbidden on blog listing"
+      "method": "none"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-27T12:59:22Z"
+  "fetched": "2026-07-11T11:50:51Z"
 }
