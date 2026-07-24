@@ -1,0 +1,199 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Server Runtime API
+  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: http://localhost:7001/management/weblogic/latest
+  description: WebLogic Administration Server (default)
+- url: http://{host}:{port}/management/weblogic/{version}
+  description: WebLogic Administration Server (configurable)
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '7001'
+    version:
+      default: latest
+security:
+- basicAuth: []
+tags:
+- name: Server Runtime
+  description: Individual server runtime monitoring
+paths:
+  /serverRuntime:
+    get:
+      operationId: getServerRuntime
+      summary: Oracle WebLogic Server Get current server runtime
+      description: Returns the runtime information for the server receiving this request. Available on both admin and managed servers.
+      tags:
+      - Server Runtime
+      parameters:
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Current server runtime information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerRuntime'
+  /domainRuntime/serverRuntimes/{serverName}/getURL:
+    post:
+      operationId: getServerURL
+      summary: Oracle WebLogic Server Get the URL for a server
+      description: Returns the URL for accessing the specified server using the given protocol.
+      tags:
+      - Server Runtime
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                protocol:
+                  type: string
+                  description: Protocol to use (http, https, t3, t3s)
+      responses:
+        '200':
+          description: Server URL
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  return:
+                    type: string
+                    format: uri
+                    description: The server URL for the specified protocol
+components:
+  parameters:
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include. Use 'none' to exclude all links.
+      schema:
+        type: string
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
+      schema:
+        type: string
+  schemas:
+    ServerRuntime:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Server name
+        state:
+          type: string
+          description: Current server state
+          enum:
+          - RUNNING
+          - STANDBY
+          - ADMIN
+          - SHUTDOWN
+          - FAILED
+          - STARTING
+          - SHUTTING_DOWN
+          - SUSPENDING
+          - FORCE_SHUTTING_DOWN
+          - RESUMING
+        healthState:
+          $ref: '#/components/schemas/HealthState'
+        weblogicVersion:
+          type: string
+          description: WebLogic Server version
+        openSocketsCurrentCount:
+          type: integer
+          description: Current number of open sockets
+        activationTime:
+          type: integer
+          format: int64
+          description: Time when the server was activated
+        currentDirectory:
+          type: string
+          description: Current working directory
+        adminServer:
+          type: boolean
+          description: Whether this server is the admin server
+        adminServerHost:
+          type: string
+        adminServerListenPort:
+          type: integer
+        restartRequired:
+          type: boolean
+          description: Whether a restart is required for pending changes
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    HealthState:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - HEALTH_OK
+          - HEALTH_WARN
+          - HEALTH_CRITICAL
+          - HEALTH_FAILED
+          - HEALTH_OVERLOADED
+        subsystemName:
+          type: string
+        partitionName:
+          type: string
+        symptoms:
+          type: array
+          items:
+            type: object
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

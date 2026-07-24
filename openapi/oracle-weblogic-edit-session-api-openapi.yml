@@ -1,0 +1,154 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Edit Session API
+  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: http://localhost:7001/management/weblogic/latest
+  description: WebLogic Administration Server (default)
+- url: http://{host}:{port}/management/weblogic/{version}
+  description: WebLogic Administration Server (configurable)
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '7001'
+    version:
+      default: latest
+security:
+- basicAuth: []
+tags:
+- name: Edit Session
+  description: Manage edit sessions for deployment changes
+paths:
+  /edit/changeManager/startEdit:
+    post:
+      operationId: startEdit
+      summary: Oracle WebLogic Server Start an edit session for deployment changes
+      description: Acquires a configuration lock and starts an edit session. Required before making any deployment configuration changes.
+      tags:
+      - Edit Session
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                waitTimeInMillis:
+                  type: integer
+                  description: Maximum time to wait for the edit lock
+                exclusive:
+                  type: boolean
+      responses:
+        '200':
+          description: Edit session started
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /edit/changeManager/activate:
+    post:
+      operationId: activateDeploymentChanges
+      summary: Oracle WebLogic Server Activate pending deployment changes
+      description: Activates all pending deployment changes and distributes them to targeted servers.
+      tags:
+      - Edit Session
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Changes activated
+          content:
+            application/json:
+              schema:
+                type: object
+  /edit/changeManager/cancelEdit:
+    post:
+      operationId: cancelEdit
+      summary: Oracle WebLogic Server Cancel the current edit session
+      description: Cancels all pending changes in the current edit session and releases the edit lock without activating any changes.
+      tags:
+      - Edit Session
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy_2'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Edit session cancelled successfully
+          content:
+            application/json:
+              schema:
+                type: object
+  /edit/changeManager/undoUnactivatedChanges:
+    post:
+      operationId: undoUnactivatedChanges
+      summary: Oracle WebLogic Server Undo all unactivated changes
+      description: Reverts all pending configuration changes that have not yet been activated without releasing the edit lock.
+      tags:
+      - Edit Session
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy_2'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Changes undone successfully
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header
+      schema:
+        type: string
+        example: MyClient
+    XRequestedBy_2:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+  responses:
+    Unauthorized:
+      description: Authentication required or invalid credentials
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

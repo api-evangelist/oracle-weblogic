@@ -1,0 +1,139 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment JMS Runtime API
+  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: http://localhost:7001/management/weblogic/latest
+  description: WebLogic Administration Server (default)
+- url: http://{host}:{port}/management/weblogic/{version}
+  description: WebLogic Administration Server (configurable)
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '7001'
+    version:
+      default: latest
+security:
+- basicAuth: []
+tags:
+- name: JMS Runtime
+  description: Monitor JMS server and destination runtime statistics
+paths:
+  /domainRuntime/serverRuntimes/{serverName}/JMSRuntime:
+    get:
+      operationId: getJMSRuntime
+      summary: Oracle WebLogic Server Get JMS runtime for a server
+      description: Returns the JMS runtime for the specified server.
+      tags:
+      - JMS Runtime
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      responses:
+        '200':
+          description: JMS runtime information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JMSRuntime'
+  /domainRuntime/serverRuntimes/{serverName}/JMSRuntime/JMSServersRuntime:
+    get:
+      operationId: listJMSServerRuntimes
+      summary: Oracle WebLogic Server List JMS server runtimes
+      tags:
+      - JMS Runtime
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      responses:
+        '200':
+          description: Collection of JMS server runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JMSServerRuntime'
+components:
+  schemas:
+    JMSServerRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: JMS server name
+        messagesCurrentCount:
+          type: integer
+          description: Current messages in the JMS server
+        messagesHighCount:
+          type: integer
+        messagesPendingCount:
+          type: integer
+        messagesReceivedCount:
+          type: integer
+        bytesCurrentCount:
+          type: integer
+        bytesHighCount:
+          type: integer
+        bytesPendingCount:
+          type: integer
+        bytesReceivedCount:
+          type: integer
+        destinationsCurrentCount:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    JMSRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+        connectionsCurrentCount:
+          type: integer
+          description: Current JMS connections
+        connectionsHighCount:
+          type: integer
+        connectionsTotalCount:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
+  parameters:
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

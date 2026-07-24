@@ -1,0 +1,202 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Server Templates API
+  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: http://localhost:7001/management/weblogic/latest
+  description: WebLogic Administration Server (default)
+- url: http://{host}:{port}/management/weblogic/{version}
+  description: WebLogic Administration Server (configurable)
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '7001'
+    version:
+      default: latest
+security:
+- basicAuth: []
+tags:
+- name: Server Templates
+  description: Manage server templates for dynamic server creation
+paths:
+  /edit/serverTemplates:
+    get:
+      operationId: listServerTemplates
+      summary: Oracle WebLogic Server List all server templates
+      tags:
+      - Server Templates
+      responses:
+        '200':
+          description: Collection of server templates
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ServerTemplate'
+    post:
+      operationId: createServerTemplate
+      summary: Oracle WebLogic Server Create a new server template
+      tags:
+      - Server Templates
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerTemplateCreateRequest'
+      responses:
+        '201':
+          description: Server template created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+  /edit/serverTemplates/{templateName}:
+    get:
+      operationId: getServerTemplate
+      summary: Oracle WebLogic Server Get a server template configuration
+      tags:
+      - Server Templates
+      parameters:
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Server template configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerTemplate'
+    post:
+      operationId: updateServerTemplate
+      summary: Oracle WebLogic Server Update a server template
+      tags:
+      - Server Templates
+      parameters:
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerTemplate'
+      responses:
+        '200':
+          description: Server template updated
+    delete:
+      operationId: deleteServerTemplate
+      summary: Oracle WebLogic Server Delete a server template
+      tags:
+      - Server Templates
+      parameters:
+      - name: templateName
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: Server template deleted
+components:
+  schemas:
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: URL of the linked resource
+        title:
+          type: string
+          description: Human-readable title for the link
+    ServerTemplate:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        listenPort:
+          type: integer
+        listenAddress:
+          type: string
+        machine:
+          type: array
+          items:
+            type: string
+        cluster:
+          type: array
+          items:
+            type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ServerTemplateCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Server template name
+        listenPort:
+          type: integer
+        listenAddress:
+          type: string
+        machine:
+          type: array
+          items:
+            type: string
+          description: Machine reference as identity path
+        cluster:
+          type: array
+          items:
+            type: string
+          description: Cluster reference as identity path
+  parameters:
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

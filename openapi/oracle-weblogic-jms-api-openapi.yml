@@ -1,0 +1,494 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment JMS API
+  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: http://localhost:7001/management/weblogic/latest
+  description: WebLogic Administration Server (default)
+- url: http://{host}:{port}/management/weblogic/{version}
+  description: WebLogic Administration Server (configurable)
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '7001'
+    version:
+      default: latest
+security:
+- basicAuth: []
+tags:
+- name: JMS
+  description: Manage JMS servers, system resources, queues, and connection factories
+paths:
+  /edit/JMSServers:
+    get:
+      operationId: listJMSServers
+      summary: Oracle WebLogic Server List all JMS servers
+      tags:
+      - JMS
+      responses:
+        '200':
+          description: Collection of JMS servers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JMSServer'
+    post:
+      operationId: createJMSServer
+      summary: Oracle WebLogic Server Create a JMS server
+      tags:
+      - JMS
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JMSServerCreateRequest'
+      responses:
+        '201':
+          description: JMS server created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+  /edit/JMSServers/{jmsServerName}:
+    get:
+      operationId: getJMSServer
+      summary: Oracle WebLogic Server Get a JMS server configuration
+      tags:
+      - JMS
+      parameters:
+      - $ref: '#/components/parameters/JMSServerName'
+      responses:
+        '200':
+          description: JMS server configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JMSServer'
+    delete:
+      operationId: deleteJMSServer
+      summary: Oracle WebLogic Server Delete a JMS server
+      tags:
+      - JMS
+      parameters:
+      - $ref: '#/components/parameters/JMSServerName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: JMS server deleted
+  /edit/JMSSystemResources:
+    get:
+      operationId: listJMSSystemResources
+      summary: Oracle WebLogic Server List all JMS system resources
+      tags:
+      - JMS
+      responses:
+        '200':
+          description: Collection of JMS system resources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JMSSystemResource'
+    post:
+      operationId: createJMSSystemResource
+      summary: Oracle WebLogic Server Create a JMS system resource
+      tags:
+      - JMS
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JMSSystemResourceCreateRequest'
+      responses:
+        '201':
+          description: JMS system resource created
+  /edit/JMSSystemResources/{jmsResourceName}/JMSResource/connectionFactories:
+    get:
+      operationId: listJMSConnectionFactories
+      summary: Oracle WebLogic Server List JMS connection factories
+      tags:
+      - JMS
+      parameters:
+      - $ref: '#/components/parameters/JMSResourceName'
+      responses:
+        '200':
+          description: Collection of connection factories
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JMSConnectionFactory'
+    post:
+      operationId: createJMSConnectionFactory
+      summary: Oracle WebLogic Server Create a JMS connection factory
+      tags:
+      - JMS
+      parameters:
+      - $ref: '#/components/parameters/JMSResourceName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JMSConnectionFactoryCreateRequest'
+      responses:
+        '201':
+          description: Connection factory created
+  /edit/JMSSystemResources/{jmsResourceName}/JMSResource/uniformDistributedQueues:
+    get:
+      operationId: listJMSDistributedQueues
+      summary: Oracle WebLogic Server List JMS uniform distributed queues
+      tags:
+      - JMS
+      parameters:
+      - $ref: '#/components/parameters/JMSResourceName'
+      responses:
+        '200':
+          description: Collection of distributed queues
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JMSDistributedQueue'
+    post:
+      operationId: createJMSDistributedQueue
+      summary: Oracle WebLogic Server Create a JMS uniform distributed queue
+      tags:
+      - JMS
+      parameters:
+      - $ref: '#/components/parameters/JMSResourceName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JMSDistributedQueueCreateRequest'
+      responses:
+        '201':
+          description: Distributed queue created
+  /edit/JMSSystemResources/{jmsResourceName}/subDeployments:
+    get:
+      operationId: listJMSSubDeployments
+      summary: Oracle WebLogic Server List JMS sub-deployments
+      tags:
+      - JMS
+      parameters:
+      - $ref: '#/components/parameters/JMSResourceName'
+      responses:
+        '200':
+          description: Collection of sub-deployments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JMSSubDeployment'
+    post:
+      operationId: createJMSSubDeployment
+      summary: Oracle WebLogic Server Create a JMS sub-deployment
+      tags:
+      - JMS
+      parameters:
+      - $ref: '#/components/parameters/JMSResourceName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JMSSubDeploymentCreateRequest'
+      responses:
+        '201':
+          description: Sub-deployment created
+  /edit/fileStores:
+    get:
+      operationId: listFileStores
+      summary: Oracle WebLogic Server List all file stores
+      tags:
+      - JMS
+      responses:
+        '200':
+          description: Collection of file stores
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FileStore'
+    post:
+      operationId: createFileStore
+      summary: Oracle WebLogic Server Create a file store
+      tags:
+      - JMS
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FileStoreCreateRequest'
+      responses:
+        '201':
+          description: File store created
+components:
+  schemas:
+    JMSDistributedQueue:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Distributed queue name
+        JNDIName:
+          type: string
+          description: JNDI name
+        subDeploymentName:
+          type: string
+    FileStoreCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        directory:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    JMSSubDeployment:
+      type: object
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    JMSConnectionFactory:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Connection factory name
+        JNDIName:
+          type: string
+          description: JNDI name
+        subDeploymentName:
+          type: string
+          description: Sub-deployment name for targeting
+    JMSDistributedQueueCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        subDeploymentName:
+          type: string
+    JMSServerCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: JMS server name
+        messagesMaximum:
+          type: integer
+        bytesMaximum:
+          type: integer
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        persistentStore:
+          type: array
+          items:
+            type: string
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+          description: Bean identity path as an array of path segments
+    JMSSubDeploymentCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    JMSServer:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: JMS server name
+        messagesMaximum:
+          type: integer
+          description: Maximum number of messages
+        bytesMaximum:
+          type: integer
+          description: Maximum bytes
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        persistentStore:
+          type: array
+          items:
+            type: string
+          description: Persistent store reference as identity path
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    JMSSystemResource:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: URL of the linked resource
+        title:
+          type: string
+          description: Human-readable title for the link
+    JMSConnectionFactoryCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        subDeploymentName:
+          type: string
+    JMSSystemResourceCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    FileStore:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        directory:
+          type: string
+          description: Directory for the file store
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+  parameters:
+    JMSServerName:
+      name: jmsServerName
+      in: path
+      required: true
+      description: Name of the JMS server
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    JMSResourceName:
+      name: jmsResourceName
+      in: path
+      required: true
+      description: Name of the JMS system resource
+      schema:
+        type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

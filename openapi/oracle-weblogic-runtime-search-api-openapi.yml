@@ -1,0 +1,139 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Runtime Search API
+  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: http://localhost:7001/management/weblogic/latest
+  description: WebLogic Administration Server (default)
+- url: http://{host}:{port}/management/weblogic/{version}
+  description: WebLogic Administration Server (configurable)
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '7001'
+    version:
+      default: latest
+security:
+- basicAuth: []
+tags:
+- name: Runtime Search
+  description: Structured queries against runtime trees
+paths:
+  /domainRuntime/search:
+    post:
+      operationId: searchDomainRuntime
+      summary: Oracle WebLogic Server Search the domain runtime tree
+      description: Performs a structured query against the domain runtime tree. Supports field filtering, child traversal, collection filtering, and result merging across servers.
+      tags:
+      - Runtime Search
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      - name: requestMaxWaitMillis
+        in: query
+        description: Maximum time in milliseconds to wait for search results
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuntimeSearchQuery'
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+  /serverRuntime/search:
+    post:
+      operationId: searchServerRuntime
+      summary: Oracle WebLogic Server Search the server runtime tree
+      description: Performs a structured query against the current server's runtime tree.
+      tags:
+      - Runtime Search
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuntimeSearchQuery'
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    RuntimeSearchQuery:
+      type: object
+      description: Structured query for searching runtime trees. Supports field filtering, child traversal, collection filtering, and result merging for consolidated views across servers.
+      properties:
+        fields:
+          type: array
+          items:
+            oneOf:
+            - type: string
+            - type: object
+              properties:
+                name:
+                  type: string
+                sameValue:
+                  type: boolean
+                total:
+                  type: boolean
+          description: Properties to include in results
+        links:
+          type: array
+          items:
+            type: string
+        children:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/RuntimeSearchQuery'
+        name:
+          type: array
+          items:
+            type: string
+          description: Filter collection by specific names
+        names:
+          type: array
+          items:
+            type: string
+          description: Filter collection by specific names
+        mergeCollection:
+          type: boolean
+          description: Merge items from the same collection across servers
+        mergeOn:
+          type: string
+          description: Property to merge collection items on
+  parameters:
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

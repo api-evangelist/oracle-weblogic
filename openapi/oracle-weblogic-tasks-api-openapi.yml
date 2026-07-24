@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Tasks API
+  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: http://localhost:7001/management/weblogic/latest
+  description: WebLogic Administration Server (default)
+- url: http://{host}:{port}/management/weblogic/{version}
+  description: WebLogic Administration Server (configurable)
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '7001'
+    version:
+      default: latest
+security:
+- basicAuth: []
+tags:
+- name: Tasks
+  description: Monitor asynchronous task status
+paths:
+  /domainRuntime/tasks/{taskId}:
+    get:
+      operationId: getTaskStatus
+      summary: Oracle WebLogic Server Get status of an asynchronous task
+      description: Returns the current status of an asynchronous operation. Used to poll for completion of long-running operations like server start/stop.
+      tags:
+      - Tasks
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        description: Task identifier
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Task status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+components:
+  schemas:
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
+    TaskStatus:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        taskStatus:
+          type: string
+          description: Current status of the task
+        progress:
+          type: string
+          description: Progress description
+        description:
+          type: string
+          description: Human-readable task description
+        operation:
+          type: string
+          description: Operation name
+        running:
+          type: boolean
+          description: Whether the task is still running
+        completed:
+          type: boolean
+          description: Whether the task has completed
+        startTime:
+          type: string
+          format: date-time
+          description: Time when the task started
+        endTime:
+          type: string
+          format: date-time
+          description: Time when the task completed
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

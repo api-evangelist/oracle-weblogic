@@ -1,0 +1,382 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Data Sources API
+  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: http://localhost:7001/management/weblogic/latest
+  description: WebLogic Administration Server (default)
+- url: http://{host}:{port}/management/weblogic/{version}
+  description: WebLogic Administration Server (configurable)
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '7001'
+    version:
+      default: latest
+security:
+- basicAuth: []
+tags:
+- name: Data Sources
+  description: Manage JDBC system resources and data sources
+paths:
+  /edit/JDBCSystemResources:
+    get:
+      operationId: listJDBCSystemResources
+      summary: Oracle WebLogic Server List all JDBC system resources
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of JDBC system resources
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JDBCSystemResource'
+    post:
+      operationId: createJDBCSystemResource
+      summary: Oracle WebLogic Server Create a JDBC system resource
+      description: Creates a new JDBC data source system resource. Requires an active edit session.
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      - $ref: '#/components/parameters/SaveChanges'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JDBCSystemResourceCreateRequest'
+      responses:
+        '201':
+          description: JDBC system resource created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+  /edit/JDBCSystemResources/{resourceName}:
+    get:
+      operationId: getJDBCSystemResource
+      summary: Oracle WebLogic Server Get a JDBC system resource
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/ResourceName'
+      responses:
+        '200':
+          description: JDBC system resource details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JDBCSystemResource'
+    delete:
+      operationId: deleteJDBCSystemResource
+      summary: Oracle WebLogic Server Delete a JDBC system resource
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/ResourceName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: JDBC system resource deleted
+  /edit/JDBCSystemResources/{resourceName}/JDBCResource:
+    get:
+      operationId: getJDBCResource
+      summary: Oracle WebLogic Server Get JDBC resource configuration
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/ResourceName'
+      responses:
+        '200':
+          description: JDBC resource configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JDBCResource'
+    post:
+      operationId: updateJDBCResource
+      summary: Oracle WebLogic Server Update JDBC resource configuration
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/ResourceName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JDBCResource'
+      responses:
+        '200':
+          description: JDBC resource updated
+  /edit/JDBCSystemResources/{resourceName}/JDBCResource/JDBCDataSourceParams:
+    get:
+      operationId: getJDBCDataSourceParams
+      summary: Oracle WebLogic Server Get JDBC data source parameters
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/ResourceName'
+      responses:
+        '200':
+          description: JDBC data source parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JDBCDataSourceParams'
+    post:
+      operationId: updateJDBCDataSourceParams
+      summary: Oracle WebLogic Server Update JDBC data source parameters
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/ResourceName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JDBCDataSourceParams'
+      responses:
+        '200':
+          description: JDBC data source parameters updated
+  /edit/JDBCSystemResources/{resourceName}/JDBCResource/JDBCDriverParams:
+    get:
+      operationId: getJDBCDriverParams
+      summary: Oracle WebLogic Server Get JDBC driver parameters
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/ResourceName'
+      responses:
+        '200':
+          description: JDBC driver parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JDBCDriverParams'
+    post:
+      operationId: updateJDBCDriverParams
+      summary: Oracle WebLogic Server Update JDBC driver parameters
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/ResourceName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JDBCDriverParams'
+      responses:
+        '200':
+          description: JDBC driver parameters updated
+  /edit/JDBCSystemResources/{resourceName}/JDBCResource/JDBCDriverParams/properties/properties:
+    get:
+      operationId: listJDBCProperties
+      summary: Oracle WebLogic Server List JDBC driver properties
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/ResourceName'
+      responses:
+        '200':
+          description: Collection of JDBC driver properties
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Property'
+    post:
+      operationId: createJDBCProperty
+      summary: Oracle WebLogic Server Add a JDBC driver property
+      tags:
+      - Data Sources
+      parameters:
+      - $ref: '#/components/parameters/ResourceName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Property'
+      responses:
+        '201':
+          description: Property created
+components:
+  parameters:
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
+      schema:
+        type: string
+      example: none
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include in the response
+      schema:
+        type: string
+      example: name,listenPort
+    SaveChanges:
+      name: saveChanges
+      in: query
+      description: When false, changes are saved to the edit session but not validated until explicitly saved or activated.
+      schema:
+        type: boolean
+        default: true
+    ResourceName:
+      name: resourceName
+      in: path
+      required: true
+      description: Name of the resource
+      schema:
+        type: string
+  schemas:
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+          description: Bean identity path as an array of path segments
+    JDBCSystemResource:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: JDBC system resource name
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+          description: Deployment targets
+        descriptorFileName:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: URL of the linked resource
+        title:
+          type: string
+          description: Human-readable title for the link
+    JDBCSystemResourceCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: JDBC data source name
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+          description: Deployment targets (servers or clusters)
+    Property:
+      type: object
+      required:
+      - name
+      - value
+      properties:
+        name:
+          type: string
+          description: Property name
+        value:
+          type: string
+          description: Property value
+    JDBCDriverParams:
+      type: object
+      properties:
+        driverName:
+          type: string
+          description: Fully qualified JDBC driver class name
+        url:
+          type: string
+          description: JDBC connection URL
+        password:
+          type: string
+          format: password
+          description: Database password (encrypted)
+    JDBCDataSourceParams:
+      type: object
+      properties:
+        JNDINames:
+          type: array
+          items:
+            type: string
+          description: JNDI names for the data source
+        globalTransactionsProtocol:
+          type: string
+          description: Global transaction protocol
+          enum:
+          - TwoPhaseCommit
+          - LoggingLastResource
+          - EmulateTwoPhaseCommit
+          - OnePhaseCommit
+          - None
+    JDBCResource:
+      type: object
+      properties:
+        name:
+          type: string
+          description: JDBC resource name
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

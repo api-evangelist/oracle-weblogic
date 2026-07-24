@@ -1,0 +1,202 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment JDBC Runtime API
+  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: http://localhost:7001/management/weblogic/latest
+  description: WebLogic Administration Server (default)
+- url: http://{host}:{port}/management/weblogic/{version}
+  description: WebLogic Administration Server (configurable)
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '7001'
+    version:
+      default: latest
+security:
+- basicAuth: []
+tags:
+- name: JDBC Runtime
+  description: Monitor JDBC data source runtime statistics
+paths:
+  /domainRuntime/serverRuntimes/{serverName}/JDBCServiceRuntime:
+    get:
+      operationId: getJDBCServiceRuntime
+      summary: Oracle WebLogic Server Get JDBC service runtime for a server
+      description: Returns the JDBC service runtime for the specified server.
+      tags:
+      - JDBC Runtime
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: JDBC service runtime
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JDBCServiceRuntime'
+  /domainRuntime/serverRuntimes/{serverName}/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans:
+    get:
+      operationId: listJDBCDataSourceRuntimes
+      summary: Oracle WebLogic Server List JDBC data source runtimes
+      description: Returns runtime status for all JDBC data sources on the specified server.
+      tags:
+      - JDBC Runtime
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Collection of JDBC data source runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JDBCDataSourceRuntime'
+  /domainRuntime/serverRuntimes/{serverName}/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans/{dataSourceName}:
+    get:
+      operationId: getJDBCDataSourceRuntime
+      summary: Oracle WebLogic Server Get runtime for a specific data source
+      tags:
+      - JDBC Runtime
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      - name: dataSourceName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: JDBC data source runtime
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JDBCDataSourceRuntime'
+components:
+  parameters:
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
+      schema:
+        type: string
+  schemas:
+    JDBCDataSourceRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Data source name
+        state:
+          type: string
+          description: Data source state
+          enum:
+          - Running
+          - Suspended
+          - Shutdown
+          - Overloaded
+          - Unknown
+        enabled:
+          type: boolean
+        activeConnectionsCurrentCount:
+          type: integer
+          description: Current number of active connections
+        activeConnectionsHighCount:
+          type: integer
+          description: Highest number of active connections
+        activeConnectionsAverageCount:
+          type: integer
+          description: Average number of active connections
+        connectionsTotalCount:
+          type: integer
+          description: Total connections created
+        currCapacity:
+          type: integer
+          description: Current connection pool capacity
+        numAvailable:
+          type: integer
+          description: Number of available connections
+        numUnavailable:
+          type: integer
+          description: Number of unavailable connections
+        highestNumAvailable:
+          type: integer
+        highestNumUnavailable:
+          type: integer
+        waitingForConnectionCurrentCount:
+          type: integer
+          description: Current threads waiting for a connection
+        waitingForConnectionHighCount:
+          type: integer
+        waitSecondsHighCount:
+          type: integer
+          description: Highest wait time in seconds for a connection
+        connectionDelayTime:
+          type: integer
+          description: Average time to create a connection
+        failedReserveRequestCount:
+          type: integer
+          description: Number of failed connection reserve requests
+        failuresToReconnectCount:
+          type: integer
+          description: Number of failed reconnection attempts
+        leakedConnectionCount:
+          type: integer
+          description: Number of leaked connections detected
+        prepStmtCacheCurrentSize:
+          type: integer
+          description: Current prepared statement cache size
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    JDBCServiceRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: JDBC service name
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

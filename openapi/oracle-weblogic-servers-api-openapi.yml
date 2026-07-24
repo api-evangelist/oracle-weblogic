@@ -1,0 +1,591 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Servers API
+  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: http://localhost:7001/management/weblogic/latest
+  description: WebLogic Administration Server (default)
+- url: http://{host}:{port}/management/weblogic/{version}
+  description: WebLogic Administration Server (configurable)
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '7001'
+    version:
+      default: latest
+security:
+- basicAuth: []
+tags:
+- name: Servers
+  description: Manage WebLogic Server instances
+paths:
+  /edit/servers:
+    get:
+      operationId: listServers
+      summary: Oracle WebLogic Server List all servers
+      description: Returns a collection of all server configurations in the domain.
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/ExcludeFields'
+      - $ref: '#/components/parameters/Links'
+      - $ref: '#/components/parameters/ExcludeLinks'
+      responses:
+        '200':
+          description: Collection of servers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Server'
+                  links:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Link'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createServer
+      summary: Oracle WebLogic Server Create a new server
+      description: Creates a new server configuration in the domain. Requires an active edit session.
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      - $ref: '#/components/parameters/SaveChanges'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerCreateRequest'
+      responses:
+        '201':
+          description: Server created successfully
+          headers:
+            Location:
+              description: URL of the newly created server resource
+              schema:
+                type: string
+                format: uri
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  item:
+                    $ref: '#/components/schemas/Server'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /edit/serverCreateForm:
+    get:
+      operationId: getServerCreateForm
+      summary: Oracle WebLogic Server Get server creation form with defaults
+      description: Returns a pre-populated template with default values for creating a new server.
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Server create form with default values
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerCreateRequest'
+  /edit/servers/{serverName}:
+    get:
+      operationId: getServer
+      summary: Oracle WebLogic Server Get a specific server configuration
+      description: Returns the configuration for the specified server.
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Links'
+      - $ref: '#/components/parameters/ExpandedValues'
+      responses:
+        '200':
+          description: Server configuration details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Server'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateServer
+      summary: Oracle WebLogic Server Update a server configuration
+      description: Modifies the configuration of an existing server. Requires an active edit session.
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      - $ref: '#/components/parameters/ExpandedValues'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerUpdateRequest'
+      responses:
+        '200':
+          description: Server updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Message'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    delete:
+      operationId: deleteServer
+      summary: Oracle WebLogic Server Delete a server
+      description: Removes a server configuration from the domain. Requires an active edit session.
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: Server deleted successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /edit/servers/{serverName}/SSL:
+    get:
+      operationId: getServerSSL
+      summary: Oracle WebLogic Server Get SSL configuration for a server
+      description: Returns the SSL/TLS configuration for the specified server.
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: SSL configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SSLConfiguration'
+    post:
+      operationId: updateServerSSL
+      summary: Oracle WebLogic Server Update SSL configuration for a server
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SSLConfiguration'
+      responses:
+        '200':
+          description: SSL configuration updated
+  /edit/servers/{serverName}/serverStart:
+    get:
+      operationId: getServerStart
+      summary: Oracle WebLogic Server Get server start configuration
+      description: Returns startup configuration including arguments and classpath.
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      responses:
+        '200':
+          description: Server start configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerStart'
+    post:
+      operationId: updateServerStart
+      summary: Oracle WebLogic Server Update server start configuration
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServerStart'
+      responses:
+        '200':
+          description: Server start configuration updated
+  /edit/servers/{serverName}/networkAccessPoints:
+    get:
+      operationId: listNetworkAccessPoints
+      summary: Oracle WebLogic Server List network access points for a server
+      description: Returns network channels configured for the specified server.
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      responses:
+        '200':
+          description: Collection of network access points
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NetworkAccessPoint'
+    post:
+      operationId: createNetworkAccessPoint
+      summary: Oracle WebLogic Server Create a network access point
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NetworkAccessPoint'
+      responses:
+        '201':
+          description: Network access point created
+components:
+  responses:
+    BadRequest:
+      description: Invalid request - malformed parameters or validation errors
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Requested resource does not exist
+    Unauthorized:
+      description: Authentication required or invalid credentials
+  parameters:
+    ExcludeFields:
+      name: excludeFields
+      in: query
+      description: Comma-separated list of property names to exclude from the response
+      schema:
+        type: string
+    SaveChanges:
+      name: saveChanges
+      in: query
+      description: When false, changes are saved to the edit session but not validated until explicitly saved or activated.
+      schema:
+        type: boolean
+        default: true
+    ExcludeLinks:
+      name: excludeLinks
+      in: query
+      description: Comma-separated list of link relations to exclude
+      schema:
+        type: string
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
+      schema:
+        type: string
+      example: none
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    ExpandedValues:
+      name: expandedValues
+      in: query
+      description: When true, properties are returned as objects with set and value fields indicating whether the property has been explicitly set.
+      schema:
+        type: boolean
+        default: false
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include in the response
+      schema:
+        type: string
+      example: name,listenPort
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+  schemas:
+    Message:
+      type: object
+      properties:
+        severity:
+          type: string
+          enum:
+          - SUCCESS
+          - WARNING
+          - FAILURE
+        field:
+          type: string
+          description: Property name associated with this message
+        message:
+          type: string
+          description: Detailed message text
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: URL of the linked resource
+        title:
+          type: string
+          description: Human-readable title for the link
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+          description: Bean identity path as an array of path segments
+    ServerUpdateRequest:
+      type: object
+      properties:
+        listenPort:
+          type: integer
+        listenAddress:
+          type: string
+        administrationPort:
+          type: integer
+        machine:
+          type: array
+          items:
+            type: string
+          description: Machine reference as identity path (set to null to remove)
+        cluster:
+          type: array
+          items:
+            type: string
+          description: Cluster reference as identity path
+        candidateMachines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    SSLConfiguration:
+      type: object
+      properties:
+        name:
+          type: string
+        enabled:
+          type: boolean
+          description: Whether SSL is enabled
+        listenPort:
+          type: integer
+          description: SSL listen port
+        identityAndTrustLocations:
+          type: string
+          description: Where identity and trust keystores are stored
+        serverPrivateKeyAlias:
+          type: string
+        serverPrivateKeyPassPhrase:
+          type: string
+          format: password
+        twoWaySSLEnabled:
+          type: boolean
+        clientCertificateEnforced:
+          type: boolean
+        hostnameVerificationIgnored:
+          type: boolean
+    ServerCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Name for the new server
+        listenPort:
+          type: integer
+          description: Listen port
+          default: 7001
+        listenAddress:
+          type: string
+          description: Listen address
+        defaultProtocol:
+          type: string
+          enum:
+          - t3
+          - t3s
+          - http
+          - https
+          - iiop
+          - iiops
+        machine:
+          type: array
+          items:
+            type: string
+          description: Machine reference as identity path
+        cluster:
+          type: array
+          items:
+            type: string
+          description: Cluster reference as identity path
+    Server:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Server name
+        listenPort:
+          type: integer
+          description: Listen port for the server
+          default: 7001
+        listenAddress:
+          type: string
+          description: IP address or hostname the server listens on
+        listenPortEnabled:
+          type: boolean
+          description: Whether the non-SSL listen port is enabled
+          default: true
+        SSLListenPort:
+          type: integer
+          description: SSL listen port
+        administrationPort:
+          type: integer
+          description: Administration port
+        defaultProtocol:
+          type: string
+          description: Default network protocol
+          enum:
+          - t3
+          - t3s
+          - http
+          - https
+          - iiop
+          - iiops
+        machine:
+          $ref: '#/components/schemas/Identity'
+        cluster:
+          $ref: '#/components/schemas/Identity'
+        candidateMachines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        idleConnectionTimeout:
+          type: integer
+          description: Idle connection timeout in seconds
+        replicationGroup:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    NetworkAccessPoint:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Network channel name
+        protocol:
+          type: string
+          description: Network protocol
+        listenPort:
+          type: integer
+        listenAddress:
+          type: string
+        publicPort:
+          type: integer
+        publicAddress:
+          type: string
+        enabled:
+          type: boolean
+    ServerStart:
+      type: object
+      properties:
+        arguments:
+          type: string
+          description: JVM arguments for server startup
+        classPath:
+          type: string
+          description: Classpath for server startup
+        javaHome:
+          type: string
+          description: Java home directory
+        javaVendor:
+          type: string
+          description: Java vendor
+        beaHome:
+          type: string
+          description: BEA/Oracle home directory
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+          enum:
+          - ERRORS
+        status:
+          type: integer
+        wls:errorsDetails:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              title:
+                type: string
+              detail:
+                type: string
+              o:errorPath:
+                type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

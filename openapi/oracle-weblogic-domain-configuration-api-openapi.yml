@@ -1,0 +1,385 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Domain Configuration API
+  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: http://localhost:7001/management/weblogic/latest
+  description: WebLogic Administration Server (default)
+- url: http://{host}:{port}/management/weblogic/{version}
+  description: WebLogic Administration Server (configurable)
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '7001'
+    version:
+      default: latest
+security:
+- basicAuth: []
+tags:
+- name: Domain Configuration
+  description: View domain-level configuration
+paths:
+  /edit:
+    get:
+      operationId: getEditRoot
+      summary: Oracle WebLogic Server Get the edit tree root (domain configuration)
+      description: Returns the root of the edit configuration tree representing the domain.
+      tags:
+      - Domain Configuration
+      parameters:
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Domain edit tree root
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Domain'
+  /serverConfig:
+    get:
+      operationId: getServerConfig
+      summary: Oracle WebLogic Server Get the server configuration tree root
+      description: Returns the root of the current server configuration (read-only).
+      tags:
+      - Domain Configuration
+      parameters:
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Server configuration root
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Domain'
+  /domainConfig:
+    get:
+      operationId: getDomainConfig
+      summary: Oracle WebLogic Server Get the last activated domain configuration
+      description: Returns the last activated domain configuration (read-only).
+      tags:
+      - Domain Configuration
+      parameters:
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Domain configuration root
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Domain'
+  /edit/virtualTargets:
+    get:
+      operationId: listVirtualTargets
+      summary: Oracle WebLogic Server List all virtual targets
+      tags:
+      - Domain Configuration
+      responses:
+        '200':
+          description: Collection of virtual targets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VirtualTarget'
+    post:
+      operationId: createVirtualTarget
+      summary: Oracle WebLogic Server Create a virtual target
+      tags:
+      - Domain Configuration
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VirtualTargetCreateRequest'
+      responses:
+        '201':
+          description: Virtual target created
+  /edit/partitions:
+    get:
+      operationId: listPartitions
+      summary: Oracle WebLogic Server List all partitions
+      tags:
+      - Domain Configuration
+      responses:
+        '200':
+          description: Collection of partitions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Partition'
+    post:
+      operationId: createPartition
+      summary: Oracle WebLogic Server Create a partition
+      tags:
+      - Domain Configuration
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartitionCreateRequest'
+      responses:
+        '201':
+          description: Partition created
+  /edit/partitions/{partitionName}/resourceGroups:
+    get:
+      operationId: listResourceGroups
+      summary: Oracle WebLogic Server List resource groups for a partition
+      tags:
+      - Domain Configuration
+      parameters:
+      - $ref: '#/components/parameters/PartitionName'
+      responses:
+        '200':
+          description: Collection of resource groups
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ResourceGroup'
+    post:
+      operationId: createResourceGroup
+      summary: Oracle WebLogic Server Create a resource group in a partition
+      tags:
+      - Domain Configuration
+      parameters:
+      - $ref: '#/components/parameters/PartitionName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResourceGroupCreateRequest'
+      responses:
+        '201':
+          description: Resource group created
+components:
+  parameters:
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
+      schema:
+        type: string
+      example: none
+    PartitionName:
+      name: partitionName
+      in: path
+      required: true
+      description: Name of the domain partition
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include in the response
+      schema:
+        type: string
+      example: name,listenPort
+  schemas:
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+          description: Bean identity path as an array of path segments
+    ResourceGroupCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    Partition:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        realm:
+          type: array
+          items:
+            type: string
+          description: Security realm reference
+        primaryIdentityDomain:
+          type: string
+        availableTargets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        defaultTargets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        resourceManagerRef:
+          type: array
+          items:
+            type: string
+    Domain:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Domain name
+        configurationVersion:
+          type: string
+          description: Domain configuration version
+        domainVersion:
+          type: string
+          description: WebLogic Server version
+        adminServerName:
+          type: string
+          description: Name of the administration server
+        productionModeEnabled:
+          type: boolean
+          description: Whether the domain is in production mode
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    VirtualTarget:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        hostNames:
+          type: array
+          items:
+            type: string
+        uriPrefix:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    VirtualTargetCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        hostNames:
+          type: array
+          items:
+            type: string
+        uriPrefix:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    ResourceGroup:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: URL of the linked resource
+        title:
+          type: string
+          description: Human-readable title for the link
+    PartitionCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        realm:
+          type: array
+          items:
+            type: string
+        primaryIdentityDomain:
+          type: string
+        availableTargets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        defaultTargets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        resourceManagerRef:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

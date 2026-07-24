@@ -1,0 +1,284 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment API
+  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: http://localhost:7001/management/weblogic/latest
+  description: WebLogic Administration Server (default)
+- url: http://{host}:{port}/management/weblogic/{version}
+  description: WebLogic Administration Server (configurable)
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '7001'
+    version:
+      default: latest
+security:
+- basicAuth: []
+tags:
+- name: Application Deployment
+  description: Deploy, configure, and manage application deployments
+paths:
+  /edit/appDeployments:
+    get:
+      operationId: listAppDeployments
+      summary: Oracle WebLogic Server List all application deployments
+      tags:
+      - Application Deployment
+      parameters:
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of application deployments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppDeployment'
+    post:
+      operationId: createAppDeployment
+      summary: Oracle WebLogic Server Deploy an application
+      description: Deploys an application to the domain. The application source must be accessible from the admin server. Requires an active edit session.
+      tags:
+      - Application Deployment
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppDeploymentCreateRequest'
+      responses:
+        '201':
+          description: Application deployed successfully
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+  /edit/appDeployments/{appName}:
+    get:
+      operationId: getAppDeployment
+      summary: Oracle WebLogic Server Get an application deployment
+      tags:
+      - Application Deployment
+      parameters:
+      - $ref: '#/components/parameters/AppName'
+      responses:
+        '200':
+          description: Application deployment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDeployment'
+    post:
+      operationId: updateAppDeployment
+      summary: Oracle WebLogic Server Update an application deployment
+      tags:
+      - Application Deployment
+      parameters:
+      - $ref: '#/components/parameters/AppName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppDeployment'
+      responses:
+        '200':
+          description: Application deployment updated
+    delete:
+      operationId: deleteAppDeployment
+      summary: Oracle WebLogic Server Undeploy an application
+      description: Removes the application deployment from the domain configuration.
+      tags:
+      - Application Deployment
+      parameters:
+      - $ref: '#/components/parameters/AppName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: Application undeployed
+  /edit/libDeployments:
+    get:
+      operationId: listLibDeployments
+      summary: Oracle WebLogic Server List all library deployments
+      tags:
+      - Application Deployment
+      responses:
+        '200':
+          description: Collection of library deployments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LibDeployment'
+    post:
+      operationId: createLibDeployment
+      summary: Oracle WebLogic Server Deploy a shared library
+      tags:
+      - Application Deployment
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LibDeploymentCreateRequest'
+      responses:
+        '201':
+          description: Library deployed
+components:
+  parameters:
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
+      schema:
+        type: string
+      example: none
+    AppName:
+      name: appName
+      in: path
+      required: true
+      description: Name of the application deployment
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include in the response
+      schema:
+        type: string
+      example: name,listenPort
+  schemas:
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+          description: Bean identity path as an array of path segments
+    LibDeployment:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        sourcePath:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    AppDeploymentCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Application name
+        sourceURL:
+          type: string
+          description: URL or file path to the application archive
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        planPath:
+          type: string
+    LibDeploymentCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        sourceURL:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    AppDeployment:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Application name
+        sourcePath:
+          type: string
+          description: Path to the application archive or directory
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+          description: Deployment targets
+        deploymentOrder:
+          type: integer
+          description: Order in which applications are deployed
+        planPath:
+          type: string
+          description: Path to the deployment plan
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: URL of the linked resource
+        title:
+          type: string
+          description: Human-readable title for the link
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

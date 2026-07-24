@@ -1,0 +1,192 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Library Deployments API
+  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: http://localhost:7001/management/weblogic/latest
+  description: WebLogic Administration Server (default)
+- url: http://{host}:{port}/management/weblogic/{version}
+  description: WebLogic Administration Server (configurable)
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '7001'
+    version:
+      default: latest
+security:
+- basicAuth: []
+tags:
+- name: Library Deployments
+  description: Deploy and manage shared library deployments
+paths:
+  /edit/libDeployments:
+    get:
+      operationId: listLibDeployments
+      summary: Oracle WebLogic Server List all shared library deployments
+      description: Returns all shared library deployments configured in the domain.
+      tags:
+      - Library Deployments
+      parameters:
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of library deployments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LibDeployment'
+    post:
+      operationId: deployLibrary
+      summary: Oracle WebLogic Server Deploy a shared library
+      description: Deploys a shared library that can be referenced by applications. Requires an active edit session.
+      tags:
+      - Library Deployments
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LibDeploymentCreateRequest'
+      responses:
+        '201':
+          description: Library deployed
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+  /edit/libDeployments/{libName}:
+    get:
+      operationId: getLibDeployment
+      summary: Oracle WebLogic Server Get shared library deployment details
+      tags:
+      - Library Deployments
+      parameters:
+      - $ref: '#/components/parameters/LibName'
+      responses:
+        '200':
+          description: Library deployment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LibDeployment'
+    delete:
+      operationId: undeployLibrary
+      summary: Oracle WebLogic Server Remove a shared library deployment
+      tags:
+      - Library Deployments
+      parameters:
+      - $ref: '#/components/parameters/LibName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: Library undeployed
+components:
+  parameters:
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include
+      schema:
+        type: string
+    LibName:
+      name: libName
+      in: path
+      required: true
+      description: Name of the shared library
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header
+      schema:
+        type: string
+        example: MyClient
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
+      schema:
+        type: string
+  schemas:
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+    LibDeployment:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Library name
+        sourcePath:
+          type: string
+          description: Path to the library archive
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        deploymentOrder:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    LibDeploymentCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Library name
+        sourceURL:
+          type: string
+          description: URL or file path to the library archive
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

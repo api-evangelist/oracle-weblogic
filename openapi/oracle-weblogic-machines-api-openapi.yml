@@ -1,0 +1,241 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Machines API
+  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: http://localhost:7001/management/weblogic/latest
+  description: WebLogic Administration Server (default)
+- url: http://{host}:{port}/management/weblogic/{version}
+  description: WebLogic Administration Server (configurable)
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '7001'
+    version:
+      default: latest
+security:
+- basicAuth: []
+tags:
+- name: Machines
+  description: Manage machines and Node Manager configuration
+paths:
+  /edit/machines:
+    get:
+      operationId: listMachines
+      summary: Oracle WebLogic Server List all machines
+      description: Returns a collection of all machine configurations in the domain.
+      tags:
+      - Machines
+      parameters:
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of machines
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Machine'
+    post:
+      operationId: createMachine
+      summary: Oracle WebLogic Server Create a new machine
+      tags:
+      - Machines
+      parameters:
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineCreateRequest'
+      responses:
+        '201':
+          description: Machine created successfully
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+  /edit/machines/{machineName}:
+    get:
+      operationId: getMachine
+      summary: Oracle WebLogic Server Get a specific machine configuration
+      tags:
+      - Machines
+      parameters:
+      - $ref: '#/components/parameters/MachineName'
+      responses:
+        '200':
+          description: Machine configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Machine'
+    post:
+      operationId: updateMachine
+      summary: Oracle WebLogic Server Update a machine configuration
+      tags:
+      - Machines
+      parameters:
+      - $ref: '#/components/parameters/MachineName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Machine'
+      responses:
+        '200':
+          description: Machine updated
+    delete:
+      operationId: deleteMachine
+      summary: Oracle WebLogic Server Delete a machine
+      tags:
+      - Machines
+      parameters:
+      - $ref: '#/components/parameters/MachineName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      responses:
+        '204':
+          description: Machine deleted
+  /edit/machines/{machineName}/nodeManager:
+    get:
+      operationId: getNodeManager
+      summary: Oracle WebLogic Server Get Node Manager configuration for a machine
+      tags:
+      - Machines
+      parameters:
+      - $ref: '#/components/parameters/MachineName'
+      responses:
+        '200':
+          description: Node Manager configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeManager'
+    post:
+      operationId: updateNodeManager
+      summary: Oracle WebLogic Server Update Node Manager configuration
+      tags:
+      - Machines
+      parameters:
+      - $ref: '#/components/parameters/MachineName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodeManager'
+      responses:
+        '200':
+          description: Node Manager configuration updated
+components:
+  parameters:
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
+      schema:
+        type: string
+      example: none
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include in the response
+      schema:
+        type: string
+      example: name,listenPort
+    MachineName:
+      name: machineName
+      in: path
+      required: true
+      description: Name of the machine
+      schema:
+        type: string
+  schemas:
+    MachineCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Machine name
+    NodeManager:
+      type: object
+      properties:
+        NMType:
+          type: string
+          description: Node Manager type
+          enum:
+          - SSL
+          - Plain
+          - ssh
+          default: SSL
+        listenAddress:
+          type: string
+          description: Listen address for Node Manager
+          default: localhost
+        listenPort:
+          type: integer
+          description: Listen port for Node Manager
+          default: 5556
+    Machine:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Machine name
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: URL of the linked resource
+        title:
+          type: string
+          description: Human-readable title for the link
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

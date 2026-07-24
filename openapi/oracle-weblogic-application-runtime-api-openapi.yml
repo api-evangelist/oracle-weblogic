@@ -1,0 +1,326 @@
+openapi: 3.1.0
+info:
+  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Application Runtime API
+  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  version: 12.2.1.3.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com/
+  license:
+    name: Oracle Standard License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+servers:
+- url: http://localhost:7001/management/weblogic/latest
+  description: WebLogic Administration Server (default)
+- url: http://{host}:{port}/management/weblogic/{version}
+  description: WebLogic Administration Server (configurable)
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '7001'
+    version:
+      default: latest
+security:
+- basicAuth: []
+tags:
+- name: Application Runtime
+  description: Monitor application deployment status and health
+paths:
+  /domainRuntime/appDeploymentRuntimes:
+    get:
+      operationId: listAppDeploymentRuntimes
+      summary: Oracle WebLogic Server List application deployment runtimes
+      description: Returns runtime status for all deployed applications in the domain.
+      tags:
+      - Application Runtime
+      parameters:
+      - $ref: '#/components/parameters/Fields'
+      - $ref: '#/components/parameters/Links'
+      responses:
+        '200':
+          description: Collection of application deployment runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AppDeploymentRuntime'
+  /domainRuntime/appDeploymentRuntimes/{appName}:
+    get:
+      operationId: getAppDeploymentRuntime
+      summary: Oracle WebLogic Server Get runtime for a specific application
+      tags:
+      - Application Runtime
+      parameters:
+      - $ref: '#/components/parameters/AppName'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Application deployment runtime
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppDeploymentRuntime'
+  /domainRuntime/appDeploymentRuntimes/{appName}/start:
+    post:
+      operationId: startApplication
+      summary: Oracle WebLogic Server Start a deployed application
+      description: Starts the specified application across its configured targets.
+      tags:
+      - Application Runtime
+      parameters:
+      - $ref: '#/components/parameters/AppName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Application started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+  /domainRuntime/appDeploymentRuntimes/{appName}/stop:
+    post:
+      operationId: stopApplication
+      summary: Oracle WebLogic Server Stop a deployed application
+      description: Stops the specified application across its configured targets.
+      tags:
+      - Application Runtime
+      parameters:
+      - $ref: '#/components/parameters/AppName'
+      - $ref: '#/components/parameters/XRequestedBy'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Application stopped
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskStatus'
+  /domainRuntime/serverRuntimes/{serverName}/applicationRuntimes:
+    get:
+      operationId: listApplicationRuntimes
+      summary: Oracle WebLogic Server List application runtimes on a server
+      description: Returns runtime information for all applications deployed on the specified server.
+      tags:
+      - Application Runtime
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Collection of application runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ApplicationRuntime'
+  /domainRuntime/serverRuntimes/{serverName}/applicationRuntimes/{appName}/componentRuntimes:
+    get:
+      operationId: listComponentRuntimes
+      summary: Oracle WebLogic Server List component runtimes for an application
+      description: Returns runtime information for all components (web modules, EJBs) within the specified application on the specified server.
+      tags:
+      - Application Runtime
+      parameters:
+      - $ref: '#/components/parameters/ServerName'
+      - $ref: '#/components/parameters/AppName'
+      - $ref: '#/components/parameters/Fields'
+      responses:
+        '200':
+          description: Collection of component runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ComponentRuntime'
+components:
+  parameters:
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include. Use 'none' to exclude all links.
+      schema:
+        type: string
+    AppName:
+      name: appName
+      in: path
+      required: true
+      description: Name of the deployed application
+      schema:
+        type: string
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
+      schema:
+        type: string
+  schemas:
+    TaskStatus:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        taskStatus:
+          type: string
+          description: Current status of the task
+        progress:
+          type: string
+          description: Progress description
+        description:
+          type: string
+          description: Human-readable task description
+        operation:
+          type: string
+          description: Operation name
+        running:
+          type: boolean
+          description: Whether the task is still running
+        completed:
+          type: boolean
+          description: Whether the task has completed
+        startTime:
+          type: string
+          format: date-time
+          description: Time when the task started
+        endTime:
+          type: string
+          format: date-time
+          description: Time when the task completed
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    AppDeploymentRuntime:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Application name
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ComponentRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Component name
+        moduleId:
+          type: string
+          description: Module identifier
+        type:
+          type: string
+          description: Component type
+        contextRoot:
+          type: string
+          description: Web application context root
+        healthState:
+          $ref: '#/components/schemas/HealthState'
+        openSessionsCurrentCount:
+          type: integer
+          description: Current number of open sessions
+        openSessionsHighCount:
+          type: integer
+          description: Peak number of open sessions
+        sessionsOpenedTotalCount:
+          type: integer
+          description: Total sessions opened since deployment
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    HealthState:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - HEALTH_OK
+          - HEALTH_WARN
+          - HEALTH_CRITICAL
+          - HEALTH_FAILED
+          - HEALTH_OVERLOADED
+        subsystemName:
+          type: string
+        partitionName:
+          type: string
+        symptoms:
+          type: array
+          items:
+            type: object
+    ApplicationRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Application name
+        healthState:
+          $ref: '#/components/schemas/HealthState'
+        state:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+externalDocs:
+  description: WebLogic Server Deployment Documentation
+  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm
