@@ -1,0 +1,1007 @@
+{
+  "item": [
+    {
+      "id": "0cca6a4c-2457-4897-90fa-8723a6b498d3",
+      "name": "Application Deployments",
+      "description": {
+        "content": "Deploy, configure, and manage enterprise application deployments (EAR, WAR files)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "173fc670-8193-400e-82d7-64f785a7e90e",
+          "name": "Oracle WebLogic Server List all application deployments",
+          "request": {
+            "name": "Oracle WebLogic Server List all application deployments",
+            "description": {
+              "content": "Returns all application deployments configured in the domain including their targets and deployment settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                "appDeployments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "472daad6-52a4-469d-9f8a-abb9fef731ce",
+              "name": "Collection of application deployments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "appDeployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"sourcePath\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"deploymentOrder\": 5617,\n      \"planPath\": \"string\",\n      \"securityDDModel\": \"CustomRolesAndPolicies\",\n      \"stagingMode\": \"external_stage\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://wuwwfbBFXVIukbzlveZ.ntiiquGiwqV1LjNu6MzVv-W\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://HykyAtTOMCjLreGCyflTb.uryoduwjYejukf0VQ2Rc7kv0E7IAewg4BVu\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"sourcePath\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"deploymentOrder\": 3574,\n      \"planPath\": \"string\",\n      \"securityDDModel\": \"Advanced\",\n      \"stagingMode\": \"stage\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://NXWMCGGbyfJJxrkRmyIXit.kcdifbvlWiay2\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://GekVwmNtwEIw.tbmXvj8FdSwnPrikLrSnmIxmeP.9prH2r\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://FmMJrjGVuZDXWRsLj.vkuQn.RbAuh4wCg88x8mhQRryEGUOdWZyLAQ7Odicy.cxc+lhpCd6Qy\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://KnwZTVv.vdskzKHP8OpDOrtEESBRWS,QqgmJiESnpvE\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca2c72bf-2ef6-4663-bc67-dbaa9ccf634c",
+              "name": "Authentication required or invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "appDeployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5dff3b90-90ab-4f2d-95f9-43e5775fc117",
+          "name": "Oracle WebLogic Server Deploy an application",
+          "request": {
+            "name": "Oracle WebLogic Server Deploy an application",
+            "description": {
+              "content": "Deploys a new application to the domain. The application source (EAR, WAR, or exploded directory) must be accessible from the admin server filesystem. Requires an active edit session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                "appDeployments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "saveChanges",
+                  "value": "true",
+                  "description": "Whether to validate and save changes immediately"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"sourceURL\": \"<string>\",\n  \"sourcePath\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"planPath\": \"<string>\",\n  \"deploymentOrder\": \"<integer>\",\n  \"stagingMode\": \"<string>\",\n  \"securityDDModel\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "304c94ff-03b4-4a33-b88d-6373973b0b5d",
+              "name": "Application deployed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "appDeployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "saveChanges",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"MyApplication\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"clusters\",\n        \"Cluster1\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URL of the new application deployment resource",
+                  "key": "Location",
+                  "value": "http://IDxjeQfNMTaUoMZYbMDtaoo.knzYML6+HX+sq,WqWCqvMZZkJpdlc-x+D8cSZ0Nnkc5GcLwfOOYWOC1IUnXs6j5"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"item\": {\n    \"identity\": [\n      \"string\",\n      \"string\"\n    ],\n    \"name\": \"string\",\n    \"sourcePath\": \"string\",\n    \"targets\": [\n      {\n        \"identity\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"identity\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"deploymentOrder\": 1983,\n    \"planPath\": \"string\",\n    \"securityDDModel\": \"CustomRoles\",\n    \"stagingMode\": \"nostage\",\n    \"links\": [\n      {\n        \"rel\": \"string\",\n        \"href\": \"http://CIPwgfcAIogQmelvGJXLqqzPOMIYZVR.hxiqw.bHv7I3oCKW01U0FSv7qqujEK3Tf\",\n        \"title\": \"string\"\n      },\n      {\n        \"rel\": \"string\",\n        \"href\": \"https://sqAvIUhqUEXrVfoIWXUGLxAiLGSUoQxH.ytnDYDnL.+xKGmYXLl7r-XMQHLVkStBbP8kTwwtwNZIk1HImfR2VbS5TORgijtT\",\n        \"title\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa28c201-371c-49a9-a6b6-5a0240aeb46c",
+              "name": "Invalid request parameters or deployment source not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "appDeployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "saveChanges",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"MyApplication\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"clusters\",\n        \"Cluster1\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 9251,\n  \"wls:errorsDetails\": [\n    {\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"o:errorPath\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"o:errorPath\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "569debc1-d064-4e18-984c-c1cdce5676ff",
+              "name": "Authentication required or invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "appDeployments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "saveChanges",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"MyApplication\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"clusters\",\n        \"Cluster1\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb72421d-02bc-4e20-a41f-030364dcd7b4",
+          "name": "Oracle WebLogic Server Get application deployment creation form",
+          "request": {
+            "name": "Oracle WebLogic Server Get application deployment creation form",
+            "description": {
+              "content": "Returns a pre-populated template with default values for deploying an application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                "appDeploymentCreateForm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "942ac57e-2758-4721-a8f1-3a22fa5fba98",
+              "name": "Deployment create form with defaults",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "appDeploymentCreateForm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"sourceURL\": \"string\",\n  \"sourcePath\": \"string\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"planPath\": \"string\",\n  \"deploymentOrder\": 7944,\n  \"stagingMode\": \"nostage\",\n  \"securityDDModel\": \"Advanced\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9c6ca35-3b13-496c-9647-17457a3d234e",
+          "name": "Oracle WebLogic Server Get application deployment details",
+          "request": {
+            "name": "Oracle WebLogic Server Get application deployment details",
+            "description": {
+              "content": "Returns the deployment configuration for the specified application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                "appDeployments",
+                ":appName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appName",
+                  "description": "(Required) Name of the application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9be9dfd5-60ba-4890-aefe-cb9c6b5a32a7",
+              "name": "Application deployment details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "appDeployments",
+                    ":appName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appName",
+                      "description": "(Required) Name of the application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"sourcePath\": \"string\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"deploymentOrder\": 8889,\n  \"planPath\": \"string\",\n  \"securityDDModel\": \"Advanced\",\n  \"stagingMode\": \"external_stage\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://xebEFz.wvkUF6coV,b4,nIUODdPx0IRvX8XzyU2\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://vQxIvRtTdsPYTFdcvNfuuoqS.pielWtWfwsZlUMY6iY1qUZP0gYeGE.FJ9om\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ce6d82a-079d-4f1e-ac2b-a8e2621c862e",
+              "name": "Application or resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "appDeployments",
+                    ":appName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appName",
+                      "description": "(Required) Name of the application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fdd6fe2-71df-4adf-a2af-0e530ae46173",
+          "name": "Oracle WebLogic Server Update application deployment configuration",
+          "request": {
+            "name": "Oracle WebLogic Server Update application deployment configuration",
+            "description": {
+              "content": "Modifies the deployment configuration such as targets or deployment plan. Requires an active edit session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                "appDeployments",
+                ":appName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appName",
+                  "description": "(Required) Name of the application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"planPath\": \"<string>\",\n  \"deploymentOrder\": \"<integer>\",\n  \"stagingMode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f52c7930-c92d-4dab-bb2b-d754483cdaa4",
+              "name": "Deployment updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "appDeployments",
+                    ":appName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appName",
+                      "description": "(Required) Name of the application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"planPath\": \"<string>\",\n  \"deploymentOrder\": \"<integer>\",\n  \"stagingMode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"severity\": \"SUCCESS\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"severity\": \"WARNING\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f3f39ed-fda6-4525-a2a8-aaeac5adb999",
+          "name": "Oracle WebLogic Server Undeploy an application",
+          "request": {
+            "name": "Oracle WebLogic Server Undeploy an application",
+            "description": {
+              "content": "Removes the application deployment from the domain configuration. Requires an active edit session and must be followed by activation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                "appDeployments",
+                ":appName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appName",
+                  "description": "(Required) Name of the application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94fca6d3-d9da-4418-8755-7fe80aac821d",
+              "name": "Application undeployed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "appDeployments",
+                    ":appName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appName",
+                      "description": "(Required) Name of the application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bcfe0ae1-74a2-4fdb-8b68-2f3b0b7d9ef7",
+              "name": "Application or resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "appDeployments",
+                    ":appName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appName",
+                      "description": "(Required) Name of the application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:7001/management/weblogic/latest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3a44c698-5370-47ec-b02e-8083ddf8d6f7",
+    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Application Deployments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Search API",
+    "version": "12.2.1.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Search the edit configuration tree",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/search",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs a structured query against the edit configuration tree. Supports field filtering, child traversal, and collection filtering."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Search the domain configuration tree",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/domainConfig/search",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Search the domain configuration tree"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Search the server configuration tree",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/serverConfig/search",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Search the server configuration tree"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1019 @@
+{
+  "item": [
+    {
+      "id": "d7654ef3-2214-4973-a35a-c11db30b9635",
+      "name": "Deployment Lifecycle",
+      "description": {
+        "content": "Start, stop, and manage deployed application lifecycle",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fcbd22ee-dbae-4374-be42-144ea679d728",
+          "name": "Oracle WebLogic Server List deployment runtimes",
+          "request": {
+            "name": "Oracle WebLogic Server List deployment runtimes",
+            "description": {
+              "content": "Returns runtime status for all deployed applications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "appDeploymentRuntimes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ca83df8-346d-4754-8010-be6e6d758289",
+              "name": "Collection of deployment runtimes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "appDeploymentRuntimes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://RGMFcMAShDAxctHlBPYJyQtMN.gnmxY9WNzJS\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://GWmSp.aggVZ.bLzsuMNzAUApr,-r6F0k1SOyJRkJPAQAWu\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://SMEZnuAvonmHT.bgain2HIUz\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://CurJy.tezdDFKs.MQKhZz9mqK0LeTXo1qtcfWR2,lAO4K\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94d830d3-09ab-4e4c-8729-844b2cdf1fde",
+          "name": "Oracle WebLogic Server Start a deployed application",
+          "request": {
+            "name": "Oracle WebLogic Server Start a deployed application",
+            "description": {
+              "content": "Starts the specified application on all its configured targets. Returns a task object for monitoring the operation progress.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "appDeploymentRuntimes",
+                ":appName",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appName",
+                  "description": "(Required) Name of the application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Controls async behavior for long-running operations",
+                "key": "Prefer",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e10fd4d2-44aa-4990-b7df-f3d78f2c7b47",
+              "name": "Application started successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "appDeploymentRuntimes",
+                    ":appName",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appName",
+                      "description": "(Required) Name of the application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Controls async behavior for long-running operations",
+                    "key": "Prefer",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": false,\n  \"completed\": true,\n  \"startTime\": \"2026-04-08T14:30:28.669Z\",\n  \"endTime\": \"2021-02-14T06:49:46.281Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://frx.xwWxRE+xzkIJJ9W5qFfKJTCQZ4d5t72fdhJ.sV8V,k,T3fF1OMGDoaq\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://uNFJYEZzzVPyZGNzP.dgttY5O5ap,0\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4587b9c6-7c79-452f-b860-0ccf3a1a0de2",
+              "name": "Start operation accepted and in progress",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "appDeploymentRuntimes",
+                    ":appName",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appName",
+                      "description": "(Required) Name of the application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Controls async behavior for long-running operations",
+                    "key": "Prefer",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URL to poll for task status",
+                  "key": "Location",
+                  "value": "http://NQvcZ.sfyrYmkdtRNDzVy"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33b0c814-09ba-4b7d-9ce1-d9aeae20e815",
+          "name": "Oracle WebLogic Server Stop a deployed application",
+          "request": {
+            "name": "Oracle WebLogic Server Stop a deployed application",
+            "description": {
+              "content": "Stops the specified application on all its configured targets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "appDeploymentRuntimes",
+                ":appName",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appName",
+                  "description": "(Required) Name of the application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Controls async behavior for long-running operations",
+                "key": "Prefer",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "63835c74-31b4-4bde-b7a5-90079037a72b",
+              "name": "Application stopped successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "appDeploymentRuntimes",
+                    ":appName",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appName",
+                      "description": "(Required) Name of the application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Controls async behavior for long-running operations",
+                    "key": "Prefer",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": false,\n  \"completed\": true,\n  \"startTime\": \"2026-04-08T14:30:28.669Z\",\n  \"endTime\": \"2021-02-14T06:49:46.281Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://frx.xwWxRE+xzkIJJ9W5qFfKJTCQZ4d5t72fdhJ.sV8V,k,T3fF1OMGDoaq\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://uNFJYEZzzVPyZGNzP.dgttY5O5ap,0\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf685441-211c-4c95-8a4f-5ffb298c3f42",
+          "name": "Oracle WebLogic Server Redeploy an application",
+          "request": {
+            "name": "Oracle WebLogic Server Redeploy an application",
+            "description": {
+              "content": "Redeploys the specified application, refreshing its deployment from the source location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "appDeploymentRuntimes",
+                ":appName",
+                "redeploy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appName",
+                  "description": "(Required) Name of the application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Controls async behavior for long-running operations",
+                "key": "Prefer",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "23920dd3-767d-4687-9d3c-22649722b3ed",
+              "name": "Application redeployed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "appDeploymentRuntimes",
+                    ":appName",
+                    "redeploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appName",
+                      "description": "(Required) Name of the application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Controls async behavior for long-running operations",
+                    "key": "Prefer",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": false,\n  \"completed\": true,\n  \"startTime\": \"2026-04-08T14:30:28.669Z\",\n  \"endTime\": \"2021-02-14T06:49:46.281Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://frx.xwWxRE+xzkIJJ9W5qFfKJTCQZ4d5t72fdhJ.sV8V,k,T3fF1OMGDoaq\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://uNFJYEZzzVPyZGNzP.dgttY5O5ap,0\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6bba3601-a232-43c2-9caf-b21b6d55a687",
+          "name": "Oracle WebLogic Server Update an application deployment",
+          "request": {
+            "name": "Oracle WebLogic Server Update an application deployment",
+            "description": {
+              "content": "Updates the application with a new deployment plan or configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "appDeploymentRuntimes",
+                ":appName",
+                "update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appName",
+                  "description": "(Required) Name of the application"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"planPath\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b9cc714e-1152-4595-8237-c8c078baa383",
+              "name": "Application updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "appDeploymentRuntimes",
+                    ":appName",
+                    "update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appName",
+                      "description": "(Required) Name of the application"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"planPath\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": false,\n  \"completed\": true,\n  \"startTime\": \"2026-04-08T14:30:28.669Z\",\n  \"endTime\": \"2021-02-14T06:49:46.281Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://frx.xwWxRE+xzkIJJ9W5qFfKJTCQZ4d5t72fdhJ.sV8V,k,T3fF1OMGDoaq\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://uNFJYEZzzVPyZGNzP.dgttY5O5ap,0\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa62df32-9647-45be-992a-faf2382f7bb2",
+          "name": "Oracle WebLogic Server Get deployment task status",
+          "request": {
+            "name": "Oracle WebLogic Server Get deployment task status",
+            "description": {
+              "content": "Returns the current status of a deployment lifecycle operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "appDeploymentRuntimes",
+                ":appName",
+                "tasks",
+                ":taskId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appName",
+                  "description": "(Required) Name of the application"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taskId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "930184b3-22a5-4cef-b005-910f5e09c481",
+              "name": "Task status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "appDeploymentRuntimes",
+                    ":appName",
+                    "tasks",
+                    ":taskId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appName",
+                      "description": "(Required) Name of the application"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taskId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": false,\n  \"completed\": true,\n  \"startTime\": \"2026-04-08T14:30:28.669Z\",\n  \"endTime\": \"2021-02-14T06:49:46.281Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://frx.xwWxRE+xzkIJJ9W5qFfKJTCQZ4d5t72fdhJ.sV8V,k,T3fF1OMGDoaq\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://uNFJYEZzzVPyZGNzP.dgttY5O5ap,0\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca7493d4-7e14-423d-9745-d872bcd39a85",
+          "name": "Oracle WebLogic Server List application runtimes on a server",
+          "request": {
+            "name": "Oracle WebLogic Server List application runtimes on a server",
+            "description": {
+              "content": "Returns runtime information for all applications deployed on the specified server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverRuntimes",
+                ":serverName",
+                "applicationRuntimes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b11166fe-7b9c-434b-a562-5558af58af46",
+              "name": "Collection of application runtimes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverRuntimes",
+                    ":serverName",
+                    "applicationRuntimes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"healthState\": {\n        \"state\": \"HEALTH_OK\",\n        \"subsystemName\": \"string\"\n      },\n      \"state\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://SN.hixzgWr7E5ubD6\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://UeVxX.mtesV,xVt3wkV22pXAZadrny4+TTJAz8njy,mID+KsvGlzswsOwHO0GvyJgp\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"healthState\": {\n        \"state\": \"HEALTH_OK\",\n        \"subsystemName\": \"string\"\n      },\n      \"state\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://YupODqAGaXGWx.dhbqVnBH90wd4smC,FG+.,Ob7FPG-i0EY\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://HhCMlOqkClWKBmuSeboDIfRvxtJaMa.fwcnnhNm7unE17H-B7kx5XznkYdqJXYDzBLEnBPjAE3JYrPtkchTWA2dTa8pA0M+mzgmElBG-oSXlBuvl\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:7001/management/weblogic/latest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3dd3466e-084a-476f-8161-29541698ab09",
+    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Deployment Lifecycle API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
+      "type": "text/plain"
+    }
+  }
+}

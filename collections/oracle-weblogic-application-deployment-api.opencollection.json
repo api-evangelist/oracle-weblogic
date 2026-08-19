@@ -1,0 +1,176 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment API",
+    "version": "12.2.1.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Application Deployment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all application deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/appDeployments",
+            "params": [
+              {
+                "name": "fields",
+                "value": "name,listenPort",
+                "type": "query",
+                "description": "Comma-separated list of property names to include in the response"
+              },
+              {
+                "name": "links",
+                "value": "none",
+                "type": "query",
+                "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server List all application deployments"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Deploy an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/appDeployments",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deploys an application to the domain. The application source must be accessible from the admin server. Requires an active edit session."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get an application deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/appDeployments/:appName",
+            "params": [
+              {
+                "name": "appName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the application deployment"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Get an application deployment"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Update an application deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/appDeployments/:appName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "appName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the application deployment"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Update an application deployment"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Undeploy an application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/appDeployments/:appName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "appName",
+                "value": "",
+                "type": "path",
+                "description": "Name of the application deployment"
+              }
+            ]
+          },
+          "docs": "Removes the application deployment from the domain configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all library deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/libDeployments"
+          },
+          "docs": "Oracle WebLogic Server List all library deployments"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Deploy a shared library",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/libDeployments",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Deploy a shared library"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

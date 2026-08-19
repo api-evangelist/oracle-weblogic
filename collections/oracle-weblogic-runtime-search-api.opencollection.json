@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Runtime Search API",
+    "version": "12.2.1.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Runtime Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Search the domain runtime tree",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/domainRuntime/search",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "requestMaxWaitMillis",
+                "value": "",
+                "type": "query",
+                "description": "Maximum time in milliseconds to wait for search results"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs a structured query against the domain runtime tree. Supports field filtering, child traversal, collection filtering, and result merging across servers."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Search the server runtime tree",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/serverRuntime/search",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Performs a structured query against the current server's runtime tree."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

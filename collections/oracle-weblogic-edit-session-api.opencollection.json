@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Edit Session API",
+    "version": "12.2.1.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Edit Session",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Start an edit session for deployment changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/changeManager/startEdit",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Acquires a configuration lock and starts an edit session. Required before making any deployment configuration changes."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Activate pending deployment changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/changeManager/activate",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Activates all pending deployment changes and distributes them to targeted servers."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Cancel the current edit session",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/changeManager/cancelEdit",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels all pending changes in the current edit session and releases the edit lock without activating any changes."
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Undo all unactivated changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/changeManager/undoUnactivatedChanges",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reverts all pending configuration changes that have not yet been activated without releasing the edit lock."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,283 @@
+{
+  "item": [
+    {
+      "id": "b6419876-29f6-4b9c-9cd9-184a07c9a4de",
+      "name": "Runtime Search",
+      "description": {
+        "content": "Structured queries against runtime trees",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "38ffa4cd-315b-4c1f-b02a-b2a9b4e75815",
+          "name": "Oracle WebLogic Server Search the domain runtime tree",
+          "request": {
+            "name": "Oracle WebLogic Server Search the domain runtime tree",
+            "description": {
+              "content": "Performs a structured query against the domain runtime tree. Supports field filtering, child traversal, collection filtering, and result merging across servers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "requestMaxWaitMillis",
+                  "value": "<integer>",
+                  "description": "Maximum time in milliseconds to wait for search results"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"key_0\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    },\n    \"key_1\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    },\n    \"key_2\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    },\n    \"key_3\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    }\n  },\n  \"name\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d0024808-aafb-49ac-950f-e05d3ff5eb77",
+              "name": "Search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestMaxWaitMillis",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"key_0\": {\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mergeCollection\": true,\n      \"mergeOn\": \"string\"\n    },\n    \"key_1\": {\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mergeCollection\": true,\n      \"mergeOn\": \"string\"\n    },\n    \"key_2\": {\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mergeCollection\": true,\n      \"mergeOn\": \"string\"\n    }\n  },\n  \"name\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bcc80e6f-44ce-44f6-a094-8498ae7c8792",
+          "name": "Oracle WebLogic Server Search the server runtime tree",
+          "request": {
+            "name": "Oracle WebLogic Server Search the server runtime tree",
+            "description": {
+              "content": "Performs a structured query against the current server's runtime tree.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "serverRuntime",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"key_0\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    },\n    \"key_1\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    },\n    \"key_2\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    },\n    \"key_3\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    }\n  },\n  \"name\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd4391cb-d165-4354-985a-25f762436e87",
+              "name": "Search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "serverRuntime",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"key_0\": {\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mergeCollection\": true,\n      \"mergeOn\": \"string\"\n    },\n    \"key_1\": {\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mergeCollection\": true,\n      \"mergeOn\": \"string\"\n    },\n    \"key_2\": {\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/RuntimeSearchQuery detected>\"\n        }\n      },\n      \"name\": [\n        \"string\",\n        \"string\"\n      ],\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mergeCollection\": true,\n      \"mergeOn\": \"string\"\n    }\n  },\n  \"name\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:7001/management/weblogic/latest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c64dce69-9ba1-44c4-a44e-a98004530866",
+    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Runtime Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
+      "type": "text/plain"
+    }
+  }
+}

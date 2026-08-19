@@ -1,0 +1,278 @@
+{
+  "item": [
+    {
+      "id": "9d1db61e-a431-48da-9f9b-914f5681ff8f",
+      "name": "Server Runtime",
+      "description": {
+        "content": "Individual server runtime monitoring",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78a6319f-0ba2-46ff-b2f3-ead4051fde74",
+          "name": "Oracle WebLogic Server Get current server runtime",
+          "request": {
+            "name": "Oracle WebLogic Server Get current server runtime",
+            "description": {
+              "content": "Returns the runtime information for the server receiving this request. Available on both admin and managed servers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "serverRuntime"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include. Use 'none' to exclude all links."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "637a3aea-a3c6-40fd-949b-4977bbf65afb",
+              "name": "Current server runtime information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "serverRuntime"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"state\": \"FORCE_SHUTTING_DOWN\",\n  \"healthState\": {\n    \"state\": \"HEALTH_WARN\",\n    \"subsystemName\": \"string\",\n    \"partitionName\": \"string\"\n  },\n  \"weblogicVersion\": \"string\",\n  \"openSocketsCurrentCount\": 8330,\n  \"activationTime\": 3087,\n  \"currentDirectory\": \"string\",\n  \"adminServer\": false,\n  \"adminServerHost\": \"string\",\n  \"adminServerListenPort\": 8804,\n  \"restartRequired\": true,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://nQiIOesGUgHpgcgT.ooXMmZcIZcsWGe9RZow,xis2JBw+lC3quJ,janij4vB6s393L22bQp1QUVut\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://VBJRrIDGUXSZN.dzrDNZSFIubK9VnGLBjHTf6zW+AtuMffxTwMxn-EEq2jk\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "314703c7-fdb4-4582-a010-4cb8af15eb2b",
+          "name": "Oracle WebLogic Server Get the URL for a server",
+          "request": {
+            "name": "Oracle WebLogic Server Get the URL for a server",
+            "description": {
+              "content": "Returns the URL for accessing the specified server using the given protocol.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "domainRuntime",
+                "serverRuntimes",
+                ":serverName",
+                "getURL"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"protocol\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "259edb65-bade-4067-83f4-32722943c5a1",
+              "name": "Server URL",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "domainRuntime",
+                    "serverRuntimes",
+                    ":serverName",
+                    "getURL"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"protocol\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"return\": \"https://GNQkxpeHBtv.raGLQJNaZYj4zZquGw-CDwRyOl9pcYYa-GdJKzdF20w8avW\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:7001/management/weblogic/latest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f2297006-8cce-4275-ad0c-66128b4bfa0c",
+    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Server Runtime API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
+      "type": "text/plain"
+    }
+  }
+}

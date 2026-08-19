@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Server Templates API",
+    "version": "12.2.1.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Server Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle WebLogic Server List all server templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/serverTemplates"
+          },
+          "docs": "Oracle WebLogic Server List all server templates"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Create a new server template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/serverTemplates",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Create a new server template"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Get a server template configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/serverTemplates/:templateName",
+            "params": [
+              {
+                "name": "templateName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Get a server template configuration"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Update a server template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/serverTemplates/:templateName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "templateName",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Oracle WebLogic Server Update a server template"
+        },
+        {
+          "info": {
+            "name": "Oracle WebLogic Server Delete a server template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7001/management/weblogic/latest/edit/serverTemplates/:templateName",
+            "headers": [
+              {
+                "name": "X-Requested-By",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "templateName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Oracle WebLogic Server Delete a server template"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

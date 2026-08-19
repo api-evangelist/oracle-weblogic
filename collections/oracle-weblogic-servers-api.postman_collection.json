@@ -1,0 +1,1821 @@
+{
+  "item": [
+    {
+      "id": "4ecb310c-f9fa-45b9-bb0a-0db1c98ade1a",
+      "name": "Servers",
+      "description": {
+        "content": "Manage WebLogic Server instances",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4cafaca0-d226-4b29-bc81-a5879a4ae0b3",
+          "name": "Oracle WebLogic Server List all servers",
+          "request": {
+            "name": "Oracle WebLogic Server List all servers",
+            "description": {
+              "content": "Returns a collection of all server configurations in the domain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                "servers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeFields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to exclude from the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeLinks",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to exclude"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f394d90c-d311-4f23-9734-4ac375c6a8e2",
+              "name": "Collection of servers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "name,listenPort"
+                    },
+                    {
+                      "key": "excludeFields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "none"
+                    },
+                    {
+                      "key": "excludeLinks",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"listenPort\": 7001,\n      \"listenAddress\": \"string\",\n      \"listenPortEnabled\": true,\n      \"SSLListenPort\": 1994,\n      \"administrationPort\": 8583,\n      \"defaultProtocol\": \"t3s\",\n      \"machine\": {\n        \"identity\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"cluster\": {\n        \"identity\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"candidateMachines\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"idleConnectionTimeout\": 2551,\n      \"replicationGroup\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://T.kwjFV6Tn9XINojhNIXJlu1.jvJ6U2+xMtga6mg703usQVDcxMb6\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://An.bpmD,lsa5cRnvZrH-VfawisbtARkujjcLiIJ-BHxat\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"listenPort\": 7001,\n      \"listenAddress\": \"string\",\n      \"listenPortEnabled\": true,\n      \"SSLListenPort\": 5960,\n      \"administrationPort\": 7121,\n      \"defaultProtocol\": \"t3\",\n      \"machine\": {\n        \"identity\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"cluster\": {\n        \"identity\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"candidateMachines\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"idleConnectionTimeout\": 6421,\n      \"replicationGroup\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://cEqZzjCJrh.yalP-.j0lC3jKKwNt1OhOwCVBQ2ff5kBKhlqyiEMNcUoP\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://GSbEmauoNvxDHkLPWrjkuwEkBalupN.jbhkTVpW,mdlTSQRedVA,VmCHSIEigjMmda7MtvjHi970\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://IeuQtABo.pckCO3mLCPVra6Po-SQtkTcZ1\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://jr.anmVYa5aH089pAneDU9ezQj,nTaRkJwBvddwVNHC\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbe3abe9-5c86-4057-a5df-8599216eb35a",
+              "name": "Authentication required or invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "name,listenPort"
+                    },
+                    {
+                      "key": "excludeFields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "links",
+                      "value": "none"
+                    },
+                    {
+                      "key": "excludeLinks",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "699199d4-733c-4a8b-b9d9-31f7e8876f93",
+          "name": "Oracle WebLogic Server Create a new server",
+          "request": {
+            "name": "Oracle WebLogic Server Create a new server",
+            "description": {
+              "content": "Creates a new server configuration in the domain. Requires an active edit session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                "servers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "saveChanges",
+                  "value": "true",
+                  "description": "When false, changes are saved to the edit session but not validated until explicitly saved or activated."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"listenPort\": 7001,\n  \"listenAddress\": \"<string>\",\n  \"defaultProtocol\": \"<string>\",\n  \"machine\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cluster\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "db897f97-99d3-4dc5-b07c-1b38552aa10b",
+              "name": "Server created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "saveChanges",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"listenPort\": 7001,\n  \"listenAddress\": \"<string>\",\n  \"defaultProtocol\": \"<string>\",\n  \"machine\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cluster\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URL of the newly created server resource",
+                  "key": "Location",
+                  "value": "https://umnQgavrBDdD.amnaRw7a,wa0utl7mBpoKY6+w2sR,DcBTW-HRV"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"item\": {\n    \"identity\": [\n      \"string\",\n      \"string\"\n    ],\n    \"name\": \"string\",\n    \"listenPort\": 7001,\n    \"listenAddress\": \"string\",\n    \"listenPortEnabled\": true,\n    \"SSLListenPort\": 5117,\n    \"administrationPort\": 9587,\n    \"defaultProtocol\": \"iiop\",\n    \"machine\": {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"cluster\": {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    \"candidateMachines\": [\n      {\n        \"identity\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"identity\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"idleConnectionTimeout\": 682,\n    \"replicationGroup\": \"string\",\n    \"links\": [\n      {\n        \"rel\": \"string\",\n        \"href\": \"http://BYYArX.kvsEhUF+YhZzF+nltGJVktrG6AgEbddBop\",\n        \"title\": \"string\"\n      },\n      {\n        \"rel\": \"string\",\n        \"href\": \"http://sJAKBCCTp.tusTHzx0IR.3hMNcEkcHk\",\n        \"title\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e4b3fa9-a209-42a0-8b2f-9348048655e9",
+              "name": "Invalid request - malformed parameters or validation errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "saveChanges",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"listenPort\": 7001,\n  \"listenAddress\": \"<string>\",\n  \"defaultProtocol\": \"<string>\",\n  \"machine\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cluster\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"ERRORS\",\n  \"status\": 4692,\n  \"wls:errorsDetails\": [\n    {\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"o:errorPath\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"o:errorPath\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f19b098-49ce-4ffb-ad54-101f5a1eaec2",
+              "name": "Authentication required or invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "saveChanges",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"listenPort\": 7001,\n  \"listenAddress\": \"<string>\",\n  \"defaultProtocol\": \"<string>\",\n  \"machine\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cluster\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8adeb608-31ae-4480-8331-70c4a8633082",
+          "name": "Oracle WebLogic Server Get server creation form with defaults",
+          "request": {
+            "name": "Oracle WebLogic Server Get server creation form with defaults",
+            "description": {
+              "content": "Returns a pre-populated template with default values for creating a new server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                "serverCreateForm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "38328e6b-61c6-4635-9a77-1bced04bcd25",
+              "name": "Server create form with default values",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "serverCreateForm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "links",
+                      "value": "none"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"listenPort\": 7001,\n  \"listenAddress\": \"string\",\n  \"defaultProtocol\": \"iiops\",\n  \"machine\": [\n    \"string\",\n    \"string\"\n  ],\n  \"cluster\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c15c726e-6757-44d7-b25e-ade05c83d69a",
+          "name": "Oracle WebLogic Server Get a specific server configuration",
+          "request": {
+            "name": "Oracle WebLogic Server Get a specific server configuration",
+            "description": {
+              "content": "Returns the configuration for the specified server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                "servers",
+                ":serverName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+                },
+                {
+                  "disabled": false,
+                  "key": "expandedValues",
+                  "value": "false",
+                  "description": "When true, properties are returned as objects with set and value fields indicating whether the property has been explicitly set."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1eb2378-93b5-4d61-acaf-513d7f1f5be2",
+              "name": "Server configuration details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers",
+                    ":serverName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "name,listenPort"
+                    },
+                    {
+                      "key": "links",
+                      "value": "none"
+                    },
+                    {
+                      "key": "expandedValues",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"listenPort\": 7001,\n  \"listenAddress\": \"string\",\n  \"listenPortEnabled\": true,\n  \"SSLListenPort\": 3052,\n  \"administrationPort\": 2694,\n  \"defaultProtocol\": \"t3s\",\n  \"machine\": {\n    \"identity\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"cluster\": {\n    \"identity\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"candidateMachines\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"idleConnectionTimeout\": 1236,\n  \"replicationGroup\": \"string\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://aZRYWRpQyrseP.scvmmUEXhbFNqXRrOjAKsQHI5XadyH+HHvYV9EMJdLdftHx9b6Z69\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://JrSJrLlsaZxPksSFEMBYjuJu.hfluc7vMVzSZwqbapbT1YDEiRQNNzEjPx5X\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4fc9aac-3334-422d-8d0c-12aa0385c4bc",
+              "name": "Requested resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers",
+                    ":serverName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "name,listenPort"
+                    },
+                    {
+                      "key": "links",
+                      "value": "none"
+                    },
+                    {
+                      "key": "expandedValues",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bdb8ff2e-2751-440c-8385-a75ea7df2d51",
+          "name": "Oracle WebLogic Server Update a server configuration",
+          "request": {
+            "name": "Oracle WebLogic Server Update a server configuration",
+            "description": {
+              "content": "Modifies the configuration of an existing server. Requires an active edit session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                "servers",
+                ":serverName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "expandedValues",
+                  "value": "false",
+                  "description": "When true, properties are returned as objects with set and value fields indicating whether the property has been explicitly set."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"listenPort\": \"<integer>\",\n  \"listenAddress\": \"<string>\",\n  \"administrationPort\": \"<integer>\",\n  \"machine\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cluster\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"candidateMachines\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "25db92cf-3883-4b9c-a053-f6e6aa04af21",
+              "name": "Server updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers",
+                    ":serverName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expandedValues",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"listenPort\": \"<integer>\",\n  \"listenAddress\": \"<string>\",\n  \"administrationPort\": \"<integer>\",\n  \"machine\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cluster\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"candidateMachines\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"severity\": \"SUCCESS\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"severity\": \"SUCCESS\",\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cbaf24cf-b8fd-4caf-857c-2e0c547582a9",
+              "name": "Invalid request - malformed parameters or validation errors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers",
+                    ":serverName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "expandedValues",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"listenPort\": \"<integer>\",\n  \"listenAddress\": \"<string>\",\n  \"administrationPort\": \"<integer>\",\n  \"machine\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cluster\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"candidateMachines\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"ERRORS\",\n  \"status\": 3341,\n  \"wls:errorsDetails\": [\n    {\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"o:errorPath\": \"string\"\n    },\n    {\n      \"type\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"o:errorPath\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce5dfabc-8c62-459c-bcdf-8d9742e84f2f",
+          "name": "Oracle WebLogic Server Delete a server",
+          "request": {
+            "name": "Oracle WebLogic Server Delete a server",
+            "description": {
+              "content": "Removes a server configuration from the domain. Requires an active edit session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                "servers",
+                ":serverName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ca2f05c0-9b5b-45f2-88a1-56bb46714b20",
+              "name": "Server deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers",
+                    ":serverName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "59ea439f-b7e1-4f58-919e-1eb04b6458b3",
+              "name": "Requested resource does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers",
+                    ":serverName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bfbf606f-327c-4ae3-aa8b-6a673eadc4d8",
+          "name": "Oracle WebLogic Server Get SSL configuration for a server",
+          "request": {
+            "name": "Oracle WebLogic Server Get SSL configuration for a server",
+            "description": {
+              "content": "Returns the SSL/TLS configuration for the specified server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                "servers",
+                ":serverName",
+                "SSL"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of property names to include in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "links",
+                  "value": "<string>",
+                  "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e2a3c73c-3f0f-4e3d-b56c-5aa0dd6a1c7b",
+              "name": "SSL configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers",
+                    ":serverName",
+                    "SSL"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fields",
+                      "value": "name,listenPort"
+                    },
+                    {
+                      "key": "links",
+                      "value": "none"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"enabled\": true,\n  \"listenPort\": 7696,\n  \"identityAndTrustLocations\": \"string\",\n  \"serverPrivateKeyAlias\": \"string\",\n  \"serverPrivateKeyPassPhrase\": \"string\",\n  \"twoWaySSLEnabled\": false,\n  \"clientCertificateEnforced\": true,\n  \"hostnameVerificationIgnored\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "316ca8fe-164a-49c7-b55e-9239e4e30bf9",
+          "name": "Oracle WebLogic Server Update SSL configuration for a server",
+          "request": {
+            "name": "Oracle WebLogic Server Update SSL configuration for a server",
+            "description": {},
+            "url": {
+              "path": [
+                "edit",
+                "servers",
+                ":serverName",
+                "SSL"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"listenPort\": \"<integer>\",\n  \"identityAndTrustLocations\": \"<string>\",\n  \"serverPrivateKeyAlias\": \"<string>\",\n  \"serverPrivateKeyPassPhrase\": \"<password>\",\n  \"twoWaySSLEnabled\": \"<boolean>\",\n  \"clientCertificateEnforced\": \"<boolean>\",\n  \"hostnameVerificationIgnored\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f15ced5-e19d-408a-b4c4-c6c51a733708",
+              "name": "SSL configuration updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers",
+                    ":serverName",
+                    "SSL"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"listenPort\": \"<integer>\",\n  \"identityAndTrustLocations\": \"<string>\",\n  \"serverPrivateKeyAlias\": \"<string>\",\n  \"serverPrivateKeyPassPhrase\": \"<password>\",\n  \"twoWaySSLEnabled\": \"<boolean>\",\n  \"clientCertificateEnforced\": \"<boolean>\",\n  \"hostnameVerificationIgnored\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c954384d-61b7-456e-83bb-9ac0c83932ed",
+          "name": "Oracle WebLogic Server Get server start configuration",
+          "request": {
+            "name": "Oracle WebLogic Server Get server start configuration",
+            "description": {
+              "content": "Returns startup configuration including arguments and classpath.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                "servers",
+                ":serverName",
+                "serverStart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1eec4971-0955-45c8-a6f3-a17aeca2d257",
+              "name": "Server start configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers",
+                    ":serverName",
+                    "serverStart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"arguments\": \"string\",\n  \"classPath\": \"string\",\n  \"javaHome\": \"string\",\n  \"javaVendor\": \"string\",\n  \"beaHome\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11091609-0848-43a2-a8c0-e1d43255f083",
+          "name": "Oracle WebLogic Server Update server start configuration",
+          "request": {
+            "name": "Oracle WebLogic Server Update server start configuration",
+            "description": {},
+            "url": {
+              "path": [
+                "edit",
+                "servers",
+                ":serverName",
+                "serverStart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"arguments\": \"<string>\",\n  \"classPath\": \"<string>\",\n  \"javaHome\": \"<string>\",\n  \"javaVendor\": \"<string>\",\n  \"beaHome\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5fb405cb-0453-46f8-a105-485f012a986c",
+              "name": "Server start configuration updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers",
+                    ":serverName",
+                    "serverStart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"arguments\": \"<string>\",\n  \"classPath\": \"<string>\",\n  \"javaHome\": \"<string>\",\n  \"javaVendor\": \"<string>\",\n  \"beaHome\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27909ba5-9183-4572-b2bc-7e6dd1cebae8",
+          "name": "Oracle WebLogic Server List network access points for a server",
+          "request": {
+            "name": "Oracle WebLogic Server List network access points for a server",
+            "description": {
+              "content": "Returns network channels configured for the specified server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "edit",
+                "servers",
+                ":serverName",
+                "networkAccessPoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d4c906f0-b70e-4498-8cc7-b4a0bdbee723",
+              "name": "Collection of network access points",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers",
+                    ":serverName",
+                    "networkAccessPoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"protocol\": \"string\",\n      \"listenPort\": 6118,\n      \"listenAddress\": \"string\",\n      \"publicPort\": 33,\n      \"publicAddress\": \"string\",\n      \"enabled\": true\n    },\n    {\n      \"name\": \"string\",\n      \"protocol\": \"string\",\n      \"listenPort\": 475,\n      \"listenAddress\": \"string\",\n      \"publicPort\": 7834,\n      \"publicAddress\": \"string\",\n      \"enabled\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c30f8817-1ef1-4ad3-8f3d-197b3457c245",
+          "name": "Oracle WebLogic Server Create a network access point",
+          "request": {
+            "name": "Oracle WebLogic Server Create a network access point",
+            "description": {},
+            "url": {
+              "path": [
+                "edit",
+                "servers",
+                ":serverName",
+                "networkAccessPoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serverName",
+                  "description": "(Required) Name of the WebLogic Server instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"protocol\": \"<string>\",\n  \"listenPort\": \"<integer>\",\n  \"listenAddress\": \"<string>\",\n  \"publicPort\": \"<integer>\",\n  \"publicAddress\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eae3e98a-b87c-49ac-b470-6564d67c8c69",
+              "name": "Network access point created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "servers",
+                    ":serverName",
+                    "networkAccessPoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serverName",
+                      "description": "(Required) Name of the WebLogic Server instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"protocol\": \"<string>\",\n  \"listenPort\": \"<integer>\",\n  \"listenAddress\": \"<string>\",\n  \"publicPort\": \"<integer>\",\n  \"publicAddress\": \"<string>\",\n  \"enabled\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:7001/management/weblogic/latest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b881ae60-f94e-46a4-9059-1b1c02fc8058",
+    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Servers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
+      "type": "text/plain"
+    }
+  }
+}

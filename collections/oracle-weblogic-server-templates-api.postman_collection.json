@@ -1,0 +1,544 @@
+{
+  "item": [
+    {
+      "id": "5d1b0650-959d-46c4-b1af-825bb234f23d",
+      "name": "Server Templates",
+      "description": {
+        "content": "Manage server templates for dynamic server creation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3bea33fd-390c-43fe-89b1-86408689d94e",
+          "name": "Oracle WebLogic Server List all server templates",
+          "request": {
+            "name": "Oracle WebLogic Server List all server templates",
+            "description": {},
+            "url": {
+              "path": [
+                "edit",
+                "serverTemplates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "635eb0dd-362c-4c63-bde9-ea2154645cc3",
+              "name": "Collection of server templates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "serverTemplates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"listenPort\": 7812,\n      \"listenAddress\": \"string\",\n      \"machine\": [\n        \"string\",\n        \"string\"\n      ],\n      \"cluster\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://QHEruSzYwOQmEvGPqCecAMCrybfbzlbP.hvzvF+AaOD+eiJy3e.XirJh4mF\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://gSbNeTiCRZZzeTeUzcrCldwpblrWtn.tlmm,GeXsc\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"listenPort\": 9244,\n      \"listenAddress\": \"string\",\n      \"machine\": [\n        \"string\",\n        \"string\"\n      ],\n      \"cluster\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://ICJnssGFcP.jvmRPqyCoZ.lOPzoYm48tCyB\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://wNyYhfuzmqxAZlXCFDzxPhCmyQXJxF.nexQ0dTl67HOZ+XoONCGM5nNO-ibptO1eupsXPcUWnVVsYTSIofRr\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c1d1e54-1d00-4760-82a4-6720bd889163",
+          "name": "Oracle WebLogic Server Create a new server template",
+          "request": {
+            "name": "Oracle WebLogic Server Create a new server template",
+            "description": {},
+            "url": {
+              "path": [
+                "edit",
+                "serverTemplates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"listenPort\": \"<integer>\",\n  \"listenAddress\": \"<string>\",\n  \"machine\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cluster\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "12c1f2c5-bab6-49e2-a925-b578e2a7541c",
+              "name": "Server template created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "serverTemplates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"listenPort\": \"<integer>\",\n  \"listenAddress\": \"<string>\",\n  \"machine\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cluster\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Location",
+                  "value": "https://JrcHUTlv.auciykUqocavvEzxD,QFxA,BQBmStKejQhBFmUTw-AkRGYUVEiLpY-3wAoVUEmSywMe2ys5QF0f",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ad7be1e-bcb8-437d-b447-3aaf13914049",
+          "name": "Oracle WebLogic Server Get a server template configuration",
+          "request": {
+            "name": "Oracle WebLogic Server Get a server template configuration",
+            "description": {},
+            "url": {
+              "path": [
+                "edit",
+                "serverTemplates",
+                ":templateName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "547e4a9d-c3af-46fd-882b-5b471a09b5cd",
+              "name": "Server template configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "serverTemplates",
+                    ":templateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"listenPort\": 6674,\n  \"listenAddress\": \"string\",\n  \"machine\": [\n    \"string\",\n    \"string\"\n  ],\n  \"cluster\": [\n    \"string\",\n    \"string\"\n  ],\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://MDchjraYpNtGBZVgfcvgxYmCnGp.itTbTh.nCF7JI4MVuuKX5r\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://UiiMrUgLigDGiFNEtfXqPZZsigcKg.cphrOncz6p0q5\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c5d4fa9-133a-4d12-ba03-a0f841406028",
+          "name": "Oracle WebLogic Server Update a server template",
+          "request": {
+            "name": "Oracle WebLogic Server Update a server template",
+            "description": {},
+            "url": {
+              "path": [
+                "edit",
+                "serverTemplates",
+                ":templateName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"listenPort\": \"<integer>\",\n  \"listenAddress\": \"<string>\",\n  \"machine\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cluster\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ac055013-5f45-40de-b705-72f39bcdd52c",
+              "name": "Server template updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "serverTemplates",
+                    ":templateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"listenPort\": \"<integer>\",\n  \"listenAddress\": \"<string>\",\n  \"machine\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"cluster\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://xelfIOMmwCSaUZYOAFjgsOmimsPk.nudizExQtWsniQiT9BykB\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://yEerCBHmykKCwCnKDyoFsgx.kcuqklv64ocpq\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef39dea7-978c-4d60-ae39-3bdbdb34e553",
+          "name": "Oracle WebLogic Server Delete a server template",
+          "request": {
+            "name": "Oracle WebLogic Server Delete a server template",
+            "description": {},
+            "url": {
+              "path": [
+                "edit",
+                "serverTemplates",
+                ":templateName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "templateName",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                "key": "X-Requested-By",
+                "value": "<string>"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60457234-3782-4d7f-bb95-2b0de8827b32",
+              "name": "Server template deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "edit",
+                    "serverTemplates",
+                    ":templateName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "templateName",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "MyClient"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:7001/management/weblogic/latest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "70c588e2-74c5-433d-a764-e4dc4a18f46e",
+    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Server Templates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
+      "type": "text/plain"
+    }
+  }
+}
