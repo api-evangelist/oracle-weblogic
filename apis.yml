@@ -195,6 +195,8 @@ apis:
     https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
+  - Cluster
+  tags_raw:
   - Clusters
   properties:
   - type: OpenAPI
@@ -974,6 +976,8 @@ apis:
     https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
