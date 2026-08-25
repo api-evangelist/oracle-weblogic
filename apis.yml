@@ -1,7 +1,6 @@
 name: Oracle WebLogic Server
-description: >-
-  APIs for managing and monitoring Oracle WebLogic Server - a leading platform for building and deploying enterprise
-  Java applications.
+description: APIs for managing and monitoring Oracle WebLogic Server - a leading platform for building and deploying
+  enterprise Java applications.
 accessModel:
   pricing: enterprise
   onboarding: self-serve
@@ -18,19 +17,18 @@ accessModel:
 image: https://www.oracle.com/a/ocom/img/weblogic-server.png
 url: https://www.oracle.com/middleware/weblogic/
 created: '2024'
-modified: '2026-05-19'
+modified: '2026-08-21'
 specificationVersion: '0.23'
 tags:
-  - Application Server
-  - Enterprise
-  - Java EE
-  - Middleware
-  - Oracle
+- Application Server
+- Enterprise
+- Java EE
+- Middleware
+- Oracle
 apis:
 - name: WebLogic WLST (WebLogic Scripting Tool) API
   description: Python-based scripting interface for automating WebLogic Server administration tasks.
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlstc/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlstc/index.html
   baseURL: https://localhost:5556
   tags:
   - Administration
@@ -39,16 +37,12 @@ apis:
   - Scripting
   properties:
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlstc/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlstc/index.html
   - type: Reference
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlstg/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlstg/index.html
 - name: WebLogic JMX API
-  description: >-
-    Java Management Extensions API for programmatic management and monitoring of WebLogic Server.
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+  description: Java Management Extensions API for programmatic management and monitoring of WebLogic Server.
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   baseURL: service:jmx:rmi:///jndi/rmi://localhost:7001/jmxrmi
   tags:
   - Java
@@ -57,19 +51,15 @@ apis:
   - MBeans
   properties:
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: APIReference
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlapi/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlapi/index.html
   - type: Examples
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/examples.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/examples.html
 - aid: oracle-weblogic:oracle-weblogic-application-deployment-api
   name: Oracle WebLogic Server Application Deployment API
   description: Deploy, configure, and manage application deployments
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Application Deployment
@@ -77,11 +67,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-application-deployment-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -91,26 +79,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-application-deployments-api
   name: Oracle WebLogic Server Application Deployments API
   description: Deploy, configure, and manage enterprise application deployments (EAR, WAR files)
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Application Deployments
@@ -118,11 +101,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-application-deployments-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -132,26 +113,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-application-runtime-api
   name: Oracle WebLogic Server Application Runtime API
   description: Monitor application deployment status and health
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Application Runtime
@@ -159,11 +135,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-application-runtime-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -173,26 +147,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-clusters-api
   name: Oracle WebLogic Server Clusters API
   description: Manage WebLogic Server clusters and dynamic servers
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Cluster
@@ -202,11 +171,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-clusters-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -216,26 +183,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-data-sources-api
   name: Oracle WebLogic Server Data Sources API
   description: Manage JDBC system resources and data sources
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Data Sources
@@ -243,11 +205,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-data-sources-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -257,26 +217,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-deployment-configuration-api
   name: Oracle WebLogic Server Deployment Configuration API
   description: Configure deployment targets and settings
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Deployment Configuration
@@ -284,11 +239,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-deployment-configuration-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -298,26 +251,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-deployment-lifecycle-api
   name: Oracle WebLogic Server Deployment Lifecycle API
   description: Start, stop, and manage deployed application lifecycle
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Deployment Lifecycle
@@ -325,11 +273,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-deployment-lifecycle-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -339,26 +285,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-domain-configuration-api
   name: Oracle WebLogic Server Domain Configuration API
   description: View domain-level configuration
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Domain Configuration
@@ -366,11 +307,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-domain-configuration-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -380,26 +319,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-domain-runtime-api
   name: Oracle WebLogic Server Domain Runtime API
   description: Domain-wide runtime monitoring available from the admin server
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Domain Runtime
@@ -407,11 +341,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-domain-runtime-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -421,26 +353,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-edit-session-api
   name: Oracle WebLogic Server Edit Session API
   description: Manage edit sessions for deployment changes
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Edit Session
@@ -448,11 +375,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-edit-session-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -462,26 +387,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-jdbc-runtime-api
   name: Oracle WebLogic Server JDBC Runtime API
   description: Monitor JDBC data source runtime statistics
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - JDBC Runtime
@@ -489,11 +409,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-jdbc-runtime-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -503,26 +421,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-jms-api
   name: Oracle WebLogic Server JMS API
   description: Manage JMS servers, system resources, queues, and connection factories
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - JMS
@@ -530,11 +443,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-jms-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -544,26 +455,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-jms-runtime-api
   name: Oracle WebLogic Server JMS Runtime API
   description: Monitor JMS server and destination runtime statistics
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - JMS Runtime
@@ -571,11 +477,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-jms-runtime-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -585,26 +489,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-library-deployments-api
   name: Oracle WebLogic Server Library Deployments API
   description: Deploy and manage shared library deployments
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Library Deployments
@@ -612,11 +511,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-library-deployments-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -626,26 +523,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-machines-api
   name: Oracle WebLogic Server Machines API
   description: Manage machines and Node Manager configuration
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Machines
@@ -653,11 +545,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-machines-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -667,26 +557,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-runtime-search-api
   name: Oracle WebLogic Server Runtime Search API
   description: Structured queries against runtime trees
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Runtime Search
@@ -694,11 +579,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-runtime-search-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -708,26 +591,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-search-api
   name: Oracle WebLogic Server Search API
   description: Query and search across configuration trees
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Search
@@ -735,11 +613,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-search-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -749,26 +625,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-security-api
   name: Oracle WebLogic Server Security API
   description: Manage security realms, authentication providers, and users
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Security
@@ -776,11 +647,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-security-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -790,26 +659,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-server-lifecycle-api
   name: Oracle WebLogic Server Server Lifecycle API
   description: Server lifecycle operations (start, stop, suspend, resume)
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Server Lifecycle
@@ -817,11 +681,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-server-lifecycle-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -831,26 +693,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-server-runtime-api
   name: Oracle WebLogic Server Server Runtime API
   description: Individual server runtime monitoring
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Server Runtime
@@ -858,11 +715,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-server-runtime-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -872,26 +727,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-server-templates-api
   name: Oracle WebLogic Server Server Templates API
   description: Manage server templates for dynamic server creation
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Server Templates
@@ -899,11 +749,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-server-templates-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -913,26 +761,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-servers-api
   name: Oracle WebLogic Server Servers API
   description: Manage WebLogic Server instances
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Servers
@@ -940,11 +783,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-servers-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -954,26 +795,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-tasks-api
   name: Oracle WebLogic Server Tasks API
   description: Monitor asynchronous task status
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Task
@@ -983,11 +819,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-tasks-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -997,26 +831,21 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-thread-pool-runtime-api
   name: Oracle WebLogic Server Thread Pool Runtime API
   description: Monitor thread pool utilization
-  humanURL: >-
-    https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+  humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
   tags:
   - Thread Pool Runtime
@@ -1024,11 +853,9 @@ apis:
   - type: OpenAPI
     url: openapi/oracle-weblogic-thread-pool-runtime-api-openapi.yml
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   - type: Authentication
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-server-configuration.json
   - type: JSONSchema
@@ -1038,57 +865,60 @@ apis:
   - type: JSONLD
     url: json-ld/oracle-weblogic-context.jsonld
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html
   - type: Guide
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-domain-runtime.json
   - type: Documentation
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html
   - type: Tutorial
-    url: >-
-      https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
+    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
-    url: https://apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com
 common:
-  - type: AgenticAccess
-    url: agentic-access/oracle-weblogic-agentic-access.yml
-  - type: DomainSecurity
-    url: security/oracle-weblogic-domain-security.yml
-  - type: Authentication
-    url: authentication/oracle-weblogic-authentication.yml
-  - type: Support
-    url: https://support.oracle.com/
-  - type: Documentation
-    url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/
-  - type: Downloads
-    url: https://www.oracle.com/middleware/technologies/weblogic-server-downloads.html
-  - type: Community
-    url: https://community.oracle.com/customerconnect/categories/appsuite-weblogic-server
-  - type: License
-    url: https://www.oracle.com/downloads/licenses/standard-license.html
-  - type: Blog
-    url: https://blogs.oracle.com/weblogicserver/
-  - type: Website
-    url: https://www.oracle.com/middleware/technologies/weblogic.html
-  - type: TermsOfService
-    url: https://www.oracle.com/legal/terms.html
-  - type: PrivacyPolicy
-    url: https://www.oracle.com/legal/privacy/
-  - type: GitHubOrganization
-    url: https://github.com/oracle
-  - type: StackOverflow
-    url: https://stackoverflow.com/questions/tagged/weblogic
-  - type: YouTube
-    url: https://www.youtube.com/@OracleDevelopers
-  - type: Signup
-    url: https://cloud.oracle.com/
-  - type: StatusPage
-    url: https://ocistatus.oraclecloud.com/
+- type: ParentCompany
+  url: https://apis.io/providers/oracle/
+  name: Oracle
+  x-relationship: product
+  x-generated-by: oracle-family:2026-08-21
+- type: AgenticAccess
+  url: agentic-access/oracle-weblogic-agentic-access.yml
+- type: DomainSecurity
+  url: security/oracle-weblogic-domain-security.yml
+- type: Authentication
+  url: authentication/oracle-weblogic-authentication.yml
+- type: Support
+  url: https://support.oracle.com/
+- type: Documentation
+  url: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/
+- type: Downloads
+  url: https://www.oracle.com/middleware/technologies/weblogic-server-downloads.html
+- type: Community
+  url: https://community.oracle.com/customerconnect/categories/appsuite-weblogic-server
+- type: License
+  url: https://www.oracle.com/downloads/licenses/standard-license.html
+- type: Blog
+  url: https://blogs.oracle.com/weblogicserver/
+- type: Website
+  url: https://www.oracle.com/middleware/technologies/weblogic.html
+- type: TermsOfService
+  url: https://www.oracle.com/legal/terms.html
+- type: PrivacyPolicy
+  url: https://www.oracle.com/legal/privacy/
+- type: GitHubOrganization
+  url: https://github.com/oracle
+- type: StackOverflow
+  url: https://stackoverflow.com/questions/tagged/weblogic
+- type: YouTube
+  url: https://www.youtube.com/@OracleDevelopers
+- type: Signup
+  url: https://cloud.oracle.com/
+- type: StatusPage
+  url: https://ocistatus.oraclecloud.com/
+x-parent: oracle
+x-relationship: product
