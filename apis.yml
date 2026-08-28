@@ -1,6 +1,18 @@
 name: Oracle WebLogic Server
 description: APIs for managing and monitoring Oracle WebLogic Server - a leading platform for building and deploying
   enterprise Java applications.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: self-serve
@@ -881,6 +893,9 @@ maintainers:
   email: kin@apievangelist.com
   url: https://apievangelist.com
 common:
+- type: CapabilityMap
+  url: capabilities/oracle-weblogic-capability-edges.yml
+  name: Oracle WebLogic Server Business Capability Map
 - type: ParentCompany
   url: https://apis.io/providers/oracle/
   name: Oracle
