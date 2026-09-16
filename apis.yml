@@ -1,5 +1,6 @@
 name: Oracle WebLogic Server
-description: APIs for managing and monitoring Oracle WebLogic Server - a leading platform for building and deploying enterprise Java applications.
+description: APIs for managing and monitoring Oracle WebLogic Server - a leading platform for building
+  and deploying enterprise Java applications.
 deliveryModel:
   model: saas
   open_source: false
@@ -29,7 +30,7 @@ accessModel:
 image: https://www.oracle.com/a/ocom/img/weblogic-server.png
 url: https://www.oracle.com/middleware/weblogic/
 created: '2024'
-modified: '2026-08-21'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 tags:
 - Application Server
@@ -683,7 +684,7 @@ apis:
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-server-lifecycle-api
-  name: Oracle WebLogic Server Server Lifecycle API
+  name: Oracle WebLogic Server Lifecycle API
   description: Server lifecycle operations (start, stop, suspend, resume)
   humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
@@ -717,7 +718,7 @@ apis:
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-server-runtime-api
-  name: Oracle WebLogic Server Server Runtime API
+  name: Oracle WebLogic Server Runtime API
   description: Individual server runtime monitoring
   humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
@@ -751,7 +752,7 @@ apis:
   - type: JSONSchema
     url: json-schema/oracle-weblogic-deployment.json
 - aid: oracle-weblogic:oracle-weblogic-server-templates-api
-  name: Oracle WebLogic Server Server Templates API
+  name: Oracle WebLogic Server Templates API
   description: Manage server templates for dynamic server creation
   humanURL: https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html
   baseURL: http://localhost:7001/management/weblogic/latest
@@ -1074,7 +1075,8 @@ apis:
     url: json-schema/weblogic-application-deployment.json
 - aid: oracle-weblogic:weblogic-domain-configuration-api
   name: Oracle WebLogic Server APIs Domain Configuration API
-  description: Read-only access to the domain-level configuration MBean tree including servers, clusters, data sources, JMS resources, and security realms.
+  description: Read-only access to the domain-level configuration MBean tree including servers, clusters,
+    data sources, JMS resources, and security realms.
   tags:
   - Domain Configuration
   properties:
@@ -1104,7 +1106,8 @@ apis:
     url: json-schema/weblogic-application-deployment.json
 - aid: oracle-weblogic:weblogic-domain-runtime-api
   name: Oracle WebLogic Server APIs Domain Runtime API
-  description: Access to domain-level runtime MBeans including server lifecycle operations, deployment operations, and domain-wide monitoring data.
+  description: Access to domain-level runtime MBeans including server lifecycle operations, deployment
+    operations, and domain-wide monitoring data.
   tags:
   - Domain Runtime
   properties:
@@ -1134,7 +1137,8 @@ apis:
     url: json-schema/weblogic-application-deployment.json
 - aid: oracle-weblogic:weblogic-edit-api
   name: Oracle WebLogic Server APIs Edit API
-  description: Configuration editing operations. An edit session must be started before making changes to the domain configuration. Changes are staged and then activated.
+  description: Configuration editing operations. An edit session must be started before making changes
+    to the domain configuration. Changes are staged and then activated.
   tags:
   - Edit
   properties:
@@ -1254,7 +1258,8 @@ apis:
     url: json-schema/weblogic-application-deployment.json
 - aid: oracle-weblogic:weblogic-lifecycle-api
   name: Oracle WebLogic Server APIs Lifecycle API
-  description: Server lifecycle management operations including starting, stopping, suspending, and resuming servers.
+  description: Server lifecycle management operations including starting, stopping, suspending, and resuming
+    servers.
   tags:
   - Lifecycle
   properties:
@@ -1314,7 +1319,8 @@ apis:
     url: json-schema/weblogic-application-deployment.json
 - aid: oracle-weblogic:weblogic-server-runtime-api
   name: Oracle WebLogic Server APIs Server Runtime API
-  description: Access to server-level runtime MBeans providing monitoring data for individual server instances including thread pools, JDBC, JMS, and application runtimes.
+  description: Access to server-level runtime MBeans providing monitoring data for individual server instances
+    including thread pools, JDBC, JMS, and application runtimes.
   tags:
   - Server Runtime
   properties:
