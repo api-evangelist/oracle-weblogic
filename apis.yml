@@ -1072,6 +1072,8 @@ apis:
     https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlstc/index.html
   baseURL: https://localhost:5556
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
