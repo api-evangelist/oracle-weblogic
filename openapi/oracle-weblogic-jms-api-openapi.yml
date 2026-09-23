@@ -1,14 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment JMS API
-  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
-  version: 12.2.1.3.0
-  contact:
-    name: Oracle Support
-    url: https://support.oracle.com/
-  license:
-    name: Oracle Standard License
-    url: https://www.oracle.com/downloads/licenses/standard-license.html
+  title: Oracle Weblogic JMS API
+  version: '1.0'
+  description: 'Operations tagged JMS across 2 of this provider''s published API definitions: oracle-weblogic-management-openapi.yml, weblogic-jms-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: http://localhost:7001/management/weblogic/latest
   description: WebLogic Administration Server (default)
@@ -17,10 +11,22 @@ servers:
   variables:
     host:
       default: localhost
+      description: WebLogic admin server hostname
     port:
       default: '7001'
+      description: WebLogic admin server listen port
     version:
       default: latest
+      description: REST API version (e.g., latest, 12.2.1.3.0)
+- url: https://{host}:{port}/management/weblogic/latest
+  description: WebLogic Server Administration Server
+  variables:
+    host:
+      default: localhost
+      description: Hostname of the WebLogic Administration Server
+    port:
+      default: '7001'
+      description: Port of the WebLogic Administration Server
 security:
 - basicAuth: []
 tags:
@@ -66,6 +72,21 @@ paths:
               schema:
                 type: string
                 format: uri
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Administration Server (configurable)
+      variables:
+        host:
+          default: localhost
+          description: WebLogic admin server hostname
+        port:
+          default: '7001'
+          description: WebLogic admin server listen port
+        version:
+          default: latest
+          description: REST API version (e.g., latest, 12.2.1.3.0)
   /edit/JMSServers/{jmsServerName}:
     get:
       operationId: getJMSServer
@@ -92,6 +113,21 @@ paths:
       responses:
         '204':
           description: JMS server deleted
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Administration Server (configurable)
+      variables:
+        host:
+          default: localhost
+          description: WebLogic admin server hostname
+        port:
+          default: '7001'
+          description: WebLogic admin server listen port
+        version:
+          default: latest
+          description: REST API version (e.g., latest, 12.2.1.3.0)
   /edit/JMSSystemResources:
     get:
       operationId: listJMSSystemResources
@@ -126,6 +162,21 @@ paths:
       responses:
         '201':
           description: JMS system resource created
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Administration Server (configurable)
+      variables:
+        host:
+          default: localhost
+          description: WebLogic admin server hostname
+        port:
+          default: '7001'
+          description: WebLogic admin server listen port
+        version:
+          default: latest
+          description: REST API version (e.g., latest, 12.2.1.3.0)
   /edit/JMSSystemResources/{jmsResourceName}/JMSResource/connectionFactories:
     get:
       operationId: listJMSConnectionFactories
@@ -163,6 +214,21 @@ paths:
       responses:
         '201':
           description: Connection factory created
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Administration Server (configurable)
+      variables:
+        host:
+          default: localhost
+          description: WebLogic admin server hostname
+        port:
+          default: '7001'
+          description: WebLogic admin server listen port
+        version:
+          default: latest
+          description: REST API version (e.g., latest, 12.2.1.3.0)
   /edit/JMSSystemResources/{jmsResourceName}/JMSResource/uniformDistributedQueues:
     get:
       operationId: listJMSDistributedQueues
@@ -200,6 +266,21 @@ paths:
       responses:
         '201':
           description: Distributed queue created
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Administration Server (configurable)
+      variables:
+        host:
+          default: localhost
+          description: WebLogic admin server hostname
+        port:
+          default: '7001'
+          description: WebLogic admin server listen port
+        version:
+          default: latest
+          description: REST API version (e.g., latest, 12.2.1.3.0)
   /edit/JMSSystemResources/{jmsResourceName}/subDeployments:
     get:
       operationId: listJMSSubDeployments
@@ -237,6 +318,21 @@ paths:
       responses:
         '201':
           description: Sub-deployment created
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Administration Server (configurable)
+      variables:
+        host:
+          default: localhost
+          description: WebLogic admin server hostname
+        port:
+          default: '7001'
+          description: WebLogic admin server listen port
+        version:
+          default: latest
+          description: REST API version (e.g., latest, 12.2.1.3.0)
   /edit/fileStores:
     get:
       operationId: listFileStores
@@ -271,7 +367,148 @@ paths:
       responses:
         '201':
           description: File store created
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Administration Server (configurable)
+      variables:
+        host:
+          default: localhost
+          description: WebLogic admin server hostname
+        port:
+          default: '7001'
+          description: WebLogic admin server listen port
+        version:
+          default: latest
+          description: REST API version (e.g., latest, 12.2.1.3.0)
+  /JMSServers:
+    get:
+      operationId: getJMSServers
+      summary: Oracle WebLogic Server APIs List all JMS server metrics
+      description: Returns monitoring metrics for all JMS servers in the domain.
+      tags:
+      - JMS
+      responses:
+        '200':
+          description: List of JMS server metrics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JMSServerMetrics'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    servers:
+    - url: https://{host}:{port}/management/weblogic/latest
+      description: WebLogic Server Administration Server
+      variables:
+        host:
+          default: localhost
+          description: Hostname of the WebLogic Administration Server
+        port:
+          default: '7001'
+          description: Port of the WebLogic Administration Server
+  /JMSServers/{jmsServerName}:
+    get:
+      operationId: getJMSServer
+      summary: Oracle WebLogic Server APIs Get JMS server metrics
+      description: Returns detailed metrics for a specific JMS server.
+      tags:
+      - JMS
+      parameters:
+      - $ref: '#/components/parameters/jmsServerName'
+      responses:
+        '200':
+          description: JMS server metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JMSServerMetrics'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://{host}:{port}/management/weblogic/latest
+      description: WebLogic Server Administration Server
+      variables:
+        host:
+          default: localhost
+          description: Hostname of the WebLogic Administration Server
+        port:
+          default: '7001'
+          description: Port of the WebLogic Administration Server
+  /JMSServers/{jmsServerName}/destinations:
+    get:
+      operationId: getJMSDestinations
+      summary: Oracle WebLogic Server APIs List JMS destinations
+      description: Returns monitoring metrics for all destinations on a JMS server.
+      tags:
+      - JMS
+      parameters:
+      - $ref: '#/components/parameters/jmsServerName'
+      responses:
+        '200':
+          description: List of JMS destination metrics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/JMSDestinationMetrics'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    servers:
+    - url: https://{host}:{port}/management/weblogic/latest
+      description: WebLogic Server Administration Server
+      variables:
+        host:
+          default: localhost
+          description: Hostname of the WebLogic Administration Server
+        port:
+          default: '7001'
+          description: Port of the WebLogic Administration Server
 components:
+  parameters:
+    JMSServerName:
+      name: jmsServerName
+      in: path
+      required: true
+      description: Name of the JMS server
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    JMSResourceName:
+      name: jmsResourceName
+      in: path
+      required: true
+      description: Name of the JMS system resource
+      schema:
+        type: string
+    jmsServerName:
+      name: jmsServerName
+      in: path
+      required: true
+      description: The name of the JMS server
+      schema:
+        type: string
   schemas:
     JMSDistributedQueue:
       type: object
@@ -297,65 +534,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identity'
-    JMSSubDeployment:
+    Link:
       type: object
       properties:
-        name:
+        rel:
           type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    JMSConnectionFactory:
-      type: object
-      properties:
-        name:
+          description: Link relation type
+        href:
           type: string
-          description: Connection factory name
-        JNDIName:
+          format: uri
+          description: URL of the linked resource
+        title:
           type: string
-          description: JNDI name
-        subDeploymentName:
-          type: string
-          description: Sub-deployment name for targeting
-    JMSDistributedQueueCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        subDeploymentName:
-          type: string
-    JMSServerCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: JMS server name
-        messagesMaximum:
-          type: integer
-        bytesMaximum:
-          type: integer
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-        persistentStore:
-          type: array
-          items:
-            type: string
-    Identity:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-          description: Bean identity path as an array of path segments
-    JMSSubDeploymentCreateRequest:
+          description: Human-readable title for the link
+    JMSSystemResourceCreateRequest:
       type: object
       required:
       - name
@@ -395,6 +587,69 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    JMSSubDeployment:
+      type: object
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    JMSDistributedQueueCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        subDeploymentName:
+          type: string
+    JMSConnectionFactoryCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        subDeploymentName:
+          type: string
+    FileStore:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        directory:
+          type: string
+          description: Directory for the file store
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    JMSConnectionFactory:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Connection factory name
+        JNDIName:
+          type: string
+          description: JNDI name
+        subDeploymentName:
+          type: string
+          description: Sub-deployment name for targeting
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+          description: Bean identity path as an array of path segments
     JMSSystemResource:
       type: object
       properties:
@@ -412,83 +667,163 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: URL of the linked resource
-        title:
-          type: string
-          description: Human-readable title for the link
-    JMSConnectionFactoryCreateRequest:
+    JMSServerCreateRequest:
       type: object
       required:
       - name
       properties:
         name:
           type: string
-        subDeploymentName:
-          type: string
-    JMSSystemResourceCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
+          description: JMS server name
+        messagesMaximum:
+          type: integer
+        bytesMaximum:
+          type: integer
         targets:
           type: array
           items:
             $ref: '#/components/schemas/Identity'
-    FileStore:
-      type: object
-      properties:
-        identity:
+        persistentStore:
           type: array
           items:
             type: string
+    JMSSubDeploymentCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
         name:
           type: string
-        directory:
-          type: string
-          description: Directory for the file store
         targets:
           type: array
           items:
             $ref: '#/components/schemas/Identity'
-  parameters:
-    JMSServerName:
-      name: jmsServerName
-      in: path
-      required: true
-      description: Name of the JMS server
-      schema:
-        type: string
-    XRequestedBy:
-      name: X-Requested-By
-      in: header
-      required: true
-      description: CSRF protection header required for POST and DELETE requests
-      schema:
-        type: string
-        example: MyClient
-    JMSResourceName:
-      name: jmsResourceName
-      in: path
-      required: true
-      description: Name of the JMS system resource
-      schema:
-        type: string
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+    JMSServerMetrics:
+      type: object
+      properties:
+        name:
+          type: string
+          description: JMS server name
+        messagesCurrentCount:
+          type: integer
+          format: int64
+          description: Current messages
+        messagesPendingCount:
+          type: integer
+          format: int64
+          description: Pending messages
+        messagesHighCount:
+          type: integer
+          format: int64
+          description: High watermark of messages
+        messagesReceivedCount:
+          type: integer
+          format: int64
+          description: Total messages received
+        bytesCurrentCount:
+          type: integer
+          format: int64
+          description: Current bytes
+        bytesPendingCount:
+          type: integer
+          format: int64
+          description: Pending bytes
+        consumersCurrentCount:
+          type: integer
+          format: int64
+          description: Current consumers
+        consumersHighCount:
+          type: integer
+          format: int64
+          description: High watermark of consumers
+        destinationsCurrentCount:
+          type: integer
+          format: int64
+          description: Current destinations
+        healthState:
+          type: object
+          properties:
+            state:
+              type: string
+            subsystemName:
+              type: string
+    JMSDestinationMetrics:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Destination name
+        type:
+          type: string
+          description: Destination type
+          enum:
+          - Queue
+          - Topic
+        messagesCurrentCount:
+          type: integer
+          format: int64
+          description: Current messages in the destination
+        messagesPendingCount:
+          type: integer
+          format: int64
+          description: Pending messages
+        messagesHighCount:
+          type: integer
+          format: int64
+          description: High watermark of messages
+        messagesReceivedCount:
+          type: integer
+          format: int64
+          description: Total received messages
+        consumersCurrentCount:
+          type: integer
+          format: int64
+          description: Current consumers
+        consumersHighCount:
+          type: integer
+          format: int64
+          description: High watermark of consumers
+        consumersTotal:
+          type: integer
+          format: int64
+          description: Total consumers created
+        bytesCurrentCount:
+          type: integer
+          format: int64
+          description: Current total bytes
+        bytesPendingCount:
+          type: integer
+          format: int64
+          description: Pending bytes
+  responses:
+    Unauthorized:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http
       scheme: basic
-      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
-externalDocs:
-  description: WebLogic Server Deployment Documentation
-  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm
+      description: HTTP Basic authentication using WebLogic Server credentials. Users must have appropriate roles (Admin, Operator, Deployer, or Monitor).
+x-refined-from:
+- oracle-weblogic-management-openapi.yml
+- weblogic-jms-api-openapi.yml

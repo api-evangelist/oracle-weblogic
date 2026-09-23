@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Server Templates API
-  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  title: Oracle WebLogic Server Oracle WebLogic RESTful Management…
+  description: RESTful API for managing and monitoring Oracle WebLogic Server domains, servers, clusters, applications, data sources, JMS resources, and security configuration.
   version: 12.2.1.3.0
   contact:
     name: Oracle Support
@@ -9,6 +9,7 @@ info:
   license:
     name: Oracle Standard License
     url: https://www.oracle.com/downloads/licenses/standard-license.html
+  termsOfService: https://www.oracle.com/legal/terms.html
 servers:
 - url: http://localhost:7001/management/weblogic/latest
   description: WebLogic Administration Server (default)
@@ -17,10 +18,13 @@ servers:
   variables:
     host:
       default: localhost
+      description: WebLogic admin server hostname
     port:
       default: '7001'
+      description: WebLogic admin server listen port
     version:
       default: latest
+      description: REST API version (e.g., latest, 12.2.1.3.0)
 security:
 - basicAuth: []
 tags:
@@ -136,6 +140,28 @@ components:
         title:
           type: string
           description: Human-readable title for the link
+    ServerTemplateCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Server template name
+        listenPort:
+          type: integer
+        listenAddress:
+          type: string
+        machine:
+          type: array
+          items:
+            type: string
+          description: Machine reference as identity path
+        cluster:
+          type: array
+          items:
+            type: string
+          description: Cluster reference as identity path
     ServerTemplate:
       type: object
       properties:
@@ -161,28 +187,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    ServerTemplateCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Server template name
-        listenPort:
-          type: integer
-        listenAddress:
-          type: string
-        machine:
-          type: array
-          items:
-            type: string
-          description: Machine reference as identity path
-        cluster:
-          type: array
-          items:
-            type: string
-          description: Cluster reference as identity path
   parameters:
     XRequestedBy:
       name: X-Requested-By
@@ -196,7 +200,7 @@ components:
     basicAuth:
       type: http
       scheme: basic
-      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+      description: HTTP Basic authentication using WebLogic Server credentials. Users must have appropriate roles (Admin, Operator, Deployer, or Monitor).
 externalDocs:
-  description: WebLogic Server Deployment Documentation
+  description: Oracle WebLogic Server RESTful Management Services Documentation
   url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

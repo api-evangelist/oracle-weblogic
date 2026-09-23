@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment JMS Runtime API
-  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
+  title: Oracle WebLogic Server Oracle WebLogic Monitoring and…
+  description: RESTful API for accessing runtime monitoring data, diagnostics information, and performance metrics for Oracle WebLogic Server domains. Provides read-only access to the domainRuntime and serverRuntime bean trees for monitoring server states, application runtimes, JDBC data source health, JMS statistics, thread pool utilization, and server lifecycle management operations.
   version: 12.2.1.3.0
   contact:
     name: Oracle Support
@@ -13,7 +13,7 @@ servers:
 - url: http://localhost:7001/management/weblogic/latest
   description: WebLogic Administration Server (default)
 - url: http://{host}:{port}/management/weblogic/{version}
-  description: WebLogic Administration Server (configurable)
+  description: WebLogic Server (configurable)
   variables:
     host:
       default: localhost
@@ -94,6 +94,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
     JMSRuntime:
       type: object
       properties:
@@ -110,17 +121,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-        title:
-          type: string
   parameters:
     ServerName:
       name: serverName
@@ -133,7 +133,7 @@ components:
     basicAuth:
       type: http
       scheme: basic
-      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
+      description: HTTP Basic authentication with WebLogic Server credentials
 externalDocs:
-  description: WebLogic Server Deployment Documentation
+  description: WebLogic Server Monitoring Documentation
   url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm

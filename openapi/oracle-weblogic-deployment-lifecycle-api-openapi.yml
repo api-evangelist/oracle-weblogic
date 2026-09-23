@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Deployment Lifecycle API
+  title: Oracle WebLogic Server Oracle WebLogic Deployment…
   description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
   version: 12.2.1.3.0
   contact:
@@ -196,48 +196,55 @@ paths:
                     items:
                       $ref: '#/components/schemas/ApplicationRuntime'
 components:
-  parameters:
-    Links:
-      name: links
-      in: query
-      description: Comma-separated list of link relations to include
-      schema:
-        type: string
-    AppName:
-      name: appName
-      in: path
-      required: true
-      description: Name of the application
-      schema:
-        type: string
-    Prefer:
-      name: Prefer
-      in: header
-      description: Controls async behavior for long-running operations
-      schema:
-        type: string
-    XRequestedBy:
-      name: X-Requested-By
-      in: header
-      required: true
-      description: CSRF protection header
-      schema:
-        type: string
-        example: MyClient
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include
-      schema:
-        type: string
-    ServerNamePath:
-      name: serverName
-      in: path
-      required: true
-      description: Name of the WebLogic Server instance
-      schema:
-        type: string
   schemas:
+    ApplicationRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+        healthState:
+          type: object
+          properties:
+            state:
+              type: string
+              enum:
+              - HEALTH_OK
+              - HEALTH_WARN
+              - HEALTH_CRITICAL
+              - HEALTH_FAILED
+              - HEALTH_OVERLOADED
+            subsystemName:
+              type: string
+        state:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    AppDeploymentRuntime:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Application name
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
     TaskStatus:
       type: object
       properties:
@@ -269,54 +276,47 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    AppDeploymentRuntime:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-          description: Application name
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    ApplicationRuntime:
-      type: object
-      properties:
-        name:
-          type: string
-        healthState:
-          type: object
-          properties:
-            state:
-              type: string
-              enum:
-              - HEALTH_OK
-              - HEALTH_WARN
-              - HEALTH_CRITICAL
-              - HEALTH_FAILED
-              - HEALTH_OVERLOADED
-            subsystemName:
-              type: string
-        state:
-          type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-        title:
-          type: string
+  parameters:
+    ServerNamePath:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
+      schema:
+        type: string
+    Prefer:
+      name: Prefer
+      in: header
+      description: Controls async behavior for long-running operations
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header
+      schema:
+        type: string
+        example: MyClient
+    AppName:
+      name: appName
+      in: path
+      required: true
+      description: Name of the application
+      schema:
+        type: string
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

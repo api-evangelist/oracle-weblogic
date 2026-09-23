@@ -1,14 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Servers API
-  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
-  version: 12.2.1.3.0
-  contact:
-    name: Oracle Support
-    url: https://support.oracle.com/
-  license:
-    name: Oracle Standard License
-    url: https://www.oracle.com/downloads/licenses/standard-license.html
+  title: Oracle Weblogic Servers API
+  version: '1.0'
+  description: 'Operations tagged Servers across 2 of this provider''s published API definitions: oracle-weblogic-management-openapi.yml, weblogic-servers-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: http://localhost:7001/management/weblogic/latest
   description: WebLogic Administration Server (default)
@@ -17,10 +11,22 @@ servers:
   variables:
     host:
       default: localhost
+      description: WebLogic admin server hostname
     port:
       default: '7001'
+      description: WebLogic admin server listen port
     version:
       default: latest
+      description: REST API version (e.g., latest, 12.2.1.3.0)
+- url: https://{host}:{port}/management/weblogic/latest
+  description: WebLogic Server Administration Server
+  variables:
+    host:
+      default: localhost
+      description: Hostname of the WebLogic Administration Server
+    port:
+      default: '7001'
+      description: Port of the WebLogic Administration Server
 security:
 - basicAuth: []
 tags:
@@ -92,6 +98,21 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Administration Server (configurable)
+      variables:
+        host:
+          default: localhost
+          description: WebLogic admin server hostname
+        port:
+          default: '7001'
+          description: WebLogic admin server listen port
+        version:
+          default: latest
+          description: REST API version (e.g., latest, 12.2.1.3.0)
   /edit/serverCreateForm:
     get:
       operationId: getServerCreateForm
@@ -108,6 +129,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ServerCreateRequest'
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Administration Server (configurable)
+      variables:
+        host:
+          default: localhost
+          description: WebLogic admin server hostname
+        port:
+          default: '7001'
+          description: WebLogic admin server listen port
+        version:
+          default: latest
+          description: REST API version (e.g., latest, 12.2.1.3.0)
   /edit/servers/{serverName}:
     get:
       operationId: getServer
@@ -173,6 +209,21 @@ paths:
           description: Server deleted successfully
         '404':
           $ref: '#/components/responses/NotFound'
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Administration Server (configurable)
+      variables:
+        host:
+          default: localhost
+          description: WebLogic admin server hostname
+        port:
+          default: '7001'
+          description: WebLogic admin server listen port
+        version:
+          default: latest
+          description: REST API version (e.g., latest, 12.2.1.3.0)
   /edit/servers/{serverName}/SSL:
     get:
       operationId: getServerSSL
@@ -208,6 +259,21 @@ paths:
       responses:
         '200':
           description: SSL configuration updated
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Administration Server (configurable)
+      variables:
+        host:
+          default: localhost
+          description: WebLogic admin server hostname
+        port:
+          default: '7001'
+          description: WebLogic admin server listen port
+        version:
+          default: latest
+          description: REST API version (e.g., latest, 12.2.1.3.0)
   /edit/servers/{serverName}/serverStart:
     get:
       operationId: getServerStart
@@ -241,6 +307,21 @@ paths:
       responses:
         '200':
           description: Server start configuration updated
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Administration Server (configurable)
+      variables:
+        host:
+          default: localhost
+          description: WebLogic admin server hostname
+        port:
+          default: '7001'
+          description: WebLogic admin server listen port
+        version:
+          default: latest
+          description: REST API version (e.g., latest, 12.2.1.3.0)
   /edit/servers/{serverName}/networkAccessPoints:
     get:
       operationId: listNetworkAccessPoints
@@ -279,159 +360,183 @@ paths:
       responses:
         '201':
           description: Network access point created
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Administration Server (configurable)
+      variables:
+        host:
+          default: localhost
+          description: WebLogic admin server hostname
+        port:
+          default: '7001'
+          description: WebLogic admin server listen port
+        version:
+          default: latest
+          description: REST API version (e.g., latest, 12.2.1.3.0)
+  /servers:
+    get:
+      operationId: getServers
+      summary: Oracle WebLogic Server APIs List all monitored servers
+      description: Returns monitoring information for all servers in the domain including their current state, health, and basic runtime metrics.
+      tags:
+      - Servers
+      responses:
+        '200':
+          description: List of monitored servers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ServerMonitoring'
+                  links:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Link_2'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+    servers:
+    - url: https://{host}:{port}/management/weblogic/latest
+      description: WebLogic Server Administration Server
+      variables:
+        host:
+          default: localhost
+          description: Hostname of the WebLogic Administration Server
+        port:
+          default: '7001'
+          description: Port of the WebLogic Administration Server
+  /servers/{serverName}:
+    get:
+      operationId: getServer
+      summary: Oracle WebLogic Server APIs Get server monitoring information
+      description: Returns detailed monitoring information for a specific server including state, health, JVM metrics, and subsystem runtimes.
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/serverName'
+      responses:
+        '200':
+          description: Server monitoring information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerMonitoring'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound_2'
+    servers:
+    - url: https://{host}:{port}/management/weblogic/latest
+      description: WebLogic Server Administration Server
+      variables:
+        host:
+          default: localhost
+          description: Hostname of the WebLogic Administration Server
+        port:
+          default: '7001'
+          description: Port of the WebLogic Administration Server
+  /servers/{serverName}/jvm:
+    get:
+      operationId: getServerJVM
+      summary: Oracle WebLogic Server APIs Get server JVM metrics
+      description: Returns JVM runtime metrics for the specified server including heap usage, garbage collection statistics, and thread information.
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/serverName'
+      responses:
+        '200':
+          description: JVM metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JVMMetrics'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound_2'
+    servers:
+    - url: https://{host}:{port}/management/weblogic/latest
+      description: WebLogic Server Administration Server
+      variables:
+        host:
+          default: localhost
+          description: Hostname of the WebLogic Administration Server
+        port:
+          default: '7001'
+          description: Port of the WebLogic Administration Server
+  /servers/{serverName}/threadPool:
+    get:
+      operationId: getServerThreadPool
+      summary: Oracle WebLogic Server APIs Get server thread pool metrics
+      description: Returns thread pool monitoring data for the specified server including thread counts, queue lengths, and throughput.
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/serverName'
+      responses:
+        '200':
+          description: Thread pool metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreadPoolMetrics'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound_2'
+    servers:
+    - url: https://{host}:{port}/management/weblogic/latest
+      description: WebLogic Server Administration Server
+      variables:
+        host:
+          default: localhost
+          description: Hostname of the WebLogic Administration Server
+        port:
+          default: '7001'
+          description: Port of the WebLogic Administration Server
+  /servers/{serverName}/workManagers:
+    get:
+      operationId: getServerWorkManagers
+      summary: Oracle WebLogic Server APIs List work managers on a server
+      description: Returns monitoring information for all work managers on the specified server.
+      tags:
+      - Servers
+      parameters:
+      - $ref: '#/components/parameters/serverName'
+      responses:
+        '200':
+          description: List of work manager metrics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WorkManagerMetrics'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound_2'
+    servers:
+    - url: https://{host}:{port}/management/weblogic/latest
+      description: WebLogic Server Administration Server
+      variables:
+        host:
+          default: localhost
+          description: Hostname of the WebLogic Administration Server
+        port:
+          default: '7001'
+          description: Port of the WebLogic Administration Server
 components:
-  responses:
-    BadRequest:
-      description: Invalid request - malformed parameters or validation errors
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Requested resource does not exist
-    Unauthorized:
-      description: Authentication required or invalid credentials
-  parameters:
-    ExcludeFields:
-      name: excludeFields
-      in: query
-      description: Comma-separated list of property names to exclude from the response
-      schema:
-        type: string
-    SaveChanges:
-      name: saveChanges
-      in: query
-      description: When false, changes are saved to the edit session but not validated until explicitly saved or activated.
-      schema:
-        type: boolean
-        default: true
-    ExcludeLinks:
-      name: excludeLinks
-      in: query
-      description: Comma-separated list of link relations to exclude
-      schema:
-        type: string
-    Links:
-      name: links
-      in: query
-      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
-      schema:
-        type: string
-      example: none
-    XRequestedBy:
-      name: X-Requested-By
-      in: header
-      required: true
-      description: CSRF protection header required for POST and DELETE requests
-      schema:
-        type: string
-        example: MyClient
-    ExpandedValues:
-      name: expandedValues
-      in: query
-      description: When true, properties are returned as objects with set and value fields indicating whether the property has been explicitly set.
-      schema:
-        type: boolean
-        default: false
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include in the response
-      schema:
-        type: string
-      example: name,listenPort
-    ServerName:
-      name: serverName
-      in: path
-      required: true
-      description: Name of the WebLogic Server instance
-      schema:
-        type: string
   schemas:
-    Message:
-      type: object
-      properties:
-        severity:
-          type: string
-          enum:
-          - SUCCESS
-          - WARNING
-          - FAILURE
-        field:
-          type: string
-          description: Property name associated with this message
-        message:
-          type: string
-          description: Detailed message text
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: URL of the linked resource
-        title:
-          type: string
-          description: Human-readable title for the link
-    Identity:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-          description: Bean identity path as an array of path segments
-    ServerUpdateRequest:
-      type: object
-      properties:
-        listenPort:
-          type: integer
-        listenAddress:
-          type: string
-        administrationPort:
-          type: integer
-        machine:
-          type: array
-          items:
-            type: string
-          description: Machine reference as identity path (set to null to remove)
-        cluster:
-          type: array
-          items:
-            type: string
-          description: Cluster reference as identity path
-        candidateMachines:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    SSLConfiguration:
-      type: object
-      properties:
-        name:
-          type: string
-        enabled:
-          type: boolean
-          description: Whether SSL is enabled
-        listenPort:
-          type: integer
-          description: SSL listen port
-        identityAndTrustLocations:
-          type: string
-          description: Where identity and trust keystores are stored
-        serverPrivateKeyAlias:
-          type: string
-        serverPrivateKeyPassPhrase:
-          type: string
-          format: password
-        twoWaySSLEnabled:
-          type: boolean
-        clientCertificateEnforced:
-          type: boolean
-        hostnameVerificationIgnored:
-          type: boolean
     ServerCreateRequest:
       type: object
       required:
@@ -466,6 +571,61 @@ components:
           items:
             type: string
           description: Cluster reference as identity path
+    ErrorResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+          enum:
+          - ERRORS
+        status:
+          type: integer
+        wls:errorsDetails:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              title:
+                type: string
+              detail:
+                type: string
+              o:errorPath:
+                type: string
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+          description: Bean identity path as an array of path segments
+    ServerUpdateRequest:
+      type: object
+      properties:
+        listenPort:
+          type: integer
+        listenAddress:
+          type: string
+        administrationPort:
+          type: integer
+        machine:
+          type: array
+          items:
+            type: string
+          description: Machine reference as identity path (set to null to remove)
+        cluster:
+          type: array
+          items:
+            type: string
+          description: Cluster reference as identity path
+        candidateMachines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
     Server:
       type: object
       properties:
@@ -520,6 +680,52 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    ServerStart:
+      type: object
+      properties:
+        arguments:
+          type: string
+          description: JVM arguments for server startup
+        classPath:
+          type: string
+          description: Classpath for server startup
+        javaHome:
+          type: string
+          description: Java home directory
+        javaVendor:
+          type: string
+          description: Java vendor
+        beaHome:
+          type: string
+          description: BEA/Oracle home directory
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: URL of the linked resource
+        title:
+          type: string
+          description: Human-readable title for the link
+    Message:
+      type: object
+      properties:
+        severity:
+          type: string
+          enum:
+          - SUCCESS
+          - WARNING
+          - FAILURE
+        field:
+          type: string
+          description: Property name associated with this message
+        message:
+          type: string
+          description: Detailed message text
     NetworkAccessPoint:
       type: object
       properties:
@@ -539,53 +745,279 @@ components:
           type: string
         enabled:
           type: boolean
-    ServerStart:
+    SSLConfiguration:
       type: object
       properties:
-        arguments:
+        name:
           type: string
-          description: JVM arguments for server startup
-        classPath:
+        enabled:
+          type: boolean
+          description: Whether SSL is enabled
+        listenPort:
+          type: integer
+          description: SSL listen port
+        identityAndTrustLocations:
           type: string
-          description: Classpath for server startup
-        javaHome:
+          description: Where identity and trust keystores are stored
+        serverPrivateKeyAlias:
           type: string
-          description: Java home directory
-        javaVendor:
+        serverPrivateKeyPassPhrase:
           type: string
-          description: Java vendor
-        beaHome:
+          format: password
+        twoWaySSLEnabled:
+          type: boolean
+        clientCertificateEnforced:
+          type: boolean
+        hostnameVerificationIgnored:
+          type: boolean
+    ServerMonitoring:
+      type: object
+      properties:
+        name:
           type: string
-          description: BEA/Oracle home directory
-    ErrorResponse:
+          description: Server name
+        state:
+          type: string
+          description: Current server state
+          enum:
+          - RUNNING
+          - ADMIN
+          - STANDBY
+          - SHUTDOWN
+          - STARTING
+          - SUSPENDING
+          - FAILED
+          - UNKNOWN
+        health:
+          type: string
+          description: Overall health state
+          enum:
+          - HEALTH_OK
+          - HEALTH_WARN
+          - HEALTH_CRITICAL
+          - HEALTH_FAILED
+          - HEALTH_OVERLOADED
+        clusterName:
+          type: string
+          description: Cluster this server belongs to
+        currentMachine:
+          type: string
+          description: Machine the server is running on
+        listenAddress:
+          type: string
+          description: Listen address
+        listenPort:
+          type: integer
+          description: Listen port
+        sslListenPort:
+          type: integer
+          description: SSL listen port
+        activationTime:
+          type: integer
+          format: int64
+          description: Activation time in milliseconds since epoch
+        openSocketsCurrentCount:
+          type: integer
+          description: Current number of open sockets
+        weblogicVersion:
+          type: string
+          description: WebLogic Server version
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link_2'
+    WorkManagerMetrics:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Work manager name
+        pendingRequests:
+          type: integer
+          description: Number of pending requests
+        completedRequests:
+          type: integer
+          format: int64
+          description: Number of completed requests
+        stuckThreadCount:
+          type: integer
+          description: Number of stuck threads
+    Link_2:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
+    Error:
       type: object
       properties:
         type:
           type: string
         title:
           type: string
-          enum:
-          - ERRORS
         status:
           type: integer
-        wls:errorsDetails:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-              title:
-                type: string
-              detail:
-                type: string
-              o:errorPath:
-                type: string
+        detail:
+          type: string
+    JVMMetrics:
+      type: object
+      properties:
+        heapSizeCurrent:
+          type: integer
+          format: int64
+          description: Current heap size in bytes
+        heapSizeMax:
+          type: integer
+          format: int64
+          description: Maximum heap size in bytes
+        heapFreeCurrent:
+          type: integer
+          format: int64
+          description: Current free heap in bytes
+        heapFreePercent:
+          type: number
+          format: double
+          description: Percentage of heap that is free
+        javaVersion:
+          type: string
+          description: Java version
+        javaVendor:
+          type: string
+          description: Java vendor
+        osName:
+          type: string
+          description: Operating system name
+        osVersion:
+          type: string
+          description: Operating system version
+        uptime:
+          type: integer
+          format: int64
+          description: JVM uptime in milliseconds
+    ThreadPoolMetrics:
+      type: object
+      properties:
+        executeThreadTotalCount:
+          type: integer
+          description: Total execute threads
+        executeThreadIdleCount:
+          type: integer
+          description: Idle execute threads
+        hoggingThreadCount:
+          type: integer
+          description: Hogging threads
+        stuckThreadCount:
+          type: integer
+          description: Stuck threads
+        pendingUserRequestCount:
+          type: integer
+          description: Pending user requests
+        throughput:
+          type: number
+          format: double
+          description: Thread pool throughput
+        completedRequestCount:
+          type: integer
+          format: int64
+          description: Completed requests
+        queueLength:
+          type: integer
+          description: Current queue length
+  responses:
+    Unauthorized:
+      description: Authentication required or invalid credentials
+    BadRequest:
+      description: Invalid request - malformed parameters or validation errors
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Requested resource does not exist
+    Unauthorized_2:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound_2:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ExcludeLinks:
+      name: excludeLinks
+      in: query
+      description: Comma-separated list of link relations to exclude
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include in the response
+      schema:
+        type: string
+      example: name,listenPort
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+    SaveChanges:
+      name: saveChanges
+      in: query
+      description: When false, changes are saved to the edit session but not validated until explicitly saved or activated.
+      schema:
+        type: boolean
+        default: true
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
+      schema:
+        type: string
+      example: none
+    ExcludeFields:
+      name: excludeFields
+      in: query
+      description: Comma-separated list of property names to exclude from the response
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    ExpandedValues:
+      name: expandedValues
+      in: query
+      description: When true, properties are returned as objects with set and value fields indicating whether the property has been explicitly set.
+      schema:
+        type: boolean
+        default: false
+    serverName:
+      name: serverName
+      in: path
+      required: true
+      description: The name of the WebLogic Server instance
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http
       scheme: basic
-      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
-externalDocs:
-  description: WebLogic Server Deployment Documentation
-  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm
+      description: HTTP Basic authentication using WebLogic Server credentials. Users must have appropriate roles (Admin, Operator, Deployer, or Monitor).
+x-refined-from:
+- oracle-weblogic-management-openapi.yml
+- weblogic-servers-api-openapi.yml

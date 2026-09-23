@@ -1,19 +1,13 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Domain Runtime API
-  description: RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.
-  version: 12.2.1.3.0
-  contact:
-    name: Oracle Support
-    url: https://support.oracle.com/
-  license:
-    name: Oracle Standard License
-    url: https://www.oracle.com/downloads/licenses/standard-license.html
+  title: Oracle Weblogic Domain Runtime API
+  version: '1.0'
+  description: 'Operations tagged Domain Runtime across 2 of this provider''s published API definitions: oracle-weblogic-monitoring-openapi.yml, weblogic-domain-runtime-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: http://localhost:7001/management/weblogic/latest
   description: WebLogic Administration Server (default)
 - url: http://{host}:{port}/management/weblogic/{version}
-  description: WebLogic Administration Server (configurable)
+  description: WebLogic Server (configurable)
   variables:
     host:
       default: localhost
@@ -21,6 +15,15 @@ servers:
       default: '7001'
     version:
       default: latest
+- url: https://{host}:{port}/management/weblogic/latest
+  description: WebLogic Server Administration Server
+  variables:
+    host:
+      default: localhost
+      description: Hostname of the WebLogic Administration Server
+    port:
+      default: '7001'
+      description: Port of the WebLogic Administration Server
 security:
 - basicAuth: []
 tags:
@@ -46,6 +49,18 @@ paths:
                 $ref: '#/components/schemas/DomainRuntime'
         '401':
           $ref: '#/components/responses/Unauthorized'
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Server (configurable)
+      variables:
+        host:
+          default: localhost
+        port:
+          default: '7001'
+        version:
+          default: latest
   /domainRuntime/serverRuntimes:
     get:
       operationId: listServerRuntimes
@@ -68,6 +83,18 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ServerRuntime'
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Server (configurable)
+      variables:
+        host:
+          default: localhost
+        port:
+          default: '7001'
+        version:
+          default: latest
   /domainRuntime/serverRuntimes/{serverName}:
     get:
       operationId: getServerRuntimeByName
@@ -88,6 +115,18 @@ paths:
                 $ref: '#/components/schemas/ServerRuntime'
         '404':
           $ref: '#/components/responses/NotFound'
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Server (configurable)
+      variables:
+        host:
+          default: localhost
+        port:
+          default: '7001'
+        version:
+          default: latest
   /domainRuntime/domainPartitionRuntimes:
     get:
       operationId: listPartitionRuntimes
@@ -110,6 +149,18 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/PartitionRuntime'
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Server (configurable)
+      variables:
+        host:
+          default: localhost
+        port:
+          default: '7001'
+        version:
+          default: latest
   /domainRuntime/domainPartitionRuntimes/{partitionName}:
     get:
       operationId: getPartitionRuntime
@@ -125,6 +176,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PartitionRuntime'
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Server (configurable)
+      variables:
+        host:
+          default: localhost
+        port:
+          default: '7001'
+        version:
+          default: latest
   /domainRuntime/domainPartitionRuntimes/{partitionName}/partitionLifeCycleRuntime:
     get:
       operationId: getPartitionLifeCycleRuntime
@@ -140,6 +203,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PartitionLifeCycleRuntime'
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Server (configurable)
+      variables:
+        host:
+          default: localhost
+        port:
+          default: '7001'
+        version:
+          default: latest
   /domainRuntime/domainPartitionRuntimes/{partitionName}/partitionLifeCycleRuntime/start:
     post:
       operationId: startPartition
@@ -161,6 +236,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TaskStatus'
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Server (configurable)
+      variables:
+        host:
+          default: localhost
+        port:
+          default: '7001'
+        version:
+          default: latest
   /domainRuntime/domainPartitionRuntimes/{partitionName}/partitionLifeCycleRuntime/stop:
     post:
       operationId: stopPartition
@@ -182,57 +269,115 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TaskStatus'
+    servers:
+    - url: http://localhost:7001/management/weblogic/latest
+      description: WebLogic Administration Server (default)
+    - url: http://{host}:{port}/management/weblogic/{version}
+      description: WebLogic Server (configurable)
+      variables:
+        host:
+          default: localhost
+        port:
+          default: '7001'
+        version:
+          default: latest
+  /domainRuntime/serverLifeCycleRuntimes:
+    get:
+      operationId: getServerLifecycleRuntimes
+      summary: Oracle WebLogic Server APIs List all server lifecycle runtimes
+      description: Returns lifecycle runtime information for all servers in the domain, including current state and available lifecycle operations.
+      tags:
+      - Domain Runtime
+      responses:
+        '200':
+          description: List of server lifecycle runtimes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ServerLifecycleRuntime'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+    servers:
+    - url: https://{host}:{port}/management/weblogic/latest
+      description: WebLogic Server Administration Server
+      variables:
+        host:
+          default: localhost
+          description: Hostname of the WebLogic Administration Server
+        port:
+          default: '7001'
+          description: Port of the WebLogic Administration Server
+  /domainRuntime/serverLifeCycleRuntimes/{serverName}:
+    get:
+      operationId: getServerLifecycleRuntime
+      summary: Oracle WebLogic Server APIs Get a server lifecycle runtime
+      description: Returns lifecycle runtime information for a specific server including its current state.
+      tags:
+      - Domain Runtime
+      parameters:
+      - $ref: '#/components/parameters/serverName'
+      responses:
+        '200':
+          description: Server lifecycle runtime
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerLifecycleRuntime'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound_2'
+    servers:
+    - url: https://{host}:{port}/management/weblogic/latest
+      description: WebLogic Server Administration Server
+      variables:
+        host:
+          default: localhost
+          description: Hostname of the WebLogic Administration Server
+        port:
+          default: '7001'
+          description: Port of the WebLogic Administration Server
+  /domainRuntime/deploymentManager/deploymentProgressObjects:
+    get:
+      operationId: getDeploymentProgressObjects
+      summary: Oracle WebLogic Server APIs List deployment progress objects
+      description: Returns information about in-progress and completed deployment operations across the domain.
+      tags:
+      - Domain Runtime
+      responses:
+        '200':
+          description: List of deployment progress objects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DeploymentProgress'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+    servers:
+    - url: https://{host}:{port}/management/weblogic/latest
+      description: WebLogic Server Administration Server
+      variables:
+        host:
+          default: localhost
+          description: Hostname of the WebLogic Administration Server
+        port:
+          default: '7001'
+          description: Port of the WebLogic Administration Server
 components:
-  parameters:
-    Links:
-      name: links
-      in: query
-      description: Comma-separated list of link relations to include. Use 'none' to exclude all links.
-      schema:
-        type: string
-    ServerName:
-      name: serverName
-      in: path
-      required: true
-      description: Name of the WebLogic Server instance
-      schema:
-        type: string
-    PartitionName:
-      name: partitionName
-      in: path
-      required: true
-      description: Name of the domain partition
-      schema:
-        type: string
-    XRequestedBy:
-      name: X-Requested-By
-      in: header
-      required: true
-      description: CSRF protection header required for POST and DELETE requests
-      schema:
-        type: string
-        example: MyClient
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include
-      schema:
-        type: string
-  responses:
-    NotFound:
-      description: Requested resource does not exist
-    Unauthorized:
-      description: Authentication required or invalid credentials
   schemas:
-    PartitionRuntime:
+    PartitionLifeCycleRuntime:
       type: object
       properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
         state:
           type: string
           enum:
@@ -240,12 +385,21 @@ components:
           - SHUTDOWN
           - BOOTING
           - SHUTTING_DOWN
-        restartRequired:
-          type: boolean
         links:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
     TaskStatus:
       type: object
       properties:
@@ -279,6 +433,42 @@ components:
           type: string
           format: date-time
           description: Time when the task completed
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    PartitionRuntime:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        state:
+          type: string
+          enum:
+          - RUNNING
+          - SHUTDOWN
+          - BOOTING
+          - SHUTTING_DOWN
+        restartRequired:
+          type: boolean
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    DomainRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Domain name
+        activationTime:
+          type: integer
+          format: int64
+          description: Time when the domain was last activated
         links:
           type: array
           items:
@@ -336,34 +526,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    PartitionLifeCycleRuntime:
-      type: object
-      properties:
-        state:
-          type: string
-          enum:
-          - RUNNING
-          - SHUTDOWN
-          - BOOTING
-          - SHUTTING_DOWN
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    DomainRuntime:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Domain name
-        activationTime:
-          type: integer
-          format: int64
-          description: Time when the domain was last activated
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     HealthState:
       type: object
       properties:
@@ -383,7 +545,7 @@ components:
           type: array
           items:
             type: object
-    Link:
+    Link_2:
       type: object
       properties:
         rel:
@@ -392,13 +554,220 @@ components:
         href:
           type: string
           format: uri
+          description: Link URI
         title:
           type: string
+          description: Link title
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Error type URI
+        title:
+          type: string
+          description: Short error title
+        status:
+          type: integer
+          description: HTTP status code
+        detail:
+          type: string
+          description: Detailed error message
+        o:errorPath:
+          type: string
+          description: Path to the field that caused the error
+    DomainRuntime_2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Domain name
+        activationTime:
+          type: integer
+          format: int64
+          description: Domain activation time in milliseconds
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link_2'
+    ServerRuntime_2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Server name
+        state:
+          type: string
+          description: Current server state
+        listenAddress:
+          type: string
+          description: Current listen address
+        listenPort:
+          type: integer
+          description: Current listen port
+        SSLListenPort:
+          type: integer
+          description: Current SSL listen port
+        activationTime:
+          type: integer
+          format: int64
+          description: Server activation time in milliseconds since epoch
+        currentMachine:
+          type: string
+          description: Machine the server is running on
+        weblogicVersion:
+          type: string
+          description: WebLogic Server version string
+        openSocketsCurrentCount:
+          type: integer
+          description: Current number of open sockets
+        healthState:
+          type: object
+          properties:
+            state:
+              type: string
+              enum:
+              - HEALTH_OK
+              - HEALTH_WARN
+              - HEALTH_CRITICAL
+              - HEALTH_FAILED
+              - HEALTH_OVERLOADED
+            subsystemName:
+              type: string
+            symptoms:
+              type: array
+              items:
+                type: string
+        restartRequired:
+          type: boolean
+          description: Whether a server restart is required
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link_2'
+    ServerLifecycleRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Server name
+        state:
+          type: string
+          description: Current server lifecycle state
+          enum:
+          - SHUTDOWN
+          - STARTING
+          - STANDBY
+          - ADMIN
+          - RESUMING
+          - RUNNING
+          - SUSPENDING
+          - FORCE_SUSPENDING
+          - SHUTTING_DOWN
+          - FAILED
+          - UNKNOWN
+        nodeManagerRestartCount:
+          type: integer
+          description: Number of times node manager has restarted this server
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link_2'
+    DeploymentProgress:
+      type: object
+      properties:
+        name:
+          type: string
+        state:
+          type: string
+          description: Deployment state
+          enum:
+          - STATE_NEW
+          - STATE_PREPARING
+          - STATE_PREPARED
+          - STATE_ACTIVATING
+          - STATE_ACTIVE
+          - STATE_DEACTIVATING
+          - STATE_RETIRING
+          - STATE_RETIRED
+          - STATE_FAILED
+        progress:
+          type: string
+          description: Progress description
+        completed:
+          type: boolean
+          description: Whether the deployment operation is complete
+        failed:
+          type: boolean
+          description: Whether the deployment operation failed
+        targets:
+          type: array
+          items:
+            type: string
+  parameters:
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    PartitionName:
+      name: partitionName
+      in: path
+      required: true
+      description: Name of the domain partition
+      schema:
+        type: string
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include. Use 'none' to exclude all links.
+      schema:
+        type: string
+    serverName:
+      name: serverName
+      in: path
+      required: true
+      description: The name of the WebLogic Server instance
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or invalid credentials
+    NotFound:
+      description: Requested resource does not exist
+    Unauthorized_2:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound_2:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http
       scheme: basic
-      description: HTTP Basic authentication. Deployer role required for deployment operations, Operator role for lifecycle operations.
-externalDocs:
-  description: WebLogic Server Deployment Documentation
-  url: https://docs.oracle.com/middleware/12213/wls/WLRUR/overview.htm
+      description: HTTP Basic authentication with WebLogic Server credentials
+x-refined-from:
+- oracle-weblogic-monitoring-openapi.yml
+- weblogic-domain-runtime-api-openapi.yml
