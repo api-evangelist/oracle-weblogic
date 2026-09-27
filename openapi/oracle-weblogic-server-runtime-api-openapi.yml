@@ -369,12 +369,6 @@ components:
       description: Name of the WebLogic Server instance
       schema:
         type: string
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include
-      schema:
-        type: string
     XRequestedBy:
       name: X-Requested-By
       in: header
@@ -387,6 +381,12 @@ components:
       name: links
       in: query
       description: Comma-separated list of link relations to include. Use 'none' to exclude all links.
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
       schema:
         type: string
     appName:
@@ -404,17 +404,6 @@ components:
       schema:
         type: string
   schemas:
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-        title:
-          type: string
     ServerRuntime:
       type: object
       properties:
@@ -468,6 +457,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
     HealthState:
       type: object
       properties:
@@ -524,60 +524,52 @@ components:
                 type: string
               state:
                 type: string
-    Link_2:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: Link URI
-        title:
-          type: string
-          description: Link title
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Error type URI
-        title:
-          type: string
-          description: Short error title
-        status:
-          type: integer
-          description: HTTP status code
-        detail:
-          type: string
-          description: Detailed error message
-        o:errorPath:
-          type: string
-          description: Path to the field that caused the error
-    JMSRuntime:
+    JMSServerRuntime:
       type: object
       properties:
         name:
           type: string
-        connectionsCurrentCount:
+          description: JMS server name
+        messagesCurrentCount:
           type: integer
-          description: Current number of JMS connections
-        connectionsTotalCount:
+          format: int64
+          description: Current number of messages
+        messagesPendingCount:
           type: integer
-          description: Total JMS connections created
-        connectionsHighCount:
+          format: int64
+          description: Number of pending messages
+        messagesHighCount:
           type: integer
-          description: High watermark of JMS connections
-        JMSServersCurrentCount:
+          format: int64
+          description: High watermark of messages
+        messagesReceivedCount:
           type: integer
-          description: Current number of JMS servers
-        JMSServersTotalCount:
+          format: int64
+          description: Total messages received
+        bytesCurrentCount:
           type: integer
-          description: Total JMS servers created
-        JMSServersHighCount:
+          format: int64
+          description: Current total bytes of all messages
+        bytesPendingCount:
           type: integer
-          description: High watermark of JMS servers
+          format: int64
+          description: Bytes of pending messages
+        consumersCurrentCount:
+          type: integer
+          format: int64
+          description: Current number of consumers
+        consumersHighCount:
+          type: integer
+          format: int64
+          description: High watermark of consumers
+        destinationsCurrentCount:
+          type: integer
+          format: int64
+          description: Current number of destinations
+        sessionPoolsCurrentCount:
+          type: integer
+          format: int64
+          description: Current number of session pools
         healthState:
           type: object
           properties:
@@ -651,43 +643,63 @@ components:
         prepStmtCacheCurrentSize:
           type: integer
           description: Current size of the prepared statement cache
-    JVMRuntime:
+    JDBCServiceRuntime:
       type: object
       properties:
         name:
           type: string
-        heapSizeCurrent:
-          type: integer
-          format: int64
-          description: Current JVM heap size in bytes
-        heapSizeMax:
-          type: integer
-          format: int64
-          description: Maximum JVM heap size in bytes
-        heapFreeCurrent:
-          type: integer
-          format: int64
-          description: Current free heap memory in bytes
-        heapFreePercent:
-          type: number
-          format: double
-          description: Percentage of heap memory that is free
-        javaVersion:
+        JDBCDataSourceRuntimeMBeans:
+          type: array
+          items:
+            $ref: '#/components/schemas/JDBCDataSourceRuntime'
+    Error:
+      type: object
+      properties:
+        type:
           type: string
-          description: Java version
-        javaVendor:
+          description: Error type URI
+        title:
           type: string
-          description: Java vendor name
-        osName:
-          type: string
-          description: Operating system name
-        osVersion:
-          type: string
-          description: Operating system version
-        uptime:
+          description: Short error title
+        status:
           type: integer
-          format: int64
-          description: JVM uptime in milliseconds
+          description: HTTP status code
+        detail:
+          type: string
+          description: Detailed error message
+        o:errorPath:
+          type: string
+          description: Path to the field that caused the error
+    JMSRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+        connectionsCurrentCount:
+          type: integer
+          description: Current number of JMS connections
+        connectionsTotalCount:
+          type: integer
+          description: Total JMS connections created
+        connectionsHighCount:
+          type: integer
+          description: High watermark of JMS connections
+        JMSServersCurrentCount:
+          type: integer
+          description: Current number of JMS servers
+        JMSServersTotalCount:
+          type: integer
+          description: Total JMS servers created
+        JMSServersHighCount:
+          type: integer
+          description: High watermark of JMS servers
+        healthState:
+          type: object
+          properties:
+            state:
+              type: string
+            subsystemName:
+              type: string
     ThreadPoolRuntime:
       type: object
       properties:
@@ -788,68 +800,56 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link_2'
-    JDBCServiceRuntime:
+    Link_2:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: Link URI
+        title:
+          type: string
+          description: Link title
+    JVMRuntime:
       type: object
       properties:
         name:
           type: string
-        JDBCDataSourceRuntimeMBeans:
-          type: array
-          items:
-            $ref: '#/components/schemas/JDBCDataSourceRuntime'
-    JMSServerRuntime:
-      type: object
-      properties:
-        name:
+        heapSizeCurrent:
+          type: integer
+          format: int64
+          description: Current JVM heap size in bytes
+        heapSizeMax:
+          type: integer
+          format: int64
+          description: Maximum JVM heap size in bytes
+        heapFreeCurrent:
+          type: integer
+          format: int64
+          description: Current free heap memory in bytes
+        heapFreePercent:
+          type: number
+          format: double
+          description: Percentage of heap memory that is free
+        javaVersion:
           type: string
-          description: JMS server name
-        messagesCurrentCount:
+          description: Java version
+        javaVendor:
+          type: string
+          description: Java vendor name
+        osName:
+          type: string
+          description: Operating system name
+        osVersion:
+          type: string
+          description: Operating system version
+        uptime:
           type: integer
           format: int64
-          description: Current number of messages
-        messagesPendingCount:
-          type: integer
-          format: int64
-          description: Number of pending messages
-        messagesHighCount:
-          type: integer
-          format: int64
-          description: High watermark of messages
-        messagesReceivedCount:
-          type: integer
-          format: int64
-          description: Total messages received
-        bytesCurrentCount:
-          type: integer
-          format: int64
-          description: Current total bytes of all messages
-        bytesPendingCount:
-          type: integer
-          format: int64
-          description: Bytes of pending messages
-        consumersCurrentCount:
-          type: integer
-          format: int64
-          description: Current number of consumers
-        consumersHighCount:
-          type: integer
-          format: int64
-          description: High watermark of consumers
-        destinationsCurrentCount:
-          type: integer
-          format: int64
-          description: Current number of destinations
-        sessionPoolsCurrentCount:
-          type: integer
-          format: int64
-          description: Current number of session pools
-        healthState:
-          type: object
-          properties:
-            state:
-              type: string
-            subsystemName:
-              type: string
+          description: JVM uptime in milliseconds
   responses:
     Unauthorized:
       description: Authentication required or invalid credentials

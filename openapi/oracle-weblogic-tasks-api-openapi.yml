@@ -50,6 +50,17 @@ paths:
                 $ref: '#/components/schemas/TaskStatus'
 components:
   schemas:
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
     TaskStatus:
       type: object
       properties:
@@ -87,17 +98,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-        title:
-          type: string
   securitySchemes:
     basicAuth:
       type: http

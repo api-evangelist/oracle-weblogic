@@ -522,36 +522,145 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    serverName:
-      name: serverName
-      in: path
-      required: true
-      description: The name of the WebLogic Server instance
-      schema:
-        type: string
-    appName:
-      name: appName
-      in: path
-      required: true
-      description: The name of the deployed application
-      schema:
-        type: string
-    clusterName:
-      name: clusterName
-      in: path
-      required: true
-      description: The name of the WebLogic cluster
-      schema:
-        type: string
-    dataSourceName:
-      name: dataSourceName
-      in: path
-      required: true
-      description: The name of the JDBC data source
-      schema:
-        type: string
   schemas:
+    ServerConfiguration:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Server name
+        listenAddress:
+          type: string
+          description: Listen address for the server
+        listenPort:
+          type: integer
+          description: Listen port for the server
+          default: 7001
+        SSLListenPort:
+          type: integer
+          description: SSL listen port
+        cluster:
+          type: string
+          description: Cluster this server belongs to
+        machine:
+          type: string
+          description: Machine this server is assigned to
+        listenPortEnabled:
+          type: boolean
+          description: Whether the plain-text listen port is enabled
+        clientCertProxyEnabled:
+          type: boolean
+          description: Whether client cert proxy is enabled
+        startupMode:
+          type: string
+          description: Server startup mode
+          enum:
+          - RUNNING
+          - STANDBY
+          - ADMIN
+        autoRestart:
+          type: boolean
+          description: Whether the server automatically restarts on failure
+        restartMax:
+          type: integer
+          description: Maximum number of restart attempts
+        javaCompiler:
+          type: string
+          description: Java compiler to use for JSP compilation
+        stagingMode:
+          type: string
+          description: Application staging mode
+          enum:
+          - stage
+          - nostage
+          - external_stage
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      required:
+      - name
+    ChangeManagerStatus:
+      type: object
+      properties:
+        locked:
+          type: boolean
+          description: Whether the configuration is locked for editing
+        lockOwner:
+          type: string
+          description: The user who holds the edit lock
+        hasChanges:
+          type: boolean
+          description: Whether there are pending changes
+        mergeNeeded:
+          type: boolean
+          description: Whether a merge is needed before activation
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Error type URI
+        title:
+          type: string
+          description: Short error title
+        status:
+          type: integer
+          description: HTTP status code
+        detail:
+          type: string
+          description: Detailed error message
+        o:errorPath:
+          type: string
+          description: Path to the field that caused the error
+    ClusterConfiguration:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Cluster name
+        clusterMessagingMode:
+          type: string
+          description: Messaging mode for the cluster
+          enum:
+          - unicast
+          - multicast
+        clusterBroadcastChannel:
+          type: string
+          description: Multicast channel for cluster communication
+        clusterAddress:
+          type: string
+          description: Comma-separated list of address:port pairs for cluster members
+        defaultLoadAlgorithm:
+          type: string
+          description: Load balancing algorithm
+          enum:
+          - round-robin
+          - weight-based
+          - round-robin-affinity
+          - weight-based-affinity
+          - random
+        weblogicPluginEnabled:
+          type: boolean
+          description: Whether the WebLogic plugin is enabled
+        frontendHost:
+          type: string
+          description: Frontend host for the cluster
+        frontendHTTPPort:
+          type: integer
+          description: Frontend HTTP port
+        frontendHTTPSPort:
+          type: integer
+          description: Frontend HTTPS port
+        numberOfServersInClusterAddress:
+          type: integer
+          description: Number of servers in the cluster address
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      required:
+      - name
     Link:
       type: object
       properties:
@@ -565,6 +674,47 @@ components:
         title:
           type: string
           description: Link title
+    AppDeployment:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Application name
+        sourcePath:
+          type: string
+          description: Path to the application source
+        targets:
+          type: array
+          items:
+            type: string
+          description: Target servers or clusters
+        moduleType:
+          type: string
+          description: Module type (ear, war, jar, etc.)
+        planPath:
+          type: string
+          description: Path to the deployment plan
+        stagingMode:
+          type: string
+          description: Staging mode
+          enum:
+          - stage
+          - nostage
+          - external_stage
+        securityDDModel:
+          type: string
+          description: Security deployment descriptor model
+          enum:
+          - DDOnly
+          - CustomRoles
+          - CustomRolesAndPolicies
+          - Advanced
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      required:
+      - name
     JDBCSystemResource:
       type: object
       properties:
@@ -645,59 +795,20 @@ components:
             $ref: '#/components/schemas/Link'
       required:
       - name
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Error type URI
-        title:
-          type: string
-          description: Short error title
-        status:
-          type: integer
-          description: HTTP status code
-        detail:
-          type: string
-          description: Detailed error message
-        o:errorPath:
-          type: string
-          description: Path to the field that caused the error
-    AppDeployment:
+    JMSSystemResource:
       type: object
       properties:
         name:
           type: string
-          description: Application name
-        sourcePath:
-          type: string
-          description: Path to the application source
+          description: JMS system resource name
         targets:
           type: array
           items:
             type: string
           description: Target servers or clusters
-        moduleType:
+        descriptorFileName:
           type: string
-          description: Module type (ear, war, jar, etc.)
-        planPath:
-          type: string
-          description: Path to the deployment plan
-        stagingMode:
-          type: string
-          description: Staging mode
-          enum:
-          - stage
-          - nostage
-          - external_stage
-        securityDDModel:
-          type: string
-          description: Security deployment descriptor model
-          enum:
-          - DDOnly
-          - CustomRoles
-          - CustomRolesAndPolicies
-          - Advanced
+          description: JMS descriptor file name
         links:
           type: array
           items:
@@ -717,21 +828,6 @@ components:
         changeManager:
           type: object
           description: Reference to the change manager resource
-    ChangeManagerStatus:
-      type: object
-      properties:
-        locked:
-          type: boolean
-          description: Whether the configuration is locked for editing
-        lockOwner:
-          type: string
-          description: The user who holds the edit lock
-        hasChanges:
-          type: boolean
-          description: Whether there are pending changes
-        mergeNeeded:
-          type: boolean
-          description: Whether a merge is needed before activation
     ActivationStatus:
       type: object
       properties:
@@ -753,140 +849,44 @@ components:
                 type: string
               error:
                 type: string
-    ClusterConfiguration:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Cluster name
-        clusterMessagingMode:
-          type: string
-          description: Messaging mode for the cluster
-          enum:
-          - unicast
-          - multicast
-        clusterBroadcastChannel:
-          type: string
-          description: Multicast channel for cluster communication
-        clusterAddress:
-          type: string
-          description: Comma-separated list of address:port pairs for cluster members
-        defaultLoadAlgorithm:
-          type: string
-          description: Load balancing algorithm
-          enum:
-          - round-robin
-          - weight-based
-          - round-robin-affinity
-          - weight-based-affinity
-          - random
-        weblogicPluginEnabled:
-          type: boolean
-          description: Whether the WebLogic plugin is enabled
-        frontendHost:
-          type: string
-          description: Frontend host for the cluster
-        frontendHTTPPort:
-          type: integer
-          description: Frontend HTTP port
-        frontendHTTPSPort:
-          type: integer
-          description: Frontend HTTPS port
-        numberOfServersInClusterAddress:
-          type: integer
-          description: Number of servers in the cluster address
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-      required:
-      - name
-    ServerConfiguration:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Server name
-        listenAddress:
-          type: string
-          description: Listen address for the server
-        listenPort:
-          type: integer
-          description: Listen port for the server
-          default: 7001
-        SSLListenPort:
-          type: integer
-          description: SSL listen port
-        cluster:
-          type: string
-          description: Cluster this server belongs to
-        machine:
-          type: string
-          description: Machine this server is assigned to
-        listenPortEnabled:
-          type: boolean
-          description: Whether the plain-text listen port is enabled
-        clientCertProxyEnabled:
-          type: boolean
-          description: Whether client cert proxy is enabled
-        startupMode:
-          type: string
-          description: Server startup mode
-          enum:
-          - RUNNING
-          - STANDBY
-          - ADMIN
-        autoRestart:
-          type: boolean
-          description: Whether the server automatically restarts on failure
-        restartMax:
-          type: integer
-          description: Maximum number of restart attempts
-        javaCompiler:
-          type: string
-          description: Java compiler to use for JSP compilation
-        stagingMode:
-          type: string
-          description: Application staging mode
-          enum:
-          - stage
-          - nostage
-          - external_stage
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-      required:
-      - name
-    JMSSystemResource:
-      type: object
-      properties:
-        name:
-          type: string
-          description: JMS system resource name
-        targets:
-          type: array
-          items:
-            type: string
-          description: Target servers or clusters
-        descriptorFileName:
-          type: string
-          description: JMS descriptor file name
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-      required:
-      - name
+  parameters:
+    serverName:
+      name: serverName
+      in: path
+      required: true
+      description: The name of the WebLogic Server instance
+      schema:
+        type: string
+    clusterName:
+      name: clusterName
+      in: path
+      required: true
+      description: The name of the WebLogic cluster
+      schema:
+        type: string
+    appName:
+      name: appName
+      in: path
+      required: true
+      description: The name of the deployed application
+      schema:
+        type: string
+    dataSourceName:
+      name: dataSourceName
+      in: path
+      required: true
+      description: The name of the JDBC data source
+      schema:
+        type: string
   responses:
-    BadRequest:
-      description: Invalid request parameters or body
+    Unauthorized:
+      description: Authentication required or invalid credentials
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or invalid credentials
+    BadRequest:
+      description: Invalid request parameters or body
       content:
         application/json:
           schema:

@@ -225,38 +225,6 @@ paths:
           description: Port of the WebLogic Administration Server
 components:
   schemas:
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-        title:
-          type: string
-    Identity:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-    LibDeploymentCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Library name
-        sourceURL:
-          type: string
-          description: URL or file path to the library archive
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
     LibDeployment:
       type: object
       properties:
@@ -280,17 +248,38 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Error:
+    LibDeploymentCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Library name
+        sourceURL:
+          type: string
+          description: URL or file path to the library archive
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    Link:
       type: object
       properties:
-        type:
+        rel:
           type: string
+        href:
+          type: string
+          format: uri
         title:
           type: string
-        status:
-          type: integer
-        detail:
-          type: string
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
     LibraryDeployment:
       type: object
       properties:
@@ -331,6 +320,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
     LibraryDeploymentCreate:
       type: object
       properties:
@@ -365,19 +365,6 @@ components:
       - sourcePath
       - targets
   parameters:
-    LibName:
-      name: libName
-      in: path
-      required: true
-      description: Name of the shared library
-      schema:
-        type: string
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include
-      schema:
-        type: string
     XRequestedBy:
       name: X-Requested-By
       in: header
@@ -390,6 +377,19 @@ components:
       name: links
       in: query
       description: Comma-separated list of link relations to include
+      schema:
+        type: string
+    LibName:
+      name: libName
+      in: path
+      required: true
+      description: Name of the shared library
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
       schema:
         type: string
     libraryName:
@@ -406,14 +406,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found
+    BadRequest:
+      description: Invalid request parameters or body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters or body
+    NotFound:
+      description: The specified resource was not found
       content:
         application/json:
           schema:

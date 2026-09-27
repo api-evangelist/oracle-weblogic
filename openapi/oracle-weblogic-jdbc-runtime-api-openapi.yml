@@ -87,32 +87,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/JDBCDataSourceRuntime'
 components:
-  parameters:
-    ServerName:
-      name: serverName
-      in: path
-      required: true
-      description: Name of the WebLogic Server instance
-      schema:
-        type: string
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include
-      schema:
-        type: string
   schemas:
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-        title:
-          type: string
     JDBCDataSourceRuntime:
       type: object
       properties:
@@ -192,6 +167,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
+  parameters:
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

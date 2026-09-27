@@ -221,20 +221,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    AppDeploymentRuntime:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-          description: Application name
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     Link:
       type: object
       properties:
@@ -276,20 +262,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    AppDeploymentRuntime:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Application name
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
   parameters:
-    ServerNamePath:
-      name: serverName
-      in: path
-      required: true
-      description: Name of the WebLogic Server instance
-      schema:
-        type: string
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include
-      schema:
-        type: string
     Prefer:
       name: Prefer
       in: header
@@ -311,10 +298,23 @@ components:
       description: Name of the application
       schema:
         type: string
+    ServerNamePath:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
     Links:
       name: links
       in: query
       description: Comma-separated list of link relations to include
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
       schema:
         type: string
   securitySchemes:

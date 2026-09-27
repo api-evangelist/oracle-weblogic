@@ -92,39 +92,36 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication required or invalid credentials
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    appName:
-      name: appName
-      in: path
-      required: true
-      description: The name of the deployed application
-      schema:
-        type: string
   schemas:
-    Error:
+    ServletMetrics:
       type: object
       properties:
-        type:
+        name:
           type: string
-        title:
+          description: Servlet name
+        contextPath:
           type: string
-        status:
+          description: Servlet context path
+        invocationTotalCount:
           type: integer
-        detail:
-          type: string
+          format: int64
+          description: Total invocations
+        executionTimeAverage:
+          type: integer
+          description: Average execution time in milliseconds
+        executionTimeTotal:
+          type: integer
+          format: int64
+          description: Total execution time in milliseconds
+        executionTimeHigh:
+          type: integer
+          description: Highest execution time in milliseconds
+        executionTimeLow:
+          type: integer
+          description: Lowest execution time in milliseconds
+        reloadTotalCount:
+          type: integer
+          description: Number of times the servlet was reloaded
     DeploymentMetrics:
       type: object
       properties:
@@ -162,35 +159,38 @@ components:
               type: integer
               format: int64
               description: Total sessions opened
-    ServletMetrics:
+    Error:
       type: object
       properties:
-        name:
+        type:
           type: string
-          description: Servlet name
-        contextPath:
+        title:
           type: string
-          description: Servlet context path
-        invocationTotalCount:
+        status:
           type: integer
-          format: int64
-          description: Total invocations
-        executionTimeAverage:
-          type: integer
-          description: Average execution time in milliseconds
-        executionTimeTotal:
-          type: integer
-          format: int64
-          description: Total execution time in milliseconds
-        executionTimeHigh:
-          type: integer
-          description: Highest execution time in milliseconds
-        executionTimeLow:
-          type: integer
-          description: Lowest execution time in milliseconds
-        reloadTotalCount:
-          type: integer
-          description: Number of times the servlet was reloaded
+        detail:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    appName:
+      name: appName
+      in: path
+      required: true
+      description: The name of the deployed application
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

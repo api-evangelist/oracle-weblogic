@@ -199,13 +199,6 @@ paths:
           description: Member added to group
 components:
   parameters:
-    RealmName:
-      name: realmName
-      in: path
-      required: true
-      description: Name of the security realm
-      schema:
-        type: string
     ProviderName:
       name: providerName
       in: path
@@ -221,17 +214,30 @@ components:
       schema:
         type: string
         example: MyClient
+    RealmName:
+      name: realmName
+      in: path
+      required: true
+      description: Name of the security realm
+      schema:
+        type: string
   schemas:
-    SecurityRealmCreateRequest:
+    AuthenticationProviderCreateRequest:
       type: object
       required:
       - name
+      - type
       properties:
         name:
           type: string
-          description: Security realm name
-        managementIdentityDomain:
+        type:
           type: string
+          description: Provider type (e.g., weblogic.security.providers.authentication.DefaultAuthenticator)
+        activeTypes:
+          type: array
+          items:
+            type: string
+          description: Active identity assertion types
     SecurityRealm:
       type: object
       properties:
@@ -267,6 +273,16 @@ components:
         title:
           type: string
           description: Human-readable title for the link
+    SecurityRealmCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Security realm name
+        managementIdentityDomain:
+          type: string
     AuthenticationProvider:
       type: object
       properties:
@@ -276,22 +292,6 @@ components:
         type:
           type: string
           description: Fully qualified provider type class
-    AuthenticationProviderCreateRequest:
-      type: object
-      required:
-      - name
-      - type
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-          description: Provider type (e.g., weblogic.security.providers.authentication.DefaultAuthenticator)
-        activeTypes:
-          type: array
-          items:
-            type: string
-          description: Active identity assertion types
   securitySchemes:
     basicAuth:
       type: http

@@ -66,6 +66,17 @@ paths:
           description: Sub-deployment created
 components:
   schemas:
+    SubDeploymentCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
     SubDeployment:
       type: object
       properties:
@@ -82,17 +93,6 @@ components:
           type: array
           items:
             type: string
-    SubDeploymentCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
   parameters:
     XRequestedBy:
       name: X-Requested-By

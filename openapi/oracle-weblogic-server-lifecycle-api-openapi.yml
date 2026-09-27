@@ -229,54 +229,44 @@ paths:
         '200':
           description: SSL restarted
 components:
+  parameters:
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    Prefer:
+      name: Prefer
+      in: header
+      description: Controls async behavior. Use 'respond-async' for immediate return or 'wait=N' to wait N seconds.
+      schema:
+        type: string
+        examples:
+        - respond-async
+        - wait=10
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include. Use 'none' to exclude all links.
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
+      schema:
+        type: string
   schemas:
-    ServerLifeCycleRuntime:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-          description: Server name
-        state:
-          type: string
-          description: Current lifecycle state
-          enum:
-          - RUNNING
-          - SHUTDOWN
-          - STANDBY
-          - ADMIN
-          - FAILED
-          - STARTING
-          - SHUTTING_DOWN
-          - SUSPENDING
-          - FORCE_SHUTTING_DOWN
-          - RESUMING
-          - UNKNOWN
-        type:
-          type: string
-          description: Runtime type identifier
-          enum:
-          - ServerLifeCycleRuntime
-        nodeManagerRestartCount:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-        title:
-          type: string
     TaskStatus:
       type: object
       properties:
@@ -314,43 +304,53 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-  parameters:
-    ServerName:
-      name: serverName
-      in: path
-      required: true
-      description: Name of the WebLogic Server instance
-      schema:
-        type: string
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include
-      schema:
-        type: string
-    Prefer:
-      name: Prefer
-      in: header
-      description: Controls async behavior. Use 'respond-async' for immediate return or 'wait=N' to wait N seconds.
-      schema:
-        type: string
-        examples:
-        - respond-async
-        - wait=10
-    XRequestedBy:
-      name: X-Requested-By
-      in: header
-      required: true
-      description: CSRF protection header required for POST and DELETE requests
-      schema:
-        type: string
-        example: MyClient
-    Links:
-      name: links
-      in: query
-      description: Comma-separated list of link relations to include. Use 'none' to exclude all links.
-      schema:
-        type: string
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
+    ServerLifeCycleRuntime:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Server name
+        state:
+          type: string
+          description: Current lifecycle state
+          enum:
+          - RUNNING
+          - SHUTDOWN
+          - STANDBY
+          - ADMIN
+          - FAILED
+          - STARTING
+          - SHUTTING_DOWN
+          - SUSPENDING
+          - FORCE_SHUTTING_DOWN
+          - RESUMING
+          - UNKNOWN
+        type:
+          type: string
+          description: Runtime type identifier
+          enum:
+          - ServerLifeCycleRuntime
+        nodeManagerRestartCount:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
   securitySchemes:
     basicAuth:
       type: http

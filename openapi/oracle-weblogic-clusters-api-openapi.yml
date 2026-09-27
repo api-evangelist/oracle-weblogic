@@ -263,7 +263,7 @@ paths:
           description: Port of the WebLogic Administration Server
   /clusters/{clusterName}:
     get:
-      operationId: getCluster
+      operationId: getClustersByClusterName
       summary: Oracle WebLogic Server APIs Get cluster monitoring information
       description: Returns detailed monitoring information for a specific cluster including member server states and cluster health.
       tags:
@@ -281,6 +281,8 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound_2'
+      x-operation-id-source: normalized
+      x-operation-id-original: getCluster
     servers:
     - url: https://{host}:{port}/management/weblogic/latest
       description: WebLogic Server Administration Server
@@ -300,13 +302,6 @@ components:
       description: Name of the cluster
       schema:
         type: string
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include in the response
-      schema:
-        type: string
-      example: name,listenPort
     XRequestedBy:
       name: X-Requested-By
       in: header
@@ -322,6 +317,13 @@ components:
       schema:
         type: string
       example: none
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include in the response
+      schema:
+        type: string
+      example: name,listenPort
     clusterName:
       name: clusterName
       in: path
@@ -376,6 +378,22 @@ components:
           enum:
           - unicast
           - multicast
+    ClusterUpdateRequest:
+      type: object
+      properties:
+        clusterMessagingMode:
+          type: string
+          enum:
+          - unicast
+          - multicast
+        defaultLoadAlgorithm:
+          type: string
+          enum:
+          - round-robin
+          - weight-based
+          - random
+        weblogicPluginEnabled:
+          type: boolean
     Cluster:
       type: object
       properties:
@@ -414,22 +432,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    ClusterUpdateRequest:
+    Error:
       type: object
       properties:
-        clusterMessagingMode:
+        type:
           type: string
-          enum:
-          - unicast
-          - multicast
-        defaultLoadAlgorithm:
+        title:
           type: string
-          enum:
-          - round-robin
-          - weight-based
-          - random
-        weblogicPluginEnabled:
-          type: boolean
+        status:
+          type: integer
+        detail:
+          type: string
     ClusterMonitoring:
       type: object
       properties:
@@ -463,17 +476,6 @@ components:
           type: integer
           format: int64
           description: Number of fragments sent
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-        title:
-          type: string
-        status:
-          type: integer
-        detail:
-          type: string
   responses:
     NotFound:
       description: Requested resource does not exist

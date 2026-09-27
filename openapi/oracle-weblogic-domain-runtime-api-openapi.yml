@@ -374,65 +374,59 @@ paths:
           default: '7001'
           description: Port of the WebLogic Administration Server
 components:
+  parameters:
+    PartitionName:
+      name: partitionName
+      in: path
+      required: true
+      description: Name of the domain partition
+      schema:
+        type: string
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include. Use 'none' to exclude all links.
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
+      schema:
+        type: string
+    serverName:
+      name: serverName
+      in: path
+      required: true
+      description: The name of the WebLogic Server instance
+      schema:
+        type: string
   schemas:
-    PartitionLifeCycleRuntime:
+    DomainRuntime:
       type: object
       properties:
-        state:
+        name:
           type: string
-          enum:
-          - RUNNING
-          - SHUTDOWN
-          - BOOTING
-          - SHUTTING_DOWN
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-        title:
-          type: string
-    TaskStatus:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        taskStatus:
-          type: string
-          description: Current status of the task
-        progress:
-          type: string
-          description: Progress description
-        description:
-          type: string
-          description: Human-readable task description
-        operation:
-          type: string
-          description: Operation name
-        running:
-          type: boolean
-          description: Whether the task is still running
-        completed:
-          type: boolean
-          description: Whether the task has completed
-        startTime:
-          type: string
-          format: date-time
-          description: Time when the task started
-        endTime:
-          type: string
-          format: date-time
-          description: Time when the task completed
+          description: Domain name
+        activationTime:
+          type: integer
+          format: int64
+          description: Time when the domain was last activated
         links:
           type: array
           items:
@@ -459,20 +453,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    DomainRuntime:
+    Link:
       type: object
       properties:
-        name:
+        rel:
           type: string
-          description: Domain name
-        activationTime:
-          type: integer
-          format: int64
-          description: Time when the domain was last activated
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
     ServerRuntime:
       type: object
       properties:
@@ -526,6 +517,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    PartitionLifeCycleRuntime:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - RUNNING
+          - SHUTDOWN
+          - BOOTING
+          - SHUTTING_DOWN
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     HealthState:
       type: object
       properties:
@@ -545,19 +550,85 @@ components:
           type: array
           items:
             type: object
-    Link_2:
+    TaskStatus:
       type: object
       properties:
-        rel:
+        identity:
+          type: array
+          items:
+            type: string
+        taskStatus:
           type: string
-          description: Link relation type
-        href:
+          description: Current status of the task
+        progress:
           type: string
-          format: uri
-          description: Link URI
-        title:
+          description: Progress description
+        description:
           type: string
-          description: Link title
+          description: Human-readable task description
+        operation:
+          type: string
+          description: Operation name
+        running:
+          type: boolean
+          description: Whether the task is still running
+        completed:
+          type: boolean
+          description: Whether the task has completed
+        startTime:
+          type: string
+          format: date-time
+          description: Time when the task started
+        endTime:
+          type: string
+          format: date-time
+          description: Time when the task completed
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ServerLifecycleRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Server name
+        state:
+          type: string
+          description: Current server lifecycle state
+          enum:
+          - SHUTDOWN
+          - STARTING
+          - STANDBY
+          - ADMIN
+          - RESUMING
+          - RUNNING
+          - SUSPENDING
+          - FORCE_SUSPENDING
+          - SHUTTING_DOWN
+          - FAILED
+          - UNKNOWN
+        nodeManagerRestartCount:
+          type: integer
+          description: Number of times node manager has restarted this server
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link_2'
+    DomainRuntime_2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Domain name
+        activationTime:
+          type: integer
+          format: int64
+          description: Domain activation time in milliseconds
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link_2'
     Error:
       type: object
       properties:
@@ -576,20 +647,6 @@ components:
         o:errorPath:
           type: string
           description: Path to the field that caused the error
-    DomainRuntime_2:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Domain name
-        activationTime:
-          type: integer
-          format: int64
-          description: Domain activation time in milliseconds
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link_2'
     ServerRuntime_2:
       type: object
       properties:
@@ -645,34 +702,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link_2'
-    ServerLifecycleRuntime:
+    Link_2:
       type: object
       properties:
-        name:
+        rel:
           type: string
-          description: Server name
-        state:
+          description: Link relation type
+        href:
           type: string
-          description: Current server lifecycle state
-          enum:
-          - SHUTDOWN
-          - STARTING
-          - STANDBY
-          - ADMIN
-          - RESUMING
-          - RUNNING
-          - SUSPENDING
-          - FORCE_SUSPENDING
-          - SHUTTING_DOWN
-          - FAILED
-          - UNKNOWN
-        nodeManagerRestartCount:
-          type: integer
-          description: Number of times node manager has restarted this server
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link_2'
+          format: uri
+          description: Link URI
+        title:
+          type: string
+          description: Link title
     DeploymentProgress:
       type: object
       properties:
@@ -704,48 +746,6 @@ components:
           type: array
           items:
             type: string
-  parameters:
-    ServerName:
-      name: serverName
-      in: path
-      required: true
-      description: Name of the WebLogic Server instance
-      schema:
-        type: string
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include
-      schema:
-        type: string
-    XRequestedBy:
-      name: X-Requested-By
-      in: header
-      required: true
-      description: CSRF protection header required for POST and DELETE requests
-      schema:
-        type: string
-        example: MyClient
-    PartitionName:
-      name: partitionName
-      in: path
-      required: true
-      description: Name of the domain partition
-      schema:
-        type: string
-    Links:
-      name: links
-      in: query
-      description: Comma-separated list of link relations to include. Use 'none' to exclude all links.
-      schema:
-        type: string
-    serverName:
-      name: serverName
-      in: path
-      required: true
-      description: The name of the WebLogic Server instance
-      schema:
-        type: string
   responses:
     Unauthorized:
       description: Authentication required or invalid credentials

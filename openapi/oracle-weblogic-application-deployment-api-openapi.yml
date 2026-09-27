@@ -154,47 +154,6 @@ paths:
           description: Library deployed
 components:
   schemas:
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: URL of the linked resource
-        title:
-          type: string
-          description: Human-readable title for the link
-    AppDeployment:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-          description: Application name
-        sourcePath:
-          type: string
-          description: Path to the application archive or directory
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-          description: Deployment targets
-        deploymentOrder:
-          type: integer
-          description: Order in which applications are deployed
-        planPath:
-          type: string
-          description: Path to the deployment plan
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     LibDeployment:
       type: object
       properties:
@@ -210,14 +169,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identity'
-    Identity:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-          description: Bean identity path as an array of path segments
     AppDeploymentCreateRequest:
       type: object
       required:
@@ -248,14 +199,56 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identity'
+    AppDeployment:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Application name
+        sourcePath:
+          type: string
+          description: Path to the application archive or directory
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+          description: Deployment targets
+        deploymentOrder:
+          type: integer
+          description: Order in which applications are deployed
+        planPath:
+          type: string
+          description: Path to the deployment plan
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: URL of the linked resource
+        title:
+          type: string
+          description: Human-readable title for the link
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+          description: Bean identity path as an array of path segments
   parameters:
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include in the response
-      schema:
-        type: string
-      example: name,listenPort
     XRequestedBy:
       name: X-Requested-By
       in: header
@@ -278,6 +271,13 @@ components:
       schema:
         type: string
       example: none
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include in the response
+      schema:
+        type: string
+      example: name,listenPort
   securitySchemes:
     basicAuth:
       type: http
