@@ -127,19 +127,28 @@ paths:
           description: Server template deleted
 components:
   schemas:
-    Link:
+    ServerTemplateCreateRequest:
       type: object
+      required:
+      - name
       properties:
-        rel:
+        name:
           type: string
-          description: Link relation type
-        href:
+          description: Server template name
+        listenPort:
+          type: integer
+        listenAddress:
           type: string
-          format: uri
-          description: URL of the linked resource
-        title:
-          type: string
-          description: Human-readable title for the link
+        machine:
+          type: array
+          items:
+            type: string
+          description: Machine reference as identity path
+        cluster:
+          type: array
+          items:
+            type: string
+          description: Cluster reference as identity path
     ServerTemplate:
       type: object
       properties:
@@ -165,28 +174,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    ServerTemplateCreateRequest:
+    Link:
       type: object
-      required:
-      - name
       properties:
-        name:
+        rel:
           type: string
-          description: Server template name
-        listenPort:
-          type: integer
-        listenAddress:
+          description: Link relation type
+        href:
           type: string
-        machine:
-          type: array
-          items:
-            type: string
-          description: Machine reference as identity path
-        cluster:
-          type: array
-          items:
-            type: string
-          description: Cluster reference as identity path
+          format: uri
+          description: URL of the linked resource
+        title:
+          type: string
+          description: Human-readable title for the link
   parameters:
     XRequestedBy:
       name: X-Requested-By

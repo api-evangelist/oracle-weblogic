@@ -199,6 +199,13 @@ paths:
           description: Member added to group
 components:
   parameters:
+    RealmName:
+      name: realmName
+      in: path
+      required: true
+      description: Name of the security realm
+      schema:
+        type: string
     ProviderName:
       name: providerName
       in: path
@@ -214,30 +221,17 @@ components:
       schema:
         type: string
         example: MyClient
-    RealmName:
-      name: realmName
-      in: path
-      required: true
-      description: Name of the security realm
-      schema:
-        type: string
   schemas:
-    AuthenticationProviderCreateRequest:
+    SecurityRealmCreateRequest:
       type: object
       required:
       - name
-      - type
       properties:
         name:
           type: string
-        type:
+          description: Security realm name
+        managementIdentityDomain:
           type: string
-          description: Provider type (e.g., weblogic.security.providers.authentication.DefaultAuthenticator)
-        activeTypes:
-          type: array
-          items:
-            type: string
-          description: Active identity assertion types
     SecurityRealm:
       type: object
       properties:
@@ -260,6 +254,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    AuthenticationProviderCreateRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          description: Provider type (e.g., weblogic.security.providers.authentication.DefaultAuthenticator)
+        activeTypes:
+          type: array
+          items:
+            type: string
+          description: Active identity assertion types
     Link:
       type: object
       properties:
@@ -273,16 +283,6 @@ components:
         title:
           type: string
           description: Human-readable title for the link
-    SecurityRealmCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Security realm name
-        managementIdentityDomain:
-          type: string
     AuthenticationProvider:
       type: object
       properties:

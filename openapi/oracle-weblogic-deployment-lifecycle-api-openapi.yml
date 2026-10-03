@@ -197,6 +197,37 @@ paths:
                       $ref: '#/components/schemas/ApplicationRuntime'
 components:
   schemas:
+    TaskStatus:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        taskStatus:
+          type: string
+          description: Status text (e.g., TASK COMPLETED)
+        progress:
+          type: string
+          description: Progress indicator (e.g., success, processing)
+        description:
+          type: string
+        operation:
+          type: string
+        running:
+          type: boolean
+        completed:
+          type: boolean
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     ApplicationRuntime:
       type: object
       properties:
@@ -231,37 +262,6 @@ components:
           format: uri
         title:
           type: string
-    TaskStatus:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        taskStatus:
-          type: string
-          description: Status text (e.g., TASK COMPLETED)
-        progress:
-          type: string
-          description: Progress indicator (e.g., success, processing)
-        description:
-          type: string
-        operation:
-          type: string
-        running:
-          type: boolean
-        completed:
-          type: boolean
-        startTime:
-          type: string
-          format: date-time
-        endTime:
-          type: string
-          format: date-time
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     AppDeploymentRuntime:
       type: object
       properties:
@@ -277,10 +277,11 @@ components:
           items:
             $ref: '#/components/schemas/Link'
   parameters:
-    Prefer:
-      name: Prefer
-      in: header
-      description: Controls async behavior for long-running operations
+    ServerNamePath:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
       schema:
         type: string
     XRequestedBy:
@@ -298,17 +299,16 @@ components:
       description: Name of the application
       schema:
         type: string
-    ServerNamePath:
-      name: serverName
-      in: path
-      required: true
-      description: Name of the WebLogic Server instance
-      schema:
-        type: string
     Links:
       name: links
       in: query
       description: Comma-separated list of link relations to include
+      schema:
+        type: string
+    Prefer:
+      name: Prefer
+      in: header
+      description: Controls async behavior for long-running operations
       schema:
         type: string
     Fields:

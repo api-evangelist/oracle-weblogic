@@ -539,8 +539,6 @@ paths:
           description: Port of the WebLogic Administration Server
 components:
   responses:
-    Unauthorized:
-      description: Authentication required or invalid credentials
     NotFound:
       description: Requested resource does not exist
     BadRequest:
@@ -549,18 +547,83 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized_2:
+    Unauthorized:
       description: Authentication required or invalid credentials
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound_2:
       description: The specified resource was not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized_2:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    ExcludeFields:
+      name: excludeFields
+      in: query
+      description: Comma-separated list of property names to exclude from the response
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include in the response
+      schema:
+        type: string
+      example: name,listenPort
+    ExcludeLinks:
+      name: excludeLinks
+      in: query
+      description: Comma-separated list of link relations to exclude
+      schema:
+        type: string
+    ExpandedValues:
+      name: expandedValues
+      in: query
+      description: When true, properties are returned as objects with set and value fields indicating whether the property has been explicitly set.
+      schema:
+        type: boolean
+        default: false
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
+      schema:
+        type: string
+      example: none
+    SaveChanges:
+      name: saveChanges
+      in: query
+      description: When false, changes are saved to the edit session but not validated until explicitly saved or activated.
+      schema:
+        type: boolean
+        default: true
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    serverName:
+      name: serverName
+      in: path
+      required: true
+      description: The name of the WebLogic Server instance
+      schema:
+        type: string
   schemas:
     ServerUpdateRequest:
       type: object
@@ -585,86 +648,40 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identity'
-    Link:
+    ServerCreateRequest:
       type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: URL of the linked resource
-        title:
-          type: string
-          description: Human-readable title for the link
-    SSLConfiguration:
-      type: object
+      required:
+      - name
       properties:
         name:
           type: string
-        enabled:
-          type: boolean
-          description: Whether SSL is enabled
+          description: Name for the new server
         listenPort:
           type: integer
-          description: SSL listen port
-        identityAndTrustLocations:
-          type: string
-          description: Where identity and trust keystores are stored
-        serverPrivateKeyAlias:
-          type: string
-        serverPrivateKeyPassPhrase:
-          type: string
-          format: password
-        twoWaySSLEnabled:
-          type: boolean
-        clientCertificateEnforced:
-          type: boolean
-        hostnameVerificationIgnored:
-          type: boolean
-    NetworkAccessPoint:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Network channel name
-        protocol:
-          type: string
-          description: Network protocol
-        listenPort:
-          type: integer
+          description: Listen port
+          default: 7001
         listenAddress:
           type: string
-        publicPort:
-          type: integer
-        publicAddress:
+          description: Listen address
+        defaultProtocol:
           type: string
-        enabled:
-          type: boolean
-    Identity:
-      type: object
-      properties:
-        identity:
+          enum:
+          - t3
+          - t3s
+          - http
+          - https
+          - iiop
+          - iiops
+        machine:
           type: array
           items:
             type: string
-          description: Bean identity path as an array of path segments
-    Message:
-      type: object
-      properties:
-        severity:
-          type: string
-          enum:
-          - SUCCESS
-          - WARNING
-          - FAILURE
-        field:
-          type: string
-          description: Property name associated with this message
-        message:
-          type: string
-          description: Detailed message text
+          description: Machine reference as identity path
+        cluster:
+          type: array
+          items:
+            type: string
+          description: Cluster reference as identity path
     Server:
       type: object
       properties:
@@ -719,6 +736,91 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    ServerStart:
+      type: object
+      properties:
+        arguments:
+          type: string
+          description: JVM arguments for server startup
+        classPath:
+          type: string
+          description: Classpath for server startup
+        javaHome:
+          type: string
+          description: Java home directory
+        javaVendor:
+          type: string
+          description: Java vendor
+        beaHome:
+          type: string
+          description: BEA/Oracle home directory
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+          description: Bean identity path as an array of path segments
+    SSLConfiguration:
+      type: object
+      properties:
+        name:
+          type: string
+        enabled:
+          type: boolean
+          description: Whether SSL is enabled
+        listenPort:
+          type: integer
+          description: SSL listen port
+        identityAndTrustLocations:
+          type: string
+          description: Where identity and trust keystores are stored
+        serverPrivateKeyAlias:
+          type: string
+        serverPrivateKeyPassPhrase:
+          type: string
+          format: password
+        twoWaySSLEnabled:
+          type: boolean
+        clientCertificateEnforced:
+          type: boolean
+        hostnameVerificationIgnored:
+          type: boolean
+    NetworkAccessPoint:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Network channel name
+        protocol:
+          type: string
+          description: Network protocol
+        listenPort:
+          type: integer
+        listenAddress:
+          type: string
+        publicPort:
+          type: integer
+        publicAddress:
+          type: string
+        enabled:
+          type: boolean
+    Message:
+      type: object
+      properties:
+        severity:
+          type: string
+          enum:
+          - SUCCESS
+          - WARNING
+          - FAILURE
+        field:
+          type: string
+          description: Property name associated with this message
+        message:
+          type: string
+          description: Detailed message text
     ErrorResponse:
       type: object
       properties:
@@ -743,69 +845,19 @@ components:
                 type: string
               o:errorPath:
                 type: string
-    ServerStart:
+    Link:
       type: object
       properties:
-        arguments:
+        rel:
           type: string
-          description: JVM arguments for server startup
-        classPath:
+          description: Link relation type
+        href:
           type: string
-          description: Classpath for server startup
-        javaHome:
-          type: string
-          description: Java home directory
-        javaVendor:
-          type: string
-          description: Java vendor
-        beaHome:
-          type: string
-          description: BEA/Oracle home directory
-    ServerCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Name for the new server
-        listenPort:
-          type: integer
-          description: Listen port
-          default: 7001
-        listenAddress:
-          type: string
-          description: Listen address
-        defaultProtocol:
-          type: string
-          enum:
-          - t3
-          - t3s
-          - http
-          - https
-          - iiop
-          - iiops
-        machine:
-          type: array
-          items:
-            type: string
-          description: Machine reference as identity path
-        cluster:
-          type: array
-          items:
-            type: string
-          description: Cluster reference as identity path
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
+          format: uri
+          description: URL of the linked resource
         title:
           type: string
-        status:
-          type: integer
-        detail:
-          type: string
+          description: Human-readable title for the link
     ThreadPoolMetrics:
       type: object
       properties:
@@ -835,6 +887,43 @@ components:
         queueLength:
           type: integer
           description: Current queue length
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+    WorkManagerMetrics:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Work manager name
+        pendingRequests:
+          type: integer
+          description: Number of pending requests
+        completedRequests:
+          type: integer
+          format: int64
+          description: Number of completed requests
+        stuckThreadCount:
+          type: integer
+          description: Number of stuck threads
+    Link_2:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
     ServerMonitoring:
       type: object
       properties:
@@ -891,32 +980,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link_2'
-    Link_2:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-        title:
-          type: string
-    WorkManagerMetrics:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Work manager name
-        pendingRequests:
-          type: integer
-          description: Number of pending requests
-        completedRequests:
-          type: integer
-          format: int64
-          description: Number of completed requests
-        stuckThreadCount:
-          type: integer
-          description: Number of stuck threads
     JVMMetrics:
       type: object
       properties:
@@ -952,69 +1015,6 @@ components:
           type: integer
           format: int64
           description: JVM uptime in milliseconds
-  parameters:
-    ServerName:
-      name: serverName
-      in: path
-      required: true
-      description: Name of the WebLogic Server instance
-      schema:
-        type: string
-    SaveChanges:
-      name: saveChanges
-      in: query
-      description: When false, changes are saved to the edit session but not validated until explicitly saved or activated.
-      schema:
-        type: boolean
-        default: true
-    ExcludeLinks:
-      name: excludeLinks
-      in: query
-      description: Comma-separated list of link relations to exclude
-      schema:
-        type: string
-    ExcludeFields:
-      name: excludeFields
-      in: query
-      description: Comma-separated list of property names to exclude from the response
-      schema:
-        type: string
-    ExpandedValues:
-      name: expandedValues
-      in: query
-      description: When true, properties are returned as objects with set and value fields indicating whether the property has been explicitly set.
-      schema:
-        type: boolean
-        default: false
-    XRequestedBy:
-      name: X-Requested-By
-      in: header
-      required: true
-      description: CSRF protection header required for POST and DELETE requests
-      schema:
-        type: string
-        example: MyClient
-    Links:
-      name: links
-      in: query
-      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
-      schema:
-        type: string
-      example: none
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include in the response
-      schema:
-        type: string
-      example: name,listenPort
-    serverName:
-      name: serverName
-      in: path
-      required: true
-      description: The name of the WebLogic Server instance
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http

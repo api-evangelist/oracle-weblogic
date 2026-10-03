@@ -65,6 +65,22 @@ paths:
                       $ref: '#/components/schemas/JMSServerRuntime'
 components:
   schemas:
+    JMSRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+        connectionsCurrentCount:
+          type: integer
+          description: Current JMS connections
+        connectionsHighCount:
+          type: integer
+        connectionsTotalCount:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     Link:
       type: object
       properties:
@@ -100,22 +116,6 @@ components:
         bytesReceivedCount:
           type: integer
         destinationsCurrentCount:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    JMSRuntime:
-      type: object
-      properties:
-        name:
-          type: string
-        connectionsCurrentCount:
-          type: integer
-          description: Current JMS connections
-        connectionsHighCount:
-          type: integer
-        connectionsTotalCount:
           type: integer
         links:
           type: array

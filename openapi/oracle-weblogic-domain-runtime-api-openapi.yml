@@ -374,163 +374,7 @@ paths:
           default: '7001'
           description: Port of the WebLogic Administration Server
 components:
-  parameters:
-    PartitionName:
-      name: partitionName
-      in: path
-      required: true
-      description: Name of the domain partition
-      schema:
-        type: string
-    ServerName:
-      name: serverName
-      in: path
-      required: true
-      description: Name of the WebLogic Server instance
-      schema:
-        type: string
-    XRequestedBy:
-      name: X-Requested-By
-      in: header
-      required: true
-      description: CSRF protection header required for POST and DELETE requests
-      schema:
-        type: string
-        example: MyClient
-    Links:
-      name: links
-      in: query
-      description: Comma-separated list of link relations to include. Use 'none' to exclude all links.
-      schema:
-        type: string
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include
-      schema:
-        type: string
-    serverName:
-      name: serverName
-      in: path
-      required: true
-      description: The name of the WebLogic Server instance
-      schema:
-        type: string
   schemas:
-    DomainRuntime:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Domain name
-        activationTime:
-          type: integer
-          format: int64
-          description: Time when the domain was last activated
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    PartitionRuntime:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-        state:
-          type: string
-          enum:
-          - RUNNING
-          - SHUTDOWN
-          - BOOTING
-          - SHUTTING_DOWN
-        restartRequired:
-          type: boolean
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-        title:
-          type: string
-    ServerRuntime:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-          description: Server name
-        state:
-          type: string
-          description: Current server state
-          enum:
-          - RUNNING
-          - STANDBY
-          - ADMIN
-          - SHUTDOWN
-          - FAILED
-          - STARTING
-          - SHUTTING_DOWN
-          - SUSPENDING
-          - FORCE_SHUTTING_DOWN
-          - RESUMING
-        healthState:
-          $ref: '#/components/schemas/HealthState'
-        weblogicVersion:
-          type: string
-          description: WebLogic Server version
-        openSocketsCurrentCount:
-          type: integer
-          description: Current number of open sockets
-        activationTime:
-          type: integer
-          format: int64
-          description: Time when the server was activated
-        currentDirectory:
-          type: string
-          description: Current working directory
-        adminServer:
-          type: boolean
-          description: Whether this server is the admin server
-        adminServerHost:
-          type: string
-        adminServerListenPort:
-          type: integer
-        restartRequired:
-          type: boolean
-          description: Whether a restart is required for pending changes
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    PartitionLifeCycleRuntime:
-      type: object
-      properties:
-        state:
-          type: string
-          enum:
-          - RUNNING
-          - SHUTDOWN
-          - BOOTING
-          - SHUTTING_DOWN
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     HealthState:
       type: object
       properties:
@@ -587,34 +431,151 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    ServerLifecycleRuntime:
+    PartitionRuntime:
       type: object
       properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        state:
+          type: string
+          enum:
+          - RUNNING
+          - SHUTDOWN
+          - BOOTING
+          - SHUTTING_DOWN
+        restartRequired:
+          type: boolean
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    PartitionLifeCycleRuntime:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - RUNNING
+          - SHUTDOWN
+          - BOOTING
+          - SHUTTING_DOWN
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    DomainRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Domain name
+        activationTime:
+          type: integer
+          format: int64
+          description: Time when the domain was last activated
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ServerRuntime:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
         name:
           type: string
           description: Server name
         state:
           type: string
-          description: Current server lifecycle state
+          description: Current server state
           enum:
-          - SHUTDOWN
-          - STARTING
+          - RUNNING
           - STANDBY
           - ADMIN
-          - RESUMING
-          - RUNNING
-          - SUSPENDING
-          - FORCE_SUSPENDING
-          - SHUTTING_DOWN
+          - SHUTDOWN
           - FAILED
-          - UNKNOWN
-        nodeManagerRestartCount:
+          - STARTING
+          - SHUTTING_DOWN
+          - SUSPENDING
+          - FORCE_SHUTTING_DOWN
+          - RESUMING
+        healthState:
+          $ref: '#/components/schemas/HealthState'
+        weblogicVersion:
+          type: string
+          description: WebLogic Server version
+        openSocketsCurrentCount:
           type: integer
-          description: Number of times node manager has restarted this server
+          description: Current number of open sockets
+        activationTime:
+          type: integer
+          format: int64
+          description: Time when the server was activated
+        currentDirectory:
+          type: string
+          description: Current working directory
+        adminServer:
+          type: boolean
+          description: Whether this server is the admin server
+        adminServerHost:
+          type: string
+        adminServerListenPort:
+          type: integer
+        restartRequired:
+          type: boolean
+          description: Whether a restart is required for pending changes
         links:
           type: array
           items:
-            $ref: '#/components/schemas/Link_2'
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
+    DeploymentProgress:
+      type: object
+      properties:
+        name:
+          type: string
+        state:
+          type: string
+          description: Deployment state
+          enum:
+          - STATE_NEW
+          - STATE_PREPARING
+          - STATE_PREPARED
+          - STATE_ACTIVATING
+          - STATE_ACTIVE
+          - STATE_DEACTIVATING
+          - STATE_RETIRING
+          - STATE_RETIRED
+          - STATE_FAILED
+        progress:
+          type: string
+          description: Progress description
+        completed:
+          type: boolean
+          description: Whether the deployment operation is complete
+        failed:
+          type: boolean
+          description: Whether the deployment operation failed
+        targets:
+          type: array
+          items:
+            type: string
     DomainRuntime_2:
       type: object
       properties:
@@ -629,24 +590,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link_2'
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Error type URI
-        title:
-          type: string
-          description: Short error title
-        status:
-          type: integer
-          description: HTTP status code
-        detail:
-          type: string
-          description: Detailed error message
-        o:errorPath:
-          type: string
-          description: Path to the field that caused the error
     ServerRuntime_2:
       type: object
       properties:
@@ -702,6 +645,52 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link_2'
+    ServerLifecycleRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Server name
+        state:
+          type: string
+          description: Current server lifecycle state
+          enum:
+          - SHUTDOWN
+          - STARTING
+          - STANDBY
+          - ADMIN
+          - RESUMING
+          - RUNNING
+          - SUSPENDING
+          - FORCE_SUSPENDING
+          - SHUTTING_DOWN
+          - FAILED
+          - UNKNOWN
+        nodeManagerRestartCount:
+          type: integer
+          description: Number of times node manager has restarted this server
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link_2'
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Error type URI
+        title:
+          type: string
+          description: Short error title
+        status:
+          type: integer
+          description: HTTP status code
+        detail:
+          type: string
+          description: Detailed error message
+        o:errorPath:
+          type: string
+          description: Path to the field that caused the error
     Link_2:
       type: object
       properties:
@@ -715,54 +704,65 @@ components:
         title:
           type: string
           description: Link title
-    DeploymentProgress:
-      type: object
-      properties:
-        name:
-          type: string
-        state:
-          type: string
-          description: Deployment state
-          enum:
-          - STATE_NEW
-          - STATE_PREPARING
-          - STATE_PREPARED
-          - STATE_ACTIVATING
-          - STATE_ACTIVE
-          - STATE_DEACTIVATING
-          - STATE_RETIRING
-          - STATE_RETIRED
-          - STATE_FAILED
-        progress:
-          type: string
-          description: Progress description
-        completed:
-          type: boolean
-          description: Whether the deployment operation is complete
-        failed:
-          type: boolean
-          description: Whether the deployment operation failed
-        targets:
-          type: array
-          items:
-            type: string
   responses:
-    Unauthorized:
-      description: Authentication required or invalid credentials
     NotFound:
       description: Requested resource does not exist
-    Unauthorized_2:
+    Unauthorized:
       description: Authentication required or invalid credentials
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound_2:
       description: The specified resource was not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized_2:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    PartitionName:
+      name: partitionName
+      in: path
+      required: true
+      description: Name of the domain partition
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include. Use 'none' to exclude all links.
+      schema:
+        type: string
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
+      schema:
+        type: string
+    serverName:
+      name: serverName
+      in: path
+      required: true
+      description: The name of the WebLogic Server instance
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

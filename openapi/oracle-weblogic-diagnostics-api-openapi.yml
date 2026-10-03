@@ -134,7 +134,73 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    resourceName:
+      name: resourceName
+      in: path
+      required: true
+      description: The name of the WLDF system resource
+      schema:
+        type: string
+    runtimeName:
+      name: runtimeName
+      in: path
+      required: true
+      description: The name of the data access runtime
+      schema:
+        type: string
   schemas:
+    WLDFSystemResource:
+      type: object
+      properties:
+        name:
+          type: string
+          description: WLDF system resource name
+        targets:
+          type: array
+          items:
+            type: string
+          description: Target servers or clusters
+        harvestor:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: Whether the harvester is enabled
+            samplePeriod:
+              type: integer
+              description: Sample period in milliseconds
+        instrumentation:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: Whether instrumentation is enabled
+        watchNotification:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+              description: Whether watch and notification is enabled
     DataAccessRuntime:
       type: object
       properties:
@@ -183,72 +249,6 @@ components:
         returnedRecords:
           type: integer
           description: Number of records returned
-    WLDFSystemResource:
-      type: object
-      properties:
-        name:
-          type: string
-          description: WLDF system resource name
-        targets:
-          type: array
-          items:
-            type: string
-          description: Target servers or clusters
-        harvestor:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-              description: Whether the harvester is enabled
-            samplePeriod:
-              type: integer
-              description: Sample period in milliseconds
-        instrumentation:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-              description: Whether instrumentation is enabled
-        watchNotification:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-              description: Whether watch and notification is enabled
-  responses:
-    Unauthorized:
-      description: Authentication required or invalid credentials
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    resourceName:
-      name: resourceName
-      in: path
-      required: true
-      description: The name of the WLDF system resource
-      schema:
-        type: string
-    runtimeName:
-      name: runtimeName
-      in: path
-      required: true
-      description: The name of the data access runtime
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http

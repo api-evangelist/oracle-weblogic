@@ -398,7 +398,76 @@ paths:
           default: '7001'
           description: Port of the WebLogic Administration Server
 components:
+  parameters:
+    PartitionName:
+      name: partitionName
+      in: path
+      required: true
+      description: Name of the domain partition
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
+      schema:
+        type: string
+      example: none
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include in the response
+      schema:
+        type: string
+      example: name,listenPort
+    serverName:
+      name: serverName
+      in: path
+      required: true
+      description: The name of the WebLogic Server instance
+      schema:
+        type: string
   schemas:
+    VirtualTarget:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        hostNames:
+          type: array
+          items:
+            type: string
+        uriPrefix:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    ResourceGroup:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
     Partition:
       type: object
       properties:
@@ -444,55 +513,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identity'
-    PartitionCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        realm:
-          type: array
-          items:
-            type: string
-        primaryIdentityDomain:
-          type: string
-        availableTargets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-        defaultTargets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-        resourceManagerRef:
-          type: array
-          items:
-            type: string
-    ResourceGroup:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    ResourceGroupCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
     Domain:
       type: object
       properties:
@@ -532,6 +552,17 @@ components:
         title:
           type: string
           description: Human-readable title for the link
+    ResourceGroupCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
     Identity:
       type: object
       properties:
@@ -540,25 +571,161 @@ components:
           items:
             type: string
           description: Bean identity path as an array of path segments
-    VirtualTarget:
+    PartitionCreateRequest:
       type: object
+      required:
+      - name
       properties:
-        identity:
-          type: array
-          items:
-            type: string
         name:
           type: string
-        hostNames:
+        realm:
           type: array
           items:
             type: string
-        uriPrefix:
+        primaryIdentityDomain:
           type: string
-        targets:
+        availableTargets:
           type: array
           items:
             $ref: '#/components/schemas/Identity'
+        defaultTargets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        resourceManagerRef:
+          type: array
+          items:
+            type: string
+    SecurityConfiguration:
+      type: object
+      properties:
+        name:
+          type: string
+        realms:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              authenticationProviders:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    type:
+                      type: string
+        crossDomainSecurityEnabled:
+          type: boolean
+        webAppFilesCaseInsensitive:
+          type: string
+          enum:
+          - os
+          - 'true'
+          - 'false'
+    DomainConfiguration:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Domain name
+        adminServerName:
+          type: string
+          description: Name of the administration server
+        domainVersion:
+          type: string
+          description: WebLogic Server domain version
+        productionModeEnabled:
+          type: boolean
+          description: Whether the domain is in production mode
+        configurationVersion:
+          type: string
+          description: Configuration version string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link_2'
+    ClusterConfiguration:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Cluster name
+        clusterMessagingMode:
+          type: string
+          description: Messaging mode for the cluster
+          enum:
+          - unicast
+          - multicast
+        clusterBroadcastChannel:
+          type: string
+          description: Multicast channel for cluster communication
+        clusterAddress:
+          type: string
+          description: Comma-separated list of address:port pairs for cluster members
+        defaultLoadAlgorithm:
+          type: string
+          description: Load balancing algorithm
+          enum:
+          - round-robin
+          - weight-based
+          - round-robin-affinity
+          - weight-based-affinity
+          - random
+        weblogicPluginEnabled:
+          type: boolean
+          description: Whether the WebLogic plugin is enabled
+        frontendHost:
+          type: string
+          description: Frontend host for the cluster
+        frontendHTTPPort:
+          type: integer
+          description: Frontend HTTP port
+        frontendHTTPSPort:
+          type: integer
+          description: Frontend HTTPS port
+        numberOfServersInClusterAddress:
+          type: integer
+          description: Number of servers in the cluster address
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link_2'
+      required:
+      - name
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Error type URI
+        title:
+          type: string
+          description: Short error title
+        status:
+          type: integer
+          description: HTTP status code
+        detail:
+          type: string
+          description: Detailed error message
+        o:errorPath:
+          type: string
+          description: Path to the field that caused the error
+    Link_2:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: Link URI
+        title:
+          type: string
+          description: Link title
     ServerConfiguration:
       type: object
       properties:
@@ -616,182 +783,15 @@ components:
             $ref: '#/components/schemas/Link_2'
       required:
       - name
-    SecurityConfiguration:
-      type: object
-      properties:
-        name:
-          type: string
-        realms:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              authenticationProviders:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    type:
-                      type: string
-        crossDomainSecurityEnabled:
-          type: boolean
-        webAppFilesCaseInsensitive:
-          type: string
-          enum:
-          - os
-          - 'true'
-          - 'false'
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Error type URI
-        title:
-          type: string
-          description: Short error title
-        status:
-          type: integer
-          description: HTTP status code
-        detail:
-          type: string
-          description: Detailed error message
-        o:errorPath:
-          type: string
-          description: Path to the field that caused the error
-    ClusterConfiguration:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Cluster name
-        clusterMessagingMode:
-          type: string
-          description: Messaging mode for the cluster
-          enum:
-          - unicast
-          - multicast
-        clusterBroadcastChannel:
-          type: string
-          description: Multicast channel for cluster communication
-        clusterAddress:
-          type: string
-          description: Comma-separated list of address:port pairs for cluster members
-        defaultLoadAlgorithm:
-          type: string
-          description: Load balancing algorithm
-          enum:
-          - round-robin
-          - weight-based
-          - round-robin-affinity
-          - weight-based-affinity
-          - random
-        weblogicPluginEnabled:
-          type: boolean
-          description: Whether the WebLogic plugin is enabled
-        frontendHost:
-          type: string
-          description: Frontend host for the cluster
-        frontendHTTPPort:
-          type: integer
-          description: Frontend HTTP port
-        frontendHTTPSPort:
-          type: integer
-          description: Frontend HTTPS port
-        numberOfServersInClusterAddress:
-          type: integer
-          description: Number of servers in the cluster address
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link_2'
-      required:
-      - name
-    Link_2:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: Link URI
-        title:
-          type: string
-          description: Link title
-    DomainConfiguration:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Domain name
-        adminServerName:
-          type: string
-          description: Name of the administration server
-        domainVersion:
-          type: string
-          description: WebLogic Server domain version
-        productionModeEnabled:
-          type: boolean
-          description: Whether the domain is in production mode
-        configurationVersion:
-          type: string
-          description: Configuration version string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link_2'
-  parameters:
-    PartitionName:
-      name: partitionName
-      in: path
-      required: true
-      description: Name of the domain partition
-      schema:
-        type: string
-    XRequestedBy:
-      name: X-Requested-By
-      in: header
-      required: true
-      description: CSRF protection header required for POST and DELETE requests
-      schema:
-        type: string
-        example: MyClient
-    Links:
-      name: links
-      in: query
-      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
-      schema:
-        type: string
-      example: none
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include in the response
-      schema:
-        type: string
-      example: name,listenPort
-    serverName:
-      name: serverName
-      in: path
-      required: true
-      description: The name of the WebLogic Server instance
-      schema:
-        type: string
   responses:
-    Unauthorized:
-      description: Authentication required or invalid credentials
+    NotFound:
+      description: The specified resource was not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found
+    Unauthorized:
+      description: Authentication required or invalid credentials
       content:
         application/json:
           schema:

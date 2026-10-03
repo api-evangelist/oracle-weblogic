@@ -361,49 +361,26 @@ paths:
           default: '7001'
           description: Port of the WebLogic Administration Server
 components:
-  parameters:
-    ServerName:
-      name: serverName
-      in: path
-      required: true
-      description: Name of the WebLogic Server instance
-      schema:
-        type: string
-    XRequestedBy:
-      name: X-Requested-By
-      in: header
-      required: true
-      description: CSRF protection header required for POST and DELETE requests
-      schema:
-        type: string
-        example: MyClient
-    Links:
-      name: links
-      in: query
-      description: Comma-separated list of link relations to include. Use 'none' to exclude all links.
-      schema:
-        type: string
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include
-      schema:
-        type: string
-    appName:
-      name: appName
-      in: path
-      required: true
-      description: The name of the deployed application
-      schema:
-        type: string
-    dataSourceName:
-      name: dataSourceName
-      in: path
-      required: true
-      description: The name of the JDBC data source
-      schema:
-        type: string
   schemas:
+    HealthState:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - HEALTH_OK
+          - HEALTH_WARN
+          - HEALTH_CRITICAL
+          - HEALTH_FAILED
+          - HEALTH_OVERLOADED
+        subsystemName:
+          type: string
+        partitionName:
+          type: string
+        symptoms:
+          type: array
+          items:
+            type: object
     ServerRuntime:
       type: object
       properties:
@@ -468,25 +445,51 @@ components:
           format: uri
         title:
           type: string
-    HealthState:
+    ThreadPoolRuntime:
       type: object
       properties:
-        state:
+        name:
           type: string
-          enum:
-          - HEALTH_OK
-          - HEALTH_WARN
-          - HEALTH_CRITICAL
-          - HEALTH_FAILED
-          - HEALTH_OVERLOADED
-        subsystemName:
-          type: string
-        partitionName:
-          type: string
-        symptoms:
-          type: array
-          items:
-            type: object
+        executeThreadTotalCount:
+          type: integer
+          description: Total number of execute threads
+        executeThreadIdleCount:
+          type: integer
+          description: Number of idle execute threads
+        hoggingThreadCount:
+          type: integer
+          description: Number of threads that are hogging resources
+        stuckThreadCount:
+          type: integer
+          description: Number of stuck threads
+        pendingUserRequestCount:
+          type: integer
+          description: Number of pending user requests in the queue
+        throughput:
+          type: number
+          format: double
+          description: Thread pool throughput
+        completedRequestCount:
+          type: integer
+          format: int64
+          description: Total number of completed requests
+        overloadRejectedRequestsCount:
+          type: integer
+          format: int64
+          description: Number of requests rejected due to overload
+        queueLength:
+          type: integer
+          description: Current queue length
+        sharedCapacityForWorkManagers:
+          type: integer
+          description: Shared capacity for work managers
+        healthState:
+          type: object
+          properties:
+            state:
+              type: string
+            subsystemName:
+              type: string
     ApplicationRuntime:
       type: object
       properties:
@@ -524,6 +527,61 @@ components:
                 type: string
               state:
                 type: string
+    ServerRuntime_2:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Server name
+        state:
+          type: string
+          description: Current server state
+        listenAddress:
+          type: string
+          description: Current listen address
+        listenPort:
+          type: integer
+          description: Current listen port
+        SSLListenPort:
+          type: integer
+          description: Current SSL listen port
+        activationTime:
+          type: integer
+          format: int64
+          description: Server activation time in milliseconds since epoch
+        currentMachine:
+          type: string
+          description: Machine the server is running on
+        weblogicVersion:
+          type: string
+          description: WebLogic Server version string
+        openSocketsCurrentCount:
+          type: integer
+          description: Current number of open sockets
+        healthState:
+          type: object
+          properties:
+            state:
+              type: string
+              enum:
+              - HEALTH_OK
+              - HEALTH_WARN
+              - HEALTH_CRITICAL
+              - HEALTH_FAILED
+              - HEALTH_OVERLOADED
+            subsystemName:
+              type: string
+            symptoms:
+              type: array
+              items:
+                type: string
+        restartRequired:
+          type: boolean
+          description: Whether a server restart is required
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link_2'
     JMSServerRuntime:
       type: object
       properties:
@@ -577,6 +635,104 @@ components:
               type: string
             subsystemName:
               type: string
+    JVMRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+        heapSizeCurrent:
+          type: integer
+          format: int64
+          description: Current JVM heap size in bytes
+        heapSizeMax:
+          type: integer
+          format: int64
+          description: Maximum JVM heap size in bytes
+        heapFreeCurrent:
+          type: integer
+          format: int64
+          description: Current free heap memory in bytes
+        heapFreePercent:
+          type: number
+          format: double
+          description: Percentage of heap memory that is free
+        javaVersion:
+          type: string
+          description: Java version
+        javaVendor:
+          type: string
+          description: Java vendor name
+        osName:
+          type: string
+          description: Operating system name
+        osVersion:
+          type: string
+          description: Operating system version
+        uptime:
+          type: integer
+          format: int64
+          description: JVM uptime in milliseconds
+    JMSRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+        connectionsCurrentCount:
+          type: integer
+          description: Current number of JMS connections
+        connectionsTotalCount:
+          type: integer
+          description: Total JMS connections created
+        connectionsHighCount:
+          type: integer
+          description: High watermark of JMS connections
+        JMSServersCurrentCount:
+          type: integer
+          description: Current number of JMS servers
+        JMSServersTotalCount:
+          type: integer
+          description: Total JMS servers created
+        JMSServersHighCount:
+          type: integer
+          description: High watermark of JMS servers
+        healthState:
+          type: object
+          properties:
+            state:
+              type: string
+            subsystemName:
+              type: string
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Error type URI
+        title:
+          type: string
+          description: Short error title
+        status:
+          type: integer
+          description: HTTP status code
+        detail:
+          type: string
+          description: Detailed error message
+        o:errorPath:
+          type: string
+          description: Path to the field that caused the error
+    Link_2:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: Link URI
+        title:
+          type: string
+          description: Link title
     JDBCDataSourceRuntime:
       type: object
       properties:
@@ -652,213 +808,57 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/JDBCDataSourceRuntime'
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Error type URI
-        title:
-          type: string
-          description: Short error title
-        status:
-          type: integer
-          description: HTTP status code
-        detail:
-          type: string
-          description: Detailed error message
-        o:errorPath:
-          type: string
-          description: Path to the field that caused the error
-    JMSRuntime:
-      type: object
-      properties:
-        name:
-          type: string
-        connectionsCurrentCount:
-          type: integer
-          description: Current number of JMS connections
-        connectionsTotalCount:
-          type: integer
-          description: Total JMS connections created
-        connectionsHighCount:
-          type: integer
-          description: High watermark of JMS connections
-        JMSServersCurrentCount:
-          type: integer
-          description: Current number of JMS servers
-        JMSServersTotalCount:
-          type: integer
-          description: Total JMS servers created
-        JMSServersHighCount:
-          type: integer
-          description: High watermark of JMS servers
-        healthState:
-          type: object
-          properties:
-            state:
-              type: string
-            subsystemName:
-              type: string
-    ThreadPoolRuntime:
-      type: object
-      properties:
-        name:
-          type: string
-        executeThreadTotalCount:
-          type: integer
-          description: Total number of execute threads
-        executeThreadIdleCount:
-          type: integer
-          description: Number of idle execute threads
-        hoggingThreadCount:
-          type: integer
-          description: Number of threads that are hogging resources
-        stuckThreadCount:
-          type: integer
-          description: Number of stuck threads
-        pendingUserRequestCount:
-          type: integer
-          description: Number of pending user requests in the queue
-        throughput:
-          type: number
-          format: double
-          description: Thread pool throughput
-        completedRequestCount:
-          type: integer
-          format: int64
-          description: Total number of completed requests
-        overloadRejectedRequestsCount:
-          type: integer
-          format: int64
-          description: Number of requests rejected due to overload
-        queueLength:
-          type: integer
-          description: Current queue length
-        sharedCapacityForWorkManagers:
-          type: integer
-          description: Shared capacity for work managers
-        healthState:
-          type: object
-          properties:
-            state:
-              type: string
-            subsystemName:
-              type: string
-    ServerRuntime_2:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Server name
-        state:
-          type: string
-          description: Current server state
-        listenAddress:
-          type: string
-          description: Current listen address
-        listenPort:
-          type: integer
-          description: Current listen port
-        SSLListenPort:
-          type: integer
-          description: Current SSL listen port
-        activationTime:
-          type: integer
-          format: int64
-          description: Server activation time in milliseconds since epoch
-        currentMachine:
-          type: string
-          description: Machine the server is running on
-        weblogicVersion:
-          type: string
-          description: WebLogic Server version string
-        openSocketsCurrentCount:
-          type: integer
-          description: Current number of open sockets
-        healthState:
-          type: object
-          properties:
-            state:
-              type: string
-              enum:
-              - HEALTH_OK
-              - HEALTH_WARN
-              - HEALTH_CRITICAL
-              - HEALTH_FAILED
-              - HEALTH_OVERLOADED
-            subsystemName:
-              type: string
-            symptoms:
-              type: array
-              items:
-                type: string
-        restartRequired:
-          type: boolean
-          description: Whether a server restart is required
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link_2'
-    Link_2:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: Link URI
-        title:
-          type: string
-          description: Link title
-    JVMRuntime:
-      type: object
-      properties:
-        name:
-          type: string
-        heapSizeCurrent:
-          type: integer
-          format: int64
-          description: Current JVM heap size in bytes
-        heapSizeMax:
-          type: integer
-          format: int64
-          description: Maximum JVM heap size in bytes
-        heapFreeCurrent:
-          type: integer
-          format: int64
-          description: Current free heap memory in bytes
-        heapFreePercent:
-          type: number
-          format: double
-          description: Percentage of heap memory that is free
-        javaVersion:
-          type: string
-          description: Java version
-        javaVendor:
-          type: string
-          description: Java vendor name
-        osName:
-          type: string
-          description: Operating system name
-        osVersion:
-          type: string
-          description: Operating system version
-        uptime:
-          type: integer
-          format: int64
-          description: JVM uptime in milliseconds
+  parameters:
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include. Use 'none' to exclude all links.
+      schema:
+        type: string
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
+      schema:
+        type: string
+    appName:
+      name: appName
+      in: path
+      required: true
+      description: The name of the deployed application
+      schema:
+        type: string
+    dataSourceName:
+      name: dataSourceName
+      in: path
+      required: true
+      description: The name of the JDBC data source
+      schema:
+        type: string
   responses:
-    Unauthorized:
-      description: Authentication required or invalid credentials
+    NotFound:
+      description: The specified resource was not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found
+    Unauthorized:
+      description: Authentication required or invalid credentials
       content:
         application/json:
           schema:

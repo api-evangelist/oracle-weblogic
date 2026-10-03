@@ -224,6 +224,41 @@ paths:
           default: '7001'
           description: Port of the WebLogic Administration Server
 components:
+  parameters:
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header
+      schema:
+        type: string
+        example: MyClient
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include
+      schema:
+        type: string
+    LibName:
+      name: libName
+      in: path
+      required: true
+      description: Name of the shared library
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
+      schema:
+        type: string
+    libraryName:
+      name: libraryName
+      in: path
+      required: true
+      description: The name of the shared library deployment
+      schema:
+        type: string
   schemas:
     LibDeployment:
       type: object
@@ -280,46 +315,6 @@ components:
           type: array
           items:
             type: string
-    LibraryDeployment:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Library name
-        sourcePath:
-          type: string
-          description: Path to the library archive
-        targets:
-          type: array
-          items:
-            type: string
-          description: Target servers or clusters
-        specificationVersion:
-          type: string
-          description: Library specification version
-        implementationVersion:
-          type: string
-          description: Library implementation version
-        moduleType:
-          type: string
-          description: Module type
-          enum:
-          - ear
-          - war
-          - jar
-        stagingMode:
-          type: string
-          enum:
-          - stage
-          - nostage
-          - external_stage
-        deploymentOrder:
-          type: integer
-          default: 100
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     Error:
       type: object
       properties:
@@ -364,44 +359,49 @@ components:
       - name
       - sourcePath
       - targets
-  parameters:
-    XRequestedBy:
-      name: X-Requested-By
-      in: header
-      required: true
-      description: CSRF protection header
-      schema:
-        type: string
-        example: MyClient
-    Links:
-      name: links
-      in: query
-      description: Comma-separated list of link relations to include
-      schema:
-        type: string
-    LibName:
-      name: libName
-      in: path
-      required: true
-      description: Name of the shared library
-      schema:
-        type: string
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include
-      schema:
-        type: string
-    libraryName:
-      name: libraryName
-      in: path
-      required: true
-      description: The name of the shared library deployment
-      schema:
-        type: string
+    LibraryDeployment:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Library name
+        sourcePath:
+          type: string
+          description: Path to the library archive
+        targets:
+          type: array
+          items:
+            type: string
+          description: Target servers or clusters
+        specificationVersion:
+          type: string
+          description: Library specification version
+        implementationVersion:
+          type: string
+          description: Library implementation version
+        moduleType:
+          type: string
+          description: Module type
+          enum:
+          - ear
+          - war
+          - jar
+        stagingMode:
+          type: string
+          enum:
+          - stage
+          - nostage
+          - external_stage
+        deploymentOrder:
+          type: integer
+          default: 100
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
   responses:
-    Unauthorized:
-      description: Authentication required or invalid credentials
+    NotFound:
+      description: The specified resource was not found
       content:
         application/json:
           schema:
@@ -412,8 +412,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found
+    Unauthorized:
+      description: Authentication required or invalid credentials
       content:
         application/json:
           schema:

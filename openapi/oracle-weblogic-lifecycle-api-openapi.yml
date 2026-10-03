@@ -261,28 +261,19 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    serverName:
-      name: serverName
-      in: path
-      required: true
-      description: The name of the WebLogic Server instance
-      schema:
-        type: string
-  responses:
-    Unauthorized:
-      description: Authentication required or invalid credentials
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    TaskStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Task status
+        progress:
+          type: string
+          description: Progress description
+        completed:
+          type: boolean
+          description: Whether the task is complete
     Error:
       type: object
       properties:
@@ -301,18 +292,27 @@ components:
         o:errorPath:
           type: string
           description: Path to the field that caused the error
-    TaskStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          description: Task status
-        progress:
-          type: string
-          description: Progress description
-        completed:
-          type: boolean
-          description: Whether the task is complete
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    serverName:
+      name: serverName
+      in: path
+      required: true
+      description: The name of the WebLogic Server instance
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http
