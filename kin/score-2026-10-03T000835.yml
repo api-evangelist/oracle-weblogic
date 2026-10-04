@@ -1,31 +1,29 @@
-# Kin Score artifact — oracle-weblogic — 2026-08-24T064859
+# Kin Score artifact — oracle-weblogic — 2026-10-03T000835
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: oracle-weblogic
-  schema_version: 0.12.1
-  scored_at: '2026-08-24'
-  run_ts: 2026-08-24T064859
-  composite: 40.1
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T000835
+  composite: 44.3
   band: developing
   facets:
-    discoverability: 57.4
-    contract_quality: 65.8
-    governance: 9.8
-    operational_transparency: 26.3
-    developer_ergonomics: 16.7
-    commercial_clarity: 50.0
+    discoverability: 55.4
+    contract_quality: 65.6
     contract_governance: 9.8
+    operational_transparency: 26.3
+    developer_ergonomics: 35.7
     access_clarity: 50.0
   agent_readiness:
-    score: 34.1
-    band: agent-ready
+    score: 24.0
+    band: agent-aware
     dimensions:
       spec_presence: true
       agentic_access: derived
       reversibility_documented: documented
       mcp_server: false
-      auth_clarity: true
+      auth_clarity: bearer
       idempotency: false
       error_semantics: false
       openapi_examples: partial
@@ -36,10 +34,20 @@ kin_score:
       consent_identity: false
       agent_card: false
       dry_run_mode: false
+      delegated_identity: false
+      protected_resource_metadata: false
+      dynamic_client_registration: false
+      agentic_commerce: false
+  regulatory:
+    applies: true
+    regime: Horizontal (data, software, accessibility, platform)
+    regime_id: horizontal
+    score: 24.5
+    matched_via: fallback
   provenance:
     agentic_access: derived
     contracts:
-      total: 24
+      total: 31
       derived: 0
       coverage: 0.0
       callable: 0.0
