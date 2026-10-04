@@ -153,52 +153,7 @@ paths:
         '201':
           description: Library deployed
 components:
-  parameters:
-    XRequestedBy:
-      name: X-Requested-By
-      in: header
-      required: true
-      description: CSRF protection header required for POST and DELETE requests
-      schema:
-        type: string
-        example: MyClient
-    AppName:
-      name: appName
-      in: path
-      required: true
-      description: Name of the application deployment
-      schema:
-        type: string
-    Links:
-      name: links
-      in: query
-      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
-      schema:
-        type: string
-      example: none
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include in the response
-      schema:
-        type: string
-      example: name,listenPort
   schemas:
-    LibDeployment:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-        sourcePath:
-          type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
     AppDeployment:
       type: object
       properties:
@@ -227,32 +182,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    LibDeploymentCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        sourceURL:
-          type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: URL of the linked resource
-        title:
-          type: string
-          description: Human-readable title for the link
     AppDeploymentCreateRequest:
       type: object
       required:
@@ -270,6 +199,19 @@ components:
             $ref: '#/components/schemas/Identity'
         planPath:
           type: string
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: URL of the linked resource
+        title:
+          type: string
+          description: Human-readable title for the link
     Identity:
       type: object
       properties:
@@ -278,6 +220,64 @@ components:
           items:
             type: string
           description: Bean identity path as an array of path segments
+    LibDeploymentCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        sourceURL:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    LibDeployment:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        sourcePath:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+  parameters:
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
+      schema:
+        type: string
+      example: none
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include in the response
+      schema:
+        type: string
+      example: name,listenPort
+    AppName:
+      name: appName
+      in: path
+      required: true
+      description: Name of the application deployment
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

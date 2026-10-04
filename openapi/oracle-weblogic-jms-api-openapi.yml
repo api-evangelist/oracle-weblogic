@@ -482,95 +482,6 @@ paths:
           description: Port of the WebLogic Administration Server
 components:
   schemas:
-    FileStoreCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        directory:
-          type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    JMSSystemResourceCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    JMSSystemResource:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    JMSSubDeploymentCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    FileStore:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-        directory:
-          type: string
-          description: Directory for the file store
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    JMSDistributedQueueCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        subDeploymentName:
-          type: string
-    JMSConnectionFactory:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Connection factory name
-        JNDIName:
-          type: string
-          description: JNDI name
-        subDeploymentName:
-          type: string
-          description: Sub-deployment name for targeting
     JMSServer:
       type: object
       properties:
@@ -609,6 +520,33 @@ components:
           type: string
         subDeploymentName:
           type: string
+    JMSSubDeploymentCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    FileStore:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        directory:
+          type: string
+          description: Directory for the file store
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
     Link:
       type: object
       properties:
@@ -622,17 +560,15 @@ components:
         title:
           type: string
           description: Human-readable title for the link
-    JMSDistributedQueue:
+    JMSSubDeployment:
       type: object
       properties:
         name:
           type: string
-          description: Distributed queue name
-        JNDIName:
-          type: string
-          description: JNDI name
-        subDeploymentName:
-          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
     Identity:
       type: object
       properties:
@@ -641,6 +577,42 @@ components:
           items:
             type: string
           description: Bean identity path as an array of path segments
+    JMSSystemResourceCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    JMSConnectionFactory:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Connection factory name
+        JNDIName:
+          type: string
+          description: JNDI name
+        subDeploymentName:
+          type: string
+          description: Sub-deployment name for targeting
+    FileStoreCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        directory:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
     JMSServerCreateRequest:
       type: object
       required:
@@ -661,15 +633,43 @@ components:
           type: array
           items:
             type: string
-    JMSSubDeployment:
+    JMSDistributedQueueCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        subDeploymentName:
+          type: string
+    JMSSystemResource:
       type: object
       properties:
+        identity:
+          type: array
+          items:
+            type: string
         name:
           type: string
         targets:
           type: array
           items:
             $ref: '#/components/schemas/Identity'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    JMSDistributedQueue:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Distributed queue name
+        JNDIName:
+          type: string
+          description: JNDI name
+        subDeploymentName:
+          type: string
     JMSServerMetrics:
       type: object
       properties:
@@ -779,13 +779,6 @@ components:
         detail:
           type: string
   parameters:
-    JMSResourceName:
-      name: jmsResourceName
-      in: path
-      required: true
-      description: Name of the JMS system resource
-      schema:
-        type: string
     JMSServerName:
       name: jmsServerName
       in: path
@@ -801,6 +794,13 @@ components:
       schema:
         type: string
         example: MyClient
+    JMSResourceName:
+      name: jmsResourceName
+      in: path
+      required: true
+      description: Name of the JMS system resource
+      schema:
+        type: string
     jmsServerName:
       name: jmsServerName
       in: path

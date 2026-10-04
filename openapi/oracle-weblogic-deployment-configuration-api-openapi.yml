@@ -65,34 +65,6 @@ paths:
         '201':
           description: Sub-deployment created
 components:
-  schemas:
-    SubDeploymentCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    SubDeployment:
-      type: object
-      properties:
-        name:
-          type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    Identity:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
   parameters:
     XRequestedBy:
       name: X-Requested-By
@@ -109,6 +81,34 @@ components:
       description: Name of the application
       schema:
         type: string
+  schemas:
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+    SubDeployment:
+      type: object
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    SubDeploymentCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
   securitySchemes:
     basicAuth:
       type: http

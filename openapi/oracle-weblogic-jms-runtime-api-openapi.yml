@@ -64,23 +64,15 @@ paths:
                     items:
                       $ref: '#/components/schemas/JMSServerRuntime'
 components:
+  parameters:
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
   schemas:
-    JMSRuntime:
-      type: object
-      properties:
-        name:
-          type: string
-        connectionsCurrentCount:
-          type: integer
-          description: Current JMS connections
-        connectionsHighCount:
-          type: integer
-        connectionsTotalCount:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     Link:
       type: object
       properties:
@@ -121,14 +113,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-  parameters:
-    ServerName:
-      name: serverName
-      in: path
-      required: true
-      description: Name of the WebLogic Server instance
-      schema:
-        type: string
+    JMSRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+        connectionsCurrentCount:
+          type: integer
+          description: Current JMS connections
+        connectionsHighCount:
+          type: integer
+        connectionsTotalCount:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
   securitySchemes:
     basicAuth:
       type: http

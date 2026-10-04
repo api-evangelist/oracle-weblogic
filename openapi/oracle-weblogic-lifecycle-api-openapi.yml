@@ -292,6 +292,14 @@ components:
         o:errorPath:
           type: string
           description: Path to the field that caused the error
+  parameters:
+    serverName:
+      name: serverName
+      in: path
+      required: true
+      description: The name of the WebLogic Server instance
+      schema:
+        type: string
   responses:
     NotFound:
       description: The specified resource was not found
@@ -305,14 +313,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    serverName:
-      name: serverName
-      in: path
-      required: true
-      description: The name of the WebLogic Server instance
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http

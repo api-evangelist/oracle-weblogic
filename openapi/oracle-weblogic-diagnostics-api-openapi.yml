@@ -134,41 +134,55 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or invalid credentials
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    resourceName:
-      name: resourceName
-      in: path
-      required: true
-      description: The name of the WLDF system resource
-      schema:
-        type: string
-    runtimeName:
-      name: runtimeName
-      in: path
-      required: true
-      description: The name of the data access runtime
-      schema:
-        type: string
   schemas:
+    DataAccessRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Data access runtime name
+        availableDataTypes:
+          type: array
+          items:
+            type: string
+          description: Types of diagnostic data available for querying
+    DiagnosticQueryResult:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+          description: Column definitions for the result set
+        rows:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          description: Result rows
+        totalRecords:
+          type: integer
+          description: Total number of matching records
+        returnedRecords:
+          type: integer
+          description: Number of records returned
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
     WLDFSystemResource:
       type: object
       properties:
@@ -201,54 +215,40 @@ components:
             enabled:
               type: boolean
               description: Whether watch and notification is enabled
-    DataAccessRuntime:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Data access runtime name
-        availableDataTypes:
-          type: array
-          items:
-            type: string
-          description: Types of diagnostic data available for querying
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-        title:
-          type: string
-        status:
-          type: integer
-        detail:
-          type: string
-    DiagnosticQueryResult:
-      type: object
-      properties:
-        columns:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              type:
-                type: string
-          description: Column definitions for the result set
-        rows:
-          type: array
-          items:
-            type: array
-            items:
-              type: string
-          description: Result rows
-        totalRecords:
-          type: integer
-          description: Total number of matching records
-        returnedRecords:
-          type: integer
-          description: Number of records returned
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    resourceName:
+      name: resourceName
+      in: path
+      required: true
+      description: The name of the WLDF system resource
+      schema:
+        type: string
+    runtimeName:
+      name: runtimeName
+      in: path
+      required: true
+      description: The name of the data access runtime
+      schema:
+        type: string
   securitySchemes:
     basicAuth:
       type: http

@@ -46,19 +46,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or invalid credentials
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    serverName:
+      name: serverName
+      in: path
+      required: true
+      description: The name of the WebLogic Server instance
+      schema:
+        type: string
   schemas:
     ServerHealth:
       type: object
@@ -109,14 +104,19 @@ components:
           type: integer
         detail:
           type: string
-  parameters:
-    serverName:
-      name: serverName
-      in: path
-      required: true
-      description: The name of the WebLogic Server instance
-      schema:
-        type: string
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or invalid credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     basicAuth:
       type: http
