@@ -1,25 +1,49 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/oracle-weblogic-deployment-openapi.yml, openapi/oracle-weblogic-management-openapi.yml,
-  openapi/oracle-weblogic-monitoring-openapi.yml
+source: openapi/oracle-weblogic-application-deployment-api-openapi.yml, openapi/oracle-weblogic-application-deployments-api-openapi.yml,
+  openapi/oracle-weblogic-application-runtime-api-openapi.yml, openapi/oracle-weblogic-applications-api-openapi.yml,
+  openapi/oracle-weblogic-clusters-api-openapi.yml, openapi/oracle-weblogic-data-sources-api-openapi.yml,
+  openapi/oracle-weblogic-deployment-configuration-api-openapi.yml, openapi/oracle-weblogic-deployment-lifecycle-api-openapi.yml,
+  openapi/oracle-weblogic-deployment-operations-api-openapi.yml, openapi/oracle-weblogic-diagnostics-api-openapi.yml,
+  openapi/oracle-weblogic-domain-configuration-api-openapi.yml, openapi/oracle-weblogic-domain-runtime-api-openapi.yml,
+  openapi/oracle-weblogic-edit-api-openapi.yml, openapi/oracle-weblogic-edit-session-api-openapi.yml,
+  openapi/oracle-weblogic-health-api-openapi.yml, openapi/oracle-weblogic-jdbc-runtime-api-openapi.yml,
+  openapi/oracle-weblogic-jms-api-openapi.yml, openapi/oracle-weblogic-jms-runtime-api-openapi.yml,
+  openapi/oracle-weblogic-library-deployments-api-openapi.yml, openapi/oracle-weblogic-lifecycle-api-openapi.yml,
+  openapi/oracle-weblogic-machines-api-openapi.yml, openapi/oracle-weblogic-runtime-search-api-openapi.yml,
+  openapi/oracle-weblogic-search-api-openapi.yml, openapi/oracle-weblogic-security-api-openapi.yml,
+  openapi/oracle-weblogic-server-lifecycle-api-openapi.yml, openapi/oracle-weblogic-server-runtime-api-openapi.yml,
+  openapi/oracle-weblogic-server-templates-api-openapi.yml, openapi/oracle-weblogic-servers-api-openapi.yml,
+  openapi/oracle-weblogic-tasks-api-openapi.yml, openapi/oracle-weblogic-thread-pool-runtime-api-openapi.yml,
+  openapi/oracle-weblogic-upload-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 143
+  operations: 225
   by_action_class:
-    acting: 74
-    connected: 69
+    connected: 124
+    acting: 101
   by_consequence:
-    physical: 17
-    read: 69
-    safety-critical: 5
-    write: 52
-  human_in_the_loop_required: 5
+    read: 124
+    physical: 26
+    safety-critical: 9
+    write: 66
+  human_in_the_loop_required: 9
 operations:
-- path: /edit/changeManager/startEdit
+- path: /edit/appDeployments
+  method: get
+  operationId: listAppDeployments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/appDeployments
   method: post
-  operationId: startEdit
+  operationId: createAppDeployment
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -35,9 +59,65 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /edit/changeManager/activate
+- path: /edit/appDeployments/{appName}
+  method: get
+  operationId: getAppDeployment
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/appDeployments/{appName}
   method: post
-  operationId: activateDeploymentChanges
+  operationId: updateAppDeployment
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/appDeployments/{appName}
+  method: delete
+  operationId: deleteAppDeployment
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/libDeployments
+  method: get
+  operationId: listLibDeployments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/libDeployments
+  method: post
+  operationId: createLibDeployment
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -137,65 +217,19 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /edit/libDeployments
-  method: get
-  operationId: listLibDeployments
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /edit/libDeployments
-  method: post
-  operationId: deployLibrary
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/libDeployments/{libName}
-  method: get
-  operationId: getLibDeployment
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /edit/libDeployments/{libName}
-  method: delete
-  operationId: undeployLibrary
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /domainRuntime/appDeploymentRuntimes
   method: get
-  operationId: listDeploymentRuntimes
+  operationId: listAppDeploymentRuntimes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/appDeploymentRuntimes/{appName}
+  method: get
+  operationId: getAppDeploymentRuntime
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -237,55 +271,9 @@ operations:
     escalation:
       human-in-the-loop: required
     audit: required
-- path: /domainRuntime/appDeploymentRuntimes/{appName}/redeploy
-  method: post
-  operationId: redeployApplication
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /domainRuntime/appDeploymentRuntimes/{appName}/update
-  method: post
-  operationId: updateApplication
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /domainRuntime/appDeploymentRuntimes/{appName}/tasks/{taskId}
-  method: get
-  operationId: getDeploymentTaskStatus
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /domainRuntime/serverRuntimes/{serverName}/applicationRuntimes
   method: get
-  operationId: listServerApplicationRuntimes
+  operationId: listApplicationRuntimes
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -293,9 +281,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /edit/appDeployments/{appName}/subDeployments
+- path: /domainRuntime/serverRuntimes/{serverName}/applicationRuntimes/{appName}/componentRuntimes
   method: get
-  operationId: listAppSubDeployments
+  operationId: listComponentRuntimes
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -303,91 +291,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /edit/appDeployments/{appName}/subDeployments
-  method: post
-  operationId: createAppSubDeployment
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/changeManager/startEdit
-  method: post
-  operationId: startEdit
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/changeManager/activate
-  method: post
-  operationId: activateChanges
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/changeManager/cancelEdit
-  method: post
-  operationId: cancelEdit
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/changeManager/undoUnactivatedChanges
-  method: post
-  operationId: undoUnactivatedChanges
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/servers
+- path: /deployments
   method: get
-  operationId: listServers
+  operationId: getDeployments
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -395,25 +301,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /edit/servers
-  method: post
-  operationId: createServer
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/serverCreateForm
+- path: /deployments/{appName}
   method: get
-  operationId: getServerCreateForm
+  operationId: getDeployment
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -421,9 +311,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /edit/servers/{serverName}
+- path: /deployments/{appName}/servlets
   method: get
-  operationId: getServer
+  operationId: getDeploymentServlets
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -431,116 +321,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /edit/servers/{serverName}
-  method: post
-  operationId: updateServer
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/servers/{serverName}
-  method: delete
-  operationId: deleteServer
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/servers/{serverName}/SSL
-  method: get
-  operationId: getServerSSL
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /edit/servers/{serverName}/SSL
-  method: post
-  operationId: updateServerSSL
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/servers/{serverName}/serverStart
-  method: get
-  operationId: getServerStart
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /edit/servers/{serverName}/serverStart
-  method: post
-  operationId: updateServerStart
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/servers/{serverName}/networkAccessPoints
-  method: get
-  operationId: listNetworkAccessPoints
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /edit/servers/{serverName}/networkAccessPoints
-  method: post
-  operationId: createNetworkAccessPoint
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /edit/clusters
   method: get
   operationId: listClusters
@@ -645,9 +425,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /edit/machines
+- path: /clusters
   method: get
-  operationId: listMachines
+  operationId: getClusters
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -655,25 +435,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /edit/machines
-  method: post
-  operationId: createMachine
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/machines/{machineName}
+- path: /clusters/{clusterName}
   method: get
-  operationId: getMachine
+  operationId: getCluster
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -681,132 +445,6 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /edit/machines/{machineName}
-  method: post
-  operationId: updateMachine
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/machines/{machineName}
-  method: delete
-  operationId: deleteMachine
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/machines/{machineName}/nodeManager
-  method: get
-  operationId: getNodeManager
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /edit/machines/{machineName}/nodeManager
-  method: post
-  operationId: updateNodeManager
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/serverTemplates
-  method: get
-  operationId: listServerTemplates
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /edit/serverTemplates
-  method: post
-  operationId: createServerTemplate
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/serverTemplates/{templateName}
-  method: get
-  operationId: getServerTemplate
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /edit/serverTemplates/{templateName}
-  method: post
-  operationId: updateServerTemplate
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/serverTemplates/{templateName}
-  method: delete
-  operationId: deleteServerTemplate
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
 - path: /edit/JDBCSystemResources
   method: get
   operationId: listJDBCSystemResources
@@ -963,6 +601,1040 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /dataSources
+  method: get
+  operationId: getDataSources
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /dataSources/{dataSourceName}
+  method: get
+  operationId: getDataSource
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /dataSources/{dataSourceName}/test
+  method: post
+  operationId: testDataSource
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/appDeployments/{appName}/subDeployments
+  method: get
+  operationId: listAppSubDeployments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/appDeployments/{appName}/subDeployments
+  method: post
+  operationId: createAppSubDeployment
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainRuntime/appDeploymentRuntimes
+  method: get
+  operationId: listDeploymentRuntimes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/appDeploymentRuntimes/{appName}/start
+  method: post
+  operationId: startApplication
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainRuntime/appDeploymentRuntimes/{appName}/stop
+  method: post
+  operationId: stopApplication
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /domainRuntime/appDeploymentRuntimes/{appName}/redeploy
+  method: post
+  operationId: redeployApplication
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainRuntime/appDeploymentRuntimes/{appName}/update
+  method: post
+  operationId: updateApplication
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainRuntime/appDeploymentRuntimes/{appName}/tasks/{taskId}
+  method: get
+  operationId: getDeploymentTaskStatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/serverRuntimes/{serverName}/applicationRuntimes
+  method: get
+  operationId: listServerApplicationRuntimes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/deploymentManager/deploy
+  method: post
+  operationId: deploy
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainRuntime/deploymentManager/undeploy
+  method: post
+  operationId: undeploy
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainRuntime/deploymentManager/redeploy
+  method: post
+  operationId: redeploy
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainRuntime/deploymentManager/startApplication
+  method: post
+  operationId: startApplication
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainRuntime/deploymentManager/stopApplication
+  method: post
+  operationId: stopApplication
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /domainRuntime/deploymentManager/deploymentProgressObjects
+  method: get
+  operationId: listDeploymentProgress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/deploymentManager/deploymentProgressObjects/{taskId}
+  method: get
+  operationId: getDeploymentProgress
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /diagnostics/WLDFSystemResources
+  method: get
+  operationId: getWLDFResources
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /diagnostics/WLDFSystemResources/{resourceName}
+  method: get
+  operationId: getWLDFResource
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /diagnostics/dataAccessRuntimes
+  method: get
+  operationId: getDataAccessRuntimes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /diagnostics/dataAccessRuntimes/{runtimeName}/query
+  method: post
+  operationId: queryDiagnosticData
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit
+  method: get
+  operationId: getEditRoot
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /serverConfig
+  method: get
+  operationId: getServerConfig
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainConfig
+  method: get
+  operationId: getDomainConfig
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/virtualTargets
+  method: get
+  operationId: listVirtualTargets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/virtualTargets
+  method: post
+  operationId: createVirtualTarget
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/partitions
+  method: get
+  operationId: listPartitions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/partitions
+  method: post
+  operationId: createPartition
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/partitions/{partitionName}/resourceGroups
+  method: get
+  operationId: listResourceGroups
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/partitions/{partitionName}/resourceGroups
+  method: post
+  operationId: createResourceGroup
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainConfig/servers
+  method: get
+  operationId: getDomainConfigServers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainConfig/servers/{serverName}
+  method: get
+  operationId: getDomainConfigServer
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainConfig/clusters
+  method: get
+  operationId: getDomainConfigClusters
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainConfig/securityConfiguration
+  method: get
+  operationId: getDomainSecurityConfig
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime
+  method: get
+  operationId: getDomainRuntime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/serverRuntimes
+  method: get
+  operationId: listServerRuntimes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/serverRuntimes/{serverName}
+  method: get
+  operationId: getServerRuntimeByName
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/domainPartitionRuntimes
+  method: get
+  operationId: listPartitionRuntimes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/domainPartitionRuntimes/{partitionName}
+  method: get
+  operationId: getPartitionRuntime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/domainPartitionRuntimes/{partitionName}/partitionLifeCycleRuntime
+  method: get
+  operationId: getPartitionLifeCycleRuntime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/domainPartitionRuntimes/{partitionName}/partitionLifeCycleRuntime/start
+  method: post
+  operationId: startPartition
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainRuntime/domainPartitionRuntimes/{partitionName}/partitionLifeCycleRuntime/stop
+  method: post
+  operationId: stopPartition
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /domainRuntime/serverLifeCycleRuntimes
+  method: get
+  operationId: getServerLifecycleRuntimes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/serverLifeCycleRuntimes/{serverName}
+  method: get
+  operationId: getServerLifecycleRuntime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/deploymentManager/deploymentProgressObjects
+  method: get
+  operationId: getDeploymentProgressObjects
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit
+  method: get
+  operationId: getEditRoot
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/changeManager/startEdit
+  method: post
+  operationId: startEdit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/changeManager/activate
+  method: post
+  operationId: activate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/changeManager/cancelEdit
+  method: post
+  operationId: cancelEdit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/changeManager/undoUnactivatedChanges
+  method: post
+  operationId: undoUnactivatedChanges
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/servers
+  method: get
+  operationId: getEditServers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/servers
+  method: post
+  operationId: createEditServer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/servers/{serverName}
+  method: get
+  operationId: getEditServer
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/servers/{serverName}
+  method: post
+  operationId: updateEditServer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/servers/{serverName}
+  method: delete
+  operationId: deleteEditServer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/clusters
+  method: get
+  operationId: getEditClusters
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/clusters
+  method: post
+  operationId: createEditCluster
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/clusters/{clusterName}
+  method: get
+  operationId: getEditCluster
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/clusters/{clusterName}
+  method: post
+  operationId: updateEditCluster
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/clusters/{clusterName}
+  method: delete
+  operationId: deleteEditCluster
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/JDBCSystemResources
+  method: get
+  operationId: getEditDataSources
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/JDBCSystemResources
+  method: post
+  operationId: createEditDataSource
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/JDBCSystemResources/{dataSourceName}
+  method: get
+  operationId: getEditDataSource
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/JDBCSystemResources/{dataSourceName}
+  method: delete
+  operationId: deleteEditDataSource
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/JMSSystemResources
+  method: get
+  operationId: getEditJMSResources
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/JMSSystemResources
+  method: post
+  operationId: createEditJMSResource
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/appDeployments
+  method: get
+  operationId: getEditAppDeployments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/appDeployments
+  method: post
+  operationId: createEditAppDeployment
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/appDeployments/{appName}
+  method: get
+  operationId: getEditAppDeployment
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/appDeployments/{appName}
+  method: delete
+  operationId: deleteEditAppDeployment
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/changeManager/startEdit
+  method: post
+  operationId: startEdit
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/changeManager/activate
+  method: post
+  operationId: activateDeploymentChanges
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/changeManager/cancelEdit
+  method: post
+  operationId: cancelEdit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/changeManager/undoUnactivatedChanges
+  method: post
+  operationId: undoUnactivatedChanges
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /servers/{serverName}/health
+  method: get
+  operationId: getServerHealth
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/serverRuntimes/{serverName}/JDBCServiceRuntime
+  method: get
+  operationId: getJDBCServiceRuntime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/serverRuntimes/{serverName}/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans
+  method: get
+  operationId: listJDBCDataSourceRuntimes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/serverRuntimes/{serverName}/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans/{dataSourceName}
+  method: get
+  operationId: getJDBCDataSourceRuntime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /edit/JMSServers
   method: get
   operationId: listJMSServers
@@ -1147,9 +1819,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /edit/appDeployments
+- path: /JMSServers
   method: get
-  operationId: listAppDeployments
+  operationId: getJMSServers
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1157,27 +1829,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /edit/appDeployments
-  method: post
-  operationId: createAppDeployment
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/appDeployments/{appName}
+- path: /JMSServers/{jmsServerName}
   method: get
-  operationId: getAppDeployment
+  operationId: getJMSServer
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1185,42 +1839,36 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /edit/appDeployments/{appName}
-  method: post
-  operationId: updateAppDeployment
+- path: /JMSServers/{jmsServerName}/destinations
+  method: get
+  operationId: getJMSDestinations
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/appDeployments/{appName}
-  method: delete
-  operationId: deleteAppDeployment
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/serverRuntimes/{serverName}/JMSRuntime
+  method: get
+  operationId: getJMSRuntime
   x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/serverRuntimes/{serverName}/JMSRuntime/JMSServersRuntime
+  method: get
+  operationId: listJMSServerRuntimes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /edit/libDeployments
   method: get
   operationId: listLibDeployments
@@ -1233,7 +1881,7 @@ operations:
     audit: none
 - path: /edit/libDeployments
   method: post
-  operationId: createLibDeployment
+  operationId: deployLibrary
   x-agentic-access:
     action-class: acting
     consequence: physical
@@ -1249,6 +1897,400 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /edit/libDeployments/{libName}
+  method: get
+  operationId: getLibDeployment
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/libDeployments/{libName}
+  method: delete
+  operationId: undeployLibrary
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/libraries
+  method: get
+  operationId: listLibraries
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/libraries
+  method: post
+  operationId: createLibrary
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/libraries/{libraryName}
+  method: get
+  operationId: getLibrary
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/libraries/{libraryName}
+  method: delete
+  operationId: deleteLibrary
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainRuntime/serverLifeCycleRuntimes/{serverName}/start
+  method: post
+  operationId: startServer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainRuntime/serverLifeCycleRuntimes/{serverName}/shutdown
+  method: post
+  operationId: shutdownServer
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /domainRuntime/serverLifeCycleRuntimes/{serverName}/forceShutdown
+  method: post
+  operationId: forceShutdownServer
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /domainRuntime/serverLifeCycleRuntimes/{serverName}/suspend
+  method: post
+  operationId: suspendServer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainRuntime/serverLifeCycleRuntimes/{serverName}/resume
+  method: post
+  operationId: resumeServer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainRuntime/serverLifeCycleRuntimes/{serverName}/restartSSL
+  method: post
+  operationId: restartSSL
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /lifecycle/latest/servers/{serverName}/shutdown
+  method: post
+  operationId: lifecycleShutdownServer
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /lifecycle/latest/servers/{serverName}/start
+  method: post
+  operationId: lifecycleStartServer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /lifecycle/latest/servers/{serverName}/suspend
+  method: post
+  operationId: lifecycleSuspendServer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /lifecycle/latest/servers/{serverName}/resume
+  method: post
+  operationId: lifecycleResumeServer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/machines
+  method: get
+  operationId: listMachines
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/machines
+  method: post
+  operationId: createMachine
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/machines/{machineName}
+  method: get
+  operationId: getMachine
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/machines/{machineName}
+  method: post
+  operationId: updateMachine
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/machines/{machineName}
+  method: delete
+  operationId: deleteMachine
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/machines/{machineName}/nodeManager
+  method: get
+  operationId: getNodeManager
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/machines/{machineName}/nodeManager
+  method: post
+  operationId: updateNodeManager
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainRuntime/search
+  method: post
+  operationId: searchDomainRuntime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /serverRuntime/search
+  method: post
+  operationId: searchServerRuntime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/search
+  method: post
+  operationId: searchEditTree
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /domainConfig/search
+  method: post
+  operationId: searchDomainConfigTree
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /serverConfig/search
+  method: post
+  operationId: searchServerConfigTree
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /edit/securityConfiguration/realms
   method: get
   operationId: listSecurityRealms
@@ -1359,202 +2401,6 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /edit
-  method: get
-  operationId: getEditRoot
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /serverConfig
-  method: get
-  operationId: getServerConfig
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /domainConfig
-  method: get
-  operationId: getDomainConfig
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /edit/search
-  method: post
-  operationId: searchEditTree
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /domainConfig/search
-  method: post
-  operationId: searchDomainConfigTree
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /serverConfig/search
-  method: post
-  operationId: searchServerConfigTree
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/virtualTargets
-  method: get
-  operationId: listVirtualTargets
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /edit/virtualTargets
-  method: post
-  operationId: createVirtualTarget
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/partitions
-  method: get
-  operationId: listPartitions
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /edit/partitions
-  method: post
-  operationId: createPartition
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /edit/partitions/{partitionName}/resourceGroups
-  method: get
-  operationId: listResourceGroups
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /edit/partitions/{partitionName}/resourceGroups
-  method: post
-  operationId: createResourceGroup
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /domainRuntime
-  method: get
-  operationId: getDomainRuntime
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /domainRuntime/serverRuntimes
-  method: get
-  operationId: listServerRuntimes
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /domainRuntime/serverRuntimes/{serverName}
-  method: get
-  operationId: getServerRuntimeByName
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /serverRuntime
-  method: get
-  operationId: getServerRuntime
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
 - path: /domainRuntime/serverLifeCycleRuntimes
   method: get
   operationId: listServerLifeCycleRuntimes
@@ -1671,9 +2517,129 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /serverRuntime
+  method: get
+  operationId: getServerRuntime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /domainRuntime/serverRuntimes/{serverName}/getURL
   method: post
   operationId: getServerURL
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /serverRuntime/JVMRuntime
+  method: get
+  operationId: getJVMRuntime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /serverRuntime/threadPoolRuntime
+  method: get
+  operationId: getThreadPoolRuntime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /serverRuntime/JDBCServiceRuntime
+  method: get
+  operationId: getJDBCServiceRuntime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /serverRuntime/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans
+  method: get
+  operationId: getJDBCDataSourceRuntimes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /serverRuntime/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans/{dataSourceName}
+  method: get
+  operationId: getJDBCDataSourceRuntime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /serverRuntime/JMSRuntime
+  method: get
+  operationId: getJMSRuntime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /serverRuntime/JMSRuntime/JMSServers
+  method: get
+  operationId: getJMSServerRuntimes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /serverRuntime/applicationRuntimes
+  method: get
+  operationId: getApplicationRuntimes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /serverRuntime/applicationRuntimes/{appName}
+  method: get
+  operationId: getApplicationRuntime
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/serverTemplates
+  method: get
+  operationId: listServerTemplates
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /edit/serverTemplates
+  method: post
+  operationId: createServerTemplate
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -1687,9 +2653,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /domainRuntime/appDeploymentRuntimes
+- path: /edit/serverTemplates/{templateName}
   method: get
-  operationId: listAppDeploymentRuntimes
+  operationId: getServerTemplate
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1697,53 +2663,41 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /domainRuntime/appDeploymentRuntimes/{appName}
-  method: get
-  operationId: getAppDeploymentRuntime
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /domainRuntime/appDeploymentRuntimes/{appName}/start
+- path: /edit/serverTemplates/{templateName}
   method: post
-  operationId: startApplication
+  operationId: updateServerTemplate
   x-agentic-access:
     action-class: acting
-    consequence: physical
+    consequence: write
     subject: required
     audience: null
     token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
+      max-ttl: 900
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
       - high-value
     audit: required
-- path: /domainRuntime/appDeploymentRuntimes/{appName}/stop
-  method: post
-  operationId: stopApplication
+- path: /edit/serverTemplates/{templateName}
+  method: delete
+  operationId: deleteServerTemplate
   x-agentic-access:
     action-class: acting
-    consequence: safety-critical
+    consequence: write
     subject: required
     audience: null
     token:
-      max-ttl: 120
-      exchange: true
-      purpose-required: true
-      proof-of-possession: true
+      max-ttl: 900
     escalation:
-      human-in-the-loop: required
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
     audit: required
-- path: /domainRuntime/serverRuntimes/{serverName}/applicationRuntimes
+- path: /edit/servers
   method: get
-  operationId: listApplicationRuntimes
+  operationId: listServers
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1751,9 +2705,25 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /domainRuntime/serverRuntimes/{serverName}/applicationRuntimes/{appName}/componentRuntimes
+- path: /edit/servers
+  method: post
+  operationId: createServer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/serverCreateForm
   method: get
-  operationId: listComponentRuntimes
+  operationId: getServerCreateForm
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1761,9 +2731,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /domainRuntime/serverRuntimes/{serverName}/JDBCServiceRuntime
+- path: /edit/servers/{serverName}
   method: get
-  operationId: getJDBCServiceRuntime
+  operationId: getServer
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1771,9 +2741,41 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /domainRuntime/serverRuntimes/{serverName}/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans
+- path: /edit/servers/{serverName}
+  method: post
+  operationId: updateServer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/servers/{serverName}
+  method: delete
+  operationId: deleteServer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/servers/{serverName}/SSL
   method: get
-  operationId: listJDBCDataSourceRuntimes
+  operationId: getServerSSL
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1781,9 +2783,25 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /domainRuntime/serverRuntimes/{serverName}/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans/{dataSourceName}
+- path: /edit/servers/{serverName}/SSL
+  method: post
+  operationId: updateServerSSL
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/servers/{serverName}/serverStart
   method: get
-  operationId: getJDBCDataSourceRuntime
+  operationId: getServerStart
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1791,9 +2809,25 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /domainRuntime/serverRuntimes/{serverName}/JMSRuntime
+- path: /edit/servers/{serverName}/serverStart
+  method: post
+  operationId: updateServerStart
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /edit/servers/{serverName}/networkAccessPoints
   method: get
-  operationId: getJMSRuntime
+  operationId: listNetworkAccessPoints
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1801,9 +2835,75 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /domainRuntime/serverRuntimes/{serverName}/JMSRuntime/JMSServersRuntime
+- path: /edit/servers/{serverName}/networkAccessPoints
+  method: post
+  operationId: createNetworkAccessPoint
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /servers
   method: get
-  operationId: listJMSServerRuntimes
+  operationId: getServers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /servers/{serverName}
+  method: get
+  operationId: getServer
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /servers/{serverName}/jvm
+  method: get
+  operationId: getServerJVM
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /servers/{serverName}/threadPool
+  method: get
+  operationId: getServerThreadPool
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /servers/{serverName}/workManagers
+  method: get
+  operationId: getServerWorkManagers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /domainRuntime/tasks/{taskId}
+  method: get
+  operationId: getTaskStatus
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -1821,107 +2921,21 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /domainRuntime/search
+- path: /domainRuntime/deploymentManager/upload
   method: post
-  operationId: searchDomainRuntime
+  operationId: uploadApplication
   x-agentic-access:
     action-class: acting
-    consequence: write
+    consequence: physical
     subject: required
     audience: null
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /serverRuntime/search
-  method: post
-  operationId: searchServerRuntime
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /domainRuntime/domainPartitionRuntimes
-  method: get
-  operationId: listPartitionRuntimes
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /domainRuntime/domainPartitionRuntimes/{partitionName}
-  method: get
-  operationId: getPartitionRuntime
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /domainRuntime/domainPartitionRuntimes/{partitionName}/partitionLifeCycleRuntime
-  method: get
-  operationId: getPartitionLifeCycleRuntime
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /domainRuntime/domainPartitionRuntimes/{partitionName}/partitionLifeCycleRuntime/start
-  method: post
-  operationId: startPartition
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /domainRuntime/domainPartitionRuntimes/{partitionName}/partitionLifeCycleRuntime/stop
-  method: post
-  operationId: stopPartition
-  x-agentic-access:
-    action-class: acting
-    consequence: safety-critical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 120
+      max-ttl: 300
       exchange: true
       purpose-required: true
-      proof-of-possession: true
     escalation:
-      human-in-the-loop: required
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
     audit: required
-- path: /domainRuntime/tasks/{taskId}
-  method: get
-  operationId: getTaskStatus
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
