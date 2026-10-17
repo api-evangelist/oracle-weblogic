@@ -44,7 +44,34 @@ paths:
               schema:
                 $ref: '#/components/schemas/ThreadPoolRuntime'
 components:
+  parameters:
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
   schemas:
+    HealthState:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - HEALTH_OK
+          - HEALTH_WARN
+          - HEALTH_CRITICAL
+          - HEALTH_FAILED
+          - HEALTH_OVERLOADED
+        subsystemName:
+          type: string
+        partitionName:
+          type: string
+        symptoms:
+          type: array
+          items:
+            type: object
     ThreadPoolRuntime:
       type: object
       properties:
@@ -76,33 +103,6 @@ components:
           description: Request throughput
         healthState:
           $ref: '#/components/schemas/HealthState'
-    HealthState:
-      type: object
-      properties:
-        state:
-          type: string
-          enum:
-          - HEALTH_OK
-          - HEALTH_WARN
-          - HEALTH_CRITICAL
-          - HEALTH_FAILED
-          - HEALTH_OVERLOADED
-        subsystemName:
-          type: string
-        partitionName:
-          type: string
-        symptoms:
-          type: array
-          items:
-            type: object
-  parameters:
-    ServerName:
-      name: serverName
-      in: path
-      required: true
-      description: Name of the WebLogic Server instance
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http

@@ -126,15 +126,6 @@ paths:
         '204':
           description: Server template deleted
 components:
-  parameters:
-    XRequestedBy:
-      name: X-Requested-By
-      in: header
-      required: true
-      description: CSRF protection header required for POST and DELETE requests
-      schema:
-        type: string
-        example: MyClient
   schemas:
     ServerTemplate:
       type: object
@@ -161,6 +152,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: URL of the linked resource
+        title:
+          type: string
+          description: Human-readable title for the link
     ServerTemplateCreateRequest:
       type: object
       required:
@@ -183,19 +187,15 @@ components:
           items:
             type: string
           description: Cluster reference as identity path
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: URL of the linked resource
-        title:
-          type: string
-          description: Human-readable title for the link
+  parameters:
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
   securitySchemes:
     basicAuth:
       type: http

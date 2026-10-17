@@ -122,6 +122,17 @@ components:
         reloadTotalCount:
           type: integer
           description: Number of times the servlet was reloaded
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
     DeploymentMetrics:
       type: object
       properties:
@@ -159,26 +170,15 @@ components:
               type: integer
               format: int64
               description: Total sessions opened
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-        title:
-          type: string
-        status:
-          type: integer
-        detail:
-          type: string
   responses:
-    NotFound:
-      description: The specified resource was not found
+    Unauthorized:
+      description: Authentication required or invalid credentials
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or invalid credentials
+    NotFound:
+      description: The specified resource was not found
       content:
         application/json:
           schema:

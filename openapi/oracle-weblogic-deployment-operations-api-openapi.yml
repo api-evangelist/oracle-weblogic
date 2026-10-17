@@ -312,6 +312,16 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
     DeploymentTaskStatus:
       type: object
       properties:
@@ -354,16 +364,6 @@ components:
           type: integer
         detail:
           type: string
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-        title:
-          type: string
     DeploymentProgress:
       type: object
       properties:
@@ -404,8 +404,8 @@ components:
               error:
                 type: string
   responses:
-    BadRequest:
-      description: Invalid request parameters or body
+    Unauthorized:
+      description: Authentication required or invalid credentials
       content:
         application/json:
           schema:
@@ -416,8 +416,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or invalid credentials
+    BadRequest:
+      description: Invalid request parameters or body
       content:
         application/json:
           schema:

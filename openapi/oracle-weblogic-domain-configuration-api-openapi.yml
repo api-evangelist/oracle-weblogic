@@ -406,13 +406,13 @@ components:
       description: Name of the domain partition
       schema:
         type: string
-    Links:
-      name: links
+    Fields:
+      name: fields
       in: query
-      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
+      description: Comma-separated list of property names to include in the response
       schema:
         type: string
-      example: none
+      example: name,listenPort
     XRequestedBy:
       name: X-Requested-By
       in: header
@@ -421,13 +421,13 @@ components:
       schema:
         type: string
         example: MyClient
-    Fields:
-      name: fields
+    Links:
+      name: links
       in: query
-      description: Comma-separated list of property names to include in the response
+      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
       schema:
         type: string
-      example: name,listenPort
+      example: none
     serverName:
       name: serverName
       in: path
@@ -436,19 +436,6 @@ components:
       schema:
         type: string
   schemas:
-    ResourceGroup:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
     Link:
       type: object
       properties:
@@ -462,40 +449,6 @@ components:
         title:
           type: string
           description: Human-readable title for the link
-    Identity:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-          description: Bean identity path as an array of path segments
-    Domain:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-          description: Domain name
-        configurationVersion:
-          type: string
-          description: Domain configuration version
-        domainVersion:
-          type: string
-          description: WebLogic Server version
-        adminServerName:
-          type: string
-          description: Name of the administration server
-        productionModeEnabled:
-          type: boolean
-          description: Whether the domain is in production mode
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     PartitionCreateRequest:
       type: object
       required:
@@ -507,6 +460,34 @@ components:
           type: array
           items:
             type: string
+        primaryIdentityDomain:
+          type: string
+        availableTargets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        defaultTargets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        resourceManagerRef:
+          type: array
+          items:
+            type: string
+    Partition:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        realm:
+          type: array
+          items:
+            type: string
+          description: Security realm reference
         primaryIdentityDomain:
           type: string
         availableTargets:
@@ -538,6 +519,53 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identity'
+    Domain:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+          description: Domain name
+        configurationVersion:
+          type: string
+          description: Domain configuration version
+        domainVersion:
+          type: string
+          description: WebLogic Server version
+        adminServerName:
+          type: string
+          description: Name of the administration server
+        productionModeEnabled:
+          type: boolean
+          description: Whether the domain is in production mode
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+          description: Bean identity path as an array of path segments
+    ResourceGroup:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
     VirtualTarget:
       type: object
       properties:
@@ -557,34 +585,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identity'
-    Partition:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-        realm:
-          type: array
-          items:
-            type: string
-          description: Security realm reference
-        primaryIdentityDomain:
-          type: string
-        availableTargets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-        defaultTargets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-        resourceManagerRef:
-          type: array
-          items:
-            type: string
     ResourceGroupCreateRequest:
       type: object
       required:
@@ -618,6 +618,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link_2'
+    Link_2:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: Link URI
+        title:
+          type: string
+          description: Link title
     ServerConfiguration:
       type: object
       properties:
@@ -675,66 +688,6 @@ components:
             $ref: '#/components/schemas/Link_2'
       required:
       - name
-    Link_2:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: Link URI
-        title:
-          type: string
-          description: Link title
-    SecurityConfiguration:
-      type: object
-      properties:
-        name:
-          type: string
-        realms:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              authenticationProviders:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    type:
-                      type: string
-        crossDomainSecurityEnabled:
-          type: boolean
-        webAppFilesCaseInsensitive:
-          type: string
-          enum:
-          - os
-          - 'true'
-          - 'false'
-    Error:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Error type URI
-        title:
-          type: string
-          description: Short error title
-        status:
-          type: integer
-          description: HTTP status code
-        detail:
-          type: string
-          description: Detailed error message
-        o:errorPath:
-          type: string
-          description: Path to the field that caused the error
     ClusterConfiguration:
       type: object
       properties:
@@ -783,15 +736,62 @@ components:
             $ref: '#/components/schemas/Link_2'
       required:
       - name
+    Error:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Error type URI
+        title:
+          type: string
+          description: Short error title
+        status:
+          type: integer
+          description: HTTP status code
+        detail:
+          type: string
+          description: Detailed error message
+        o:errorPath:
+          type: string
+          description: Path to the field that caused the error
+    SecurityConfiguration:
+      type: object
+      properties:
+        name:
+          type: string
+        realms:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              authenticationProviders:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    type:
+                      type: string
+        crossDomainSecurityEnabled:
+          type: boolean
+        webAppFilesCaseInsensitive:
+          type: string
+          enum:
+          - os
+          - 'true'
+          - 'false'
   responses:
-    NotFound:
-      description: The specified resource was not found
+    Unauthorized:
+      description: Authentication required or invalid credentials
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or invalid credentials
+    NotFound:
+      description: The specified resource was not found
       content:
         application/json:
           schema:

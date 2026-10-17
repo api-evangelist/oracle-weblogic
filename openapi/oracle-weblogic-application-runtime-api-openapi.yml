@@ -155,7 +155,72 @@ paths:
                     items:
                       $ref: '#/components/schemas/ComponentRuntime'
 components:
+  parameters:
+    AppName:
+      name: appName
+      in: path
+      required: true
+      description: Name of the deployed application
+      schema:
+        type: string
+    ServerName:
+      name: serverName
+      in: path
+      required: true
+      description: Name of the WebLogic Server instance
+      schema:
+        type: string
+    Fields:
+      name: fields
+      in: query
+      description: Comma-separated list of property names to include
+      schema:
+        type: string
+    XRequestedBy:
+      name: X-Requested-By
+      in: header
+      required: true
+      description: CSRF protection header required for POST and DELETE requests
+      schema:
+        type: string
+        example: MyClient
+    Links:
+      name: links
+      in: query
+      description: Comma-separated list of link relations to include. Use 'none' to exclude all links.
+      schema:
+        type: string
   schemas:
+    HealthState:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - HEALTH_OK
+          - HEALTH_WARN
+          - HEALTH_CRITICAL
+          - HEALTH_FAILED
+          - HEALTH_OVERLOADED
+        subsystemName:
+          type: string
+        partitionName:
+          type: string
+        symptoms:
+          type: array
+          items:
+            type: object
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+        title:
+          type: string
     AppDeploymentRuntime:
       type: object
       properties:
@@ -180,6 +245,36 @@ components:
           $ref: '#/components/schemas/HealthState'
         state:
           type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ComponentRuntime:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Component name
+        moduleId:
+          type: string
+          description: Module identifier
+        type:
+          type: string
+          description: Component type
+        contextRoot:
+          type: string
+          description: Web application context root
+        healthState:
+          $ref: '#/components/schemas/HealthState'
+        openSessionsCurrentCount:
+          type: integer
+          description: Current number of open sessions
+        openSessionsHighCount:
+          type: integer
+          description: Peak number of open sessions
+        sessionsOpenedTotalCount:
+          type: integer
+          description: Total sessions opened since deployment
         links:
           type: array
           items:
@@ -221,101 +316,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-        title:
-          type: string
-    ComponentRuntime:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Component name
-        moduleId:
-          type: string
-          description: Module identifier
-        type:
-          type: string
-          description: Component type
-        contextRoot:
-          type: string
-          description: Web application context root
-        healthState:
-          $ref: '#/components/schemas/HealthState'
-        openSessionsCurrentCount:
-          type: integer
-          description: Current number of open sessions
-        openSessionsHighCount:
-          type: integer
-          description: Peak number of open sessions
-        sessionsOpenedTotalCount:
-          type: integer
-          description: Total sessions opened since deployment
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    HealthState:
-      type: object
-      properties:
-        state:
-          type: string
-          enum:
-          - HEALTH_OK
-          - HEALTH_WARN
-          - HEALTH_CRITICAL
-          - HEALTH_FAILED
-          - HEALTH_OVERLOADED
-        subsystemName:
-          type: string
-        partitionName:
-          type: string
-        symptoms:
-          type: array
-          items:
-            type: object
-  parameters:
-    Links:
-      name: links
-      in: query
-      description: Comma-separated list of link relations to include. Use 'none' to exclude all links.
-      schema:
-        type: string
-    XRequestedBy:
-      name: X-Requested-By
-      in: header
-      required: true
-      description: CSRF protection header required for POST and DELETE requests
-      schema:
-        type: string
-        example: MyClient
-    ServerName:
-      name: serverName
-      in: path
-      required: true
-      description: Name of the WebLogic Server instance
-      schema:
-        type: string
-    Fields:
-      name: fields
-      in: query
-      description: Comma-separated list of property names to include
-      schema:
-        type: string
-    AppName:
-      name: appName
-      in: path
-      required: true
-      description: Name of the deployed application
-      schema:
-        type: string
   securitySchemes:
     basicAuth:
       type: http

@@ -165,27 +165,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: URL of the linked resource
-        title:
-          type: string
-          description: Human-readable title for the link
-    MachineCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Machine name
     NodeManager:
       type: object
       properties:
@@ -205,14 +184,35 @@ components:
           type: integer
           description: Listen port for Node Manager
           default: 5556
+    MachineCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Machine name
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: URL of the linked resource
+        title:
+          type: string
+          description: Human-readable title for the link
   parameters:
-    Links:
-      name: links
+    Fields:
+      name: fields
       in: query
-      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
+      description: Comma-separated list of property names to include in the response
       schema:
         type: string
-      example: none
+      example: name,listenPort
     XRequestedBy:
       name: X-Requested-By
       in: header
@@ -228,13 +228,13 @@ components:
       description: Name of the machine
       schema:
         type: string
-    Fields:
-      name: fields
+    Links:
+      name: links
       in: query
-      description: Comma-separated list of property names to include in the response
+      description: Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.
       schema:
         type: string
-      example: name,listenPort
+      example: none
   securitySchemes:
     basicAuth:
       type: http

@@ -482,6 +482,154 @@ paths:
           description: Port of the WebLogic Administration Server
 components:
   schemas:
+    JMSDistributedQueue:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Distributed queue name
+        JNDIName:
+          type: string
+          description: JNDI name
+        subDeploymentName:
+          type: string
+    FileStoreCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        directory:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    JMSSubDeployment:
+      type: object
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    JMSSystemResourceCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    JMSServerCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: JMS server name
+        messagesMaximum:
+          type: integer
+        bytesMaximum:
+          type: integer
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        persistentStore:
+          type: array
+          items:
+            type: string
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: URL of the linked resource
+        title:
+          type: string
+          description: Human-readable title for the link
+    FileStore:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        directory:
+          type: string
+          description: Directory for the file store
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+    JMSConnectionFactoryCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        subDeploymentName:
+          type: string
+    JMSSystemResource:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Identity'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    JMSConnectionFactory:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Connection factory name
+        JNDIName:
+          type: string
+          description: JNDI name
+        subDeploymentName:
+          type: string
+          description: Sub-deployment name for targeting
+    JMSDistributedQueueCreateRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        subDeploymentName:
+          type: string
+    Identity:
+      type: object
+      properties:
+        identity:
+          type: array
+          items:
+            type: string
+          description: Bean identity path as an array of path segments
     JMSServer:
       type: object
       properties:
@@ -511,15 +659,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    JMSConnectionFactoryCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        subDeploymentName:
-          type: string
     JMSSubDeploymentCreateRequest:
       type: object
       required:
@@ -531,145 +670,54 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Identity'
-    FileStore:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-        directory:
-          type: string
-          description: Directory for the file store
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: URL of the linked resource
-        title:
-          type: string
-          description: Human-readable title for the link
-    JMSSubDeployment:
+    JMSDestinationMetrics:
       type: object
       properties:
         name:
           type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    Identity:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-          description: Bean identity path as an array of path segments
-    JMSSystemResourceCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
+          description: Destination name
+        type:
           type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    JMSConnectionFactory:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Connection factory name
-        JNDIName:
-          type: string
-          description: JNDI name
-        subDeploymentName:
-          type: string
-          description: Sub-deployment name for targeting
-    FileStoreCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        directory:
-          type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-    JMSServerCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: JMS server name
-        messagesMaximum:
+          description: Destination type
+          enum:
+          - Queue
+          - Topic
+        messagesCurrentCount:
           type: integer
-        bytesMaximum:
+          format: int64
+          description: Current messages in the destination
+        messagesPendingCount:
           type: integer
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-        persistentStore:
-          type: array
-          items:
-            type: string
-    JMSDistributedQueueCreateRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        subDeploymentName:
-          type: string
-    JMSSystemResource:
-      type: object
-      properties:
-        identity:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-        targets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Identity'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    JMSDistributedQueue:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Distributed queue name
-        JNDIName:
-          type: string
-          description: JNDI name
-        subDeploymentName:
-          type: string
+          format: int64
+          description: Pending messages
+        messagesHighCount:
+          type: integer
+          format: int64
+          description: High watermark of messages
+        messagesReceivedCount:
+          type: integer
+          format: int64
+          description: Total received messages
+        consumersCurrentCount:
+          type: integer
+          format: int64
+          description: Current consumers
+        consumersHighCount:
+          type: integer
+          format: int64
+          description: High watermark of consumers
+        consumersTotal:
+          type: integer
+          format: int64
+          description: Total consumers created
+        bytesCurrentCount:
+          type: integer
+          format: int64
+          description: Current total bytes
+        bytesPendingCount:
+          type: integer
+          format: int64
+          description: Pending bytes
     JMSServerMetrics:
       type: object
       properties:
@@ -719,54 +767,6 @@ components:
               type: string
             subsystemName:
               type: string
-    JMSDestinationMetrics:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Destination name
-        type:
-          type: string
-          description: Destination type
-          enum:
-          - Queue
-          - Topic
-        messagesCurrentCount:
-          type: integer
-          format: int64
-          description: Current messages in the destination
-        messagesPendingCount:
-          type: integer
-          format: int64
-          description: Pending messages
-        messagesHighCount:
-          type: integer
-          format: int64
-          description: High watermark of messages
-        messagesReceivedCount:
-          type: integer
-          format: int64
-          description: Total received messages
-        consumersCurrentCount:
-          type: integer
-          format: int64
-          description: Current consumers
-        consumersHighCount:
-          type: integer
-          format: int64
-          description: High watermark of consumers
-        consumersTotal:
-          type: integer
-          format: int64
-          description: Total consumers created
-        bytesCurrentCount:
-          type: integer
-          format: int64
-          description: Current total bytes
-        bytesPendingCount:
-          type: integer
-          format: int64
-          description: Pending bytes
     Error:
       type: object
       properties:
@@ -779,11 +779,11 @@ components:
         detail:
           type: string
   parameters:
-    JMSServerName:
-      name: jmsServerName
+    JMSResourceName:
+      name: jmsResourceName
       in: path
       required: true
-      description: Name of the JMS server
+      description: Name of the JMS system resource
       schema:
         type: string
     XRequestedBy:
@@ -794,11 +794,11 @@ components:
       schema:
         type: string
         example: MyClient
-    JMSResourceName:
-      name: jmsResourceName
+    JMSServerName:
+      name: jmsServerName
       in: path
       required: true
-      description: Name of the JMS system resource
+      description: Name of the JMS server
       schema:
         type: string
     jmsServerName:
@@ -809,14 +809,14 @@ components:
       schema:
         type: string
   responses:
-    NotFound:
-      description: The specified resource was not found
+    Unauthorized:
+      description: Authentication required or invalid credentials
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or invalid credentials
+    NotFound:
+      description: The specified resource was not found
       content:
         application/json:
           schema:
