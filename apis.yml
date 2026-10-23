@@ -1306,6 +1306,8 @@ maintainers:
   email: kin@apievangelist.com
   url: https://apievangelist.com
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/oracle-weblogic-server/overview
 - type: Plans
   url: plans/oracle-weblogic-plans-pricing.yml
 - type: RateLimits
