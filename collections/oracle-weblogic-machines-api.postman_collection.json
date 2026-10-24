@@ -1,766 +1,754 @@
 {
+  "info": {
+    "_postman_id": "de749d62-2d8b-49e4-8c2f-85187691ca21",
+    "name": "Oracle WebLogic Server Oracle WebLogic RESTful Management\u2026",
+    "description": "RESTful API for managing and monitoring Oracle WebLogic Server domains, servers, clusters, applications, data sources, JMS resources, and security configuration.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:52:41.000Z",
+    "updatedAt": "2026-10-22T01:52:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-de749d62-2d8b-49e4-8c2f-85187691ca21"
+  },
   "item": [
     {
-      "id": "df95d1ad-e01f-4709-8010-cdd3bed127ef",
-      "name": "Machines",
-      "description": {
-        "content": "Manage machines and Node Manager configuration",
-        "type": "text/plain"
-      },
+      "name": "edit",
       "item": [
         {
-          "id": "74213305-f5a0-4e66-a7c0-971606b8c255",
-          "name": "Oracle WebLogic Server List all machines",
-          "request": {
-            "name": "Oracle WebLogic Server List all machines",
-            "description": {
-              "content": "Returns a collection of all machine configurations in the domain.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "edit",
-                "machines"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "fields",
-                  "value": "<string>",
-                  "description": "Comma-separated list of property names to include in the response"
-                },
-                {
-                  "disabled": false,
-                  "key": "links",
-                  "value": "<string>",
-                  "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "machines",
+          "item": [
             {
-              "id": "2832778c-7dd8-44de-9746-f37f97cea4f6",
-              "name": "Collection of machines",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "machines"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "{machineName}",
+              "item": [
+                {
+                  "name": "nodeManager",
+                  "item": [
                     {
-                      "key": "fields",
-                      "value": "name,listenPort"
+                      "name": "Oracle WebLogic Server Get Node Manager configuration for a machine",
+                      "id": "78bac5c9-d359-4281-a185-2b6c4b3f2fee",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/machines/:machineName/nodeManager",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "machines",
+                            ":machineName",
+                            "nodeManager"
+                          ],
+                          "variable": [
+                            {
+                              "id": "dcdf665e-9cef-49c0-8c67-ef69707d4305",
+                              "key": "machineName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the machine"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "785eb1a3-a35b-4401-bdee-1770e46e3476",
+                          "name": "Node Manager configuration",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/machines/:machineName/nodeManager",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "machines",
+                                ":machineName",
+                                "nodeManager"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "machineName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"NMType\": \"SSL\",\n  \"listenAddress\": \"localhost\",\n  \"listenPort\": 5556\n}",
+                          "createdAt": "2026-10-22T01:52:42.000Z",
+                          "updatedAt": "2026-10-22T01:52:42.000Z",
+                          "uid": "35240-785eb1a3-a35b-4401-bdee-1770e46e3476"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:52:42.000Z",
+                      "updatedAt": "2026-10-22T01:52:42.000Z",
+                      "uid": "35240-78bac5c9-d359-4281-a185-2b6c4b3f2fee"
                     },
                     {
-                      "key": "links",
-                      "value": "none"
+                      "name": "Oracle WebLogic Server Update Node Manager configuration",
+                      "id": "6025c24a-40ec-4e1f-b5f6-8d2a41d39d44",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"NMType\": \"SSL\",\n  \"listenAddress\": \"localhost\",\n  \"listenPort\": 5556\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/machines/:machineName/nodeManager",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "machines",
+                            ":machineName",
+                            "nodeManager"
+                          ],
+                          "variable": [
+                            {
+                              "id": "19235c00-27b4-4645-b4a1-cca1e0c9fd1f",
+                              "key": "machineName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the machine"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "481d59d8-a476-4b07-95e8-3a67b89adaeb",
+                          "name": "Node Manager configuration updated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                "key": "X-Requested-By",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"NMType\": \"SSL\",\n  \"listenAddress\": \"localhost\",\n  \"listenPort\": 5556\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/machines/:machineName/nodeManager",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "machines",
+                                ":machineName",
+                                "nodeManager"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "machineName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:52:42.000Z",
+                          "updatedAt": "2026-10-22T01:52:42.000Z",
+                          "uid": "35240-481d59d8-a476-4b07-95e8-3a67b89adaeb"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:52:42.000Z",
+                      "updatedAt": "2026-10-22T01:52:42.000Z",
+                      "uid": "35240-6025c24a-40ec-4e1f-b5f6-8d2a41d39d44"
                     }
                   ],
-                  "variable": []
+                  "id": "d632bae6-81a0-4c76-a9db-55322e052608",
+                  "createdAt": "2026-10-22T01:52:42.000Z",
+                  "updatedAt": "2026-10-22T01:52:42.000Z",
+                  "uid": "35240-d632bae6-81a0-4c76-a9db-55322e052608"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                {
+                  "name": "Oracle WebLogic Server Get a specific machine configuration",
+                  "id": "67a0bf17-d56b-4348-a1da-eb9681c85f63",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/machines/:machineName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "machines",
+                        ":machineName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "77e7ad64-76b6-4be3-9e46-1b6b8b1012a7",
+                          "key": "machineName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the machine"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "eae4b1ca-46d3-43f0-835b-7216086d6bec",
+                      "name": "Machine configuration",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/machines/:machineName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "machines",
+                            ":machineName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "machineName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:52:42.000Z",
+                      "updatedAt": "2026-10-22T01:52:42.000Z",
+                      "uid": "35240-eae4b1ca-46d3-43f0-835b-7216086d6bec"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:42.000Z",
+                  "updatedAt": "2026-10-22T01:52:42.000Z",
+                  "uid": "35240-67a0bf17-d56b-4348-a1da-eb9681c85f63"
+                },
+                {
+                  "name": "Oracle WebLogic Server Update a machine configuration",
+                  "id": "b584f0f2-0769-4c06-9641-15242e0e4b4e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/machines/:machineName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "machines",
+                        ":machineName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "38829899-77be-43c1-ab2b-3c089185574b",
+                          "key": "machineName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the machine"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "e2f83fbd-9e23-4cd7-877d-d0ddb5cfafe2",
+                      "name": "Machine updated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/machines/:machineName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "machines",
+                            ":machineName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "machineName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:42.000Z",
+                      "updatedAt": "2026-10-22T01:52:42.000Z",
+                      "uid": "35240-e2f83fbd-9e23-4cd7-877d-d0ddb5cfafe2"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:42.000Z",
+                  "updatedAt": "2026-10-22T01:52:42.000Z",
+                  "uid": "35240-b584f0f2-0769-4c06-9641-15242e0e4b4e"
+                },
+                {
+                  "name": "Oracle WebLogic Server Delete a machine",
+                  "id": "95b2dd7e-c493-40de-bb9f-44f9e8b23d5f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/machines/:machineName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "machines",
+                        ":machineName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a13eafac-efcf-4cd8-8c26-8dc7858497cc",
+                          "key": "machineName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the machine"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "08251c84-ade1-4e40-93b7-a379e20cb084",
+                      "name": "Machine deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/machines/:machineName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "machines",
+                            ":machineName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "machineName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:42.000Z",
+                      "updatedAt": "2026-10-22T01:52:42.000Z",
+                      "uid": "35240-08251c84-ade1-4e40-93b7-a379e20cb084"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:42.000Z",
+                  "updatedAt": "2026-10-22T01:52:42.000Z",
+                  "uid": "35240-95b2dd7e-c493-40de-bb9f-44f9e8b23d5f"
+                }
+              ],
+              "id": "bcd17e91-6669-4bdd-854d-9197629143d7",
+              "createdAt": "2026-10-22T01:52:42.000Z",
+              "updatedAt": "2026-10-22T01:52:42.000Z",
+              "uid": "35240-bcd17e91-6669-4bdd-854d-9197629143d7"
+            },
+            {
+              "name": "Oracle WebLogic Server List all machines",
+              "id": "543be8fa-5564-46d0-a435-777de2829beb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://hgTniWGePzQhWcbDwGIgiOT.benpQyCKu6i.kiGK7laEnHKSKhhZ\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://GvrVBzzKEJ.dbibRywR-OgxEx,\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://NQeSGfPOTJUgtNBncaIe.piyGu\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://dcqjGg.ovZtzxR4SkYCtVJ7pki6UzYSJykkX4WwBe02ujbGpT9gpVI\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "088ff757-5627-4586-98e1-463d6e2b3400",
-          "name": "Oracle WebLogic Server Create a new machine",
-          "request": {
-            "name": "Oracle WebLogic Server Create a new machine",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "machines"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "3419589e-6f32-4213-99f1-49a9ecf23d87",
-              "name": "Machine created successfully",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/edit/machines?fields=<string>&links=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "edit",
                     "machines"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  "query": [
+                    {
+                      "description": "Comma-separated list of property names to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.",
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ]
                 },
+                "description": "Returns a collection of all machine configurations in the domain."
+              },
+              "response": [
+                {
+                  "id": "a03717a0-b391-47cd-b130-02b8a96977d5",
+                  "name": "Collection of machines",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/machines?fields=<string>&links=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "machines"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of property names to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.",
+                          "key": "links",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:52:42.000Z",
+                  "updatedAt": "2026-10-22T01:52:42.000Z",
+                  "uid": "35240-a03717a0-b391-47cd-b130-02b8a96977d5"
+                }
+              ],
+              "createdAt": "2026-10-22T01:52:42.000Z",
+              "updatedAt": "2026-10-22T01:52:42.000Z",
+              "uid": "35240-543be8fa-5564-46d0-a435-777de2829beb"
+            },
+            {
+              "name": "Oracle WebLogic Server Create a new machine",
+              "id": "cc6f9922-869a-43c5-a781-6cb72a232d44",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) CSRF protection header required for POST and DELETE requests",
                     "key": "X-Requested-By",
-                    "value": "MyClient"
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
                   "raw": "{\n  \"name\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "disabled": false,
-                  "key": "Location",
-                  "value": "https://PvBqSbsDUHjgPLReMjLrIycdVGnpZrnva.tshxhEo2qs,JNlTDEPz+cRJk+ALJEcl10SoppJbpbsdvgr",
-                  "description": ""
                 },
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f5a89368-e7cc-466a-a36e-771726aa6978",
-          "name": "Oracle WebLogic Server Get a specific machine configuration",
-          "request": {
-            "name": "Oracle WebLogic Server Get a specific machine configuration",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "machines",
-                ":machineName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "machineName",
-                  "description": "(Required) Name of the machine"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "2acac8e0-cab9-49fd-8cc7-3c275d992ecb",
-              "name": "Machine configuration",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "edit",
-                    "machines",
-                    ":machineName"
-                  ],
+                  "raw": "{{baseUrl}}/edit/machines",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "machineName",
-                      "description": "(Required) Name of the machine"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://WdiiwNVdaqiDvsJXvEmehnsMpApQfU.kcM.uF+ghUR.IqtNTW3ABXxONpsNhd\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://JX.gtrXE38oCLIOLoJHh7stgvtRYnKtSezjs3IJTqaSoc\",\n      \"title\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e9b7be1c-3883-4085-b598-05b22bd48a07",
-          "name": "Oracle WebLogic Server Update a machine configuration",
-          "request": {
-            "name": "Oracle WebLogic Server Update a machine configuration",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "machines",
-                ":machineName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "machineName",
-                  "description": "(Required) Name of the machine"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "e575074f-95f8-4f4b-80a6-6e1cdc1ff26c",
-              "name": "Machine updated",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "edit",
-                    "machines",
-                    ":machineName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                    "machines"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "8ae6c2cb-1c33-41c5-981c-1e9e91a050d9",
+                  "name": "Machine created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/machines",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "machines"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [
                     {
                       "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "machineName",
-                      "description": "(Required) Name of the machine"
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Location",
+                      "value": "<uri>"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://SI.fuu2WHQkkYlaBD-xbZcB3hTE.6,NWCL4SHjxSBmeB\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://sabEhGYLjpTHWgA.uqhO-G+.OZIm6NUqX1QyHHU0ma4eCuiYBmTi63L\",\n      \"title\": \"string\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:52:42.000Z",
+                  "updatedAt": "2026-10-22T01:52:42.000Z",
+                  "uid": "35240-8ae6c2cb-1c33-41c5-981c-1e9e91a050d9"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:52:42.000Z",
+              "updatedAt": "2026-10-22T01:52:42.000Z",
+              "uid": "35240-cc6f9922-869a-43c5-a781-6cb72a232d44"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "72f75adb-1189-4933-a52b-dca657068551",
-          "name": "Oracle WebLogic Server Delete a machine",
-          "request": {
-            "name": "Oracle WebLogic Server Delete a machine",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "machines",
-                ":machineName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "machineName",
-                  "description": "(Required) Name of the machine"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "b588051a-cda7-49bb-9cbd-71b1b21f2117",
-              "name": "Machine deleted",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "machines",
-                    ":machineName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "machineName",
-                      "description": "(Required) Name of the machine"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "29742c4c-549d-48b0-a505-ebc14edb21bc",
-          "name": "Oracle WebLogic Server Get Node Manager configuration for a machine",
-          "request": {
-            "name": "Oracle WebLogic Server Get Node Manager configuration for a machine",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "machines",
-                ":machineName",
-                "nodeManager"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "machineName",
-                  "description": "(Required) Name of the machine"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "fbd41969-c7ec-4249-84da-6d3b52c4cb31",
-              "name": "Node Manager configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "machines",
-                    ":machineName",
-                    "nodeManager"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "machineName",
-                      "description": "(Required) Name of the machine"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"NMType\": \"SSL\",\n  \"listenAddress\": \"localhost\",\n  \"listenPort\": 5556\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "abc174d4-4c1c-470c-8106-f4c1b6787bbb",
-          "name": "Oracle WebLogic Server Update Node Manager configuration",
-          "request": {
-            "name": "Oracle WebLogic Server Update Node Manager configuration",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "machines",
-                ":machineName",
-                "nodeManager"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "machineName",
-                  "description": "(Required) Name of the machine"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"NMType\": \"SSL\",\n  \"listenAddress\": \"localhost\",\n  \"listenPort\": 5556\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "4dc6d431-a4de-4c5b-a847-07ce8478cef6",
-              "name": "Node Manager configuration updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "machines",
-                    ":machineName",
-                    "nodeManager"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "machineName",
-                      "description": "(Required) Name of the machine"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"NMType\": \"SSL\",\n  \"listenAddress\": \"localhost\",\n  \"listenPort\": 5556\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "768da9d6-7a2d-469e-bb0c-6910fc7cd0c9",
+          "createdAt": "2026-10-22T01:52:42.000Z",
+          "updatedAt": "2026-10-22T01:52:42.000Z",
+          "uid": "35240-768da9d6-7a2d-469e-bb0c-6910fc7cd0c9"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "http://localhost:7001/management/weblogic/latest",
-      "key": "baseUrl"
+      "id": "07f84d1d-5028-45f1-854c-1ff7a87dca74",
+      "createdAt": "2026-10-22T01:52:42.000Z",
+      "updatedAt": "2026-10-22T01:52:42.000Z",
+      "uid": "35240-07f84d1d-5028-45f1-854c-1ff7a87dca74"
     }
   ],
   "auth": {
@@ -768,21 +756,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "2a957a23-8d91-416b-b2f0-296125b33800",
-    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Machines API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:7001/management/weblogic/latest"
     }
-  }
+  ]
 }

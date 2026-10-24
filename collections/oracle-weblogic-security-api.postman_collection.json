@@ -1,935 +1,989 @@
 {
+  "info": {
+    "_postman_id": "1e2c16a4-8cba-4c2d-a6df-95eefb063974",
+    "name": "Oracle WebLogic Server Oracle WebLogic RESTful Management\u2026",
+    "description": "RESTful API for managing and monitoring Oracle WebLogic Server domains, servers, clusters, applications, data sources, JMS resources, and security configuration.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:53:06.000Z",
+    "updatedAt": "2026-10-22T01:53:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1e2c16a4-8cba-4c2d-a6df-95eefb063974"
+  },
   "item": [
     {
-      "id": "ca9e6105-f151-4f10-bf5c-d91f4dd4e14f",
-      "name": "Security",
-      "description": {
-        "content": "Manage security realms, authentication providers, and users",
-        "type": "text/plain"
-      },
+      "name": "edit",
       "item": [
         {
-          "id": "bbd8978a-a6b4-46c1-b484-ffa4dba5ac70",
-          "name": "Oracle WebLogic Server List all security realms",
-          "request": {
-            "name": "Oracle WebLogic Server List all security realms",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "securityConfiguration",
-                "realms"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "securityConfiguration",
+          "item": [
             {
-              "id": "b92ca127-a230-4163-b2bf-f6eb55ffa2cd",
-              "name": "Collection of security realms",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "securityConfiguration",
-                    "realms"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "realms",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"managementIdentityDomain\": \"string\",\n      \"certPathBuilder\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://gePAafZQpRmdeUAlAFCudtVASBuEkdjvJ.insIF+yWLQChEiFkmn\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://MpEwfECLFg.lfKuFCaNiBEVnvFswAEufB\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"managementIdentityDomain\": \"string\",\n      \"certPathBuilder\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://KJtJoVZBVaRRSgak.ooHQFzT1HHFQ0lCDOnVc9v\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://VOkhTcJkooqegHOfvYPnXFj.zvjgTUFPTBz4yj0DYRhBdNDG2GBZG4ohQXtbylQRTUIa-ezaI6\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "acfd555f-0c32-4c0c-ba12-d5a97049d2e5",
-          "name": "Oracle WebLogic Server Create a security realm",
-          "request": {
-            "name": "Oracle WebLogic Server Create a security realm",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "securityConfiguration",
-                "realms"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"managementIdentityDomain\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "c6aa39ce-31c1-4b25-8a8f-5ccc02727373",
-              "name": "Security realm created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "securityConfiguration",
-                    "realms"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"managementIdentityDomain\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d303239d-1e14-4ce3-b8a9-9597d5dd6934",
-          "name": "Oracle WebLogic Server Get a security realm configuration",
-          "request": {
-            "name": "Oracle WebLogic Server Get a security realm configuration",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "securityConfiguration",
-                "realms",
-                ":realmName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "realmName",
-                  "description": "(Required) Name of the security realm"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "d28d9575-88c5-4a1d-b8fd-9babb880388b",
-              "name": "Security realm configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "securityConfiguration",
-                    "realms",
-                    ":realmName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "name": "{realmName}",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "realmName",
-                      "description": "(Required) Name of the security realm"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"managementIdentityDomain\": \"string\",\n  \"certPathBuilder\": [\n    \"string\",\n    \"string\"\n  ],\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://DryTItoDW.xlvhN7IUSOlOmggbDsa7sPKq5agOc\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://lZCKPrnAIcSOIijEw.bzztDhcbJCnf4rWkk7m5PssSxIhj3W7,xBN0VvLoCf2uiJB7-eorGkVB,c,3l\",\n      \"title\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8b2c5c90-ff8b-48d6-aee4-3de19565c9ad",
-          "name": "Oracle WebLogic Server Update a security realm",
-          "request": {
-            "name": "Oracle WebLogic Server Update a security realm",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "securityConfiguration",
-                "realms",
-                ":realmName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "realmName",
-                  "description": "(Required) Name of the security realm"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"managementIdentityDomain\": \"<string>\",\n  \"certPathBuilder\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "11bd1141-f0b6-4447-970c-fd85f8bfe83e",
-              "name": "Security realm updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "securityConfiguration",
-                    "realms",
-                    ":realmName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "realmName",
-                      "description": "(Required) Name of the security realm"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"managementIdentityDomain\": \"<string>\",\n  \"certPathBuilder\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://IBU.escoI8m.1jzxvTzee6tBAZIaQ2\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://KGORVptUVsaMVQGnVqhksAjH.kuqOI+gUXu2tqmrICrcUDgmENeKRBn0jDzmdbSWNYMfYzFgQnh\",\n      \"title\": \"string\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "81bdb666-d03e-4a5a-ad23-bd49e985ade3",
-          "name": "Oracle WebLogic Server List authentication providers for a realm",
-          "request": {
-            "name": "Oracle WebLogic Server List authentication providers for a realm",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "securityConfiguration",
-                "realms",
-                ":realmName",
-                "authenticationProviders"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "realmName",
-                  "description": "(Required) Name of the security realm"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "0543b083-38e7-483c-84e9-821e0eab2a4a",
-              "name": "Collection of authentication providers",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "securityConfiguration",
-                    "realms",
-                    ":realmName",
-                    "authenticationProviders"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "realmName",
-                      "description": "(Required) Name of the security realm"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7c5b0cd5-a165-42b3-89a0-9c4d87d61011",
-          "name": "Oracle WebLogic Server Create an authentication provider",
-          "request": {
-            "name": "Oracle WebLogic Server Create an authentication provider",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "securityConfiguration",
-                "realms",
-                ":realmName",
-                "authenticationProviders"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "realmName",
-                  "description": "(Required) Name of the security realm"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"activeTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "20cf827f-ecb2-4188-ae5a-3ad3b1d88dfb",
-              "name": "Authentication provider created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "securityConfiguration",
-                    "realms",
-                    ":realmName",
-                    "authenticationProviders"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "realmName",
-                      "description": "(Required) Name of the security realm"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"activeTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "dbfadd86-4451-4322-94e0-87e605e9e7e1",
-          "name": "Oracle WebLogic Server Create a user in an authentication provider",
-          "request": {
-            "name": "Oracle WebLogic Server Create a user in an authentication provider",
-            "description": {
-              "content": "Creates a new user in the specified authentication provider. This is an operation invoked on the serverConfig tree.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "serverConfig",
-                "securityConfiguration",
-                "realms",
-                ":realmName",
-                "authenticationProviders",
-                ":providerName",
-                "createUser"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "realmName",
-                  "description": "(Required) Name of the security realm"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "providerName",
-                  "description": "(Required) Name of the authentication provider"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"userName\": \"<string>\",\n  \"password\": \"<password>\",\n  \"description\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "cc898554-2ebc-4fff-8ec2-ad1b8b9c874e",
-              "name": "User created successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "serverConfig",
-                    "securityConfiguration",
-                    "realms",
-                    ":realmName",
-                    "authenticationProviders",
-                    ":providerName",
-                    "createUser"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "realmName",
-                      "description": "(Required) Name of the security realm"
+                      "name": "authenticationProviders",
+                      "item": [
+                        {
+                          "name": "Oracle WebLogic Server List authentication providers for a realm",
+                          "id": "61231827-64bb-4e86-acc1-b36a91496f22",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/securityConfiguration/realms/:realmName/authenticationProviders",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "securityConfiguration",
+                                "realms",
+                                ":realmName",
+                                "authenticationProviders"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d99e5247-e4c0-4800-9633-a6b0a70f9583",
+                                  "key": "realmName",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the security realm"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "d0a8dc56-eba8-45a9-b1f7-0b46d1af55d0",
+                              "name": "Collection of authentication providers",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/edit/securityConfiguration/realms/:realmName/authenticationProviders",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "edit",
+                                    "securityConfiguration",
+                                    "realms",
+                                    ":realmName",
+                                    "authenticationProviders"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realmName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T01:53:07.000Z",
+                              "updatedAt": "2026-10-22T01:53:07.000Z",
+                              "uid": "35240-d0a8dc56-eba8-45a9-b1f7-0b46d1af55d0"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:53:07.000Z",
+                          "updatedAt": "2026-10-22T01:53:07.000Z",
+                          "uid": "35240-61231827-64bb-4e86-acc1-b36a91496f22"
+                        },
+                        {
+                          "name": "Oracle WebLogic Server Create an authentication provider",
+                          "id": "71e10946-dd9a-4d08-a421-be897957dd32",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                "key": "X-Requested-By",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"activeTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/securityConfiguration/realms/:realmName/authenticationProviders",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "securityConfiguration",
+                                "realms",
+                                ":realmName",
+                                "authenticationProviders"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "19d5a83c-aeb5-494e-9a98-8043fa057cb8",
+                                  "key": "realmName",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the security realm"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "3c03fd3e-0666-4aac-a506-d36cba8ca3ef",
+                              "name": "Authentication provider created",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                    "key": "X-Requested-By",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"activeTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/edit/securityConfiguration/realms/:realmName/authenticationProviders",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "edit",
+                                    "securityConfiguration",
+                                    "realms",
+                                    ":realmName",
+                                    "authenticationProviders"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "realmName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:53:07.000Z",
+                              "updatedAt": "2026-10-22T01:53:07.000Z",
+                              "uid": "35240-3c03fd3e-0666-4aac-a506-d36cba8ca3ef"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:53:07.000Z",
+                          "updatedAt": "2026-10-22T01:53:07.000Z",
+                          "uid": "35240-71e10946-dd9a-4d08-a421-be897957dd32"
+                        }
+                      ],
+                      "id": "687f862b-d56e-4aee-a42a-1fc057952b26",
+                      "createdAt": "2026-10-22T01:53:07.000Z",
+                      "updatedAt": "2026-10-22T01:53:07.000Z",
+                      "uid": "35240-687f862b-d56e-4aee-a42a-1fc057952b26"
                     },
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "providerName",
-                      "description": "(Required) Name of the authentication provider"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"userName\": \"<string>\",\n  \"password\": \"<password>\",\n  \"description\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c5ea58f7-7476-4d69-a0e7-a17e80818338",
-          "name": "Oracle WebLogic Server Add a user or group to a security group",
-          "request": {
-            "name": "Oracle WebLogic Server Add a user or group to a security group",
-            "description": {},
-            "url": {
-              "path": [
-                "serverConfig",
-                "securityConfiguration",
-                "realms",
-                ":realmName",
-                "authenticationProviders",
-                ":providerName",
-                "addMemberToGroup"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "realmName",
-                  "description": "(Required) Name of the security realm"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "providerName",
-                  "description": "(Required) Name of the authentication provider"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"groupName\": \"<string>\",\n  \"memberUserOrGroupName\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "4a272c70-1775-4aec-beac-6ac97d974ba3",
-              "name": "Member added to group",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "serverConfig",
-                    "securityConfiguration",
-                    "realms",
-                    ":realmName",
-                    "authenticationProviders",
-                    ":providerName",
-                    "addMemberToGroup"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "realmName",
-                      "description": "(Required) Name of the security realm"
+                      "name": "Oracle WebLogic Server Get a security realm configuration",
+                      "id": "89131f7a-2ab5-4206-a37d-5523e3cc91bf",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/securityConfiguration/realms/:realmName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "securityConfiguration",
+                            "realms",
+                            ":realmName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6bf7e239-d3aa-4d95-9eb0-ce201d1a289d",
+                              "key": "realmName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the security realm"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "dec6c3e5-4fa8-4625-9ffb-cae355b4ce39",
+                          "name": "Security realm configuration",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/securityConfiguration/realms/:realmName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "securityConfiguration",
+                                "realms",
+                                ":realmName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realmName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"managementIdentityDomain\": \"<string>\",\n  \"certPathBuilder\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:53:07.000Z",
+                          "updatedAt": "2026-10-22T01:53:07.000Z",
+                          "uid": "35240-dec6c3e5-4fa8-4625-9ffb-cae355b4ce39"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:53:07.000Z",
+                      "updatedAt": "2026-10-22T01:53:07.000Z",
+                      "uid": "35240-89131f7a-2ab5-4206-a37d-5523e3cc91bf"
                     },
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "providerName",
-                      "description": "(Required) Name of the authentication provider"
+                      "name": "Oracle WebLogic Server Update a security realm",
+                      "id": "860c8c1e-ccd1-4f75-a408-0a4a8ab3a19d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"managementIdentityDomain\": \"<string>\",\n  \"certPathBuilder\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/securityConfiguration/realms/:realmName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "securityConfiguration",
+                            "realms",
+                            ":realmName"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b1079723-c2e5-4e35-a188-9a746b601821",
+                              "key": "realmName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the security realm"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "be579259-3365-4634-a6a1-2860c8648eb9",
+                          "name": "Security realm updated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                "key": "X-Requested-By",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"managementIdentityDomain\": \"<string>\",\n  \"certPathBuilder\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/securityConfiguration/realms/:realmName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "securityConfiguration",
+                                "realms",
+                                ":realmName"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "realmName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:53:07.000Z",
+                          "updatedAt": "2026-10-22T01:53:07.000Z",
+                          "uid": "35240-be579259-3365-4634-a6a1-2860c8648eb9"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:53:07.000Z",
+                      "updatedAt": "2026-10-22T01:53:07.000Z",
+                      "uid": "35240-860c8c1e-ccd1-4f75-a408-0a4a8ab3a19d"
                     }
-                  ]
+                  ],
+                  "id": "de29bf41-2290-4f30-91f9-d924fc64739b",
+                  "createdAt": "2026-10-22T01:53:07.000Z",
+                  "updatedAt": "2026-10-22T01:53:07.000Z",
+                  "uid": "35240-de29bf41-2290-4f30-91f9-d924fc64739b"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"groupName\": \"<string>\",\n  \"memberUserOrGroupName\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "name": "Oracle WebLogic Server List all security realms",
+                  "id": "cdbb8fd1-000e-4945-9c38-654234bfec23",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/securityConfiguration/realms",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "securityConfiguration",
+                        "realms"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "8f6e102b-bbee-427e-bbea-930a2a6d022e",
+                      "name": "Collection of security realms",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/securityConfiguration/realms",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "securityConfiguration",
+                            "realms"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"managementIdentityDomain\": \"<string>\",\n      \"certPathBuilder\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"managementIdentityDomain\": \"<string>\",\n      \"certPathBuilder\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:53:07.000Z",
+                      "updatedAt": "2026-10-22T01:53:07.000Z",
+                      "uid": "35240-8f6e102b-bbee-427e-bbea-930a2a6d022e"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:53:07.000Z",
+                  "updatedAt": "2026-10-22T01:53:07.000Z",
+                  "uid": "35240-cdbb8fd1-000e-4945-9c38-654234bfec23"
+                },
+                {
+                  "name": "Oracle WebLogic Server Create a security realm",
+                  "id": "163c1dfe-85be-408a-ade5-06984d338ea3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"managementIdentityDomain\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/securityConfiguration/realms",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "securityConfiguration",
+                        "realms"
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "53aedddb-c42c-42c8-87c4-cc0176829b1c",
+                      "name": "Security realm created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"managementIdentityDomain\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/securityConfiguration/realms",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "securityConfiguration",
+                            "realms"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:53:07.000Z",
+                      "updatedAt": "2026-10-22T01:53:07.000Z",
+                      "uid": "35240-53aedddb-c42c-42c8-87c4-cc0176829b1c"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:53:07.000Z",
+                  "updatedAt": "2026-10-22T01:53:07.000Z",
+                  "uid": "35240-163c1dfe-85be-408a-ade5-06984d338ea3"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "cfb96fee-c779-4b40-a4a4-215c62b8c80e",
+              "createdAt": "2026-10-22T01:53:07.000Z",
+              "updatedAt": "2026-10-22T01:53:07.000Z",
+              "uid": "35240-cfb96fee-c779-4b40-a4a4-215c62b8c80e"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "997017fb-8e33-44d8-a33c-6a99988a834e",
+          "createdAt": "2026-10-22T01:53:07.000Z",
+          "updatedAt": "2026-10-22T01:53:07.000Z",
+          "uid": "35240-997017fb-8e33-44d8-a33c-6a99988a834e"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
+      "id": "0c8b2986-3ad5-477c-a23f-4ea6358262e9",
+      "createdAt": "2026-10-22T01:53:07.000Z",
+      "updatedAt": "2026-10-22T01:53:07.000Z",
+      "uid": "35240-0c8b2986-3ad5-477c-a23f-4ea6358262e9"
+    },
     {
-      "type": "string",
-      "value": "http://localhost:7001/management/weblogic/latest",
-      "key": "baseUrl"
+      "name": "serverConfig",
+      "item": [
+        {
+          "name": "securityConfiguration",
+          "item": [
+            {
+              "name": "realms",
+              "item": [
+                {
+                  "name": "{realmName}",
+                  "item": [
+                    {
+                      "name": "authenticationProviders",
+                      "item": [
+                        {
+                          "name": "{providerName}",
+                          "item": [
+                            {
+                              "name": "createUser",
+                              "item": [
+                                {
+                                  "name": "Oracle WebLogic Server Create a user in an authentication provider",
+                                  "id": "b4c2a10d-e587-4c4c-9894-fb736b79e085",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                        "key": "X-Requested-By",
+                                        "value": "<string>"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"userName\": \"<string>\",\n  \"password\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/serverConfig/securityConfiguration/realms/:realmName/authenticationProviders/:providerName/createUser",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "serverConfig",
+                                        "securityConfiguration",
+                                        "realms",
+                                        ":realmName",
+                                        "authenticationProviders",
+                                        ":providerName",
+                                        "createUser"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "31fedb1b-a865-4c5d-98b0-68a787e684d0",
+                                          "key": "realmName",
+                                          "value": "<string>",
+                                          "description": "(Required) Name of the security realm"
+                                        },
+                                        {
+                                          "id": "586531be-20d2-46cf-b656-d3c083eddd55",
+                                          "key": "providerName",
+                                          "value": "<string>",
+                                          "description": "(Required) Name of the authentication provider"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Creates a new user in the specified authentication provider. This is an operation invoked on the serverConfig tree."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "1df0054d-dd75-4113-aca8-580d3582d9b0",
+                                      "name": "User created successfully",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                            "key": "X-Requested-By",
+                                            "value": "<string>"
+                                          },
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"userName\": \"<string>\",\n  \"password\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/serverConfig/securityConfiguration/realms/:realmName/authenticationProviders/:providerName/createUser",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "serverConfig",
+                                            "securityConfiguration",
+                                            "realms",
+                                            ":realmName",
+                                            "authenticationProviders",
+                                            ":providerName",
+                                            "createUser"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realmName"
+                                            },
+                                            {
+                                              "key": "providerName"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T01:53:07.000Z",
+                                      "updatedAt": "2026-10-22T01:53:07.000Z",
+                                      "uid": "35240-1df0054d-dd75-4113-aca8-580d3582d9b0"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:53:07.000Z",
+                                  "updatedAt": "2026-10-22T01:53:07.000Z",
+                                  "uid": "35240-b4c2a10d-e587-4c4c-9894-fb736b79e085"
+                                }
+                              ],
+                              "id": "714731df-bcf5-4868-9596-8c36f85406ea",
+                              "createdAt": "2026-10-22T01:53:07.000Z",
+                              "updatedAt": "2026-10-22T01:53:07.000Z",
+                              "uid": "35240-714731df-bcf5-4868-9596-8c36f85406ea"
+                            },
+                            {
+                              "name": "addMemberToGroup",
+                              "item": [
+                                {
+                                  "name": "Oracle WebLogic Server Add a user or group to a security group",
+                                  "id": "05ccd19c-c23e-41ee-98ea-cb84b6ba0260",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                        "key": "X-Requested-By",
+                                        "value": "<string>"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"groupName\": \"<string>\",\n  \"memberUserOrGroupName\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/serverConfig/securityConfiguration/realms/:realmName/authenticationProviders/:providerName/addMemberToGroup",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "serverConfig",
+                                        "securityConfiguration",
+                                        "realms",
+                                        ":realmName",
+                                        "authenticationProviders",
+                                        ":providerName",
+                                        "addMemberToGroup"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "18e09840-e30e-415f-9e95-1db0f4ac1eac",
+                                          "key": "realmName",
+                                          "value": "<string>",
+                                          "description": "(Required) Name of the security realm"
+                                        },
+                                        {
+                                          "id": "c7aedf1a-67f1-46d6-b6e5-21e76f967192",
+                                          "key": "providerName",
+                                          "value": "<string>",
+                                          "description": "(Required) Name of the authentication provider"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "ef12e9c2-4b94-4dda-a420-32f3eb71ab08",
+                                      "name": "Member added to group",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                            "key": "X-Requested-By",
+                                            "value": "<string>"
+                                          },
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"groupName\": \"<string>\",\n  \"memberUserOrGroupName\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/serverConfig/securityConfiguration/realms/:realmName/authenticationProviders/:providerName/addMemberToGroup",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "serverConfig",
+                                            "securityConfiguration",
+                                            "realms",
+                                            ":realmName",
+                                            "authenticationProviders",
+                                            ":providerName",
+                                            "addMemberToGroup"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "realmName"
+                                            },
+                                            {
+                                              "key": "providerName"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T01:53:07.000Z",
+                                      "updatedAt": "2026-10-22T01:53:07.000Z",
+                                      "uid": "35240-ef12e9c2-4b94-4dda-a420-32f3eb71ab08"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:53:07.000Z",
+                                  "updatedAt": "2026-10-22T01:53:07.000Z",
+                                  "uid": "35240-05ccd19c-c23e-41ee-98ea-cb84b6ba0260"
+                                }
+                              ],
+                              "id": "94ca6833-f13e-47ca-95aa-43033e25e339",
+                              "createdAt": "2026-10-22T01:53:07.000Z",
+                              "updatedAt": "2026-10-22T01:53:07.000Z",
+                              "uid": "35240-94ca6833-f13e-47ca-95aa-43033e25e339"
+                            }
+                          ],
+                          "id": "99f1b5e9-5022-4e85-aedd-0bccbfcadf85",
+                          "createdAt": "2026-10-22T01:53:07.000Z",
+                          "updatedAt": "2026-10-22T01:53:07.000Z",
+                          "uid": "35240-99f1b5e9-5022-4e85-aedd-0bccbfcadf85"
+                        }
+                      ],
+                      "id": "f9137d9a-ca63-4ab2-ae47-29c620876db1",
+                      "createdAt": "2026-10-22T01:53:07.000Z",
+                      "updatedAt": "2026-10-22T01:53:07.000Z",
+                      "uid": "35240-f9137d9a-ca63-4ab2-ae47-29c620876db1"
+                    }
+                  ],
+                  "id": "8e1570bf-ed13-480d-9a38-fcf48d1ac4fc",
+                  "createdAt": "2026-10-22T01:53:07.000Z",
+                  "updatedAt": "2026-10-22T01:53:07.000Z",
+                  "uid": "35240-8e1570bf-ed13-480d-9a38-fcf48d1ac4fc"
+                }
+              ],
+              "id": "906834f7-7967-4598-ba00-865948f1cccb",
+              "createdAt": "2026-10-22T01:53:07.000Z",
+              "updatedAt": "2026-10-22T01:53:07.000Z",
+              "uid": "35240-906834f7-7967-4598-ba00-865948f1cccb"
+            }
+          ],
+          "id": "42be0496-9506-4c9b-9333-432a44974438",
+          "createdAt": "2026-10-22T01:53:07.000Z",
+          "updatedAt": "2026-10-22T01:53:07.000Z",
+          "uid": "35240-42be0496-9506-4c9b-9333-432a44974438"
+        }
+      ],
+      "id": "e4653c9b-3ff1-4c8b-b711-1e99db52e7a2",
+      "createdAt": "2026-10-22T01:53:07.000Z",
+      "updatedAt": "2026-10-22T01:53:07.000Z",
+      "uid": "35240-e4653c9b-3ff1-4c8b-b711-1e99db52e7a2"
     }
   ],
   "auth": {
@@ -937,21 +991,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "1aa64aef-b077-4714-b80f-05ce2893b6c8",
-    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Security API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:7001/management/weblogic/latest"
     }
-  }
+  ]
 }

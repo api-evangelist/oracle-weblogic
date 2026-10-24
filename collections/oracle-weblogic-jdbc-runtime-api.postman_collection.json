@@ -1,364 +1,386 @@
 {
+  "info": {
+    "_postman_id": "c6997e41-6ff8-4ed1-9806-835830132add",
+    "name": "Oracle WebLogic Server Oracle WebLogic Monitoring and\u2026",
+    "description": "RESTful API for accessing runtime monitoring data, diagnostics information, and performance metrics for Oracle WebLogic Server domains. Provides read-only access to the domainRuntime and serverRuntime bean trees for monitoring server states, application runtimes, JDBC data source health, JMS statistics, thread pool utilization, and server lifecycle management operations.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:52:16.000Z",
+    "updatedAt": "2026-10-22T01:52:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c6997e41-6ff8-4ed1-9806-835830132add"
+  },
   "item": [
     {
-      "id": "c88e4cc9-56b6-4ac7-9869-21b04b597331",
-      "name": "JDBC Runtime",
-      "description": {
-        "content": "Monitor JDBC data source runtime statistics",
-        "type": "text/plain"
-      },
+      "name": "domainRuntime",
       "item": [
         {
-          "id": "ffca1aba-6c09-4f80-98d7-fc9cb7637c31",
-          "name": "Oracle WebLogic Server Get JDBC service runtime for a server",
-          "request": {
-            "name": "Oracle WebLogic Server Get JDBC service runtime for a server",
-            "description": {
-              "content": "Returns the JDBC service runtime for the specified server.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "domainRuntime",
-                "serverRuntimes",
-                ":serverName",
-                "JDBCServiceRuntime"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "fields",
-                  "value": "<string>",
-                  "description": "Comma-separated list of property names to include"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "serverName",
-                  "description": "(Required) Name of the WebLogic Server instance"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "serverRuntimes",
+          "item": [
             {
-              "id": "1e30ba1b-c878-44f0-b40d-d4ef880b9154",
-              "name": "JDBC service runtime",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "domainRuntime",
-                    "serverRuntimes",
-                    ":serverName",
-                    "JDBCServiceRuntime"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "fields",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "serverName",
-                      "description": "(Required) Name of the WebLogic Server instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{serverName}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "JDBCServiceRuntime",
+                  "item": [
+                    {
+                      "name": "JDBCDataSourceRuntimeMBeans",
+                      "item": [
+                        {
+                          "name": "{dataSourceName}",
+                          "item": [
+                            {
+                              "name": "Oracle WebLogic Server Get runtime for a specific data source",
+                              "id": "d96783e3-0d3c-4fe4-8b62-5ff8821b38c8",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/domainRuntime/serverRuntimes/:serverName/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans/:dataSourceName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "domainRuntime",
+                                    "serverRuntimes",
+                                    ":serverName",
+                                    "JDBCServiceRuntime",
+                                    "JDBCDataSourceRuntimeMBeans",
+                                    ":dataSourceName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "da69c7da-d998-4b21-b065-9e453704ce43",
+                                      "key": "serverName",
+                                      "value": "<string>",
+                                      "description": "(Required) Name of the WebLogic Server instance"
+                                    },
+                                    {
+                                      "id": "20bf7aab-ca74-42bf-b3ca-4ef0dd367f74",
+                                      "key": "dataSourceName",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                }
+                              },
+                              "response": [
+                                {
+                                  "id": "014d113b-56ff-446f-8f74-f124a3cb5863",
+                                  "name": "JDBC data source runtime",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: basic",
+                                        "key": "Authorization",
+                                        "value": "Basic <credentials>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/domainRuntime/serverRuntimes/:serverName/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans/:dataSourceName",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "domainRuntime",
+                                        "serverRuntimes",
+                                        ":serverName",
+                                        "JDBCServiceRuntime",
+                                        "JDBCDataSourceRuntimeMBeans",
+                                        ":dataSourceName"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "serverName"
+                                        },
+                                        {
+                                          "key": "dataSourceName"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"name\": \"<string>\",\n  \"state\": \"Unknown\",\n  \"enabled\": \"<boolean>\",\n  \"activeConnectionsCurrentCount\": \"<integer>\",\n  \"activeConnectionsHighCount\": \"<integer>\",\n  \"activeConnectionsAverageCount\": \"<integer>\",\n  \"connectionsTotalCount\": \"<integer>\",\n  \"currCapacity\": \"<integer>\",\n  \"numAvailable\": \"<integer>\",\n  \"numUnavailable\": \"<integer>\",\n  \"highestNumAvailable\": \"<integer>\",\n  \"highestNumUnavailable\": \"<integer>\",\n  \"waitingForConnectionCurrentCount\": \"<integer>\",\n  \"waitingForConnectionHighCount\": \"<integer>\",\n  \"waitSecondsHighCount\": \"<integer>\",\n  \"connectionDelayTime\": \"<integer>\",\n  \"failedReserveRequestCount\": \"<integer>\",\n  \"failuresToReconnectCount\": \"<integer>\",\n  \"leakedConnectionCount\": \"<integer>\",\n  \"prepStmtCacheCurrentSize\": \"<integer>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-10-22T01:52:16.000Z",
+                                  "updatedAt": "2026-10-22T01:52:16.000Z",
+                                  "uid": "35240-014d113b-56ff-446f-8f74-f124a3cb5863"
+                                }
+                              ],
+                              "createdAt": "2026-10-22T01:52:16.000Z",
+                              "updatedAt": "2026-10-22T01:52:16.000Z",
+                              "uid": "35240-d96783e3-0d3c-4fe4-8b62-5ff8821b38c8"
+                            }
+                          ],
+                          "id": "073b3f45-9b07-4733-9fc7-0d2fa0e9a44d",
+                          "createdAt": "2026-10-22T01:52:16.000Z",
+                          "updatedAt": "2026-10-22T01:52:16.000Z",
+                          "uid": "35240-073b3f45-9b07-4733-9fc7-0d2fa0e9a44d"
+                        },
+                        {
+                          "name": "Oracle WebLogic Server List JDBC data source runtimes",
+                          "id": "67032ed2-4db2-4d5d-9b1b-cb903fecc668",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/domainRuntime/serverRuntimes/:serverName/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans?fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "domainRuntime",
+                                "serverRuntimes",
+                                ":serverName",
+                                "JDBCServiceRuntime",
+                                "JDBCDataSourceRuntimeMBeans"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Comma-separated list of property names to include",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9f59a21d-3429-4a27-b2f3-b2b303098bc0",
+                                  "key": "serverName",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the WebLogic Server instance"
+                                }
+                              ]
+                            },
+                            "description": "Returns runtime status for all JDBC data sources on the specified server."
+                          },
+                          "response": [
+                            {
+                              "id": "fe0b4014-c7f1-4322-91d0-cf74406e63b6",
+                              "name": "Collection of JDBC data source runtimes",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/domainRuntime/serverRuntimes/:serverName/JDBCServiceRuntime/JDBCDataSourceRuntimeMBeans?fields=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "domainRuntime",
+                                    "serverRuntimes",
+                                    ":serverName",
+                                    "JDBCServiceRuntime",
+                                    "JDBCDataSourceRuntimeMBeans"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Comma-separated list of property names to include",
+                                      "key": "fields",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serverName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"state\": \"Running\",\n      \"enabled\": \"<boolean>\",\n      \"activeConnectionsCurrentCount\": \"<integer>\",\n      \"activeConnectionsHighCount\": \"<integer>\",\n      \"activeConnectionsAverageCount\": \"<integer>\",\n      \"connectionsTotalCount\": \"<integer>\",\n      \"currCapacity\": \"<integer>\",\n      \"numAvailable\": \"<integer>\",\n      \"numUnavailable\": \"<integer>\",\n      \"highestNumAvailable\": \"<integer>\",\n      \"highestNumUnavailable\": \"<integer>\",\n      \"waitingForConnectionCurrentCount\": \"<integer>\",\n      \"waitingForConnectionHighCount\": \"<integer>\",\n      \"waitSecondsHighCount\": \"<integer>\",\n      \"connectionDelayTime\": \"<integer>\",\n      \"failedReserveRequestCount\": \"<integer>\",\n      \"failuresToReconnectCount\": \"<integer>\",\n      \"leakedConnectionCount\": \"<integer>\",\n      \"prepStmtCacheCurrentSize\": \"<integer>\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"state\": \"Unknown\",\n      \"enabled\": \"<boolean>\",\n      \"activeConnectionsCurrentCount\": \"<integer>\",\n      \"activeConnectionsHighCount\": \"<integer>\",\n      \"activeConnectionsAverageCount\": \"<integer>\",\n      \"connectionsTotalCount\": \"<integer>\",\n      \"currCapacity\": \"<integer>\",\n      \"numAvailable\": \"<integer>\",\n      \"numUnavailable\": \"<integer>\",\n      \"highestNumAvailable\": \"<integer>\",\n      \"highestNumUnavailable\": \"<integer>\",\n      \"waitingForConnectionCurrentCount\": \"<integer>\",\n      \"waitingForConnectionHighCount\": \"<integer>\",\n      \"waitSecondsHighCount\": \"<integer>\",\n      \"connectionDelayTime\": \"<integer>\",\n      \"failedReserveRequestCount\": \"<integer>\",\n      \"failuresToReconnectCount\": \"<integer>\",\n      \"leakedConnectionCount\": \"<integer>\",\n      \"prepStmtCacheCurrentSize\": \"<integer>\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T01:52:16.000Z",
+                              "updatedAt": "2026-10-22T01:52:16.000Z",
+                              "uid": "35240-fe0b4014-c7f1-4322-91d0-cf74406e63b6"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:52:16.000Z",
+                          "updatedAt": "2026-10-22T01:52:16.000Z",
+                          "uid": "35240-67032ed2-4db2-4d5d-9b1b-cb903fecc668"
+                        }
+                      ],
+                      "id": "bb37c1b9-f05a-48c1-b554-11891a486285",
+                      "createdAt": "2026-10-22T01:52:16.000Z",
+                      "updatedAt": "2026-10-22T01:52:16.000Z",
+                      "uid": "35240-bb37c1b9-f05a-48c1-b554-11891a486285"
+                    },
+                    {
+                      "name": "Oracle WebLogic Server Get JDBC service runtime for a server",
+                      "id": "19c3bec9-0e25-457e-94f5-2759e5ac8196",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/domainRuntime/serverRuntimes/:serverName/JDBCServiceRuntime?fields=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "domainRuntime",
+                            "serverRuntimes",
+                            ":serverName",
+                            "JDBCServiceRuntime"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of property names to include",
+                              "key": "fields",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "76432e76-3572-4e94-b170-f1f6dd6a5e30",
+                              "key": "serverName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the WebLogic Server instance"
+                            }
+                          ]
+                        },
+                        "description": "Returns the JDBC service runtime for the specified server."
+                      },
+                      "response": [
+                        {
+                          "id": "b8bc8610-84b2-44c1-9ae9-97de315820c1",
+                          "name": "JDBC service runtime",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/domainRuntime/serverRuntimes/:serverName/JDBCServiceRuntime?fields=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "domainRuntime",
+                                "serverRuntimes",
+                                ":serverName",
+                                "JDBCServiceRuntime"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Comma-separated list of property names to include",
+                                  "key": "fields",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "serverName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:52:16.000Z",
+                          "updatedAt": "2026-10-22T01:52:16.000Z",
+                          "uid": "35240-b8bc8610-84b2-44c1-9ae9-97de315820c1"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:52:16.000Z",
+                      "updatedAt": "2026-10-22T01:52:16.000Z",
+                      "uid": "35240-19c3bec9-0e25-457e-94f5-2759e5ac8196"
+                    }
+                  ],
+                  "id": "bdc6d98b-52e4-4104-9d34-c8795fd37e65",
+                  "createdAt": "2026-10-22T01:52:16.000Z",
+                  "updatedAt": "2026-10-22T01:52:16.000Z",
+                  "uid": "35240-bdc6d98b-52e4-4104-9d34-c8795fd37e65"
                 }
               ],
-              "body": "{\n  \"name\": \"string\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://PhdNzcPPd.hwwrifvoJYHAB8kMaAsDtw2aHsRiPfZqlIbz+6J5FVySL-\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://zViqBYnnoytYAtzllnpUCCTUcLSu.muyutoWskUPmjxxBwwv7KdJ8Bp0k\",\n      \"title\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "6b2aef30-a003-4d0b-add9-893cb3f277b9",
+              "createdAt": "2026-10-22T01:52:16.000Z",
+              "updatedAt": "2026-10-22T01:52:16.000Z",
+              "uid": "35240-6b2aef30-a003-4d0b-add9-893cb3f277b9"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d2633d35-1604-4bf5-b2bd-e583e58ce1e0",
-          "name": "Oracle WebLogic Server List JDBC data source runtimes",
-          "request": {
-            "name": "Oracle WebLogic Server List JDBC data source runtimes",
-            "description": {
-              "content": "Returns runtime status for all JDBC data sources on the specified server.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "domainRuntime",
-                "serverRuntimes",
-                ":serverName",
-                "JDBCServiceRuntime",
-                "JDBCDataSourceRuntimeMBeans"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "fields",
-                  "value": "<string>",
-                  "description": "Comma-separated list of property names to include"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "serverName",
-                  "description": "(Required) Name of the WebLogic Server instance"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "1dec91f2-47b7-49c1-b53b-713c27745405",
-              "name": "Collection of JDBC data source runtimes",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "domainRuntime",
-                    "serverRuntimes",
-                    ":serverName",
-                    "JDBCServiceRuntime",
-                    "JDBCDataSourceRuntimeMBeans"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "fields",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "serverName",
-                      "description": "(Required) Name of the WebLogic Server instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"state\": \"Overloaded\",\n      \"enabled\": false,\n      \"activeConnectionsCurrentCount\": 1505,\n      \"activeConnectionsHighCount\": 8036,\n      \"activeConnectionsAverageCount\": 5417,\n      \"connectionsTotalCount\": 9576,\n      \"currCapacity\": 429,\n      \"numAvailable\": 1655,\n      \"numUnavailable\": 2173,\n      \"highestNumAvailable\": 1304,\n      \"highestNumUnavailable\": 482,\n      \"waitingForConnectionCurrentCount\": 4660,\n      \"waitingForConnectionHighCount\": 8706,\n      \"waitSecondsHighCount\": 2439,\n      \"connectionDelayTime\": 970,\n      \"failedReserveRequestCount\": 3774,\n      \"failuresToReconnectCount\": 5914,\n      \"leakedConnectionCount\": 4144,\n      \"prepStmtCacheCurrentSize\": 191,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://SqTTIuhsTKThfAovkBCzebsFAkEe.pdsfwfnqms8olA,yJRLcaVy4hPuiAztX0DtIOu9A\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://YdolXvIlkpMwjEEStvubVvMI.cfbnVLP.Q2J-3\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"state\": \"Overloaded\",\n      \"enabled\": false,\n      \"activeConnectionsCurrentCount\": 9352,\n      \"activeConnectionsHighCount\": 8488,\n      \"activeConnectionsAverageCount\": 1198,\n      \"connectionsTotalCount\": 1276,\n      \"currCapacity\": 7049,\n      \"numAvailable\": 6643,\n      \"numUnavailable\": 4553,\n      \"highestNumAvailable\": 9699,\n      \"highestNumUnavailable\": 7455,\n      \"waitingForConnectionCurrentCount\": 6902,\n      \"waitingForConnectionHighCount\": 6181,\n      \"waitSecondsHighCount\": 5875,\n      \"connectionDelayTime\": 9668,\n      \"failedReserveRequestCount\": 9106,\n      \"failuresToReconnectCount\": 672,\n      \"leakedConnectionCount\": 2173,\n      \"prepStmtCacheCurrentSize\": 3026,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://AwubzNvnigYifEwgremPejCS.frWf2l7Ln74LWlrBJJR1PJiCWemfOaSaOmLwA8PyQ4TcLzOR4yCKUr9lWW-IdKeHQCURWQ8FB\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://c.muek2b3SNS1+f2sffmISt5xSwhWfvW4bJTRcIG6VDqnJOpfgQhoMK.N\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b3ca1dd7-e605-4a95-b214-987bc2a634aa",
-          "name": "Oracle WebLogic Server Get runtime for a specific data source",
-          "request": {
-            "name": "Oracle WebLogic Server Get runtime for a specific data source",
-            "description": {},
-            "url": {
-              "path": [
-                "domainRuntime",
-                "serverRuntimes",
-                ":serverName",
-                "JDBCServiceRuntime",
-                "JDBCDataSourceRuntimeMBeans",
-                ":dataSourceName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "serverName",
-                  "description": "(Required) Name of the WebLogic Server instance"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "dataSourceName",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "b43c3fb3-d9d0-4a7b-94b8-910c50702a3e",
-              "name": "JDBC data source runtime",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "domainRuntime",
-                    "serverRuntimes",
-                    ":serverName",
-                    "JDBCServiceRuntime",
-                    "JDBCDataSourceRuntimeMBeans",
-                    ":dataSourceName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "serverName",
-                      "description": "(Required) Name of the WebLogic Server instance"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "dataSourceName",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"name\": \"string\",\n  \"state\": \"Overloaded\",\n  \"enabled\": true,\n  \"activeConnectionsCurrentCount\": 4158,\n  \"activeConnectionsHighCount\": 6622,\n  \"activeConnectionsAverageCount\": 3562,\n  \"connectionsTotalCount\": 4262,\n  \"currCapacity\": 5646,\n  \"numAvailable\": 3251,\n  \"numUnavailable\": 3250,\n  \"highestNumAvailable\": 6990,\n  \"highestNumUnavailable\": 3307,\n  \"waitingForConnectionCurrentCount\": 2973,\n  \"waitingForConnectionHighCount\": 9804,\n  \"waitSecondsHighCount\": 2164,\n  \"connectionDelayTime\": 5360,\n  \"failedReserveRequestCount\": 4956,\n  \"failuresToReconnectCount\": 6368,\n  \"leakedConnectionCount\": 814,\n  \"prepStmtCacheCurrentSize\": 4639,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://ZysOFMnlwjPokkPpPfYLVHDS.qkfsMWaOyQlJBCQ1+ueHJWdJWVO9tdinS1-w\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://SepbQGWRoypcQJxEBjaiqCNKqMfzOBABL.dhKqu-cYF0xkFeVsvtbdCyOV3PRqMjQMeU.7c0vfgZ.\",\n      \"title\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "0abeb81b-8ce0-4803-8c37-5839e1315a34",
+          "createdAt": "2026-10-22T01:52:16.000Z",
+          "updatedAt": "2026-10-22T01:52:16.000Z",
+          "uid": "35240-0abeb81b-8ce0-4803-8c37-5839e1315a34"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "http://localhost:7001/management/weblogic/latest",
-      "key": "baseUrl"
+      "id": "ecadca5d-51ce-4d34-aeb6-1a86d1d8149f",
+      "createdAt": "2026-10-22T01:52:16.000Z",
+      "updatedAt": "2026-10-22T01:52:16.000Z",
+      "uid": "35240-ecadca5d-51ce-4d34-aeb6-1a86d1d8149f"
     }
   ],
   "auth": {
@@ -366,21 +388,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "8d549ceb-ddbe-4482-aeee-68b9629b1a7b",
-    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment JDBC Runtime API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:7001/management/weblogic/latest"
     }
-  }
+  ]
 }

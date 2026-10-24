@@ -1,1335 +1,1845 @@
 {
+  "info": {
+    "_postman_id": "a478618d-6583-43f6-a0c8-ad71f67981ee",
+    "name": "Oracle Weblogic Data Sources API",
+    "description": "Operations tagged Data Sources across 2 of this provider's published API definitions: oracle-weblogic-management-openapi.yml, weblogic-data-sources-api-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:51:29.000Z",
+    "updatedAt": "2026-10-22T01:51:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a478618d-6583-43f6-a0c8-ad71f67981ee"
+  },
   "item": [
     {
-      "id": "7cc8541e-278e-4c15-aff5-b636e9d5c9a4",
-      "name": "Data Sources",
-      "description": {
-        "content": "Manage JDBC system resources and data sources",
-        "type": "text/plain"
-      },
+      "name": "edit",
       "item": [
         {
-          "id": "fa5214b5-70b6-42f8-b83a-7f9bdc5778ee",
-          "name": "Oracle WebLogic Server List all JDBC system resources",
-          "request": {
-            "name": "Oracle WebLogic Server List all JDBC system resources",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JDBCSystemResources"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "fields",
-                  "value": "<string>",
-                  "description": "Comma-separated list of property names to include in the response"
-                },
-                {
-                  "disabled": false,
-                  "key": "links",
-                  "value": "<string>",
-                  "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "JDBCSystemResources",
+          "item": [
             {
-              "id": "ebb2e705-f566-467b-9fd1-6f94ad90de49",
-              "name": "Collection of JDBC system resources",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JDBCSystemResources"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "{resourceName}",
+              "item": [
+                {
+                  "name": "JDBCResource",
+                  "item": [
                     {
-                      "key": "fields",
-                      "value": "name,listenPort"
+                      "name": "JDBCDataSourceParams",
+                      "item": [
+                        {
+                          "name": "Oracle WebLogic Server Get JDBC data source parameters",
+                          "id": "dc7163bb-6fa1-4d22-9d26-405246f6c790",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDataSourceParams",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "JDBCSystemResources",
+                                ":resourceName",
+                                "JDBCResource",
+                                "JDBCDataSourceParams"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "2b71f065-6d99-4a8d-8a64-729e1c6fec5e",
+                                  "key": "resourceName",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the resource"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "56a226d4-1133-41cb-8ae1-263b9a15305f",
+                              "name": "JDBC data source parameters",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDataSourceParams",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "edit",
+                                    "JDBCSystemResources",
+                                    ":resourceName",
+                                    "JDBCResource",
+                                    "JDBCDataSourceParams"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "resourceName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"JNDINames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"globalTransactionsProtocol\": \"None\"\n}",
+                              "createdAt": "2026-10-22T01:51:29.000Z",
+                              "updatedAt": "2026-10-22T01:51:29.000Z",
+                              "uid": "35240-56a226d4-1133-41cb-8ae1-263b9a15305f"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:51:29.000Z",
+                          "updatedAt": "2026-10-22T01:51:29.000Z",
+                          "uid": "35240-dc7163bb-6fa1-4d22-9d26-405246f6c790"
+                        },
+                        {
+                          "name": "Oracle WebLogic Server Update JDBC data source parameters",
+                          "id": "ac1eedc5-0822-4ef1-a2c7-fef0ec00872f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                "key": "X-Requested-By",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"JNDINames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"globalTransactionsProtocol\": \"None\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDataSourceParams",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "JDBCSystemResources",
+                                ":resourceName",
+                                "JDBCResource",
+                                "JDBCDataSourceParams"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e78fd2bb-02ef-4d2c-b21f-3cbd1396face",
+                                  "key": "resourceName",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the resource"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "7da53dd6-6367-4cc0-a260-84a33f95d23a",
+                              "name": "JDBC data source parameters updated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                    "key": "X-Requested-By",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"JNDINames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"globalTransactionsProtocol\": \"None\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDataSourceParams",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "edit",
+                                    "JDBCSystemResources",
+                                    ":resourceName",
+                                    "JDBCResource",
+                                    "JDBCDataSourceParams"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "resourceName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:51:29.000Z",
+                              "updatedAt": "2026-10-22T01:51:29.000Z",
+                              "uid": "35240-7da53dd6-6367-4cc0-a260-84a33f95d23a"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:51:29.000Z",
+                          "updatedAt": "2026-10-22T01:51:29.000Z",
+                          "uid": "35240-ac1eedc5-0822-4ef1-a2c7-fef0ec00872f"
+                        }
+                      ],
+                      "id": "bb053d02-746d-441c-b1c5-f3b9d072b4c3",
+                      "createdAt": "2026-10-22T01:51:29.000Z",
+                      "updatedAt": "2026-10-22T01:51:29.000Z",
+                      "uid": "35240-bb053d02-746d-441c-b1c5-f3b9d072b4c3"
                     },
                     {
-                      "key": "links",
-                      "value": "none"
+                      "name": "JDBCDriverParams",
+                      "item": [
+                        {
+                          "name": "properties",
+                          "item": [
+                            {
+                              "name": "properties",
+                              "item": [
+                                {
+                                  "name": "Oracle WebLogic Server List JDBC driver properties",
+                                  "id": "00c0b4a1-e8c4-4dcc-a86d-cc745f71c828",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDriverParams/properties/properties",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "edit",
+                                        "JDBCSystemResources",
+                                        ":resourceName",
+                                        "JDBCResource",
+                                        "JDBCDriverParams",
+                                        "properties",
+                                        "properties"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "198684a0-bf94-4be6-b49b-12d5f62d6638",
+                                          "key": "resourceName",
+                                          "value": "<string>",
+                                          "description": "(Required) Name of the resource"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "2a521202-97e2-4d74-9125-5759e15e8180",
+                                      "name": "Collection of JDBC driver properties",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDriverParams/properties/properties",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "edit",
+                                            "JDBCSystemResources",
+                                            ":resourceName",
+                                            "JDBCResource",
+                                            "JDBCDriverParams",
+                                            "properties",
+                                            "properties"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "resourceName"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-10-22T01:51:29.000Z",
+                                      "updatedAt": "2026-10-22T01:51:29.000Z",
+                                      "uid": "35240-2a521202-97e2-4d74-9125-5759e15e8180"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:51:29.000Z",
+                                  "updatedAt": "2026-10-22T01:51:29.000Z",
+                                  "uid": "35240-00c0b4a1-e8c4-4dcc-a86d-cc745f71c828"
+                                },
+                                {
+                                  "name": "Oracle WebLogic Server Add a JDBC driver property",
+                                  "id": "2eaa7b4f-1e88-41c3-bc30-b1abb6e6c2eb",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                        "key": "X-Requested-By",
+                                        "value": "<string>"
+                                      },
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDriverParams/properties/properties",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "edit",
+                                        "JDBCSystemResources",
+                                        ":resourceName",
+                                        "JDBCResource",
+                                        "JDBCDriverParams",
+                                        "properties",
+                                        "properties"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "e3e5d078-3075-41ef-9330-2c2cd1423540",
+                                          "key": "resourceName",
+                                          "value": "<string>",
+                                          "description": "(Required) Name of the resource"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "35511577-59e5-4e9e-b0f4-359f961c96ae",
+                                      "name": "Property created",
+                                      "originalRequest": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                            "key": "X-Requested-By",
+                                            "value": "<string>"
+                                          },
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: basic",
+                                            "key": "Authorization",
+                                            "value": "Basic <credentials>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDriverParams/properties/properties",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "edit",
+                                            "JDBCSystemResources",
+                                            ":resourceName",
+                                            "JDBCResource",
+                                            "JDBCDriverParams",
+                                            "properties",
+                                            "properties"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "resourceName"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Created",
+                                      "code": 201,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-10-22T01:51:29.000Z",
+                                      "updatedAt": "2026-10-22T01:51:29.000Z",
+                                      "uid": "35240-35511577-59e5-4e9e-b0f4-359f961c96ae"
+                                    }
+                                  ],
+                                  "createdAt": "2026-10-22T01:51:29.000Z",
+                                  "updatedAt": "2026-10-22T01:51:29.000Z",
+                                  "uid": "35240-2eaa7b4f-1e88-41c3-bc30-b1abb6e6c2eb"
+                                }
+                              ],
+                              "id": "b9ff2900-475e-4a72-8ccf-7b1e3a8a2ee0",
+                              "createdAt": "2026-10-22T01:51:29.000Z",
+                              "updatedAt": "2026-10-22T01:51:29.000Z",
+                              "uid": "35240-b9ff2900-475e-4a72-8ccf-7b1e3a8a2ee0"
+                            }
+                          ],
+                          "id": "ff9ad6a6-6360-4c9f-b81e-51b4cae3fb4b",
+                          "createdAt": "2026-10-22T01:51:29.000Z",
+                          "updatedAt": "2026-10-22T01:51:29.000Z",
+                          "uid": "35240-ff9ad6a6-6360-4c9f-b81e-51b4cae3fb4b"
+                        },
+                        {
+                          "name": "Oracle WebLogic Server Get JDBC driver parameters",
+                          "id": "587239dd-df81-49f0-96fa-6d9654ae78a7",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDriverParams",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "JDBCSystemResources",
+                                ":resourceName",
+                                "JDBCResource",
+                                "JDBCDriverParams"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "24c6a8b9-7e88-4690-94ab-b296b03997b5",
+                                  "key": "resourceName",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the resource"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "844d406e-f412-4516-8464-5c8b391d2433",
+                              "name": "JDBC driver parameters",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDriverParams",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "edit",
+                                    "JDBCSystemResources",
+                                    ":resourceName",
+                                    "JDBCResource",
+                                    "JDBCDriverParams"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "resourceName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"driverName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                              "createdAt": "2026-10-22T01:51:29.000Z",
+                              "updatedAt": "2026-10-22T01:51:29.000Z",
+                              "uid": "35240-844d406e-f412-4516-8464-5c8b391d2433"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:51:29.000Z",
+                          "updatedAt": "2026-10-22T01:51:29.000Z",
+                          "uid": "35240-587239dd-df81-49f0-96fa-6d9654ae78a7"
+                        },
+                        {
+                          "name": "Oracle WebLogic Server Update JDBC driver parameters",
+                          "id": "23d20e3a-e6bb-4ac0-a77a-602926acc11e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                "key": "X-Requested-By",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"driverName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDriverParams",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "JDBCSystemResources",
+                                ":resourceName",
+                                "JDBCResource",
+                                "JDBCDriverParams"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "9f61152d-7f90-430c-a75f-41f0b53b0cbc",
+                                  "key": "resourceName",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the resource"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "e9cf1332-78bd-4184-b8d1-74baf6e69f52",
+                              "name": "JDBC driver parameters updated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                    "key": "X-Requested-By",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"driverName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource/JDBCDriverParams",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "edit",
+                                    "JDBCSystemResources",
+                                    ":resourceName",
+                                    "JDBCResource",
+                                    "JDBCDriverParams"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "resourceName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:51:29.000Z",
+                              "updatedAt": "2026-10-22T01:51:29.000Z",
+                              "uid": "35240-e9cf1332-78bd-4184-b8d1-74baf6e69f52"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:51:29.000Z",
+                          "updatedAt": "2026-10-22T01:51:29.000Z",
+                          "uid": "35240-23d20e3a-e6bb-4ac0-a77a-602926acc11e"
+                        }
+                      ],
+                      "id": "5a9e4d20-f4a8-455f-a2cf-8202071b6ae7",
+                      "createdAt": "2026-10-22T01:51:29.000Z",
+                      "updatedAt": "2026-10-22T01:51:29.000Z",
+                      "uid": "35240-5a9e4d20-f4a8-455f-a2cf-8202071b6ae7"
+                    },
+                    {
+                      "name": "Oracle WebLogic Server Get JDBC resource configuration",
+                      "id": "6615d7d2-62bd-49b7-945a-61fd40006156",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "JDBCSystemResources",
+                            ":resourceName",
+                            "JDBCResource"
+                          ],
+                          "variable": [
+                            {
+                              "id": "cfea2de1-8009-4ee3-abf0-38ae63235f74",
+                              "key": "resourceName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the resource"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "ecde6e50-ccb1-40f9-8ef2-f4602d3b4e1f",
+                          "name": "JDBC resource configuration",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "JDBCSystemResources",
+                                ":resourceName",
+                                "JDBCResource"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "resourceName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:51:29.000Z",
+                          "updatedAt": "2026-10-22T01:51:29.000Z",
+                          "uid": "35240-ecde6e50-ccb1-40f9-8ef2-f4602d3b4e1f"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:51:29.000Z",
+                      "updatedAt": "2026-10-22T01:51:29.000Z",
+                      "uid": "35240-6615d7d2-62bd-49b7-945a-61fd40006156"
+                    },
+                    {
+                      "name": "Oracle WebLogic Server Update JDBC resource configuration",
+                      "id": "d03eca09-6fed-4afd-bc97-301e309d0ea0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "JDBCSystemResources",
+                            ":resourceName",
+                            "JDBCResource"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f51e2538-bef6-4c23-be08-d4af334b3b5f",
+                              "key": "resourceName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the resource"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "91be45fd-7dad-4a4d-9b8a-451d2e33e223",
+                          "name": "JDBC resource updated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                "key": "X-Requested-By",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName/JDBCResource",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "JDBCSystemResources",
+                                ":resourceName",
+                                "JDBCResource"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "resourceName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:51:29.000Z",
+                          "updatedAt": "2026-10-22T01:51:29.000Z",
+                          "uid": "35240-91be45fd-7dad-4a4d-9b8a-451d2e33e223"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:51:29.000Z",
+                      "updatedAt": "2026-10-22T01:51:29.000Z",
+                      "uid": "35240-d03eca09-6fed-4afd-bc97-301e309d0ea0"
                     }
                   ],
-                  "variable": []
+                  "id": "5c17a8d8-4b4d-46bf-9da6-97b83bda585b",
+                  "createdAt": "2026-10-22T01:51:29.000Z",
+                  "updatedAt": "2026-10-22T01:51:29.000Z",
+                  "uid": "35240-5c17a8d8-4b4d-46bf-9da6-97b83bda585b"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                {
+                  "name": "Oracle WebLogic Server Get a JDBC system resource",
+                  "id": "4226b60d-93e7-4d14-ba77-466173a44727",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "JDBCSystemResources",
+                        ":resourceName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9cfb551f-3b1d-453f-ae09-fb5cf019addd",
+                          "key": "resourceName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the resource"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "077a6af7-3b4c-4da8-a108-5c38428914dd",
+                      "name": "JDBC system resource details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "JDBCSystemResources",
+                            ":resourceName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "resourceName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"descriptorFileName\": \"<string>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:51:29.000Z",
+                      "updatedAt": "2026-10-22T01:51:29.000Z",
+                      "uid": "35240-077a6af7-3b4c-4da8-a108-5c38428914dd"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:51:29.000Z",
+                  "updatedAt": "2026-10-22T01:51:29.000Z",
+                  "uid": "35240-4226b60d-93e7-4d14-ba77-466173a44727"
+                },
+                {
+                  "name": "Oracle WebLogic Server Delete a JDBC system resource",
+                  "id": "dc73b0cf-2345-45b4-8a7b-849c3f6c51ff",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "JDBCSystemResources",
+                        ":resourceName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a59c5c9d-6765-4cab-bcb9-fc58715073da",
+                          "key": "resourceName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the resource"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "5945b0bb-8e15-4ba0-8954-e90c5dce7db3",
+                      "name": "JDBC system resource deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/JDBCSystemResources/:resourceName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "JDBCSystemResources",
+                            ":resourceName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "resourceName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:51:29.000Z",
+                      "updatedAt": "2026-10-22T01:51:29.000Z",
+                      "uid": "35240-5945b0bb-8e15-4ba0-8954-e90c5dce7db3"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:51:29.000Z",
+                  "updatedAt": "2026-10-22T01:51:29.000Z",
+                  "uid": "35240-dc73b0cf-2345-45b4-8a7b-849c3f6c51ff"
+                }
+              ],
+              "id": "ea0469e2-99e4-4ad0-8afd-5d92c8213e84",
+              "createdAt": "2026-10-22T01:51:29.000Z",
+              "updatedAt": "2026-10-22T01:51:29.000Z",
+              "uid": "35240-ea0469e2-99e4-4ad0-8afd-5d92c8213e84"
+            },
+            {
+              "name": "Oracle WebLogic Server List all JDBC system resources",
+              "id": "11aeaa43-51af-44a0-b93a-58d9a18c8307",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"descriptorFileName\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://rUhsZG.khFnA8lcPCHKBI91TobpcSWGzvdf3isCRDQn5H02yPXu+LHlLUV8INWNLJe\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://baCYPvQqLkeYfEICQl.ncpLqNjGYyLzCxYwi3-HIjHg8oDGVaMC5agBtuMMuRMrZnTEyPCuQdEMqCq-Q8JMw,qSxi-VyBBC\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"descriptorFileName\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://IvaOVabdoGotgrykjWZCxBoguwTenqBy.pcosyTSTJfazpkNg3SQcm3K,,BYv4Zpi34VGx\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://qOrZfOuekWhIAYoipdnKoQYMTdflgyl.hpksuxU-fSrLuFE-+OEgX8ktOQziux3zbp,RVVsjIGucXDx,\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "bb8330fd-cb66-4589-8fc1-7a07ea84c545",
-          "name": "Oracle WebLogic Server Create a JDBC system resource",
-          "request": {
-            "name": "Oracle WebLogic Server Create a JDBC system resource",
-            "description": {
-              "content": "Creates a new JDBC data source system resource. Requires an active edit session.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "edit",
-                "JDBCSystemResources"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "saveChanges",
-                  "value": "true",
-                  "description": "When false, changes are saved to the edit session but not validated until explicitly saved or activated."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "493d6b6b-5aae-4880-b5a5-336ec12dc118",
-              "name": "JDBC system resource created",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/edit/JDBCSystemResources?fields=<string>&links=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "edit",
                     "JDBCSystemResources"
                   ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of property names to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.",
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "996bc6c1-481c-478f-b173-279138f1c0e0",
+                  "name": "Collection of JDBC system resources",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/JDBCSystemResources?fields=<string>&links=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "JDBCSystemResources"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of property names to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.",
+                          "key": "links",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"descriptorFileName\": \"<string>\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"descriptorFileName\": \"<string>\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:51:29.000Z",
+                  "updatedAt": "2026-10-22T01:51:29.000Z",
+                  "uid": "35240-996bc6c1-481c-478f-b173-279138f1c0e0"
+                }
+              ],
+              "createdAt": "2026-10-22T01:51:29.000Z",
+              "updatedAt": "2026-10-22T01:51:29.000Z",
+              "uid": "35240-11aeaa43-51af-44a0-b93a-58d9a18c8307"
+            },
+            {
+              "name": "Oracle WebLogic Server Create a JDBC system resource",
+              "id": "8e96093b-9925-40d2-bb19-cb6701395e5f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/edit/JDBCSystemResources?saveChanges=true",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "edit",
+                    "JDBCSystemResources"
+                  ],
                   "query": [
                     {
+                      "description": "When false, changes are saved to the edit session but not validated until explicitly saved or activated.",
                       "key": "saveChanges",
                       "value": "true"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "disabled": false,
-                  "key": "Location",
-                  "value": "http://GpJn.tybR2gaLe5Xna2n.+d8ZlGe-AZryrrB5SCaKtuhUnTr8lW4",
-                  "description": ""
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2765b1a9-adca-44e8-8f63-796f72377002",
-          "name": "Oracle WebLogic Server Get a JDBC system resource",
-          "request": {
-            "name": "Oracle WebLogic Server Get a JDBC system resource",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JDBCSystemResources",
-                ":resourceName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceName",
-                  "description": "(Required) Name of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "3f8f9688-1dab-4757-b607-6cfb37af4f75",
-              "name": "JDBC system resource details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JDBCSystemResources",
-                    ":resourceName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceName",
-                      "description": "(Required) Name of the resource"
-                    }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Creates a new JDBC data source system resource. Requires an active edit session."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"descriptorFileName\": \"string\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://jTHUZMiZsDcfAIxkBucBdL.hauiHfovvfbiQgz0LcSuqZgbziDzhpF9SUD5Z3Hhzlx,Zi\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://TT.ohems+DH.zEckE-evPiFtvxQX2Wwdeq-NEWco+bg4E1NNnSv0TgVb4Uda7SdqCwlb5PJOkKT8wXlV8L\",\n      \"title\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cfa1aa91-b0fa-45c5-bb47-163cec22ce6e",
-          "name": "Oracle WebLogic Server Delete a JDBC system resource",
-          "request": {
-            "name": "Oracle WebLogic Server Delete a JDBC system resource",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JDBCSystemResources",
-                ":resourceName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceName",
-                  "description": "(Required) Name of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "6a9e44a2-7c82-4e71-8ca0-e720cb524d61",
-              "name": "JDBC system resource deleted",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JDBCSystemResources",
-                    ":resourceName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "id": "aa11c96a-108d-4f51-935b-328d24557ceb",
+                  "name": "JDBC system resource created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/JDBCSystemResources?saveChanges=true",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "JDBCSystemResources"
+                      ],
+                      "query": [
+                        {
+                          "description": "When false, changes are saved to the edit session but not validated until explicitly saved or activated.",
+                          "key": "saveChanges",
+                          "value": "true"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [
                     {
                       "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceName",
-                      "description": "(Required) Name of the resource"
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Location",
+                      "value": "<uri>"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:51:29.000Z",
+                  "updatedAt": "2026-10-22T01:51:29.000Z",
+                  "uid": "35240-aa11c96a-108d-4f51-935b-328d24557ceb"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:51:29.000Z",
+              "updatedAt": "2026-10-22T01:51:29.000Z",
+              "uid": "35240-8e96093b-9925-40d2-bb19-cb6701395e5f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "fd63f653-302a-44ee-801e-050768a20653",
-          "name": "Oracle WebLogic Server Get JDBC resource configuration",
-          "request": {
-            "name": "Oracle WebLogic Server Get JDBC resource configuration",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JDBCSystemResources",
-                ":resourceName",
-                "JDBCResource"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceName",
-                  "description": "(Required) Name of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "453e8234-1295-4040-a991-f658538796b2",
-              "name": "JDBC resource configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JDBCSystemResources",
-                    ":resourceName",
-                    "JDBCResource"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceName",
-                      "description": "(Required) Name of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"name\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a97e70a4-5a01-4959-9f1c-a0296a145bb0",
-          "name": "Oracle WebLogic Server Update JDBC resource configuration",
-          "request": {
-            "name": "Oracle WebLogic Server Update JDBC resource configuration",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JDBCSystemResources",
-                ":resourceName",
-                "JDBCResource"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceName",
-                  "description": "(Required) Name of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "0a20b3b6-50f5-4715-b376-cab4201dcbbc",
-              "name": "JDBC resource updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JDBCSystemResources",
-                    ":resourceName",
-                    "JDBCResource"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceName",
-                      "description": "(Required) Name of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4eca7323-7115-42ea-9557-c657fd510347",
-          "name": "Oracle WebLogic Server Get JDBC data source parameters",
-          "request": {
-            "name": "Oracle WebLogic Server Get JDBC data source parameters",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JDBCSystemResources",
-                ":resourceName",
-                "JDBCResource",
-                "JDBCDataSourceParams"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceName",
-                  "description": "(Required) Name of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "e1c82829-19b7-43ad-bc88-f4cff75ff6e3",
-              "name": "JDBC data source parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JDBCSystemResources",
-                    ":resourceName",
-                    "JDBCResource",
-                    "JDBCDataSourceParams"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceName",
-                      "description": "(Required) Name of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"JNDINames\": [\n    \"string\",\n    \"string\"\n  ],\n  \"globalTransactionsProtocol\": \"LoggingLastResource\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9efc0666-f22c-4ed9-ac63-0d17354c812e",
-          "name": "Oracle WebLogic Server Update JDBC data source parameters",
-          "request": {
-            "name": "Oracle WebLogic Server Update JDBC data source parameters",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JDBCSystemResources",
-                ":resourceName",
-                "JDBCResource",
-                "JDBCDataSourceParams"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceName",
-                  "description": "(Required) Name of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"JNDINames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"globalTransactionsProtocol\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "b3f5cdfa-c79b-4eee-8313-39e8646edc29",
-              "name": "JDBC data source parameters updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JDBCSystemResources",
-                    ":resourceName",
-                    "JDBCResource",
-                    "JDBCDataSourceParams"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceName",
-                      "description": "(Required) Name of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"JNDINames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"globalTransactionsProtocol\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "73170854-f078-4500-8d32-661740e89a28",
-          "name": "Oracle WebLogic Server Get JDBC driver parameters",
-          "request": {
-            "name": "Oracle WebLogic Server Get JDBC driver parameters",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JDBCSystemResources",
-                ":resourceName",
-                "JDBCResource",
-                "JDBCDriverParams"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceName",
-                  "description": "(Required) Name of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "e2278043-48c3-4854-9be3-e60df6dd4f39",
-              "name": "JDBC driver parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JDBCSystemResources",
-                    ":resourceName",
-                    "JDBCResource",
-                    "JDBCDriverParams"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceName",
-                      "description": "(Required) Name of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"driverName\": \"string\",\n  \"url\": \"string\",\n  \"password\": \"string\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "10210846-3bce-45f9-b6e6-2d9b0e8f559c",
-          "name": "Oracle WebLogic Server Update JDBC driver parameters",
-          "request": {
-            "name": "Oracle WebLogic Server Update JDBC driver parameters",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JDBCSystemResources",
-                ":resourceName",
-                "JDBCResource",
-                "JDBCDriverParams"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceName",
-                  "description": "(Required) Name of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"driverName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"password\": \"<password>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "4a0e3e94-c5f1-4190-b080-7a86228447b4",
-              "name": "JDBC driver parameters updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JDBCSystemResources",
-                    ":resourceName",
-                    "JDBCResource",
-                    "JDBCDriverParams"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceName",
-                      "description": "(Required) Name of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"driverName\": \"<string>\",\n  \"url\": \"<string>\",\n  \"password\": \"<password>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "77d9530f-0daa-46fe-b184-6358b6744fa8",
-          "name": "Oracle WebLogic Server List JDBC driver properties",
-          "request": {
-            "name": "Oracle WebLogic Server List JDBC driver properties",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JDBCSystemResources",
-                ":resourceName",
-                "JDBCResource",
-                "JDBCDriverParams",
-                "properties",
-                "properties"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceName",
-                  "description": "(Required) Name of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "f3c6b3d4-233a-440c-8fcb-56d712f0557b",
-              "name": "Collection of JDBC driver properties",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JDBCSystemResources",
-                    ":resourceName",
-                    "JDBCResource",
-                    "JDBCDriverParams",
-                    "properties",
-                    "properties"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceName",
-                      "description": "(Required) Name of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ebecd9ca-bbe1-4c47-8ac4-0b747e575ad6",
-          "name": "Oracle WebLogic Server Add a JDBC driver property",
-          "request": {
-            "name": "Oracle WebLogic Server Add a JDBC driver property",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JDBCSystemResources",
-                ":resourceName",
-                "JDBCResource",
-                "JDBCDriverParams",
-                "properties",
-                "properties"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "resourceName",
-                  "description": "(Required) Name of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "41e31c36-2d8d-4014-a4aa-afc1a44afa30",
-              "name": "Property created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JDBCSystemResources",
-                    ":resourceName",
-                    "JDBCResource",
-                    "JDBCDriverParams",
-                    "properties",
-                    "properties"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "resourceName",
-                      "description": "(Required) Name of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "caa7ab8e-2b08-4f4f-8082-373a231a732a",
+          "createdAt": "2026-10-22T01:51:29.000Z",
+          "updatedAt": "2026-10-22T01:51:29.000Z",
+          "uid": "35240-caa7ab8e-2b08-4f4f-8082-373a231a732a"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
+      "id": "d62a2642-6b9a-4201-b3aa-c5fea295dcc4",
+      "createdAt": "2026-10-22T01:51:29.000Z",
+      "updatedAt": "2026-10-22T01:51:29.000Z",
+      "uid": "35240-d62a2642-6b9a-4201-b3aa-c5fea295dcc4"
+    },
     {
-      "type": "string",
-      "value": "http://localhost:7001/management/weblogic/latest",
-      "key": "baseUrl"
+      "name": "dataSources",
+      "item": [
+        {
+          "name": "{dataSourceName}",
+          "item": [
+            {
+              "name": "test",
+              "item": [
+                {
+                  "name": "Oracle WebLogic Server APIs Test a data source connection",
+                  "id": "24749584-1eb2-4303-8ba6-d601c6955bda",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dataSources/:dataSourceName/test",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dataSources",
+                        ":dataSourceName",
+                        "test"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9b93476e-e78b-4c09-83cb-f7d31d4edf8b",
+                          "key": "dataSourceName",
+                          "value": "<string>",
+                          "description": "(Required) The name of the JDBC data source"
+                        }
+                      ]
+                    },
+                    "description": "Tests the connection pool for the specified data source by reserving and releasing a connection."
+                  },
+                  "response": [
+                    {
+                      "id": "3f03967e-314d-49c5-b3a7-5b49fc0b6c67",
+                      "name": "Data source test result",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/dataSources/:dataSourceName/test",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dataSources",
+                            ":dataSourceName",
+                            "test"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dataSourceName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:51:29.000Z",
+                      "updatedAt": "2026-10-22T01:51:29.000Z",
+                      "uid": "35240-3f03967e-314d-49c5-b3a7-5b49fc0b6c67"
+                    },
+                    {
+                      "id": "78051ca4-d20b-41cd-b447-19114b57d895",
+                      "name": "Authentication required or invalid credentials",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/dataSources/:dataSourceName/test",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dataSources",
+                            ":dataSourceName",
+                            "test"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dataSourceName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:51:29.000Z",
+                      "updatedAt": "2026-10-22T01:51:29.000Z",
+                      "uid": "35240-78051ca4-d20b-41cd-b447-19114b57d895"
+                    },
+                    {
+                      "id": "1e776597-b97c-4c96-af80-904eab1f18fb",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/dataSources/:dataSourceName/test",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dataSources",
+                            ":dataSourceName",
+                            "test"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dataSourceName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:51:29.000Z",
+                      "updatedAt": "2026-10-22T01:51:29.000Z",
+                      "uid": "35240-1e776597-b97c-4c96-af80-904eab1f18fb"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:51:29.000Z",
+                  "updatedAt": "2026-10-22T01:51:29.000Z",
+                  "uid": "35240-24749584-1eb2-4303-8ba6-d601c6955bda"
+                }
+              ],
+              "id": "deef6b91-37c5-48fd-a113-1913ef46f073",
+              "createdAt": "2026-10-22T01:51:29.000Z",
+              "updatedAt": "2026-10-22T01:51:29.000Z",
+              "uid": "35240-deef6b91-37c5-48fd-a113-1913ef46f073"
+            },
+            {
+              "name": "Oracle WebLogic Server APIs Get data source metrics",
+              "id": "a4dcc89c-6329-4eb8-8d0f-fb8769015b27",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dataSources/:dataSourceName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dataSources",
+                    ":dataSourceName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0cfaa335-afb4-4366-86ef-b63a68145ce6",
+                      "key": "dataSourceName",
+                      "value": "<string>",
+                      "description": "(Required) The name of the JDBC data source"
+                    }
+                  ]
+                },
+                "description": "Returns detailed metrics for a specific JDBC data source."
+              },
+              "response": [
+                {
+                  "id": "9a03b884-c150-4ba9-b4f2-cf9c840390a4",
+                  "name": "Data source metrics",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dataSources/:dataSourceName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dataSources",
+                        ":dataSourceName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataSourceName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"state\": \"Shutdown\",\n  \"enabled\": \"<boolean>\",\n  \"activeConnectionsCurrentCount\": \"<integer>\",\n  \"activeConnectionsHighCount\": \"<integer>\",\n  \"connectionsTotalCount\": \"<integer>\",\n  \"currCapacity\": \"<integer>\",\n  \"numAvailable\": \"<integer>\",\n  \"numUnavailable\": \"<integer>\",\n  \"waitingForConnectionCurrentCount\": \"<integer>\",\n  \"waitSecondsHighCount\": \"<integer>\",\n  \"connectionDelayTime\": \"<integer>\",\n  \"failuresToReconnectCount\": \"<integer>\",\n  \"leakedConnectionCount\": \"<integer>\",\n  \"prepStmtCacheCurrentSize\": \"<integer>\",\n  \"serverName\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:51:29.000Z",
+                  "updatedAt": "2026-10-22T01:51:29.000Z",
+                  "uid": "35240-9a03b884-c150-4ba9-b4f2-cf9c840390a4"
+                },
+                {
+                  "id": "722b90af-b542-4a4d-b3ff-99aa171da0e4",
+                  "name": "Authentication required or invalid credentials",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dataSources/:dataSourceName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dataSources",
+                        ":dataSourceName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataSourceName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:51:29.000Z",
+                  "updatedAt": "2026-10-22T01:51:29.000Z",
+                  "uid": "35240-722b90af-b542-4a4d-b3ff-99aa171da0e4"
+                },
+                {
+                  "id": "b9cf0b90-ad60-428a-b5a4-3920cc4d6d62",
+                  "name": "The specified resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dataSources/:dataSourceName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dataSources",
+                        ":dataSourceName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dataSourceName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:51:29.000Z",
+                  "updatedAt": "2026-10-22T01:51:29.000Z",
+                  "uid": "35240-b9cf0b90-ad60-428a-b5a4-3920cc4d6d62"
+                }
+              ],
+              "createdAt": "2026-10-22T01:51:29.000Z",
+              "updatedAt": "2026-10-22T01:51:29.000Z",
+              "uid": "35240-a4dcc89c-6329-4eb8-8d0f-fb8769015b27"
+            }
+          ],
+          "id": "a28c8f2e-0a8b-4852-8a8b-ffafa8cbe1fc",
+          "createdAt": "2026-10-22T01:51:29.000Z",
+          "updatedAt": "2026-10-22T01:51:29.000Z",
+          "uid": "35240-a28c8f2e-0a8b-4852-8a8b-ffafa8cbe1fc"
+        },
+        {
+          "name": "Oracle WebLogic Server APIs List all data source metrics",
+          "id": "a834af33-e9ba-4a6c-955d-aa419f4673bb",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/dataSources",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "dataSources"
+              ]
+            },
+            "description": "Returns monitoring metrics for all JDBC data sources across all servers in the domain."
+          },
+          "response": [
+            {
+              "id": "a2ad3876-39c1-4e39-a50a-d743d58890bc",
+              "name": "List of data source metrics",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dataSources",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dataSources"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"state\": \"Suspended\",\n      \"enabled\": \"<boolean>\",\n      \"activeConnectionsCurrentCount\": \"<integer>\",\n      \"activeConnectionsHighCount\": \"<integer>\",\n      \"connectionsTotalCount\": \"<integer>\",\n      \"currCapacity\": \"<integer>\",\n      \"numAvailable\": \"<integer>\",\n      \"numUnavailable\": \"<integer>\",\n      \"waitingForConnectionCurrentCount\": \"<integer>\",\n      \"waitSecondsHighCount\": \"<integer>\",\n      \"connectionDelayTime\": \"<integer>\",\n      \"failuresToReconnectCount\": \"<integer>\",\n      \"leakedConnectionCount\": \"<integer>\",\n      \"prepStmtCacheCurrentSize\": \"<integer>\",\n      \"serverName\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"state\": \"Suspended\",\n      \"enabled\": \"<boolean>\",\n      \"activeConnectionsCurrentCount\": \"<integer>\",\n      \"activeConnectionsHighCount\": \"<integer>\",\n      \"connectionsTotalCount\": \"<integer>\",\n      \"currCapacity\": \"<integer>\",\n      \"numAvailable\": \"<integer>\",\n      \"numUnavailable\": \"<integer>\",\n      \"waitingForConnectionCurrentCount\": \"<integer>\",\n      \"waitSecondsHighCount\": \"<integer>\",\n      \"connectionDelayTime\": \"<integer>\",\n      \"failuresToReconnectCount\": \"<integer>\",\n      \"leakedConnectionCount\": \"<integer>\",\n      \"prepStmtCacheCurrentSize\": \"<integer>\",\n      \"serverName\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:51:29.000Z",
+              "updatedAt": "2026-10-22T01:51:29.000Z",
+              "uid": "35240-a2ad3876-39c1-4e39-a50a-d743d58890bc"
+            },
+            {
+              "id": "3176a4c2-e0c2-439e-8286-d326ad7e1fde",
+              "name": "Authentication required or invalid credentials",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dataSources",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dataSources"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:51:29.000Z",
+              "updatedAt": "2026-10-22T01:51:29.000Z",
+              "uid": "35240-3176a4c2-e0c2-439e-8286-d326ad7e1fde"
+            }
+          ],
+          "createdAt": "2026-10-22T01:51:29.000Z",
+          "updatedAt": "2026-10-22T01:51:29.000Z",
+          "uid": "35240-a834af33-e9ba-4a6c-955d-aa419f4673bb"
+        }
+      ],
+      "id": "56542d79-17eb-4c67-925f-15e0e4c36d81",
+      "createdAt": "2026-10-22T01:51:29.000Z",
+      "updatedAt": "2026-10-22T01:51:29.000Z",
+      "uid": "35240-56542d79-17eb-4c67-925f-15e0e4c36d81"
     }
   ],
   "auth": {
@@ -1337,21 +1847,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "ec616922-a2d9-4259-901e-36c62515871f",
-    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Data Sources API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:7001/management/weblogic/latest"
     }
-  }
+  ]
 }

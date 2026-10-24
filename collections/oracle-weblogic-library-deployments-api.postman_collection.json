@@ -1,430 +1,1145 @@
 {
+  "info": {
+    "_postman_id": "75181e0b-300b-4661-a48f-7a64db14378a",
+    "name": "Oracle Weblogic Library Deployments API",
+    "description": "Operations tagged Library Deployments across 2 of this provider's published API definitions: oracle-weblogic-deployment-openapi.yml, weblogic-library-deployments-api-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:52:35.000Z",
+    "updatedAt": "2026-10-22T01:52:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-75181e0b-300b-4661-a48f-7a64db14378a"
+  },
   "item": [
     {
-      "id": "5fbd72e9-c6c8-44ac-bd29-0e923c361e45",
-      "name": "Library Deployments",
-      "description": {
-        "content": "Deploy and manage shared library deployments",
-        "type": "text/plain"
-      },
+      "name": "edit",
       "item": [
         {
-          "id": "f4101dc4-ecb3-414c-9dc0-c5d0f800ca09",
-          "name": "Oracle WebLogic Server List all shared library deployments",
-          "request": {
-            "name": "Oracle WebLogic Server List all shared library deployments",
-            "description": {
-              "content": "Returns all shared library deployments configured in the domain.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "edit",
-                "libDeployments"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "libDeployments",
+          "item": [
+            {
+              "name": "{libName}",
+              "item": [
                 {
-                  "disabled": false,
-                  "key": "fields",
-                  "value": "<string>",
-                  "description": "Comma-separated list of property names to include"
+                  "name": "Oracle WebLogic Server Get shared library deployment details",
+                  "id": "f5a36da9-76ca-467a-9718-cfaa0b383552",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/libDeployments/:libName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "libDeployments",
+                        ":libName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4319af59-45e0-4029-8fe8-4e6ddeaac0e4",
+                          "key": "libName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the shared library"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "08e0f293-1448-45e7-860b-6f522e2a2cc5",
+                      "name": "Library deployment details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/libDeployments/:libName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "libDeployments",
+                            ":libName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "libName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"sourcePath\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"deploymentOrder\": \"<integer>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:52:35.000Z",
+                      "updatedAt": "2026-10-22T01:52:35.000Z",
+                      "uid": "35240-08e0f293-1448-45e7-860b-6f522e2a2cc5"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:35.000Z",
+                  "updatedAt": "2026-10-22T01:52:35.000Z",
+                  "uid": "35240-f5a36da9-76ca-467a-9718-cfaa0b383552"
                 },
                 {
-                  "disabled": false,
-                  "key": "links",
-                  "value": "<string>",
-                  "description": "Comma-separated list of link relations to include"
+                  "name": "Oracle WebLogic Server Remove a shared library deployment",
+                  "id": "e75fc8ba-8c14-45f8-b151-b491649ad77b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/libDeployments/:libName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "libDeployments",
+                        ":libName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0817ed2b-c44b-4ef8-a3d4-c5c82d5626aa",
+                          "key": "libName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the shared library"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "03e89103-9614-4fdf-bf49-a330bd4cce1b",
+                      "name": "Library undeployed",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/libDeployments/:libName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "libDeployments",
+                            ":libName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "libName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:35.000Z",
+                      "updatedAt": "2026-10-22T01:52:35.000Z",
+                      "uid": "35240-03e89103-9614-4fdf-bf49-a330bd4cce1b"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:35.000Z",
+                  "updatedAt": "2026-10-22T01:52:35.000Z",
+                  "uid": "35240-e75fc8ba-8c14-45f8-b151-b491649ad77b"
                 }
               ],
-              "variable": []
+              "id": "f82093fb-fcf4-402b-a6ab-fff965a7e46b",
+              "createdAt": "2026-10-22T01:52:35.000Z",
+              "updatedAt": "2026-10-22T01:52:35.000Z",
+              "uid": "35240-f82093fb-fcf4-402b-a6ab-fff965a7e46b"
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
             {
-              "id": "ec52308f-9278-4b82-970e-36243321a8ba",
-              "name": "Collection of library deployments",
-              "originalRequest": {
+              "name": "Oracle WebLogic Server List all shared library deployments",
+              "id": "1287b3d4-dc68-4579-8bdc-dd0f5e51c75b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/edit/libDeployments?fields=<string>&links=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "edit",
                     "libDeployments"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Comma-separated list of property names to include",
                       "key": "fields",
                       "value": "<string>"
                     },
                     {
+                      "description": "Comma-separated list of link relations to include",
                       "key": "links",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
                 },
+                "description": "Returns all shared library deployments configured in the domain."
+              },
+              "response": [
+                {
+                  "id": "c9148469-8ee8-4d8f-b810-4e897ab2a657",
+                  "name": "Collection of library deployments",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/libDeployments?fields=<string>&links=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "libDeployments"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of property names to include",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of link relations to include",
+                          "key": "links",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"sourcePath\": \"<string>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"deploymentOrder\": \"<integer>\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"sourcePath\": \"<string>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"deploymentOrder\": \"<integer>\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:52:35.000Z",
+                  "updatedAt": "2026-10-22T01:52:35.000Z",
+                  "uid": "35240-c9148469-8ee8-4d8f-b810-4e897ab2a657"
+                }
+              ],
+              "createdAt": "2026-10-22T01:52:35.000Z",
+              "updatedAt": "2026-10-22T01:52:35.000Z",
+              "uid": "35240-1287b3d4-dc68-4579-8bdc-dd0f5e51c75b"
+            },
+            {
+              "name": "Oracle WebLogic Server Deploy a shared library",
+              "id": "3f442b49-e7df-474e-8ba1-7f8c8cff7daf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                    "description": "(Required) CSRF protection header",
+                    "key": "X-Requested-By",
+                    "value": "<string>"
                   },
                   {
-                    "key": "Accept",
+                    "key": "Content-Type",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"sourcePath\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"deploymentOrder\": 989,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://ctHhLzRpMkxYyee.tthjiEbQsH232RQOme3QrluNNJxvq.NFqs+zFWQ8H0+bN4\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://OgDc.cyiuOykErM5Wzy\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"sourcePath\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"deploymentOrder\": 9087,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://FPSpGJAKGTohVwrVaDtJfwvrZAGrqFSdB.pxciG2k5duq-pPoHqtSB8RQ3CsOCiPf+7Cdi\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://vEJhJrMUSnsZLTzbZrKDGHeKIcrEAt.axpeZxkez4oERs9JvE+8lqJYAZ1PfKjHZEVLSNCIutJuex2O.81xewGwtMJVYWBY7Q\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ffc8f018-6e4a-441b-ad74-7e8a0b053171",
-          "name": "Oracle WebLogic Server Deploy a shared library",
-          "request": {
-            "name": "Oracle WebLogic Server Deploy a shared library",
-            "description": {
-              "content": "Deploys a shared library that can be referenced by applications. Requires an active edit session.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "edit",
-                "libDeployments"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"sourceURL\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "cc9ad3b5-f05b-407f-9944-e0eff242b99e",
-              "name": "Library deployed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "libDeployments"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"sourceURL\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sourceURL\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "disabled": false,
-                  "key": "Location",
-                  "value": "http://sDafTdxn.spj+45B",
-                  "description": ""
                 },
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a2e4df18-1129-423a-b193-17e50c504697",
-          "name": "Oracle WebLogic Server Get shared library deployment details",
-          "request": {
-            "name": "Oracle WebLogic Server Get shared library deployment details",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "libDeployments",
-                ":libName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "libName",
-                  "description": "(Required) Name of the shared library"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "8c7e9c6d-ac36-4009-b182-c12c375a3194",
-              "name": "Library deployment details",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "edit",
-                    "libDeployments",
-                    ":libName"
-                  ],
+                  "raw": "{{baseUrl}}/edit/libDeployments",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "libName",
-                      "description": "(Required) Name of the shared library"
-                    }
+                  "path": [
+                    "edit",
+                    "libDeployments"
                   ]
                 },
+                "description": "Deploys a shared library that can be referenced by applications. Requires an active edit session."
+              },
+              "response": [
+                {
+                  "id": "34185258-fbe6-4bd9-ba28-4b5b73c86579",
+                  "name": "Library deployed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"sourceURL\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/libDeployments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "libDeployments"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Location",
+                      "value": "<uri>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:52:35.000Z",
+                  "updatedAt": "2026-10-22T01:52:35.000Z",
+                  "uid": "35240-34185258-fbe6-4bd9-ba28-4b5b73c86579"
+                }
+              ],
+              "createdAt": "2026-10-22T01:52:35.000Z",
+              "updatedAt": "2026-10-22T01:52:35.000Z",
+              "uid": "35240-3f442b49-e7df-474e-8ba1-7f8c8cff7daf"
+            }
+          ],
+          "id": "9d8cce7d-c6d7-40d1-951a-f188bd52bcab",
+          "createdAt": "2026-10-22T01:52:35.000Z",
+          "updatedAt": "2026-10-22T01:52:35.000Z",
+          "uid": "35240-9d8cce7d-c6d7-40d1-951a-f188bd52bcab"
+        },
+        {
+          "name": "libraries",
+          "item": [
+            {
+              "name": "{libraryName}",
+              "item": [
+                {
+                  "name": "Oracle WebLogic Server APIs Get a shared library deployment",
+                  "id": "840be75c-27eb-4797-bfa7-d27c27af1eed",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/libraries/:libraryName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "libraries",
+                        ":libraryName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "facb22cc-38ed-4300-b632-34650a46e10c",
+                          "key": "libraryName",
+                          "value": "<string>",
+                          "description": "(Required) The name of the shared library deployment"
+                        }
+                      ]
+                    },
+                    "description": "Returns the configuration of a specific shared library deployment."
+                  },
+                  "response": [
+                    {
+                      "id": "2dce2e09-fb6c-4f1f-b765-c46a1461c9ea",
+                      "name": "Library deployment configuration",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/libraries/:libraryName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "libraries",
+                            ":libraryName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "libraryName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"sourcePath\": \"<string>\",\n  \"targets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"specificationVersion\": \"<string>\",\n  \"implementationVersion\": \"<string>\",\n  \"moduleType\": \"war\",\n  \"stagingMode\": \"stage\",\n  \"deploymentOrder\": 100,\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:52:35.000Z",
+                      "updatedAt": "2026-10-22T01:52:35.000Z",
+                      "uid": "35240-2dce2e09-fb6c-4f1f-b765-c46a1461c9ea"
+                    },
+                    {
+                      "id": "af7582b8-6db5-41d0-a543-45774bccfab7",
+                      "name": "Authentication required or invalid credentials",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/libraries/:libraryName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "libraries",
+                            ":libraryName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "libraryName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:52:35.000Z",
+                      "updatedAt": "2026-10-22T01:52:35.000Z",
+                      "uid": "35240-af7582b8-6db5-41d0-a543-45774bccfab7"
+                    },
+                    {
+                      "id": "7d9e1d66-83dc-4ce2-892f-c84fcca3aabb",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/libraries/:libraryName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "libraries",
+                            ":libraryName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "libraryName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:52:35.000Z",
+                      "updatedAt": "2026-10-22T01:52:35.000Z",
+                      "uid": "35240-7d9e1d66-83dc-4ce2-892f-c84fcca3aabb"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:35.000Z",
+                  "updatedAt": "2026-10-22T01:52:35.000Z",
+                  "uid": "35240-840be75c-27eb-4797-bfa7-d27c27af1eed"
+                },
+                {
+                  "name": "Oracle WebLogic Server APIs Remove a shared library deployment",
+                  "id": "5e78092e-7362-41e2-9411-53af1e8c980b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/libraries/:libraryName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "libraries",
+                        ":libraryName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "bfe42651-1d8d-495c-8d33-e7c85c0a908c",
+                          "key": "libraryName",
+                          "value": "<string>",
+                          "description": "(Required) The name of the shared library deployment"
+                        }
+                      ]
+                    },
+                    "description": "Removes a shared library deployment from the domain. Requires an active edit session."
+                  },
+                  "response": [
+                    {
+                      "id": "cf2edd2e-3ba2-4357-91bf-8e710955a01d",
+                      "name": "Library deployment removed",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/libraries/:libraryName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "libraries",
+                            ":libraryName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "libraryName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:35.000Z",
+                      "updatedAt": "2026-10-22T01:52:35.000Z",
+                      "uid": "35240-cf2edd2e-3ba2-4357-91bf-8e710955a01d"
+                    },
+                    {
+                      "id": "75ae1165-6782-45f1-9279-cec85b7dfe5d",
+                      "name": "Authentication required or invalid credentials",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/libraries/:libraryName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "libraries",
+                            ":libraryName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "libraryName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:52:35.000Z",
+                      "updatedAt": "2026-10-22T01:52:35.000Z",
+                      "uid": "35240-75ae1165-6782-45f1-9279-cec85b7dfe5d"
+                    },
+                    {
+                      "id": "d2b63e59-626b-4513-a0b6-6fd14effbd08",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/libraries/:libraryName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "libraries",
+                            ":libraryName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "libraryName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:52:35.000Z",
+                      "updatedAt": "2026-10-22T01:52:35.000Z",
+                      "uid": "35240-d2b63e59-626b-4513-a0b6-6fd14effbd08"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:35.000Z",
+                  "updatedAt": "2026-10-22T01:52:35.000Z",
+                  "uid": "35240-5e78092e-7362-41e2-9411-53af1e8c980b"
+                }
+              ],
+              "id": "8c43ef08-f0ba-4419-b55a-d903b09db74c",
+              "createdAt": "2026-10-22T01:52:35.000Z",
+              "updatedAt": "2026-10-22T01:52:35.000Z",
+              "uid": "35240-8c43ef08-f0ba-4419-b55a-d903b09db74c"
+            },
+            {
+              "name": "Oracle WebLogic Server APIs List all shared library deployments",
+              "id": "4e631029-1199-439f-91eb-ffd9748d6219",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/edit/libraries",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "edit",
+                    "libraries"
+                  ]
+                },
+                "description": "Returns all shared library deployment configurations in the domain."
+              },
+              "response": [
+                {
+                  "id": "f178db43-2f16-43ec-92c6-e743f05ab2cc",
+                  "name": "List of shared library deployments",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/libraries",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "libraries"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"sourcePath\": \"<string>\",\n      \"targets\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"specificationVersion\": \"<string>\",\n      \"implementationVersion\": \"<string>\",\n      \"moduleType\": \"war\",\n      \"stagingMode\": \"stage\",\n      \"deploymentOrder\": 100,\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"sourcePath\": \"<string>\",\n      \"targets\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"specificationVersion\": \"<string>\",\n      \"implementationVersion\": \"<string>\",\n      \"moduleType\": \"jar\",\n      \"stagingMode\": \"nostage\",\n      \"deploymentOrder\": 100,\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:52:35.000Z",
+                  "updatedAt": "2026-10-22T01:52:35.000Z",
+                  "uid": "35240-f178db43-2f16-43ec-92c6-e743f05ab2cc"
+                },
+                {
+                  "id": "2501665c-cb76-41c6-8c47-549e23d906ae",
+                  "name": "Authentication required or invalid credentials",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/libraries",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "libraries"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:52:35.000Z",
+                  "updatedAt": "2026-10-22T01:52:35.000Z",
+                  "uid": "35240-2501665c-cb76-41c6-8c47-549e23d906ae"
+                }
+              ],
+              "createdAt": "2026-10-22T01:52:35.000Z",
+              "updatedAt": "2026-10-22T01:52:35.000Z",
+              "uid": "35240-4e631029-1199-439f-91eb-ffd9748d6219"
+            },
+            {
+              "name": "Oracle WebLogic Server APIs Create a shared library deployment",
+              "id": "10d90c47-175c-434e-ab91-26cd1cf13ecd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"sourcePath\": \"string\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"deploymentOrder\": 6140,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://dKlgkxfYuovCbebuuCfBOvuTYcf.qldiT,VFCLG2J47pGWF-xocnptcvl\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://ZHYpkIiYtuHegPANMKJyCZgkpj.fha+WL7Dnd3k9Zx9V2J44Amza0J+cXH3JYEtrCjawu\",\n      \"title\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e028266e-76b7-423f-a3ea-44c8b10c100c",
-          "name": "Oracle WebLogic Server Remove a shared library deployment",
-          "request": {
-            "name": "Oracle WebLogic Server Remove a shared library deployment",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "libDeployments",
-                ":libName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "libName",
-                  "description": "(Required) Name of the shared library"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "49860459-ad75-4034-a8fc-9a0d6fb76728",
-              "name": "Library undeployed",
-              "originalRequest": {
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sourcePath\": \"<string>\",\n  \"targets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"moduleType\": \"war\",\n  \"stagingMode\": \"nostage\",\n  \"deploymentOrder\": 100\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
-                  "path": [
-                    "edit",
-                    "libDeployments",
-                    ":libName"
-                  ],
+                  "raw": "{{baseUrl}}/edit/libraries",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "libName",
-                      "description": "(Required) Name of the shared library"
-                    }
+                  "path": [
+                    "edit",
+                    "libraries"
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
+                "description": "Creates a new shared library deployment. Requires an active edit session."
               },
-              "status": "No Content",
-              "code": 204,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "57454d36-ebb3-418b-8843-92f7849cd6cf",
+                  "name": "Library deployment created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"sourcePath\": \"<string>\",\n  \"targets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"moduleType\": \"war\",\n  \"stagingMode\": \"nostage\",\n  \"deploymentOrder\": 100\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/libraries",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "libraries"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"sourcePath\": \"<string>\",\n  \"targets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"specificationVersion\": \"<string>\",\n  \"implementationVersion\": \"<string>\",\n  \"moduleType\": \"war\",\n  \"stagingMode\": \"stage\",\n  \"deploymentOrder\": 100,\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:52:35.000Z",
+                  "updatedAt": "2026-10-22T01:52:35.000Z",
+                  "uid": "35240-57454d36-ebb3-418b-8843-92f7849cd6cf"
+                },
+                {
+                  "id": "f77d9b52-a697-4db6-ab48-4344f906f79b",
+                  "name": "Invalid request parameters or body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"sourcePath\": \"<string>\",\n  \"targets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"moduleType\": \"war\",\n  \"stagingMode\": \"nostage\",\n  \"deploymentOrder\": 100\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/libraries",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "libraries"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:52:35.000Z",
+                  "updatedAt": "2026-10-22T01:52:35.000Z",
+                  "uid": "35240-f77d9b52-a697-4db6-ab48-4344f906f79b"
+                },
+                {
+                  "id": "44fd2b39-60a2-40d0-b95c-9ab9f5aa47ee",
+                  "name": "Authentication required or invalid credentials",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"sourcePath\": \"<string>\",\n  \"targets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"moduleType\": \"war\",\n  \"stagingMode\": \"nostage\",\n  \"deploymentOrder\": 100\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/libraries",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "libraries"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:52:35.000Z",
+                  "updatedAt": "2026-10-22T01:52:35.000Z",
+                  "uid": "35240-44fd2b39-60a2-40d0-b95c-9ab9f5aa47ee"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:52:35.000Z",
+              "updatedAt": "2026-10-22T01:52:35.000Z",
+              "uid": "35240-10d90c47-175c-434e-ab91-26cd1cf13ecd"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "4b8e61af-f37e-4b70-acb7-2009a6fa0172",
+          "createdAt": "2026-10-22T01:52:35.000Z",
+          "updatedAt": "2026-10-22T01:52:35.000Z",
+          "uid": "35240-4b8e61af-f37e-4b70-acb7-2009a6fa0172"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "http://localhost:7001/management/weblogic/latest",
-      "key": "baseUrl"
+      "id": "b6d6b7ad-7d26-4091-9127-75f9f117dd88",
+      "createdAt": "2026-10-22T01:52:35.000Z",
+      "updatedAt": "2026-10-22T01:52:35.000Z",
+      "uid": "35240-b6d6b7ad-7d26-4091-9127-75f9f117dd88"
     }
   ],
   "auth": {
@@ -432,21 +1147,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "4e125350-076a-45c4-af50-13b062acd57e",
-    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Library Deployments API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:7001/management/weblogic/latest"
     }
-  }
+  ]
 }

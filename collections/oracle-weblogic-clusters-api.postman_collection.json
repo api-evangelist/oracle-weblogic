@@ -1,929 +1,1232 @@
 {
+  "info": {
+    "_postman_id": "7c53d9db-cf2c-4be3-acf8-1c3bee02e550",
+    "name": "Oracle Weblogic Clusters API",
+    "description": "Operations tagged Clusters across 2 of this provider's published API definitions: oracle-weblogic-management-openapi.yml, weblogic-clusters-api-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:51:22.000Z",
+    "updatedAt": "2026-10-22T01:51:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7c53d9db-cf2c-4be3-acf8-1c3bee02e550"
+  },
   "item": [
     {
-      "id": "08cfac86-279b-4070-a354-f512fb6d89c2",
-      "name": "Clusters",
-      "description": {
-        "content": "Manage WebLogic Server clusters and dynamic servers",
-        "type": "text/plain"
-      },
+      "name": "edit",
       "item": [
         {
-          "id": "44bf97e7-1276-4244-ab6f-3742bcbe2f96",
-          "name": "Oracle WebLogic Server List all clusters",
-          "request": {
-            "name": "Oracle WebLogic Server List all clusters",
-            "description": {
-              "content": "Returns a collection of all cluster configurations in the domain.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "edit",
-                "clusters"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "fields",
-                  "value": "<string>",
-                  "description": "Comma-separated list of property names to include in the response"
-                },
-                {
-                  "disabled": false,
-                  "key": "links",
-                  "value": "<string>",
-                  "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "clusters",
+          "item": [
             {
-              "id": "d03c4d3e-1c39-44c5-b841-5647f6bb9101",
-              "name": "Collection of clusters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "clusters"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "{clusterName}",
+              "item": [
+                {
+                  "name": "dynamicServers",
+                  "item": [
                     {
-                      "key": "fields",
-                      "value": "name,listenPort"
+                      "name": "Oracle WebLogic Server Get dynamic server configuration for a cluster",
+                      "id": "4dbb5a93-6876-48b1-a59c-dacc5db4ede2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/clusters/:clusterName/dynamicServers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "clusters",
+                            ":clusterName",
+                            "dynamicServers"
+                          ],
+                          "variable": [
+                            {
+                              "id": "a5faff4a-b131-4e47-95b0-76a963b222a9",
+                              "key": "clusterName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the cluster"
+                            }
+                          ]
+                        },
+                        "description": "Returns the dynamic server configuration for the specified cluster."
+                      },
+                      "response": [
+                        {
+                          "id": "bd9d7c10-c9e2-4344-a909-ae5817aac468",
+                          "name": "Dynamic servers configuration",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/clusters/:clusterName/dynamicServers",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "clusters",
+                                ":clusterName",
+                                "dynamicServers"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "clusterName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"serverTemplate\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dynamicClusterSize\": \"<integer>\",\n  \"maxDynamicClusterSize\": \"<integer>\",\n  \"serverNamePrefix\": \"<string>\",\n  \"calculateListenPorts\": \"<boolean>\"\n}",
+                          "createdAt": "2026-10-22T01:51:23.000Z",
+                          "updatedAt": "2026-10-22T01:51:23.000Z",
+                          "uid": "35240-bd9d7c10-c9e2-4344-a909-ae5817aac468"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:51:23.000Z",
+                      "updatedAt": "2026-10-22T01:51:23.000Z",
+                      "uid": "35240-4dbb5a93-6876-48b1-a59c-dacc5db4ede2"
                     },
                     {
-                      "key": "links",
-                      "value": "none"
+                      "name": "Oracle WebLogic Server Configure dynamic servers for a cluster",
+                      "id": "179c9dfe-c841-4c74-a655-b96c1b10c625",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"serverTemplate\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dynamicClusterSize\": \"<integer>\",\n  \"maxDynamicClusterSize\": \"<integer>\",\n  \"serverNamePrefix\": \"<string>\",\n  \"calculateListenPorts\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/clusters/:clusterName/dynamicServers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "clusters",
+                            ":clusterName",
+                            "dynamicServers"
+                          ],
+                          "variable": [
+                            {
+                              "id": "600afd92-0c50-443e-be83-276933a1f3f9",
+                              "key": "clusterName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the cluster"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "f48f2655-68a6-42ac-b01c-bed0187334d7",
+                          "name": "Dynamic servers configuration updated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                "key": "X-Requested-By",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"serverTemplate\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dynamicClusterSize\": \"<integer>\",\n  \"maxDynamicClusterSize\": \"<integer>\",\n  \"serverNamePrefix\": \"<string>\",\n  \"calculateListenPorts\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/clusters/:clusterName/dynamicServers",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "clusters",
+                                ":clusterName",
+                                "dynamicServers"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "clusterName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:51:23.000Z",
+                          "updatedAt": "2026-10-22T01:51:23.000Z",
+                          "uid": "35240-f48f2655-68a6-42ac-b01c-bed0187334d7"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:51:23.000Z",
+                      "updatedAt": "2026-10-22T01:51:23.000Z",
+                      "uid": "35240-179c9dfe-c841-4c74-a655-b96c1b10c625"
                     }
                   ],
-                  "variable": []
+                  "id": "a66e83ed-002f-4b57-b1f5-52d7d4654356",
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-a66e83ed-002f-4b57-b1f5-52d7d4654356"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                {
+                  "name": "Oracle WebLogic Server Get a specific cluster configuration",
+                  "id": "e9f6a941-343f-4658-86ef-11b21617aed9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/clusters/:clusterName?fields=<string>&links=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "clusters",
+                        ":clusterName"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of property names to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.",
+                          "key": "links",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "30884291-fcc4-42e3-b155-459e1245ab49",
+                          "key": "clusterName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the cluster"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "695ba070-d419-4172-9f9e-147418eb5e8f",
+                      "name": "Cluster configuration details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/clusters/:clusterName?fields=<string>&links=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "clusters",
+                            ":clusterName"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of property names to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.",
+                              "key": "links",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "clusterName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"clusterMessagingMode\": \"multicast\",\n  \"clusterBroadcastChannel\": \"<string>\",\n  \"defaultLoadAlgorithm\": \"round-robin-affinity\",\n  \"weblogicPluginEnabled\": \"<boolean>\",\n  \"frontendHost\": \"<string>\",\n  \"frontendHTTPPort\": \"<integer>\",\n  \"frontendHTTPSPort\": \"<integer>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:51:23.000Z",
+                      "updatedAt": "2026-10-22T01:51:23.000Z",
+                      "uid": "35240-695ba070-d419-4172-9f9e-147418eb5e8f"
+                    },
+                    {
+                      "id": "64f5e99f-ea1d-432a-ae32-c3e38ff4c311",
+                      "name": "Requested resource does not exist",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/clusters/:clusterName?fields=<string>&links=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "clusters",
+                            ":clusterName"
+                          ],
+                          "query": [
+                            {
+                              "description": "Comma-separated list of property names to include in the response",
+                              "key": "fields",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.",
+                              "key": "links",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "clusterName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:51:23.000Z",
+                      "updatedAt": "2026-10-22T01:51:23.000Z",
+                      "uid": "35240-64f5e99f-ea1d-432a-ae32-c3e38ff4c311"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-e9f6a941-343f-4658-86ef-11b21617aed9"
+                },
+                {
+                  "name": "Oracle WebLogic Server Update a cluster configuration",
+                  "id": "02e23699-fe84-4918-85b6-021c5457702e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"clusterMessagingMode\": \"multicast\",\n  \"defaultLoadAlgorithm\": \"weight-based\",\n  \"weblogicPluginEnabled\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/clusters/:clusterName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "clusters",
+                        ":clusterName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ea171db1-e7d2-48e3-8693-460d24af7ea0",
+                          "key": "clusterName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the cluster"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "504a375f-8ea2-4711-869a-22594b431294",
+                      "name": "Cluster updated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"clusterMessagingMode\": \"multicast\",\n  \"defaultLoadAlgorithm\": \"weight-based\",\n  \"weblogicPluginEnabled\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/clusters/:clusterName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "clusters",
+                            ":clusterName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "clusterName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:51:23.000Z",
+                      "updatedAt": "2026-10-22T01:51:23.000Z",
+                      "uid": "35240-504a375f-8ea2-4711-869a-22594b431294"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-02e23699-fe84-4918-85b6-021c5457702e"
+                },
+                {
+                  "name": "Oracle WebLogic Server Delete a cluster",
+                  "id": "50afd58d-ffad-4ea0-bd99-508ee4da8a75",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/clusters/:clusterName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "clusters",
+                        ":clusterName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "134f9965-747b-4431-9460-7d7b632290be",
+                          "key": "clusterName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the cluster"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "ef090eb6-5d02-4407-8d04-fca958e0ee58",
+                      "name": "Cluster deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/clusters/:clusterName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "clusters",
+                            ":clusterName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "clusterName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:51:23.000Z",
+                      "updatedAt": "2026-10-22T01:51:23.000Z",
+                      "uid": "35240-ef090eb6-5d02-4407-8d04-fca958e0ee58"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-50afd58d-ffad-4ea0-bd99-508ee4da8a75"
+                }
+              ],
+              "id": "5ef1adfd-798c-4685-9f2b-d5572fc9742b",
+              "createdAt": "2026-10-22T01:51:23.000Z",
+              "updatedAt": "2026-10-22T01:51:23.000Z",
+              "uid": "35240-5ef1adfd-798c-4685-9f2b-d5572fc9742b"
+            },
+            {
+              "name": "Oracle WebLogic Server List all clusters",
+              "id": "f322c8e9-0c11-46fa-bdf2-3537f9a513c7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"clusterMessagingMode\": \"unicast\",\n      \"clusterBroadcastChannel\": \"string\",\n      \"defaultLoadAlgorithm\": \"weight-based\",\n      \"weblogicPluginEnabled\": false,\n      \"frontendHost\": \"string\",\n      \"frontendHTTPPort\": 6464,\n      \"frontendHTTPSPort\": 7399,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://inhPEXaUrEgZsLd.jzeG1XmPTvWPJuxiIBZVpyvEAze2O.LRiPHh7NCnIQ2JJ.kivKAtwYYV.lpg7\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://J.yioQ6oKEe8clkDw2v.6DVK+pss2L1niTN\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"clusterMessagingMode\": \"multicast\",\n      \"clusterBroadcastChannel\": \"string\",\n      \"defaultLoadAlgorithm\": \"round-robin\",\n      \"weblogicPluginEnabled\": false,\n      \"frontendHost\": \"string\",\n      \"frontendHTTPPort\": 4531,\n      \"frontendHTTPSPort\": 1976,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://dfPqifAVSaDtwYLdYacUopdppikMyAORT.fidxPxztXLjcrFqTze-ioY,,M6IEkYZT,aqGof6d6vjtgnMWm\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://EMvrJMuRIxOfXSWkkSnnhwwryGWs.hktiGdg4MRuXxB7u9BUAcSYVNo0Pgv,n6DyyLS.eaJT0xc,ip\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e7a88b9b-77f3-44e6-9331-373863a44489",
-          "name": "Oracle WebLogic Server Create a new cluster",
-          "request": {
-            "name": "Oracle WebLogic Server Create a new cluster",
-            "description": {
-              "content": "Creates a new cluster configuration. Requires an active edit session.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "edit",
-                "clusters"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"clusterMessagingMode\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "0da15670-2147-4c7e-b506-b9a26f517aab",
-              "name": "Cluster created successfully",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/edit/clusters?fields=<string>&links=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "edit",
                     "clusters"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  "query": [
+                    {
+                      "description": "Comma-separated list of property names to include in the response",
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.",
+                      "key": "links",
+                      "value": "<string>"
+                    }
+                  ]
                 },
+                "description": "Returns a collection of all cluster configurations in the domain."
+              },
+              "response": [
+                {
+                  "id": "26498813-eabd-4575-9d17-a0f2a7724d4f",
+                  "name": "Collection of clusters",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/clusters?fields=<string>&links=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "clusters"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of property names to include in the response",
+                          "key": "fields",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.",
+                          "key": "links",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"clusterMessagingMode\": \"unicast\",\n      \"clusterBroadcastChannel\": \"<string>\",\n      \"defaultLoadAlgorithm\": \"random\",\n      \"weblogicPluginEnabled\": \"<boolean>\",\n      \"frontendHost\": \"<string>\",\n      \"frontendHTTPPort\": \"<integer>\",\n      \"frontendHTTPSPort\": \"<integer>\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"clusterMessagingMode\": \"multicast\",\n      \"clusterBroadcastChannel\": \"<string>\",\n      \"defaultLoadAlgorithm\": \"round-robin\",\n      \"weblogicPluginEnabled\": \"<boolean>\",\n      \"frontendHost\": \"<string>\",\n      \"frontendHTTPPort\": \"<integer>\",\n      \"frontendHTTPSPort\": \"<integer>\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-26498813-eabd-4575-9d17-a0f2a7724d4f"
+                }
+              ],
+              "createdAt": "2026-10-22T01:51:23.000Z",
+              "updatedAt": "2026-10-22T01:51:23.000Z",
+              "uid": "35240-f322c8e9-0c11-46fa-bdf2-3537f9a513c7"
+            },
+            {
+              "name": "Oracle WebLogic Server Create a new cluster",
+              "id": "aaf6b830-d68f-428d-b0d9-caae484a9b7a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) CSRF protection header required for POST and DELETE requests",
                     "key": "X-Requested-By",
-                    "value": "MyClient"
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"clusterMessagingMode\": \"<string>\"\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"clusterMessagingMode\": \"unicast\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "disabled": false,
-                  "key": "Location",
-                  "value": "https://HJMDfsjbZftBa.nfkVZak8aJumQjntxqU8LqsF11ZVTGZTh39nU-EXL+vpNy",
-                  "description": ""
                 },
+                "url": {
+                  "raw": "{{baseUrl}}/edit/clusters",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "edit",
+                    "clusters"
+                  ]
+                },
+                "description": "Creates a new cluster configuration. Requires an active edit session."
+              },
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "cf96ec78-4129-4467-8e23-2fba40106445",
+                  "name": "Cluster created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"clusterMessagingMode\": \"unicast\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/clusters",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "clusters"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Location",
+                      "value": "<uri>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-cf96ec78-4129-4467-8e23-2fba40106445"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:51:23.000Z",
+              "updatedAt": "2026-10-22T01:51:23.000Z",
+              "uid": "35240-aaf6b830-d68f-428d-b0d9-caae484a9b7a"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "8ebac2fe-75df-4773-99c8-9b48a39fb0d8",
+          "createdAt": "2026-10-22T01:51:23.000Z",
+          "updatedAt": "2026-10-22T01:51:23.000Z",
+          "uid": "35240-8ebac2fe-75df-4773-99c8-9b48a39fb0d8"
         },
         {
-          "id": "b187ce66-5e4f-404d-bf76-30fe63ca2c1b",
-          "name": "Oracle WebLogic Server Get cluster creation form with defaults",
-          "request": {
-            "name": "Oracle WebLogic Server Get cluster creation form with defaults",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "clusterCreateForm"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "clusterCreateForm",
+          "item": [
             {
-              "id": "90251700-2e37-4861-98df-662038235102",
-              "name": "Cluster create form with default values",
-              "originalRequest": {
+              "name": "Oracle WebLogic Server Get cluster creation form with defaults",
+              "id": "2f49ac95-8d74-404c-96a1-685cba0a47d5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/edit/clusterCreateForm",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "edit",
                     "clusterCreateForm"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "4cf44739-0737-4ed1-82bd-deabc039d7e0",
+                  "name": "Cluster create form with default values",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/clusterCreateForm",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "clusterCreateForm"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"clusterMessagingMode\": \"unicast\"\n}",
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-4cf44739-0737-4ed1-82bd-deabc039d7e0"
                 }
               ],
-              "body": "{\n  \"name\": \"string\",\n  \"clusterMessagingMode\": \"multicast\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:51:23.000Z",
+              "updatedAt": "2026-10-22T01:51:23.000Z",
+              "uid": "35240-2f49ac95-8d74-404c-96a1-685cba0a47d5"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "5074e7da-fbb9-4552-bf50-9de9e1ef2506",
-          "name": "Oracle WebLogic Server Get a specific cluster configuration",
-          "request": {
-            "name": "Oracle WebLogic Server Get a specific cluster configuration",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "clusters",
-                ":clusterName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "fields",
-                  "value": "<string>",
-                  "description": "Comma-separated list of property names to include in the response"
-                },
-                {
-                  "disabled": false,
-                  "key": "links",
-                  "value": "<string>",
-                  "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "clusterName",
-                  "description": "(Required) Name of the cluster"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "00c4464d-bc72-42b9-9d69-c4fa31fa2dcb",
-              "name": "Cluster configuration details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "clusters",
-                    ":clusterName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "fields",
-                      "value": "name,listenPort"
-                    },
-                    {
-                      "key": "links",
-                      "value": "none"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "clusterName",
-                      "description": "(Required) Name of the cluster"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"clusterMessagingMode\": \"unicast\",\n  \"clusterBroadcastChannel\": \"string\",\n  \"defaultLoadAlgorithm\": \"round-robin\",\n  \"weblogicPluginEnabled\": true,\n  \"frontendHost\": \"string\",\n  \"frontendHTTPPort\": 6147,\n  \"frontendHTTPSPort\": 3416,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://EfNteO.jgtXg+Lk9VZmnMGkTQRRKvAPxfSV8.leF6nefaQ00aD3S-unp69-4sgSX511G,wMmLjW86rL2iky\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://DOBzDGHKDESLncDfOpLocuN.tztxrtcuLPCj\",\n      \"title\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "cb3f3f00-c67a-492e-a27c-7ffc4360cf8e",
-              "name": "Requested resource does not exist",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "clusters",
-                    ":clusterName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "fields",
-                      "value": "name,listenPort"
-                    },
-                    {
-                      "key": "links",
-                      "value": "none"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "clusterName",
-                      "description": "(Required) Name of the cluster"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4f552712-f604-4876-a840-ed592bedd67d",
-          "name": "Oracle WebLogic Server Update a cluster configuration",
-          "request": {
-            "name": "Oracle WebLogic Server Update a cluster configuration",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "clusters",
-                ":clusterName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "clusterName",
-                  "description": "(Required) Name of the cluster"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"clusterMessagingMode\": \"<string>\",\n  \"defaultLoadAlgorithm\": \"<string>\",\n  \"weblogicPluginEnabled\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "eb9d7861-dbf1-4f12-a807-4d3b524ed859",
-              "name": "Cluster updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "clusters",
-                    ":clusterName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "clusterName",
-                      "description": "(Required) Name of the cluster"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"clusterMessagingMode\": \"<string>\",\n  \"defaultLoadAlgorithm\": \"<string>\",\n  \"weblogicPluginEnabled\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8da5f509-88c3-4721-82a0-c41fc4c134a1",
-          "name": "Oracle WebLogic Server Delete a cluster",
-          "request": {
-            "name": "Oracle WebLogic Server Delete a cluster",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "clusters",
-                ":clusterName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "clusterName",
-                  "description": "(Required) Name of the cluster"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "33a9c67a-fe07-4af7-b9e8-aba20bfa7ad3",
-              "name": "Cluster deleted",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "clusters",
-                    ":clusterName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "clusterName",
-                      "description": "(Required) Name of the cluster"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "60352c30-fbea-4034-b1f9-5aba06b479d2",
-          "name": "Oracle WebLogic Server Get dynamic server configuration for a cluster",
-          "request": {
-            "name": "Oracle WebLogic Server Get dynamic server configuration for a cluster",
-            "description": {
-              "content": "Returns the dynamic server configuration for the specified cluster.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "edit",
-                "clusters",
-                ":clusterName",
-                "dynamicServers"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "clusterName",
-                  "description": "(Required) Name of the cluster"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "f7378d91-1932-47b1-95e3-3858863293a2",
-              "name": "Dynamic servers configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "clusters",
-                    ":clusterName",
-                    "dynamicServers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "clusterName",
-                      "description": "(Required) Name of the cluster"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"serverTemplate\": [\n    \"string\",\n    \"string\"\n  ],\n  \"dynamicClusterSize\": 1218,\n  \"maxDynamicClusterSize\": 4292,\n  \"serverNamePrefix\": \"string\",\n  \"calculateListenPorts\": true\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c56e4508-4d6e-4260-b2c3-f53baa9f52c4",
-          "name": "Oracle WebLogic Server Configure dynamic servers for a cluster",
-          "request": {
-            "name": "Oracle WebLogic Server Configure dynamic servers for a cluster",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "clusters",
-                ":clusterName",
-                "dynamicServers"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "clusterName",
-                  "description": "(Required) Name of the cluster"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"serverTemplate\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dynamicClusterSize\": \"<integer>\",\n  \"maxDynamicClusterSize\": \"<integer>\",\n  \"serverNamePrefix\": \"<string>\",\n  \"calculateListenPorts\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "8da88d8a-0e04-42c9-8223-4efad6dd3f2c",
-              "name": "Dynamic servers configuration updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "clusters",
-                    ":clusterName",
-                    "dynamicServers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "clusterName",
-                      "description": "(Required) Name of the cluster"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"serverTemplate\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dynamicClusterSize\": \"<integer>\",\n  \"maxDynamicClusterSize\": \"<integer>\",\n  \"serverNamePrefix\": \"<string>\",\n  \"calculateListenPorts\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "f5d79021-0b41-4207-867c-ce37707df582",
+          "createdAt": "2026-10-22T01:51:23.000Z",
+          "updatedAt": "2026-10-22T01:51:23.000Z",
+          "uid": "35240-f5d79021-0b41-4207-867c-ce37707df582"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
+      "id": "127fb381-8652-48c4-9c89-7c16c6973551",
+      "createdAt": "2026-10-22T01:51:23.000Z",
+      "updatedAt": "2026-10-22T01:51:23.000Z",
+      "uid": "35240-127fb381-8652-48c4-9c89-7c16c6973551"
+    },
     {
-      "type": "string",
-      "value": "http://localhost:7001/management/weblogic/latest",
-      "key": "baseUrl"
+      "name": "clusters",
+      "item": [
+        {
+          "name": "{clusterName}",
+          "item": [
+            {
+              "name": "Oracle WebLogic Server APIs Get cluster monitoring information",
+              "id": "bc658950-f7e2-45f3-a90a-359621b7c083",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/clusters/:clusterName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "clusters",
+                    ":clusterName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "8c873428-e390-4e20-b404-e651ab749297",
+                      "key": "clusterName",
+                      "value": "<string>",
+                      "description": "(Required) The name of the WebLogic cluster"
+                    }
+                  ]
+                },
+                "description": "Returns detailed monitoring information for a specific cluster including member server states and cluster health."
+              },
+              "response": [
+                {
+                  "id": "c919ecb4-35b9-4335-8d3e-38d81e0a6252",
+                  "name": "Cluster monitoring information",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/clusters/:clusterName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "clusters",
+                        ":clusterName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "clusterName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"servers\": [\n    {\n      \"name\": \"<string>\",\n      \"state\": \"<string>\",\n      \"health\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"state\": \"<string>\",\n      \"health\": \"<string>\"\n    }\n  ],\n  \"aliveServerCount\": \"<integer>\",\n  \"resendRequestsCount\": \"<long>\",\n  \"fragmentsReceivedCount\": \"<long>\",\n  \"fragmentsSentCount\": \"<long>\"\n}",
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-c919ecb4-35b9-4335-8d3e-38d81e0a6252"
+                },
+                {
+                  "id": "9d5f5ee1-206f-4a5e-9b6d-c112be7c6d36",
+                  "name": "Authentication required or invalid credentials",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/clusters/:clusterName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "clusters",
+                        ":clusterName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "clusterName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-9d5f5ee1-206f-4a5e-9b6d-c112be7c6d36"
+                },
+                {
+                  "id": "277f3595-9345-40b1-906c-76f41d97b80a",
+                  "name": "The specified resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/clusters/:clusterName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "clusters",
+                        ":clusterName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "clusterName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:51:23.000Z",
+                  "updatedAt": "2026-10-22T01:51:23.000Z",
+                  "uid": "35240-277f3595-9345-40b1-906c-76f41d97b80a"
+                }
+              ],
+              "createdAt": "2026-10-22T01:51:23.000Z",
+              "updatedAt": "2026-10-22T01:51:23.000Z",
+              "uid": "35240-bc658950-f7e2-45f3-a90a-359621b7c083"
+            }
+          ],
+          "id": "68db536a-947b-45d9-8b7e-0e4cc96687b5",
+          "createdAt": "2026-10-22T01:51:23.000Z",
+          "updatedAt": "2026-10-22T01:51:23.000Z",
+          "uid": "35240-68db536a-947b-45d9-8b7e-0e4cc96687b5"
+        },
+        {
+          "name": "Oracle WebLogic Server APIs List all monitored clusters",
+          "id": "a06c70d1-4e69-438a-b205-19a2d44710ea",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/clusters",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "clusters"
+              ]
+            },
+            "description": "Returns monitoring information for all clusters in the domain including member servers and cluster health."
+          },
+          "response": [
+            {
+              "id": "162d1fc4-88d5-4265-9005-ec9f2539ddcf",
+              "name": "List of monitored clusters",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/clusters",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "clusters"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"servers\": [\n        {\n          \"name\": \"<string>\",\n          \"state\": \"<string>\",\n          \"health\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"state\": \"<string>\",\n          \"health\": \"<string>\"\n        }\n      ],\n      \"aliveServerCount\": \"<integer>\",\n      \"resendRequestsCount\": \"<long>\",\n      \"fragmentsReceivedCount\": \"<long>\",\n      \"fragmentsSentCount\": \"<long>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"servers\": [\n        {\n          \"name\": \"<string>\",\n          \"state\": \"<string>\",\n          \"health\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"state\": \"<string>\",\n          \"health\": \"<string>\"\n        }\n      ],\n      \"aliveServerCount\": \"<integer>\",\n      \"resendRequestsCount\": \"<long>\",\n      \"fragmentsReceivedCount\": \"<long>\",\n      \"fragmentsSentCount\": \"<long>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:51:23.000Z",
+              "updatedAt": "2026-10-22T01:51:23.000Z",
+              "uid": "35240-162d1fc4-88d5-4265-9005-ec9f2539ddcf"
+            },
+            {
+              "id": "eb6d363a-e9ae-4e17-bf44-a9839d56b508",
+              "name": "Authentication required or invalid credentials",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/clusters",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "clusters"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:51:23.000Z",
+              "updatedAt": "2026-10-22T01:51:23.000Z",
+              "uid": "35240-eb6d363a-e9ae-4e17-bf44-a9839d56b508"
+            }
+          ],
+          "createdAt": "2026-10-22T01:51:23.000Z",
+          "updatedAt": "2026-10-22T01:51:23.000Z",
+          "uid": "35240-a06c70d1-4e69-438a-b205-19a2d44710ea"
+        }
+      ],
+      "id": "09265fa2-8cfe-4947-ab34-d6fe9047c8d3",
+      "createdAt": "2026-10-22T01:51:23.000Z",
+      "updatedAt": "2026-10-22T01:51:23.000Z",
+      "uid": "35240-09265fa2-8cfe-4947-ab34-d6fe9047c8d3"
     }
   ],
   "auth": {
@@ -931,21 +1234,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "39d2d24e-2457-4924-b5c3-584ff8806042",
-    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Clusters API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:7001/management/weblogic/latest"
     }
-  }
+  ]
 }

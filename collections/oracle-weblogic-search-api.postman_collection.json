@@ -1,356 +1,405 @@
 {
+  "info": {
+    "_postman_id": "6b82a446-8918-4cee-8900-e290e3c7f9ee",
+    "name": "Oracle WebLogic Server Oracle WebLogic RESTful Management\u2026",
+    "description": "RESTful API for managing and monitoring Oracle WebLogic Server domains, servers, clusters, applications, data sources, JMS resources, and security configuration.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:53:00.000Z",
+    "updatedAt": "2026-10-22T01:53:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6b82a446-8918-4cee-8900-e290e3c7f9ee"
+  },
   "item": [
     {
-      "id": "bc96c64a-ae9b-49af-8d74-47e0afb943df",
-      "name": "Search",
-      "description": {
-        "content": "Query and search across configuration trees",
-        "type": "text/plain"
-      },
+      "name": "edit",
       "item": [
         {
-          "id": "06dac3d8-c27a-4f48-8381-80143fb34060",
-          "name": "Oracle WebLogic Server Search the edit configuration tree",
-          "request": {
-            "name": "Oracle WebLogic Server Search the edit configuration tree",
-            "description": {
-              "content": "Performs a structured query against the edit configuration tree. Supports field filtering, child traversal, and collection filtering.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "edit",
-                "search"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"key_0\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        }\n      },\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    },\n    \"key_1\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        }\n      },\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    },\n    \"key_2\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        }\n      },\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    }\n  },\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "search",
+          "item": [
             {
-              "id": "dc131db3-b5dc-4ea0-bd58-fe34bdaf9a1b",
-              "name": "Search results",
-              "originalRequest": {
+              "name": "Oracle WebLogic Server Search the edit configuration tree",
+              "id": "d23c3dd7-e732-4c33-bd00-22208d19b0db",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"culpaad2\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n    }\n  },\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/edit/search",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "edit",
                     "search"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
+                  ]
                 },
+                "description": "Performs a structured query against the edit configuration tree. Supports field filtering, child traversal, and collection filtering."
+              },
+              "response": [
+                {
+                  "id": "dd91390b-df55-466e-b5e6-4d9958d44c05",
+                  "name": "Search results",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"culpaad2\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n    }\n  },\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "search"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-22T01:53:01.000Z",
+                  "updatedAt": "2026-10-22T01:53:01.000Z",
+                  "uid": "35240-dd91390b-df55-466e-b5e6-4d9958d44c05"
+                }
+              ],
+              "createdAt": "2026-10-22T01:53:01.000Z",
+              "updatedAt": "2026-10-22T01:53:01.000Z",
+              "uid": "35240-d23c3dd7-e732-4c33-bd00-22208d19b0db"
+            }
+          ],
+          "id": "3851f014-4851-4de4-ab6d-61c9ad405645",
+          "createdAt": "2026-10-22T01:53:01.000Z",
+          "updatedAt": "2026-10-22T01:53:01.000Z",
+          "uid": "35240-3851f014-4851-4de4-ab6d-61c9ad405645"
+        }
+      ],
+      "id": "78041c39-2c79-42e8-af9b-78b3ed37dfea",
+      "createdAt": "2026-10-22T01:53:01.000Z",
+      "updatedAt": "2026-10-22T01:53:01.000Z",
+      "uid": "35240-78041c39-2c79-42e8-af9b-78b3ed37dfea"
+    },
+    {
+      "name": "domainConfig",
+      "item": [
+        {
+          "name": "search",
+          "item": [
+            {
+              "name": "Oracle WebLogic Server Search the domain configuration tree",
+              "id": "1803edd7-61a9-4a3b-9121-1b7532332d6b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) CSRF protection header required for POST and DELETE requests",
                     "key": "X-Requested-By",
-                    "value": "MyClient"
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"key_0\": {\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        }\n      },\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mergeCollection\": false,\n      \"mergeOn\": \"string\"\n    }\n  },\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"culpaad2\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n    }\n  },\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "fe9eccfb-acf9-46c3-9ab7-4a04dd6800cd",
-          "name": "Oracle WebLogic Server Search the domain configuration tree",
-          "request": {
-            "name": "Oracle WebLogic Server Search the domain configuration tree",
-            "description": {},
-            "url": {
-              "path": [
-                "domainConfig",
-                "search"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"key_0\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        }\n      },\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    },\n    \"key_1\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        }\n      },\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    },\n    \"key_2\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        }\n      },\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    }\n  },\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "7a2367bd-3011-4542-855d-4984ca934af6",
-              "name": "Search results",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/domainConfig/search",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "domainConfig",
                     "search"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "155da790-b66e-4f95-ba9b-869dcde0acd6",
+                  "name": "Search results",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"culpaad2\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n    }\n  },\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domainConfig/search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domainConfig",
+                        "search"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-22T01:53:01.000Z",
+                  "updatedAt": "2026-10-22T01:53:01.000Z",
+                  "uid": "35240-155da790-b66e-4f95-ba9b-869dcde0acd6"
+                }
+              ],
+              "createdAt": "2026-10-22T01:53:01.000Z",
+              "updatedAt": "2026-10-22T01:53:01.000Z",
+              "uid": "35240-1803edd7-61a9-4a3b-9121-1b7532332d6b"
+            }
+          ],
+          "id": "55786d0b-b63e-407d-b0a3-e272966115b1",
+          "createdAt": "2026-10-22T01:53:01.000Z",
+          "updatedAt": "2026-10-22T01:53:01.000Z",
+          "uid": "35240-55786d0b-b63e-407d-b0a3-e272966115b1"
+        }
+      ],
+      "id": "8793d5eb-c755-4b78-821c-9a5f7236e17e",
+      "createdAt": "2026-10-22T01:53:01.000Z",
+      "updatedAt": "2026-10-22T01:53:01.000Z",
+      "uid": "35240-8793d5eb-c755-4b78-821c-9a5f7236e17e"
+    },
+    {
+      "name": "serverConfig",
+      "item": [
+        {
+          "name": "search",
+          "item": [
+            {
+              "name": "Oracle WebLogic Server Search the server configuration tree",
+              "id": "7fa0544b-b5ce-49b2-bf50-64d118b10ac9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "(Required) CSRF protection header required for POST and DELETE requests",
                     "key": "X-Requested-By",
-                    "value": "MyClient"
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"key_0\": {\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        }\n      },\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mergeCollection\": false,\n      \"mergeOn\": \"string\"\n    }\n  },\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
+                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"culpaad2\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n    }\n  },\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "13dadf4f-eb2d-42f3-8eb1-7ebecc958221",
-          "name": "Oracle WebLogic Server Search the server configuration tree",
-          "request": {
-            "name": "Oracle WebLogic Server Search the server configuration tree",
-            "description": {},
-            "url": {
-              "path": [
-                "serverConfig",
-                "search"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"key_0\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        }\n      },\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    },\n    \"key_1\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        }\n      },\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    },\n    \"key_2\": {\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        }\n      },\n      \"names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"mergeCollection\": \"<boolean>\",\n      \"mergeOn\": \"<string>\"\n    }\n  },\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "5831c001-ae0d-48a0-95d1-f54d9f835d2e",
-              "name": "Search results",
-              "originalRequest": {
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/serverConfig/search",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "serverConfig",
                     "search"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"key_0\": {\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        \"string\",\n        \"string\"\n      ],\n      \"children\": {\n        \"key_0\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n        }\n      },\n      \"names\": [\n        \"string\",\n        \"string\"\n      ],\n      \"mergeCollection\": false,\n      \"mergeOn\": \"string\"\n    }\n  },\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
+                  ]
                 }
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "d0a6379e-7628-4662-9982-3ac5fa43d141",
+                  "name": "Search results",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"children\": {\n    \"culpaad2\": {\n      \"value\": \"<Circular reference to #/components/schemas/SearchQuery detected>\"\n    }\n  },\n  \"names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"mergeCollection\": \"<boolean>\",\n  \"mergeOn\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/serverConfig/search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "serverConfig",
+                        "search"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-10-22T01:53:01.000Z",
+                  "updatedAt": "2026-10-22T01:53:01.000Z",
+                  "uid": "35240-d0a6379e-7628-4662-9982-3ac5fa43d141"
                 }
               ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:53:01.000Z",
+              "updatedAt": "2026-10-22T01:53:01.000Z",
+              "uid": "35240-7fa0544b-b5ce-49b2-bf50-64d118b10ac9"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "620f2f59-6312-4db6-bb50-dece26344be6",
+          "createdAt": "2026-10-22T01:53:01.000Z",
+          "updatedAt": "2026-10-22T01:53:01.000Z",
+          "uid": "35240-620f2f59-6312-4db6-bb50-dece26344be6"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "http://localhost:7001/management/weblogic/latest",
-      "key": "baseUrl"
+      "id": "d5cd0a40-1683-4e60-bc26-cf26e56f7be1",
+      "createdAt": "2026-10-22T01:53:01.000Z",
+      "updatedAt": "2026-10-22T01:53:01.000Z",
+      "uid": "35240-d5cd0a40-1683-4e60-bc26-cf26e56f7be1"
     }
   ],
   "auth": {
@@ -358,21 +407,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "5c3bb51a-62cb-4e0a-8183-3eeedcca5ed2",
-    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Search API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:7001/management/weblogic/latest"
     }
-  }
+  ]
 }

@@ -1,222 +1,244 @@
 {
+  "info": {
+    "_postman_id": "6570da9d-6beb-4b0a-ba2b-467f264b40ea",
+    "name": "Oracle WebLogic Server Oracle WebLogic Monitoring and\u2026",
+    "description": "RESTful API for accessing runtime monitoring data, diagnostics information, and performance metrics for Oracle WebLogic Server domains. Provides read-only access to the domainRuntime and serverRuntime bean trees for monitoring server states, application runtimes, JDBC data source health, JMS statistics, thread pool utilization, and server lifecycle management operations.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:52:29.000Z",
+    "updatedAt": "2026-10-22T01:52:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6570da9d-6beb-4b0a-ba2b-467f264b40ea"
+  },
   "item": [
     {
-      "id": "aa635586-b2a1-42b1-a729-5b05ef048949",
-      "name": "JMS Runtime",
-      "description": {
-        "content": "Monitor JMS server and destination runtime statistics",
-        "type": "text/plain"
-      },
+      "name": "domainRuntime",
       "item": [
         {
-          "id": "9bba6434-8432-4ea2-8e83-143b41733146",
-          "name": "Oracle WebLogic Server Get JMS runtime for a server",
-          "request": {
-            "name": "Oracle WebLogic Server Get JMS runtime for a server",
-            "description": {
-              "content": "Returns the JMS runtime for the specified server.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "domainRuntime",
-                "serverRuntimes",
-                ":serverName",
-                "JMSRuntime"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "serverName",
-                  "description": "(Required) Name of the WebLogic Server instance"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "serverRuntimes",
+          "item": [
             {
-              "id": "1d53424c-ad47-4b46-9b78-a9a0c7d9348b",
-              "name": "JMS runtime information",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "domainRuntime",
-                    "serverRuntimes",
-                    ":serverName",
-                    "JMSRuntime"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "serverName",
-                      "description": "(Required) Name of the WebLogic Server instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{serverName}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "JMSRuntime",
+                  "item": [
+                    {
+                      "name": "JMSServersRuntime",
+                      "item": [
+                        {
+                          "name": "Oracle WebLogic Server List JMS server runtimes",
+                          "id": "ab960414-70ef-4518-8720-1ce1d043db80",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/domainRuntime/serverRuntimes/:serverName/JMSRuntime/JMSServersRuntime",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "domainRuntime",
+                                "serverRuntimes",
+                                ":serverName",
+                                "JMSRuntime",
+                                "JMSServersRuntime"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a42b3bc3-0754-4e71-ae43-ccfb20366f94",
+                                  "key": "serverName",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the WebLogic Server instance"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "767da089-79dc-4234-a3bb-3f7929563209",
+                              "name": "Collection of JMS server runtimes",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/domainRuntime/serverRuntimes/:serverName/JMSRuntime/JMSServersRuntime",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "domainRuntime",
+                                    "serverRuntimes",
+                                    ":serverName",
+                                    "JMSRuntime",
+                                    "JMSServersRuntime"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "serverName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"messagesCurrentCount\": \"<integer>\",\n      \"messagesHighCount\": \"<integer>\",\n      \"messagesPendingCount\": \"<integer>\",\n      \"messagesReceivedCount\": \"<integer>\",\n      \"bytesCurrentCount\": \"<integer>\",\n      \"bytesHighCount\": \"<integer>\",\n      \"bytesPendingCount\": \"<integer>\",\n      \"bytesReceivedCount\": \"<integer>\",\n      \"destinationsCurrentCount\": \"<integer>\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"messagesCurrentCount\": \"<integer>\",\n      \"messagesHighCount\": \"<integer>\",\n      \"messagesPendingCount\": \"<integer>\",\n      \"messagesReceivedCount\": \"<integer>\",\n      \"bytesCurrentCount\": \"<integer>\",\n      \"bytesHighCount\": \"<integer>\",\n      \"bytesPendingCount\": \"<integer>\",\n      \"bytesReceivedCount\": \"<integer>\",\n      \"destinationsCurrentCount\": \"<integer>\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T01:52:29.000Z",
+                              "updatedAt": "2026-10-22T01:52:29.000Z",
+                              "uid": "35240-767da089-79dc-4234-a3bb-3f7929563209"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:52:29.000Z",
+                          "updatedAt": "2026-10-22T01:52:29.000Z",
+                          "uid": "35240-ab960414-70ef-4518-8720-1ce1d043db80"
+                        }
+                      ],
+                      "id": "2fd51900-b1f5-47a5-9def-6a7f6e503fd5",
+                      "createdAt": "2026-10-22T01:52:29.000Z",
+                      "updatedAt": "2026-10-22T01:52:29.000Z",
+                      "uid": "35240-2fd51900-b1f5-47a5-9def-6a7f6e503fd5"
+                    },
+                    {
+                      "name": "Oracle WebLogic Server Get JMS runtime for a server",
+                      "id": "13e1b88e-64a7-4379-bddc-a249ebfddc8e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/domainRuntime/serverRuntimes/:serverName/JMSRuntime",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "domainRuntime",
+                            "serverRuntimes",
+                            ":serverName",
+                            "JMSRuntime"
+                          ],
+                          "variable": [
+                            {
+                              "id": "fb272712-5fd5-4c0c-98b8-93051da0eec2",
+                              "key": "serverName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the WebLogic Server instance"
+                            }
+                          ]
+                        },
+                        "description": "Returns the JMS runtime for the specified server."
+                      },
+                      "response": [
+                        {
+                          "id": "71e31209-0b0b-4602-b843-6dedc5918127",
+                          "name": "JMS runtime information",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/domainRuntime/serverRuntimes/:serverName/JMSRuntime",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "domainRuntime",
+                                "serverRuntimes",
+                                ":serverName",
+                                "JMSRuntime"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "serverName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"connectionsCurrentCount\": \"<integer>\",\n  \"connectionsHighCount\": \"<integer>\",\n  \"connectionsTotalCount\": \"<integer>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:52:29.000Z",
+                          "updatedAt": "2026-10-22T01:52:29.000Z",
+                          "uid": "35240-71e31209-0b0b-4602-b843-6dedc5918127"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:52:29.000Z",
+                      "updatedAt": "2026-10-22T01:52:29.000Z",
+                      "uid": "35240-13e1b88e-64a7-4379-bddc-a249ebfddc8e"
+                    }
+                  ],
+                  "id": "565528be-7636-4439-9bb2-e51b608ef4c8",
+                  "createdAt": "2026-10-22T01:52:29.000Z",
+                  "updatedAt": "2026-10-22T01:52:29.000Z",
+                  "uid": "35240-565528be-7636-4439-9bb2-e51b608ef4c8"
                 }
               ],
-              "body": "{\n  \"name\": \"string\",\n  \"connectionsCurrentCount\": 8725,\n  \"connectionsHighCount\": 9551,\n  \"connectionsTotalCount\": 7815,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://BRUQuSzejsyqZEGKJumrAr.gwirqRI6zB7SGNQobCC4-.RWrEjzAq1syObqz+eby1FaYjupaBPzn-hYjDNHUEWYE87KmrrErowRkjqod47ys1\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://PVcrXaZooAUXgqzPix.qngHEQBMD5jXhLKiyssnI.9t1BhrVWfwvKIvbhBY-IJRcCxFAuqIs41JaNOF4A6HCkyhRg\",\n      \"title\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "4bdaa69d-1558-4e6e-9620-3ddde9d3159d",
+              "createdAt": "2026-10-22T01:52:29.000Z",
+              "updatedAt": "2026-10-22T01:52:29.000Z",
+              "uid": "35240-4bdaa69d-1558-4e6e-9620-3ddde9d3159d"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "14a95f97-df29-4880-b023-d4d5280b2ceb",
-          "name": "Oracle WebLogic Server List JMS server runtimes",
-          "request": {
-            "name": "Oracle WebLogic Server List JMS server runtimes",
-            "description": {},
-            "url": {
-              "path": [
-                "domainRuntime",
-                "serverRuntimes",
-                ":serverName",
-                "JMSRuntime",
-                "JMSServersRuntime"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "serverName",
-                  "description": "(Required) Name of the WebLogic Server instance"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "c7fd06c5-42e5-4d9f-9e6e-59c1c7e6b527",
-              "name": "Collection of JMS server runtimes",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "domainRuntime",
-                    "serverRuntimes",
-                    ":serverName",
-                    "JMSRuntime",
-                    "JMSServersRuntime"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "serverName",
-                      "description": "(Required) Name of the WebLogic Server instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"messagesCurrentCount\": 2364,\n      \"messagesHighCount\": 8426,\n      \"messagesPendingCount\": 3862,\n      \"messagesReceivedCount\": 1014,\n      \"bytesCurrentCount\": 8024,\n      \"bytesHighCount\": 7557,\n      \"bytesPendingCount\": 3966,\n      \"bytesReceivedCount\": 5990,\n      \"destinationsCurrentCount\": 7825,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://MtGpXRhkbLcF.ckoBpH9LqmfLVHU2ybd.TZaEZ7zlV+yZnI6qtsav\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://YtGKPGbIfcJJopRchodS.lzjfga1FoFAKEtYe\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"messagesCurrentCount\": 5588,\n      \"messagesHighCount\": 6749,\n      \"messagesPendingCount\": 5345,\n      \"messagesReceivedCount\": 4384,\n      \"bytesCurrentCount\": 7259,\n      \"bytesHighCount\": 5309,\n      \"bytesPendingCount\": 5058,\n      \"bytesReceivedCount\": 6009,\n      \"destinationsCurrentCount\": 3827,\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://YexEvBpSTnmuYfrmtgjdkjpTChY.xcwoUzR50DQ1+qugG.6zjm2NM+I-O1uxb04\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://wwubFNfyWycVlquIBqLBkV.nxnSEEciR4W064VwbF.TEbEvplpy,yvg3aAgh.fz\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "7f866a06-db75-4735-9459-50b70616147b",
+          "createdAt": "2026-10-22T01:52:29.000Z",
+          "updatedAt": "2026-10-22T01:52:29.000Z",
+          "uid": "35240-7f866a06-db75-4735-9459-50b70616147b"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "http://localhost:7001/management/weblogic/latest",
-      "key": "baseUrl"
+      "id": "b799691c-0320-4501-a3b5-66ff2e1ffa74",
+      "createdAt": "2026-10-22T01:52:29.000Z",
+      "updatedAt": "2026-10-22T01:52:29.000Z",
+      "uid": "35240-b799691c-0320-4501-a3b5-66ff2e1ffa74"
     }
   ],
   "auth": {
@@ -224,21 +246,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "24d951da-811a-484f-ab00-4bd73ac8d482",
-    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment JMS Runtime API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:7001/management/weblogic/latest"
     }
-  }
+  ]
 }

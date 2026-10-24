@@ -1,538 +1,582 @@
 {
+  "info": {
+    "_postman_id": "a5919366-87b1-44ac-8736-c519ada906d7",
+    "name": "Oracle Weblogic Edit Session API",
+    "description": "Operations tagged Edit Session across 2 of this provider's published API definitions: oracle-weblogic-deployment-openapi.yml, oracle-weblogic-management-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:52:09.000Z",
+    "updatedAt": "2026-10-22T01:52:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a5919366-87b1-44ac-8736-c519ada906d7"
+  },
   "item": [
     {
-      "id": "c2f263dd-32d7-4f09-9c78-da85a4181020",
-      "name": "Edit Session",
-      "description": {
-        "content": "Manage edit sessions for deployment changes",
-        "type": "text/plain"
-      },
+      "name": "edit",
       "item": [
         {
-          "id": "27da52af-c170-44b2-a578-8f1e769a1cbf",
-          "name": "Oracle WebLogic Server Start an edit session for deployment changes",
-          "request": {
-            "name": "Oracle WebLogic Server Start an edit session for deployment changes",
-            "description": {
-              "content": "Acquires a configuration lock and starts an edit session. Required before making any deployment configuration changes.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "edit",
-                "changeManager",
-                "startEdit"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"waitTimeInMillis\": \"<integer>\",\n  \"exclusive\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "changeManager",
+          "item": [
             {
-              "id": "ff28f4f1-1c43-4fcf-90dc-82c5124455ca",
-              "name": "Edit session started",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "changeManager",
-                    "startEdit"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"waitTimeInMillis\": \"<integer>\",\n  \"exclusive\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "startEdit",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Oracle WebLogic Server Start an edit session for deployment changes",
+                  "id": "455e27b5-e66b-470d-8edb-1c8838538828",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"waitTimeInMillis\": \"<integer>\",\n  \"exclusive\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/changeManager/startEdit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "changeManager",
+                        "startEdit"
+                      ]
+                    },
+                    "description": "Acquires a configuration lock and starts an edit session. Required before making any deployment configuration changes."
+                  },
+                  "response": [
+                    {
+                      "id": "0a472ed5-3ec0-4ace-a0a5-d5e851141ed7",
+                      "name": "Edit session started",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"waitTimeInMillis\": \"<integer>\",\n  \"exclusive\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/changeManager/startEdit",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "changeManager",
+                            "startEdit"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-10-22T01:52:09.000Z",
+                      "updatedAt": "2026-10-22T01:52:09.000Z",
+                      "uid": "35240-0a472ed5-3ec0-4ace-a0a5-d5e851141ed7"
+                    },
+                    {
+                      "id": "7d971e13-f37d-40a0-9531-06155bbebfe5",
+                      "name": "Authentication required or invalid credentials",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"waitTimeInMillis\": \"<integer>\",\n  \"exclusive\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/changeManager/startEdit",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "changeManager",
+                            "startEdit"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:09.000Z",
+                      "updatedAt": "2026-10-22T01:52:09.000Z",
+                      "uid": "35240-7d971e13-f37d-40a0-9531-06155bbebfe5"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:09.000Z",
+                  "updatedAt": "2026-10-22T01:52:09.000Z",
+                  "uid": "35240-455e27b5-e66b-470d-8edb-1c8838538828"
                 }
               ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "7afc99d4-8adc-4320-943d-1693d6b436d3",
+              "createdAt": "2026-10-22T01:52:09.000Z",
+              "updatedAt": "2026-10-22T01:52:09.000Z",
+              "uid": "35240-7afc99d4-8adc-4320-943d-1693d6b436d3"
             },
             {
-              "id": "38e23523-973a-4ebb-a00e-ff9441d9d470",
-              "name": "Authentication required or invalid credentials",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "changeManager",
-                    "startEdit"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"waitTimeInMillis\": \"<integer>\",\n  \"exclusive\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "name": "activate",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "name": "Oracle WebLogic Server Activate pending deployment changes",
+                  "id": "fb68e5b3-2e91-42bf-8333-ab0f9e732a44",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/changeManager/activate",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "changeManager",
+                        "activate"
+                      ]
+                    },
+                    "description": "Activates all pending deployment changes and distributes them to targeted servers."
+                  },
+                  "response": [
+                    {
+                      "id": "1b0aa743-086c-433e-89eb-be8cd1ff93df",
+                      "name": "Changes activated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/changeManager/activate",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "changeManager",
+                            "activate"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-10-22T01:52:09.000Z",
+                      "updatedAt": "2026-10-22T01:52:09.000Z",
+                      "uid": "35240-1b0aa743-086c-433e-89eb-be8cd1ff93df"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:09.000Z",
+                  "updatedAt": "2026-10-22T01:52:09.000Z",
+                  "uid": "35240-fb68e5b3-2e91-42bf-8333-ab0f9e732a44"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "f9a7cdd3-48f8-4f42-bc55-0493220b6328",
+              "createdAt": "2026-10-22T01:52:09.000Z",
+              "updatedAt": "2026-10-22T01:52:09.000Z",
+              "uid": "35240-f9a7cdd3-48f8-4f42-bc55-0493220b6328"
+            },
+            {
+              "name": "cancelEdit",
+              "item": [
+                {
+                  "name": "Oracle WebLogic Server Cancel the current edit session",
+                  "id": "683bb5c9-6461-4253-afbd-90bfacdbc108",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/changeManager/cancelEdit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "changeManager",
+                        "cancelEdit"
+                      ]
+                    },
+                    "description": "Cancels all pending changes in the current edit session and releases the edit lock without activating any changes."
+                  },
+                  "response": [
+                    {
+                      "id": "a9b5d9ef-b97a-40fd-bd2c-ac27836f11d3",
+                      "name": "Edit session cancelled successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/changeManager/cancelEdit",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "changeManager",
+                            "cancelEdit"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-10-22T01:52:09.000Z",
+                      "updatedAt": "2026-10-22T01:52:09.000Z",
+                      "uid": "35240-a9b5d9ef-b97a-40fd-bd2c-ac27836f11d3"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:09.000Z",
+                  "updatedAt": "2026-10-22T01:52:09.000Z",
+                  "uid": "35240-683bb5c9-6461-4253-afbd-90bfacdbc108"
+                }
+              ],
+              "id": "7653d09e-73f3-4137-8f45-8a5f76729099",
+              "createdAt": "2026-10-22T01:52:09.000Z",
+              "updatedAt": "2026-10-22T01:52:09.000Z",
+              "uid": "35240-7653d09e-73f3-4137-8f45-8a5f76729099"
+            },
+            {
+              "name": "undoUnactivatedChanges",
+              "item": [
+                {
+                  "name": "Oracle WebLogic Server Undo all unactivated changes",
+                  "id": "953979d0-83d4-44c6-96ee-d82f0aa24f25",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/changeManager/undoUnactivatedChanges",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "changeManager",
+                        "undoUnactivatedChanges"
+                      ]
+                    },
+                    "description": "Reverts all pending configuration changes that have not yet been activated without releasing the edit lock."
+                  },
+                  "response": [
+                    {
+                      "id": "0453da6c-4ee7-41ba-93eb-bbd6269f1578",
+                      "name": "Changes undone successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/changeManager/undoUnactivatedChanges",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "changeManager",
+                            "undoUnactivatedChanges"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-10-22T01:52:09.000Z",
+                      "updatedAt": "2026-10-22T01:52:09.000Z",
+                      "uid": "35240-0453da6c-4ee7-41ba-93eb-bbd6269f1578"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:09.000Z",
+                  "updatedAt": "2026-10-22T01:52:09.000Z",
+                  "uid": "35240-953979d0-83d4-44c6-96ee-d82f0aa24f25"
+                }
+              ],
+              "id": "48b3c5cd-7996-44f1-a6ae-8ccffc2c2c47",
+              "createdAt": "2026-10-22T01:52:09.000Z",
+              "updatedAt": "2026-10-22T01:52:09.000Z",
+              "uid": "35240-48b3c5cd-7996-44f1-a6ae-8ccffc2c2c47"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "fc29b61a-ded8-44f9-9d85-3c1146cd1e5e",
-          "name": "Oracle WebLogic Server Activate pending deployment changes",
-          "request": {
-            "name": "Oracle WebLogic Server Activate pending deployment changes",
-            "description": {
-              "content": "Activates all pending deployment changes and distributes them to targeted servers.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "edit",
-                "changeManager",
-                "activate"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<object>",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "40833bca-d4d7-4c42-9702-68594d82d3bb",
-              "name": "Changes activated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "changeManager",
-                    "activate"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<object>",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cb31aba4-bd99-4220-8cc1-5ca4287b0a48",
-          "name": "Oracle WebLogic Server Cancel the current edit session",
-          "request": {
-            "name": "Oracle WebLogic Server Cancel the current edit session",
-            "description": {
-              "content": "Cancels all pending changes in the current edit session and releases the edit lock without activating any changes.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "edit",
-                "changeManager",
-                "cancelEdit"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<object>",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "364f732a-1f9e-4311-9325-40db552810f9",
-              "name": "Edit session cancelled successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "changeManager",
-                    "cancelEdit"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<object>",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a84ea587-4e83-49d7-8f36-d2ac640c8acb",
-          "name": "Oracle WebLogic Server Undo all unactivated changes",
-          "request": {
-            "name": "Oracle WebLogic Server Undo all unactivated changes",
-            "description": {
-              "content": "Reverts all pending configuration changes that have not yet been activated without releasing the edit lock.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "edit",
-                "changeManager",
-                "undoUnactivatedChanges"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "<object>",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "52e62f1c-6519-4494-b717-0be67c7841da",
-              "name": "Changes undone successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "changeManager",
-                    "undoUnactivatedChanges"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "<object>",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "1567b143-3ee3-4d35-a481-9a54b5c1819f",
+          "createdAt": "2026-10-22T01:52:09.000Z",
+          "updatedAt": "2026-10-22T01:52:09.000Z",
+          "uid": "35240-1567b143-3ee3-4d35-a481-9a54b5c1819f"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "http://localhost:7001/management/weblogic/latest",
-      "key": "baseUrl"
+      "id": "d54f5ab1-56a3-4409-bcda-883e306f4743",
+      "createdAt": "2026-10-22T01:52:09.000Z",
+      "updatedAt": "2026-10-22T01:52:09.000Z",
+      "uid": "35240-d54f5ab1-56a3-4409-bcda-883e306f4743"
     }
   ],
   "auth": {
@@ -540,21 +584,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "e8e600cd-52e7-4bce-9278-0683e5a3695a",
-    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Edit Session API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:7001/management/weblogic/latest"
     }
-  }
+  ]
 }

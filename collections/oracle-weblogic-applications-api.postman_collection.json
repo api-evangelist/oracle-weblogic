@@ -1,0 +1,557 @@
+{
+  "info": {
+    "_postman_id": "2bd5704d-b92a-468c-8495-cc1a2f70f745",
+    "name": "Oracle WebLogic Server APIs Oracle WebLogic Server\u2026",
+    "description": "RESTful API for deploying, undeploying, redeploying, and managing applications and shared libraries on Oracle WebLogic Server. Supports uploading application archives, deploying from the server file system, managing deployment plans, and controlling application lifecycle states across servers and clusters.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:53:52.000Z",
+    "updatedAt": "2026-10-22T01:53:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2bd5704d-b92a-468c-8495-cc1a2f70f745"
+  },
+  "item": [
+    {
+      "name": "deployments",
+      "item": [
+        {
+          "name": "{appName}",
+          "item": [
+            {
+              "name": "servlets",
+              "item": [
+                {
+                  "name": "Oracle WebLogic Server APIs List servlet metrics for an application",
+                  "id": "0d4c0eb5-385d-4123-b720-b87658bc6fcf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/deployments/:appName/servlets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "deployments",
+                        ":appName",
+                        "servlets"
+                      ],
+                      "variable": [
+                        {
+                          "id": "282432e7-4996-4af9-afe0-d83ae5061ed2",
+                          "key": "appName",
+                          "value": "<string>",
+                          "description": "(Required) The name of the deployed application"
+                        }
+                      ]
+                    },
+                    "description": "Returns servlet-level monitoring metrics for a deployed web application."
+                  },
+                  "response": [
+                    {
+                      "id": "bb90dbec-f836-4cb6-922e-8af3d476deb3",
+                      "name": "List of servlet metrics",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/deployments/:appName/servlets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "deployments",
+                            ":appName",
+                            "servlets"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"contextPath\": \"<string>\",\n      \"invocationTotalCount\": \"<long>\",\n      \"executionTimeAverage\": \"<integer>\",\n      \"executionTimeTotal\": \"<long>\",\n      \"executionTimeHigh\": \"<integer>\",\n      \"executionTimeLow\": \"<integer>\",\n      \"reloadTotalCount\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"contextPath\": \"<string>\",\n      \"invocationTotalCount\": \"<long>\",\n      \"executionTimeAverage\": \"<integer>\",\n      \"executionTimeTotal\": \"<long>\",\n      \"executionTimeHigh\": \"<integer>\",\n      \"executionTimeLow\": \"<integer>\",\n      \"reloadTotalCount\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:53:53.000Z",
+                      "updatedAt": "2026-10-22T01:53:53.000Z",
+                      "uid": "35240-bb90dbec-f836-4cb6-922e-8af3d476deb3"
+                    },
+                    {
+                      "id": "cd85412b-cfc6-46f9-adf5-e8d692af932e",
+                      "name": "Authentication required or invalid credentials",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/deployments/:appName/servlets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "deployments",
+                            ":appName",
+                            "servlets"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:53:53.000Z",
+                      "updatedAt": "2026-10-22T01:53:53.000Z",
+                      "uid": "35240-cd85412b-cfc6-46f9-adf5-e8d692af932e"
+                    },
+                    {
+                      "id": "4dd221a8-36c4-47c5-be23-78a9e5683369",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/deployments/:appName/servlets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "deployments",
+                            ":appName",
+                            "servlets"
+                          ],
+                          "variable": [
+                            {
+                              "key": "appName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:53:53.000Z",
+                      "updatedAt": "2026-10-22T01:53:53.000Z",
+                      "uid": "35240-4dd221a8-36c4-47c5-be23-78a9e5683369"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:53:53.000Z",
+                  "updatedAt": "2026-10-22T01:53:53.000Z",
+                  "uid": "35240-0d4c0eb5-385d-4123-b720-b87658bc6fcf"
+                }
+              ],
+              "id": "817db218-5f3b-4262-8e41-772af7795e1a",
+              "createdAt": "2026-10-22T01:53:53.000Z",
+              "updatedAt": "2026-10-22T01:53:53.000Z",
+              "uid": "35240-817db218-5f3b-4262-8e41-772af7795e1a"
+            },
+            {
+              "name": "Oracle WebLogic Server APIs Get application deployment metrics",
+              "id": "7f367085-f48b-402e-a456-74b8cb61e0ed",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/deployments/:appName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "deployments",
+                    ":appName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c3403a8c-6ce8-4f67-91e1-5154d72a0528",
+                      "key": "appName",
+                      "value": "<string>",
+                      "description": "(Required) The name of the deployed application"
+                    }
+                  ]
+                },
+                "description": "Returns detailed monitoring information for a specific deployed application."
+              },
+              "response": [
+                {
+                  "id": "68ae5078-7bc4-4eb7-b9ba-544a95b6c07c",
+                  "name": "Application deployment metrics",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/deployments/:appName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "deployments",
+                        ":appName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"state\": \"<string>\",\n  \"healthState\": {\n    \"state\": \"<string>\",\n    \"subsystemName\": \"<string>\"\n  },\n  \"targets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sessions\": {\n    \"openSessionsCurrentCount\": \"<integer>\",\n    \"openSessionsHighCount\": \"<integer>\",\n    \"sessionsOpenedTotalCount\": \"<long>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:53:53.000Z",
+                  "updatedAt": "2026-10-22T01:53:53.000Z",
+                  "uid": "35240-68ae5078-7bc4-4eb7-b9ba-544a95b6c07c"
+                },
+                {
+                  "id": "bad8101f-14e4-4d5d-82eb-d4e4b4da6d2d",
+                  "name": "Authentication required or invalid credentials",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/deployments/:appName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "deployments",
+                        ":appName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:53:53.000Z",
+                  "updatedAt": "2026-10-22T01:53:53.000Z",
+                  "uid": "35240-bad8101f-14e4-4d5d-82eb-d4e4b4da6d2d"
+                },
+                {
+                  "id": "f3986b9a-f851-4e61-9818-ba160f387e9d",
+                  "name": "The specified resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/deployments/:appName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "deployments",
+                        ":appName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "appName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:53:53.000Z",
+                  "updatedAt": "2026-10-22T01:53:53.000Z",
+                  "uid": "35240-f3986b9a-f851-4e61-9818-ba160f387e9d"
+                }
+              ],
+              "createdAt": "2026-10-22T01:53:53.000Z",
+              "updatedAt": "2026-10-22T01:53:53.000Z",
+              "uid": "35240-7f367085-f48b-402e-a456-74b8cb61e0ed"
+            }
+          ],
+          "id": "7a35a1c1-c034-4462-b5d9-494099cbc6a3",
+          "createdAt": "2026-10-22T01:53:53.000Z",
+          "updatedAt": "2026-10-22T01:53:53.000Z",
+          "uid": "35240-7a35a1c1-c034-4462-b5d9-494099cbc6a3"
+        },
+        {
+          "name": "Oracle WebLogic Server APIs List all application deployment metrics",
+          "id": "73c74d8e-7800-40ad-b3c2-a14f91cf1593",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/deployments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "deployments"
+              ]
+            },
+            "description": "Returns monitoring information for all deployed applications across the domain."
+          },
+          "response": [
+            {
+              "id": "576590aa-15ea-4b43-954f-a703075f2fce",
+              "name": "List of application deployment metrics",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/deployments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "deployments"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"state\": \"<string>\",\n      \"healthState\": {\n        \"state\": \"<string>\",\n        \"subsystemName\": \"<string>\"\n      },\n      \"targets\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sessions\": {\n        \"openSessionsCurrentCount\": \"<integer>\",\n        \"openSessionsHighCount\": \"<integer>\",\n        \"sessionsOpenedTotalCount\": \"<long>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"state\": \"<string>\",\n      \"healthState\": {\n        \"state\": \"<string>\",\n        \"subsystemName\": \"<string>\"\n      },\n      \"targets\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"sessions\": {\n        \"openSessionsCurrentCount\": \"<integer>\",\n        \"openSessionsHighCount\": \"<integer>\",\n        \"sessionsOpenedTotalCount\": \"<long>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:53:53.000Z",
+              "updatedAt": "2026-10-22T01:53:53.000Z",
+              "uid": "35240-576590aa-15ea-4b43-954f-a703075f2fce"
+            },
+            {
+              "id": "a6082012-d8df-403d-8c42-112566181aa5",
+              "name": "Authentication required or invalid credentials",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/deployments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "deployments"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:53:53.000Z",
+              "updatedAt": "2026-10-22T01:53:53.000Z",
+              "uid": "35240-a6082012-d8df-403d-8c42-112566181aa5"
+            }
+          ],
+          "createdAt": "2026-10-22T01:53:53.000Z",
+          "updatedAt": "2026-10-22T01:53:53.000Z",
+          "uid": "35240-73c74d8e-7800-40ad-b3c2-a14f91cf1593"
+        }
+      ],
+      "id": "8a1e6527-9b56-4b62-9f15-f09ea494a9d4",
+      "createdAt": "2026-10-22T01:53:53.000Z",
+      "updatedAt": "2026-10-22T01:53:53.000Z",
+      "uid": "35240-8a1e6527-9b56-4b62-9f15-f09ea494a9d4"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "7001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/management/weblogic/latest"
+    }
+  ]
+}

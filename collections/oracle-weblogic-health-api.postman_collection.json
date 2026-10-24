@@ -1,0 +1,258 @@
+{
+  "info": {
+    "_postman_id": "0fbf33c7-3e89-41e8-8a77-822b0261edf9",
+    "name": "Oracle WebLogic Server APIs Oracle WebLogic Server\u2026",
+    "description": "RESTful API for deploying, undeploying, redeploying, and managing applications and shared libraries on Oracle WebLogic Server. Supports uploading application archives, deploying from the server file system, managing deployment plans, and controlling application lifecycle states across servers and clusters.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:54:19.000Z",
+    "updatedAt": "2026-10-22T01:54:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0fbf33c7-3e89-41e8-8a77-822b0261edf9"
+  },
+  "item": [
+    {
+      "name": "servers",
+      "item": [
+        {
+          "name": "{serverName}",
+          "item": [
+            {
+              "name": "health",
+              "item": [
+                {
+                  "name": "Oracle WebLogic Server APIs Get server health status",
+                  "id": "136671cd-040d-41a5-89c5-8b8b3e2956e3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/servers/:serverName/health",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "servers",
+                        ":serverName",
+                        "health"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c50e50a1-8102-4e59-ab2b-41e8f3541ffe",
+                          "key": "serverName",
+                          "value": "<string>",
+                          "description": "(Required) The name of the WebLogic Server instance"
+                        }
+                      ]
+                    },
+                    "description": "Returns the overall health state of the specified server along with health status of individual subsystems."
+                  },
+                  "response": [
+                    {
+                      "id": "cd7a3fb5-a320-4c3c-9f84-f3cb4df8d155",
+                      "name": "Server health information",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverName/health",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverName",
+                            "health"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"overallHealth\": \"HEALTH_OVERLOADED\",\n  \"subsystemHealthStates\": [\n    {\n      \"subsystemName\": \"<string>\",\n      \"state\": \"HEALTH_CRITICAL\",\n      \"symptoms\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"subsystemName\": \"<string>\",\n      \"state\": \"HEALTH_WARN\",\n      \"symptoms\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:54:19.000Z",
+                      "updatedAt": "2026-10-22T01:54:19.000Z",
+                      "uid": "35240-cd7a3fb5-a320-4c3c-9f84-f3cb4df8d155"
+                    },
+                    {
+                      "id": "b1c13de0-c008-4ccb-9418-17fd023e0547",
+                      "name": "Authentication required or invalid credentials",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverName/health",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverName",
+                            "health"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:54:19.000Z",
+                      "updatedAt": "2026-10-22T01:54:19.000Z",
+                      "uid": "35240-b1c13de0-c008-4ccb-9418-17fd023e0547"
+                    },
+                    {
+                      "id": "c7955af3-19a6-41a8-a0cf-0c9972c12cdb",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/servers/:serverName/health",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "servers",
+                            ":serverName",
+                            "health"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:54:19.000Z",
+                      "updatedAt": "2026-10-22T01:54:19.000Z",
+                      "uid": "35240-c7955af3-19a6-41a8-a0cf-0c9972c12cdb"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:54:19.000Z",
+                  "updatedAt": "2026-10-22T01:54:19.000Z",
+                  "uid": "35240-136671cd-040d-41a5-89c5-8b8b3e2956e3"
+                }
+              ],
+              "id": "eb5b78c7-f946-4f66-a836-1a3a05140348",
+              "createdAt": "2026-10-22T01:54:19.000Z",
+              "updatedAt": "2026-10-22T01:54:19.000Z",
+              "uid": "35240-eb5b78c7-f946-4f66-a836-1a3a05140348"
+            }
+          ],
+          "id": "c5129844-a176-411a-8334-a03b3bf28783",
+          "createdAt": "2026-10-22T01:54:19.000Z",
+          "updatedAt": "2026-10-22T01:54:19.000Z",
+          "uid": "35240-c5129844-a176-411a-8334-a03b3bf28783"
+        }
+      ],
+      "id": "4de67415-a01a-4912-aef9-c5a7e7803193",
+      "createdAt": "2026-10-22T01:54:19.000Z",
+      "updatedAt": "2026-10-22T01:54:19.000Z",
+      "uid": "35240-4de67415-a01a-4912-aef9-c5a7e7803193"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "7001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/management/weblogic/latest"
+    }
+  ]
+}

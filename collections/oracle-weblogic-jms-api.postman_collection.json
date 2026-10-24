@@ -1,1425 +1,1951 @@
 {
+  "info": {
+    "_postman_id": "1858a80e-455c-4fa0-a4e5-9a01cdcfa408",
+    "name": "Oracle Weblogic JMS API",
+    "description": "Operations tagged JMS across 2 of this provider's published API definitions: oracle-weblogic-management-openapi.yml, weblogic-jms-api-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:52:22.000Z",
+    "updatedAt": "2026-10-22T01:52:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1858a80e-455c-4fa0-a4e5-9a01cdcfa408"
+  },
   "item": [
     {
-      "id": "b73dd36e-05a9-417c-8d62-85b19879c71a",
-      "name": "JMS",
-      "description": {
-        "content": "Manage JMS servers, system resources, queues, and connection factories",
-        "type": "text/plain"
-      },
+      "name": "edit",
       "item": [
         {
-          "id": "85db7537-d224-4074-827b-17854407e5dd",
-          "name": "Oracle WebLogic Server List all JMS servers",
-          "request": {
-            "name": "Oracle WebLogic Server List all JMS servers",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JMSServers"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "JMSServers",
+          "item": [
             {
-              "id": "19b25534-837a-4acf-9b3e-bacc3b7cf814",
-              "name": "Collection of JMS servers",
-              "originalRequest": {
+              "name": "{jmsServerName}",
+              "item": [
+                {
+                  "name": "Oracle WebLogic Server Get a JMS server configuration",
+                  "id": "0f8e79d8-259c-4d80-b5bb-287f3a1be22c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/JMSServers/:jmsServerName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "JMSServers",
+                        ":jmsServerName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "06e9c25c-2860-497a-b2a4-b468734fca3d",
+                          "key": "jmsServerName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the JMS server"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "1f680b46-90bc-4de2-af02-87c199e3e095",
+                      "name": "JMS server configuration",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/JMSServers/:jmsServerName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "JMSServers",
+                            ":jmsServerName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jmsServerName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"messagesMaximum\": \"<integer>\",\n  \"bytesMaximum\": \"<integer>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"persistentStore\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-1f680b46-90bc-4de2-af02-87c199e3e095"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-0f8e79d8-259c-4d80-b5bb-287f3a1be22c"
+                },
+                {
+                  "name": "Oracle WebLogic Server Delete a JMS server",
+                  "id": "ef818573-d76a-4783-b61d-5841245dbb10",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/JMSServers/:jmsServerName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "JMSServers",
+                        ":jmsServerName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c6c0080f-aa54-4cb1-9980-0eef4a26df48",
+                          "key": "jmsServerName",
+                          "value": "<string>",
+                          "description": "(Required) Name of the JMS server"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "dca8e89a-06e5-4c5e-8dd6-7186173233af",
+                      "name": "JMS server deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/JMSServers/:jmsServerName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "JMSServers",
+                            ":jmsServerName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jmsServerName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-dca8e89a-06e5-4c5e-8dd6-7186173233af"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-ef818573-d76a-4783-b61d-5841245dbb10"
+                }
+              ],
+              "id": "b264e00d-cdbf-4dc6-9377-50e407b17db7",
+              "createdAt": "2026-10-22T01:52:23.000Z",
+              "updatedAt": "2026-10-22T01:52:23.000Z",
+              "uid": "35240-b264e00d-cdbf-4dc6-9377-50e407b17db7"
+            },
+            {
+              "name": "Oracle WebLogic Server List all JMS servers",
+              "id": "1ee7da1f-98d8-43d9-a30d-897fea6b56ae",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/edit/JMSServers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "edit",
                     "JMSServers"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "ad329567-616a-4d4d-b86e-89101a558595",
+                  "name": "Collection of JMS servers",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/JMSServers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "JMSServers"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"messagesMaximum\": \"<integer>\",\n      \"bytesMaximum\": \"<integer>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"persistentStore\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"messagesMaximum\": \"<integer>\",\n      \"bytesMaximum\": \"<integer>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"persistentStore\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-ad329567-616a-4d4d-b86e-89101a558595"
+                }
+              ],
+              "createdAt": "2026-10-22T01:52:23.000Z",
+              "updatedAt": "2026-10-22T01:52:23.000Z",
+              "uid": "35240-1ee7da1f-98d8-43d9-a30d-897fea6b56ae"
+            },
+            {
+              "name": "Oracle WebLogic Server Create a JMS server",
+              "id": "0456f0d9-7d4f-47d2-b213-fd8267ef43e1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "<string>"
                   },
                   {
-                    "key": "Accept",
+                    "key": "Content-Type",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"messagesMaximum\": 1860,\n      \"bytesMaximum\": 3382,\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"persistentStore\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://sqTjmwepPzQLNphWcZpdCHOrPAtcrXT.trilRVDwfBFX7mdqI3iTuINavmVfkiu.Ylsei583HtmdkF6kQIbwrrE41H\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://bdepcIGkFeBhHqItoKWZLQJFPXVE.rusaDril2Zw53OjIcIzHX-gr.qMiq\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"messagesMaximum\": 985,\n      \"bytesMaximum\": 2258,\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"persistentStore\": [\n        \"string\",\n        \"string\"\n      ],\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://rJOgSUDoa.vjgh2v8ylg5LXSS1XY2mEt,HnexgzQCJnnzvnashF.fFvH18.fZOI8n+6kUzMXok19B,E\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://DkjyLdeVrTERrraAYmNiNYjoTunnglqcB.ucvNpj579tQ7TwBHLmjO2MBQwx6EEn020bVkkYDLAJybDku,bP\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "228c31d2-3c47-46a0-a1d8-f8874eb99d25",
-          "name": "Oracle WebLogic Server Create a JMS server",
-          "request": {
-            "name": "Oracle WebLogic Server Create a JMS server",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JMSServers"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"messagesMaximum\": \"<integer>\",\n  \"bytesMaximum\": \"<integer>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"persistentStore\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "ef7c908a-a3a7-4ed9-8fdc-ea01b86b9ece",
-              "name": "JMS server created",
-              "originalRequest": {
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"messagesMaximum\": \"<integer>\",\n  \"bytesMaximum\": \"<integer>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"persistentStore\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/edit/JMSServers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "edit",
                     "JMSServers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"messagesMaximum\": \"<integer>\",\n  \"bytesMaximum\": \"<integer>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"persistentStore\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
+                  ]
                 }
               },
-              "status": "Created",
-              "code": 201,
-              "header": [
+              "response": [
                 {
-                  "disabled": false,
-                  "key": "Location",
-                  "value": "https://RNAvaBnPmxOgJRzivfJdxaACqawxH.eykpt5TxRn6wYAImNK72k,TZsnN3Cvg1XnbYJ3-DLSrOg-fM+",
-                  "description": ""
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0f1afe9c-9863-4afd-8749-38948b6236fb",
-          "name": "Oracle WebLogic Server Get a JMS server configuration",
-          "request": {
-            "name": "Oracle WebLogic Server Get a JMS server configuration",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JMSServers",
-                ":jmsServerName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "jmsServerName",
-                  "description": "(Required) Name of the JMS server"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "aa45cb2f-dc33-4e84-8100-b6d4b3fb7fa8",
-              "name": "JMS server configuration",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JMSServers",
-                    ":jmsServerName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "id": "cf7acb99-241f-4434-8533-029933b7aea1",
+                  "name": "JMS server created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"messagesMaximum\": \"<integer>\",\n  \"bytesMaximum\": \"<integer>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"persistentStore\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/JMSServers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "JMSServers"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [
                     {
                       "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "jmsServerName",
-                      "description": "(Required) Name of the JMS server"
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Location",
+                      "value": "<uri>"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-cf7acb99-241f-4434-8533-029933b7aea1"
+                }
+              ],
+              "createdAt": "2026-10-22T01:52:23.000Z",
+              "updatedAt": "2026-10-22T01:52:23.000Z",
+              "uid": "35240-0456f0d9-7d4f-47d2-b213-fd8267ef43e1"
+            }
+          ],
+          "id": "b6800c6e-273f-45bc-82ea-dbf80abe8454",
+          "createdAt": "2026-10-22T01:52:23.000Z",
+          "updatedAt": "2026-10-22T01:52:23.000Z",
+          "uid": "35240-b6800c6e-273f-45bc-82ea-dbf80abe8454"
+        },
+        {
+          "name": "JMSSystemResources",
+          "item": [
+            {
+              "name": "{jmsResourceName}",
+              "item": [
+                {
+                  "name": "JMSResource",
+                  "item": [
+                    {
+                      "name": "connectionFactories",
+                      "item": [
+                        {
+                          "name": "Oracle WebLogic Server List JMS connection factories",
+                          "id": "a25a6a81-148a-4959-868b-738648a26d76",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/JMSSystemResources/:jmsResourceName/JMSResource/connectionFactories",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "JMSSystemResources",
+                                ":jmsResourceName",
+                                "JMSResource",
+                                "connectionFactories"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "67ea364d-dc91-46cb-909c-6ee45d4772eb",
+                                  "key": "jmsResourceName",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the JMS system resource"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "6b521b04-a420-469a-8688-d421f8215558",
+                              "name": "Collection of connection factories",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/edit/JMSSystemResources/:jmsResourceName/JMSResource/connectionFactories",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "edit",
+                                    "JMSSystemResources",
+                                    ":jmsResourceName",
+                                    "JMSResource",
+                                    "connectionFactories"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "jmsResourceName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"JNDIName\": \"<string>\",\n      \"subDeploymentName\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"JNDIName\": \"<string>\",\n      \"subDeploymentName\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T01:52:23.000Z",
+                              "updatedAt": "2026-10-22T01:52:23.000Z",
+                              "uid": "35240-6b521b04-a420-469a-8688-d421f8215558"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:52:23.000Z",
+                          "updatedAt": "2026-10-22T01:52:23.000Z",
+                          "uid": "35240-a25a6a81-148a-4959-868b-738648a26d76"
+                        },
+                        {
+                          "name": "Oracle WebLogic Server Create a JMS connection factory",
+                          "id": "c56afbbe-d8fb-4d1a-806f-e18bef7a6f3e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                "key": "X-Requested-By",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"subDeploymentName\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/JMSSystemResources/:jmsResourceName/JMSResource/connectionFactories",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "JMSSystemResources",
+                                ":jmsResourceName",
+                                "JMSResource",
+                                "connectionFactories"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "88d75f47-9a1c-4cb6-a7d3-0f5db10ea39a",
+                                  "key": "jmsResourceName",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the JMS system resource"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "5db40bee-289b-4681-a0b8-62cb07026309",
+                              "name": "Connection factory created",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                    "key": "X-Requested-By",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"subDeploymentName\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/edit/JMSSystemResources/:jmsResourceName/JMSResource/connectionFactories",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "edit",
+                                    "JMSSystemResources",
+                                    ":jmsResourceName",
+                                    "JMSResource",
+                                    "connectionFactories"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "jmsResourceName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:52:23.000Z",
+                              "updatedAt": "2026-10-22T01:52:23.000Z",
+                              "uid": "35240-5db40bee-289b-4681-a0b8-62cb07026309"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:52:23.000Z",
+                          "updatedAt": "2026-10-22T01:52:23.000Z",
+                          "uid": "35240-c56afbbe-d8fb-4d1a-806f-e18bef7a6f3e"
+                        }
+                      ],
+                      "id": "e626170d-baf9-4b7e-bb0d-bc4161d5d1bd",
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-e626170d-baf9-4b7e-bb0d-bc4161d5d1bd"
                     },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
+                    {
+                      "name": "uniformDistributedQueues",
+                      "item": [
+                        {
+                          "name": "Oracle WebLogic Server List JMS uniform distributed queues",
+                          "id": "69441b17-c119-4723-82b2-cabf42d19bb1",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/JMSSystemResources/:jmsResourceName/JMSResource/uniformDistributedQueues",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "JMSSystemResources",
+                                ":jmsResourceName",
+                                "JMSResource",
+                                "uniformDistributedQueues"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "25d93983-4a8e-498a-ae5e-f3d31b36af3b",
+                                  "key": "jmsResourceName",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the JMS system resource"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "7c99acf3-1969-494d-8cef-a1cae9368af4",
+                              "name": "Collection of distributed queues",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/edit/JMSSystemResources/:jmsResourceName/JMSResource/uniformDistributedQueues",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "edit",
+                                    "JMSSystemResources",
+                                    ":jmsResourceName",
+                                    "JMSResource",
+                                    "uniformDistributedQueues"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "jmsResourceName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"JNDIName\": \"<string>\",\n      \"subDeploymentName\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"JNDIName\": \"<string>\",\n      \"subDeploymentName\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-10-22T01:52:23.000Z",
+                              "updatedAt": "2026-10-22T01:52:23.000Z",
+                              "uid": "35240-7c99acf3-1969-494d-8cef-a1cae9368af4"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:52:23.000Z",
+                          "updatedAt": "2026-10-22T01:52:23.000Z",
+                          "uid": "35240-69441b17-c119-4723-82b2-cabf42d19bb1"
+                        },
+                        {
+                          "name": "Oracle WebLogic Server Create a JMS uniform distributed queue",
+                          "id": "c374585e-cb17-4b28-87a3-c0f8f7d9cc83",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                "key": "X-Requested-By",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"subDeploymentName\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/JMSSystemResources/:jmsResourceName/JMSResource/uniformDistributedQueues",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "JMSSystemResources",
+                                ":jmsResourceName",
+                                "JMSResource",
+                                "uniformDistributedQueues"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e3b184a5-4b36-4e23-8e8b-a2063b80352a",
+                                  "key": "jmsResourceName",
+                                  "value": "<string>",
+                                  "description": "(Required) Name of the JMS system resource"
+                                }
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "98f0ba99-66be-4271-8ed8-dc9c617d7e79",
+                              "name": "Distributed queue created",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                    "key": "X-Requested-By",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"subDeploymentName\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/edit/JMSSystemResources/:jmsResourceName/JMSResource/uniformDistributedQueues",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "edit",
+                                    "JMSSystemResources",
+                                    ":jmsResourceName",
+                                    "JMSResource",
+                                    "uniformDistributedQueues"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "jmsResourceName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-10-22T01:52:23.000Z",
+                              "updatedAt": "2026-10-22T01:52:23.000Z",
+                              "uid": "35240-98f0ba99-66be-4271-8ed8-dc9c617d7e79"
+                            }
+                          ],
+                          "createdAt": "2026-10-22T01:52:23.000Z",
+                          "updatedAt": "2026-10-22T01:52:23.000Z",
+                          "uid": "35240-c374585e-cb17-4b28-87a3-c0f8f7d9cc83"
+                        }
+                      ],
+                      "id": "909589e7-574a-46b2-9e44-747170801967",
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-909589e7-574a-46b2-9e44-747170801967"
+                    }
+                  ],
+                  "id": "badd1058-a416-46b0-9c57-5da2b9773649",
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-badd1058-a416-46b0-9c57-5da2b9773649"
+                },
+                {
+                  "name": "subDeployments",
+                  "item": [
+                    {
+                      "name": "Oracle WebLogic Server List JMS sub-deployments",
+                      "id": "e12da981-92e7-4d7f-a48f-170f17b483f3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/JMSSystemResources/:jmsResourceName/subDeployments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "JMSSystemResources",
+                            ":jmsResourceName",
+                            "subDeployments"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e24788d8-cd30-4445-9906-59af93d58b9a",
+                              "key": "jmsResourceName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the JMS system resource"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "29afcd50-68d8-4bc1-9a8d-f08693d2fe72",
+                          "name": "Collection of sub-deployments",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/JMSSystemResources/:jmsResourceName/subDeployments",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "JMSSystemResources",
+                                ":jmsResourceName",
+                                "subDeployments"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jmsResourceName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:52:23.000Z",
+                          "updatedAt": "2026-10-22T01:52:23.000Z",
+                          "uid": "35240-29afcd50-68d8-4bc1-9a8d-f08693d2fe72"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-e12da981-92e7-4d7f-a48f-170f17b483f3"
+                    },
+                    {
+                      "name": "Oracle WebLogic Server Create a JMS sub-deployment",
+                      "id": "75fe53a7-6450-459e-a340-20d414950b9d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/JMSSystemResources/:jmsResourceName/subDeployments",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "JMSSystemResources",
+                            ":jmsResourceName",
+                            "subDeployments"
+                          ],
+                          "variable": [
+                            {
+                              "id": "46e4238b-662b-41af-879d-8d708e6889aa",
+                              "key": "jmsResourceName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the JMS system resource"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "a432289c-9d25-43e3-a280-21096ddb2697",
+                          "name": "Sub-deployment created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                "key": "X-Requested-By",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/JMSSystemResources/:jmsResourceName/subDeployments",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "JMSSystemResources",
+                                ":jmsResourceName",
+                                "subDeployments"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jmsResourceName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:52:23.000Z",
+                          "updatedAt": "2026-10-22T01:52:23.000Z",
+                          "uid": "35240-a432289c-9d25-43e3-a280-21096ddb2697"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-75fe53a7-6450-459e-a340-20d414950b9d"
+                    }
+                  ],
+                  "id": "1ba7b734-f96a-4fdd-a3a3-4f841b8bd0a6",
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-1ba7b734-f96a-4fdd-a3a3-4f841b8bd0a6"
+                }
+              ],
+              "id": "939354a2-941d-45e2-9c2c-99b872e277a0",
+              "createdAt": "2026-10-22T01:52:23.000Z",
+              "updatedAt": "2026-10-22T01:52:23.000Z",
+              "uid": "35240-939354a2-941d-45e2-9c2c-99b872e277a0"
+            },
+            {
+              "name": "Oracle WebLogic Server List all JMS system resources",
+              "id": "4a706a8c-4091-4987-90e8-54cafa9bdb4c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"messagesMaximum\": 3516,\n  \"bytesMaximum\": 1827,\n  \"targets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"persistentStore\": [\n    \"string\",\n    \"string\"\n  ],\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://SMmWaHjbIUXhxWzkahi.blmmQASPH5cP-6uk,Ga40vzpeE7lmbETnOZXOm0q9zI8Ak+ju4DOU.ob8mLOKHcYILK\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://DQmLcxBwkFRrWTAPXYrGl.ppmoYaXFzZ.eM6kb6iCN1PapGmDsjd8vm\",\n      \"title\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "7285fd28-476f-4238-9ba8-8853a6ed196c",
-          "name": "Oracle WebLogic Server Delete a JMS server",
-          "request": {
-            "name": "Oracle WebLogic Server Delete a JMS server",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JMSServers",
-                ":jmsServerName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "jmsServerName",
-                  "description": "(Required) Name of the JMS server"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "b1e90588-3e20-40af-8cda-9ad03b283855",
-              "name": "JMS server deleted",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "edit",
-                    "JMSServers",
-                    ":jmsServerName"
-                  ],
+                  "raw": "{{baseUrl}}/edit/JMSSystemResources",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "jmsServerName",
-                      "description": "(Required) Name of the JMS server"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "1b4571b9-77dd-4525-b3fb-a8abf3fb5ad4",
-          "name": "Oracle WebLogic Server List all JMS system resources",
-          "request": {
-            "name": "Oracle WebLogic Server List all JMS system resources",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JMSSystemResources"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "66fa4f3f-e8e0-4ac7-8399-f1c55a12713d",
-              "name": "Collection of JMS system resources",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "edit",
                     "JMSSystemResources"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "e2dd6e16-3c5a-40a1-92a3-5743ffe13fac",
+                  "name": "Collection of JMS system resources",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/JMSSystemResources",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "JMSSystemResources"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-e2dd6e16-3c5a-40a1-92a3-5743ffe13fac"
+                }
+              ],
+              "createdAt": "2026-10-22T01:52:23.000Z",
+              "updatedAt": "2026-10-22T01:52:23.000Z",
+              "uid": "35240-4a706a8c-4091-4987-90e8-54cafa9bdb4c"
+            },
+            {
+              "name": "Oracle WebLogic Server Create a JMS system resource",
+              "id": "c0f2e2dd-2ecc-46f5-9e68-98247d9c23bb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "<string>"
                   },
                   {
-                    "key": "Accept",
+                    "key": "Content-Type",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://vWMTnYGxyilAGknjoNNVSbaKdRVSOcCY.dzpJNBVH5o3Sfg,l5SkEB.d7V5tCmMEfY1Xpb4va9lrI+hYb-qI\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"https://fAHKVHJwvUWTsuqQzBAhRtntoYykBxki.fkrHJ3HhH8Wf0vqz1LFZjl\",\n          \"title\": \"string\"\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://krHUfYNgBSKbMEDRjtUCS.xwxkwUq--4coYLREuez01Ubc1vZHtEvOLGhhd2R68UE8\",\n          \"title\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"http://OcfDSxnvOriNApprqkIdUJphdYGAQgv.hxriPjUOOPY4P7DPYkhJ,xnBeLNNEYOnGAlmNPsh9ECHKakcQg1AANqDOleUWIK2h.\",\n          \"title\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b56be4d9-a61b-48c5-bd75-afe25b3ef498",
-          "name": "Oracle WebLogic Server Create a JMS system resource",
-          "request": {
-            "name": "Oracle WebLogic Server Create a JMS system resource",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JMSSystemResources"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "e657fbef-dcd3-4049-a742-41af93dba1ed",
-              "name": "JMS system resource created",
-              "originalRequest": {
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/edit/JMSSystemResources",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "edit",
                     "JMSSystemResources"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
+                  ]
                 }
               },
-              "status": "Created",
-              "code": 201,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "05bf44ef-53a2-450d-94b6-b13730c12c9f",
+                  "name": "JMS system resource created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/JMSSystemResources",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "JMSSystemResources"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-05bf44ef-53a2-450d-94b6-b13730c12c9f"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:52:23.000Z",
+              "updatedAt": "2026-10-22T01:52:23.000Z",
+              "uid": "35240-c0f2e2dd-2ecc-46f5-9e68-98247d9c23bb"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "e777f64d-69b6-4d1e-a274-8f0e7b4de88c",
+          "createdAt": "2026-10-22T01:52:23.000Z",
+          "updatedAt": "2026-10-22T01:52:23.000Z",
+          "uid": "35240-e777f64d-69b6-4d1e-a274-8f0e7b4de88c"
         },
         {
-          "id": "a0d52447-04f8-4238-8d9e-ef0bd35a54db",
-          "name": "Oracle WebLogic Server List JMS connection factories",
-          "request": {
-            "name": "Oracle WebLogic Server List JMS connection factories",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JMSSystemResources",
-                ":jmsResourceName",
-                "JMSResource",
-                "connectionFactories"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "jmsResourceName",
-                  "description": "(Required) Name of the JMS system resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "fileStores",
+          "item": [
             {
-              "id": "15aded0b-d513-4127-b861-698ea50e7886",
-              "name": "Collection of connection factories",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JMSSystemResources",
-                    ":jmsResourceName",
-                    "JMSResource",
-                    "connectionFactories"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "jmsResourceName",
-                      "description": "(Required) Name of the JMS system resource"
-                    }
-                  ]
-                },
+              "name": "Oracle WebLogic Server List all file stores",
+              "id": "affd1f47-0205-4914-91bf-5a95be5a6cd0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"JNDIName\": \"string\",\n      \"subDeploymentName\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"JNDIName\": \"string\",\n      \"subDeploymentName\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "5aec102a-22ea-4a06-820c-994ca5f57fea",
-          "name": "Oracle WebLogic Server Create a JMS connection factory",
-          "request": {
-            "name": "Oracle WebLogic Server Create a JMS connection factory",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JMSSystemResources",
-                ":jmsResourceName",
-                "JMSResource",
-                "connectionFactories"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "jmsResourceName",
-                  "description": "(Required) Name of the JMS system resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"subDeploymentName\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "7ede0f14-e35c-4e08-8c77-fba6c4601ddd",
-              "name": "Connection factory created",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "edit",
-                    "JMSSystemResources",
-                    ":jmsResourceName",
-                    "JMSResource",
-                    "connectionFactories"
-                  ],
+                  "raw": "{{baseUrl}}/edit/fileStores",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "jmsResourceName",
-                      "description": "(Required) Name of the JMS system resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"subDeploymentName\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3388a758-9386-4c9d-b449-be18921c73d5",
-          "name": "Oracle WebLogic Server List JMS uniform distributed queues",
-          "request": {
-            "name": "Oracle WebLogic Server List JMS uniform distributed queues",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JMSSystemResources",
-                ":jmsResourceName",
-                "JMSResource",
-                "uniformDistributedQueues"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "jmsResourceName",
-                  "description": "(Required) Name of the JMS system resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "fc65a7b7-1b72-482b-8349-66669d5c875f",
-              "name": "Collection of distributed queues",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JMSSystemResources",
-                    ":jmsResourceName",
-                    "JMSResource",
-                    "uniformDistributedQueues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "jmsResourceName",
-                      "description": "(Required) Name of the JMS system resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"JNDIName\": \"string\",\n      \"subDeploymentName\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"JNDIName\": \"string\",\n      \"subDeploymentName\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "cfaab99f-ed42-4a4a-b26c-bed3e82bd63a",
-          "name": "Oracle WebLogic Server Create a JMS uniform distributed queue",
-          "request": {
-            "name": "Oracle WebLogic Server Create a JMS uniform distributed queue",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JMSSystemResources",
-                ":jmsResourceName",
-                "JMSResource",
-                "uniformDistributedQueues"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "jmsResourceName",
-                  "description": "(Required) Name of the JMS system resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"subDeploymentName\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "468b44fd-364c-4a41-82f7-6b70e1971779",
-              "name": "Distributed queue created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JMSSystemResources",
-                    ":jmsResourceName",
-                    "JMSResource",
-                    "uniformDistributedQueues"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "jmsResourceName",
-                      "description": "(Required) Name of the JMS system resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"subDeploymentName\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0dac201b-f829-4cce-b525-b2520f16891b",
-          "name": "Oracle WebLogic Server List JMS sub-deployments",
-          "request": {
-            "name": "Oracle WebLogic Server List JMS sub-deployments",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JMSSystemResources",
-                ":jmsResourceName",
-                "subDeployments"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "jmsResourceName",
-                  "description": "(Required) Name of the JMS system resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "10ddcb8e-ace3-45dc-ac99-79bae0bcafaa",
-              "name": "Collection of sub-deployments",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JMSSystemResources",
-                    ":jmsResourceName",
-                    "subDeployments"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "jmsResourceName",
-                      "description": "(Required) Name of the JMS system resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0aa37c8f-0279-4a71-ae5a-0c8abd221ae8",
-          "name": "Oracle WebLogic Server Create a JMS sub-deployment",
-          "request": {
-            "name": "Oracle WebLogic Server Create a JMS sub-deployment",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "JMSSystemResources",
-                ":jmsResourceName",
-                "subDeployments"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "jmsResourceName",
-                  "description": "(Required) Name of the JMS system resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "75dfae56-fde0-4527-acae-e01517998ffd",
-              "name": "Sub-deployment created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "JMSSystemResources",
-                    ":jmsResourceName",
-                    "subDeployments"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "jmsResourceName",
-                      "description": "(Required) Name of the JMS system resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e607a39c-2311-4632-9ffc-71592b4a5f68",
-          "name": "Oracle WebLogic Server List all file stores",
-          "request": {
-            "name": "Oracle WebLogic Server List all file stores",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "fileStores"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "c5783cdd-3f6d-4d21-a9a1-39e46456c7f0",
-              "name": "Collection of file stores",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "edit",
                     "fileStores"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "1381da19-c913-41d8-a885-019bba1e340c",
+                  "name": "Collection of file stores",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/fileStores",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "fileStores"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"directory\": \"<string>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"directory\": \"<string>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-1381da19-c913-41d8-a885-019bba1e340c"
+                }
+              ],
+              "createdAt": "2026-10-22T01:52:23.000Z",
+              "updatedAt": "2026-10-22T01:52:23.000Z",
+              "uid": "35240-affd1f47-0205-4914-91bf-5a95be5a6cd0"
+            },
+            {
+              "name": "Oracle WebLogic Server Create a file store",
+              "id": "e8511f38-09a9-4b0c-9b4e-a23dcc8ce2f7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "<string>"
                   },
                   {
-                    "key": "Accept",
+                    "key": "Content-Type",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"directory\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"directory\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "4dfae485-96ae-4328-8e92-178c0354183e",
-          "name": "Oracle WebLogic Server Create a file store",
-          "request": {
-            "name": "Oracle WebLogic Server Create a file store",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "fileStores"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"directory\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "a4fef75c-cd4f-450b-8def-a29641c3d571",
-              "name": "File store created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "fileStores"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"directory\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"directory\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/edit/fileStores",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "edit",
+                    "fileStores"
+                  ]
                 }
               },
-              "status": "Created",
-              "code": 201,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "788cab9e-96e5-4728-b4a5-2e1bfdf7bdbc",
+                  "name": "File store created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"directory\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/fileStores",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "fileStores"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-788cab9e-96e5-4728-b4a5-2e1bfdf7bdbc"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T01:52:23.000Z",
+              "updatedAt": "2026-10-22T01:52:23.000Z",
+              "uid": "35240-e8511f38-09a9-4b0c-9b4e-a23dcc8ce2f7"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "90d1209a-3279-4f14-8bfd-92a8ce7cf641",
+          "createdAt": "2026-10-22T01:52:23.000Z",
+          "updatedAt": "2026-10-22T01:52:23.000Z",
+          "uid": "35240-90d1209a-3279-4f14-8bfd-92a8ce7cf641"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
+      "id": "1975a58f-a043-4a6a-bc57-7cd74e0738dd",
+      "createdAt": "2026-10-22T01:52:23.000Z",
+      "updatedAt": "2026-10-22T01:52:23.000Z",
+      "uid": "35240-1975a58f-a043-4a6a-bc57-7cd74e0738dd"
+    },
     {
-      "type": "string",
-      "value": "http://localhost:7001/management/weblogic/latest",
-      "key": "baseUrl"
+      "name": "JMSServers",
+      "item": [
+        {
+          "name": "{jmsServerName}",
+          "item": [
+            {
+              "name": "destinations",
+              "item": [
+                {
+                  "name": "Oracle WebLogic Server APIs List JMS destinations",
+                  "id": "28884a94-74b2-43f9-b10d-a0415c6e13fe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/JMSServers/:jmsServerName/destinations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "JMSServers",
+                        ":jmsServerName",
+                        "destinations"
+                      ],
+                      "variable": [
+                        {
+                          "id": "85613315-8faf-4264-a2ee-dff931d3c934",
+                          "key": "jmsServerName",
+                          "value": "<string>",
+                          "description": "(Required) The name of the JMS server"
+                        }
+                      ]
+                    },
+                    "description": "Returns monitoring metrics for all destinations on a JMS server."
+                  },
+                  "response": [
+                    {
+                      "id": "599bf183-41d9-4adb-bc28-dde715b5e4e3",
+                      "name": "List of JMS destination metrics",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/JMSServers/:jmsServerName/destinations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "JMSServers",
+                            ":jmsServerName",
+                            "destinations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jmsServerName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"Topic\",\n      \"messagesCurrentCount\": \"<long>\",\n      \"messagesPendingCount\": \"<long>\",\n      \"messagesHighCount\": \"<long>\",\n      \"messagesReceivedCount\": \"<long>\",\n      \"consumersCurrentCount\": \"<long>\",\n      \"consumersHighCount\": \"<long>\",\n      \"consumersTotal\": \"<long>\",\n      \"bytesCurrentCount\": \"<long>\",\n      \"bytesPendingCount\": \"<long>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"Topic\",\n      \"messagesCurrentCount\": \"<long>\",\n      \"messagesPendingCount\": \"<long>\",\n      \"messagesHighCount\": \"<long>\",\n      \"messagesReceivedCount\": \"<long>\",\n      \"consumersCurrentCount\": \"<long>\",\n      \"consumersHighCount\": \"<long>\",\n      \"consumersTotal\": \"<long>\",\n      \"bytesCurrentCount\": \"<long>\",\n      \"bytesPendingCount\": \"<long>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-599bf183-41d9-4adb-bc28-dde715b5e4e3"
+                    },
+                    {
+                      "id": "d29bffb8-af78-4683-a503-96ecea2d1dbc",
+                      "name": "Authentication required or invalid credentials",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/JMSServers/:jmsServerName/destinations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "JMSServers",
+                            ":jmsServerName",
+                            "destinations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jmsServerName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-d29bffb8-af78-4683-a503-96ecea2d1dbc"
+                    },
+                    {
+                      "id": "33ddcf6e-9101-4e60-b4f7-f81cc1a54e86",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/JMSServers/:jmsServerName/destinations",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "JMSServers",
+                            ":jmsServerName",
+                            "destinations"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jmsServerName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:52:23.000Z",
+                      "updatedAt": "2026-10-22T01:52:23.000Z",
+                      "uid": "35240-33ddcf6e-9101-4e60-b4f7-f81cc1a54e86"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-28884a94-74b2-43f9-b10d-a0415c6e13fe"
+                }
+              ],
+              "id": "b6279c15-9bb3-436f-82ed-5774d437d151",
+              "createdAt": "2026-10-22T01:52:23.000Z",
+              "updatedAt": "2026-10-22T01:52:23.000Z",
+              "uid": "35240-b6279c15-9bb3-436f-82ed-5774d437d151"
+            },
+            {
+              "name": "Oracle WebLogic Server APIs Get JMS server metrics",
+              "id": "665cc3e7-e8f2-44d3-83ea-7c5811521bfa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/JMSServers/:jmsServerName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "JMSServers",
+                    ":jmsServerName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "16951a9a-9a66-48d0-9cdb-dc8726b1f7ad",
+                      "key": "jmsServerName",
+                      "value": "<string>",
+                      "description": "(Required) The name of the JMS server"
+                    }
+                  ]
+                },
+                "description": "Returns detailed metrics for a specific JMS server."
+              },
+              "response": [
+                {
+                  "id": "11eb5ca2-2058-4a34-9bb8-845e42de065c",
+                  "name": "JMS server metrics",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/JMSServers/:jmsServerName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "JMSServers",
+                        ":jmsServerName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "jmsServerName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"messagesCurrentCount\": \"<long>\",\n  \"messagesPendingCount\": \"<long>\",\n  \"messagesHighCount\": \"<long>\",\n  \"messagesReceivedCount\": \"<long>\",\n  \"bytesCurrentCount\": \"<long>\",\n  \"bytesPendingCount\": \"<long>\",\n  \"consumersCurrentCount\": \"<long>\",\n  \"consumersHighCount\": \"<long>\",\n  \"destinationsCurrentCount\": \"<long>\",\n  \"healthState\": {\n    \"state\": \"<string>\",\n    \"subsystemName\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-11eb5ca2-2058-4a34-9bb8-845e42de065c"
+                },
+                {
+                  "id": "479ab1d4-5b04-4a37-a28b-a6ddbcc50c4e",
+                  "name": "Authentication required or invalid credentials",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/JMSServers/:jmsServerName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "JMSServers",
+                        ":jmsServerName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "jmsServerName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-479ab1d4-5b04-4a37-a28b-a6ddbcc50c4e"
+                },
+                {
+                  "id": "3d53c54a-69cb-4158-b5a4-16ba44109b55",
+                  "name": "The specified resource was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/JMSServers/:jmsServerName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "JMSServers",
+                        ":jmsServerName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "jmsServerName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:52:23.000Z",
+                  "updatedAt": "2026-10-22T01:52:23.000Z",
+                  "uid": "35240-3d53c54a-69cb-4158-b5a4-16ba44109b55"
+                }
+              ],
+              "createdAt": "2026-10-22T01:52:23.000Z",
+              "updatedAt": "2026-10-22T01:52:23.000Z",
+              "uid": "35240-665cc3e7-e8f2-44d3-83ea-7c5811521bfa"
+            }
+          ],
+          "id": "dd1b506e-5f16-4c34-b662-08eb1251ced1",
+          "createdAt": "2026-10-22T01:52:23.000Z",
+          "updatedAt": "2026-10-22T01:52:23.000Z",
+          "uid": "35240-dd1b506e-5f16-4c34-b662-08eb1251ced1"
+        },
+        {
+          "name": "Oracle WebLogic Server APIs List all JMS server metrics",
+          "id": "8c7a5325-d9df-44cf-885b-49516e5f00dd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/JMSServers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "JMSServers"
+              ]
+            },
+            "description": "Returns monitoring metrics for all JMS servers in the domain."
+          },
+          "response": [
+            {
+              "id": "98f4178c-edbb-4d57-8e79-bb5411aa6f5c",
+              "name": "List of JMS server metrics",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/JMSServers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "JMSServers"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"messagesCurrentCount\": \"<long>\",\n      \"messagesPendingCount\": \"<long>\",\n      \"messagesHighCount\": \"<long>\",\n      \"messagesReceivedCount\": \"<long>\",\n      \"bytesCurrentCount\": \"<long>\",\n      \"bytesPendingCount\": \"<long>\",\n      \"consumersCurrentCount\": \"<long>\",\n      \"consumersHighCount\": \"<long>\",\n      \"destinationsCurrentCount\": \"<long>\",\n      \"healthState\": {\n        \"state\": \"<string>\",\n        \"subsystemName\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"messagesCurrentCount\": \"<long>\",\n      \"messagesPendingCount\": \"<long>\",\n      \"messagesHighCount\": \"<long>\",\n      \"messagesReceivedCount\": \"<long>\",\n      \"bytesCurrentCount\": \"<long>\",\n      \"bytesPendingCount\": \"<long>\",\n      \"consumersCurrentCount\": \"<long>\",\n      \"consumersHighCount\": \"<long>\",\n      \"destinationsCurrentCount\": \"<long>\",\n      \"healthState\": {\n        \"state\": \"<string>\",\n        \"subsystemName\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:52:23.000Z",
+              "updatedAt": "2026-10-22T01:52:23.000Z",
+              "uid": "35240-98f4178c-edbb-4d57-8e79-bb5411aa6f5c"
+            },
+            {
+              "id": "f320d696-bf4a-4090-9ad6-a59a8d6c6368",
+              "name": "Authentication required or invalid credentials",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/JMSServers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "JMSServers"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T01:52:23.000Z",
+              "updatedAt": "2026-10-22T01:52:23.000Z",
+              "uid": "35240-f320d696-bf4a-4090-9ad6-a59a8d6c6368"
+            }
+          ],
+          "createdAt": "2026-10-22T01:52:23.000Z",
+          "updatedAt": "2026-10-22T01:52:23.000Z",
+          "uid": "35240-8c7a5325-d9df-44cf-885b-49516e5f00dd"
+        }
+      ],
+      "id": "25f469a5-c980-4bb0-90f3-9e612f7e5ff2",
+      "createdAt": "2026-10-22T01:52:23.000Z",
+      "updatedAt": "2026-10-22T01:52:23.000Z",
+      "uid": "35240-25f469a5-c980-4bb0-90f3-9e612f7e5ff2"
     }
   ],
   "auth": {
@@ -1427,21 +1953,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "5598ecd4-4843-431c-87b4-f43fdb2606c3",
-    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment JMS API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:7001/management/weblogic/latest"
     }
-  }
+  ]
 }

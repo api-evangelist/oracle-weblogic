@@ -1,0 +1,833 @@
+{
+  "info": {
+    "_postman_id": "b999ffd8-0eca-41de-b20e-35537a3f76b3",
+    "name": "Oracle WebLogic Server APIs Oracle WebLogic Server\u2026",
+    "description": "RESTful API for deploying, undeploying, redeploying, and managing applications and shared libraries on Oracle WebLogic Server. Supports uploading application archives, deploying from the server file system, managing deployment plans, and controlling application lifecycle states across servers and clusters.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:54:04.000Z",
+    "updatedAt": "2026-10-22T01:54:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b999ffd8-0eca-41de-b20e-35537a3f76b3"
+  },
+  "item": [
+    {
+      "name": "diagnostics",
+      "item": [
+        {
+          "name": "WLDFSystemResources",
+          "item": [
+            {
+              "name": "{resourceName}",
+              "item": [
+                {
+                  "name": "Oracle WebLogic Server APIs Get a WLDF system resource",
+                  "id": "a742bb17-579b-4870-bee8-3c022a6d330c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/diagnostics/WLDFSystemResources/:resourceName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "diagnostics",
+                        "WLDFSystemResources",
+                        ":resourceName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "66ecd67c-aa2a-464a-94ef-f98f600a9560",
+                          "key": "resourceName",
+                          "value": "<string>",
+                          "description": "(Required) The name of the WLDF system resource"
+                        }
+                      ]
+                    },
+                    "description": "Returns details of a specific WLDF system resource."
+                  },
+                  "response": [
+                    {
+                      "id": "469dbb94-b0f8-4067-b066-e41023539eae",
+                      "name": "WLDF system resource details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/diagnostics/WLDFSystemResources/:resourceName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "diagnostics",
+                            "WLDFSystemResources",
+                            ":resourceName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "resourceName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"harvestor\": {\n    \"enabled\": \"<boolean>\",\n    \"samplePeriod\": \"<integer>\"\n  },\n  \"instrumentation\": {\n    \"enabled\": \"<boolean>\"\n  },\n  \"watchNotification\": {\n    \"enabled\": \"<boolean>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:54:05.000Z",
+                      "updatedAt": "2026-10-22T01:54:05.000Z",
+                      "uid": "35240-469dbb94-b0f8-4067-b066-e41023539eae"
+                    },
+                    {
+                      "id": "62380e3a-fcaa-4e3c-9273-7febe46b3823",
+                      "name": "Authentication required or invalid credentials",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/diagnostics/WLDFSystemResources/:resourceName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "diagnostics",
+                            "WLDFSystemResources",
+                            ":resourceName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "resourceName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:54:05.000Z",
+                      "updatedAt": "2026-10-22T01:54:05.000Z",
+                      "uid": "35240-62380e3a-fcaa-4e3c-9273-7febe46b3823"
+                    },
+                    {
+                      "id": "ce943054-a5ff-4967-9242-964f8ea337b7",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/diagnostics/WLDFSystemResources/:resourceName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "diagnostics",
+                            "WLDFSystemResources",
+                            ":resourceName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "resourceName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:54:05.000Z",
+                      "updatedAt": "2026-10-22T01:54:05.000Z",
+                      "uid": "35240-ce943054-a5ff-4967-9242-964f8ea337b7"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:54:05.000Z",
+                  "updatedAt": "2026-10-22T01:54:05.000Z",
+                  "uid": "35240-a742bb17-579b-4870-bee8-3c022a6d330c"
+                }
+              ],
+              "id": "c2a73e5b-75f3-4451-8ded-9e557dbf5821",
+              "createdAt": "2026-10-22T01:54:05.000Z",
+              "updatedAt": "2026-10-22T01:54:05.000Z",
+              "uid": "35240-c2a73e5b-75f3-4451-8ded-9e557dbf5821"
+            },
+            {
+              "name": "Oracle WebLogic Server APIs List WLDF system resources",
+              "id": "00b5277c-6f7f-4b42-9108-712d77a8e880",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/diagnostics/WLDFSystemResources",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "diagnostics",
+                    "WLDFSystemResources"
+                  ]
+                },
+                "description": "Returns a list of WebLogic Diagnostic Framework (WLDF) system resources configured in the domain."
+              },
+              "response": [
+                {
+                  "id": "e94f8b4b-a8d5-49df-b815-85ba2dc8909c",
+                  "name": "List of WLDF system resources",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/diagnostics/WLDFSystemResources",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "diagnostics",
+                        "WLDFSystemResources"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"targets\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"harvestor\": {\n        \"enabled\": \"<boolean>\",\n        \"samplePeriod\": \"<integer>\"\n      },\n      \"instrumentation\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"watchNotification\": {\n        \"enabled\": \"<boolean>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"targets\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"harvestor\": {\n        \"enabled\": \"<boolean>\",\n        \"samplePeriod\": \"<integer>\"\n      },\n      \"instrumentation\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"watchNotification\": {\n        \"enabled\": \"<boolean>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:54:05.000Z",
+                  "updatedAt": "2026-10-22T01:54:05.000Z",
+                  "uid": "35240-e94f8b4b-a8d5-49df-b815-85ba2dc8909c"
+                },
+                {
+                  "id": "3bf0afc1-fbd6-4ed5-9903-f956c79683a9",
+                  "name": "Authentication required or invalid credentials",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/diagnostics/WLDFSystemResources",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "diagnostics",
+                        "WLDFSystemResources"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:54:05.000Z",
+                  "updatedAt": "2026-10-22T01:54:05.000Z",
+                  "uid": "35240-3bf0afc1-fbd6-4ed5-9903-f956c79683a9"
+                }
+              ],
+              "createdAt": "2026-10-22T01:54:05.000Z",
+              "updatedAt": "2026-10-22T01:54:05.000Z",
+              "uid": "35240-00b5277c-6f7f-4b42-9108-712d77a8e880"
+            }
+          ],
+          "id": "fa86c400-b67d-4a09-b680-bf03d0d71294",
+          "createdAt": "2026-10-22T01:54:05.000Z",
+          "updatedAt": "2026-10-22T01:54:05.000Z",
+          "uid": "35240-fa86c400-b67d-4a09-b680-bf03d0d71294"
+        },
+        {
+          "name": "dataAccessRuntimes",
+          "item": [
+            {
+              "name": "{runtimeName}",
+              "item": [
+                {
+                  "name": "query",
+                  "item": [
+                    {
+                      "name": "Oracle WebLogic Server APIs Query diagnostic data",
+                      "id": "73801563-753f-46b7-b4db-17d01de51b71",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"beginTimestamp\": \"<long>\",\n  \"endTimestamp\": \"<long>\",\n  \"maxRecords\": 100\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/diagnostics/dataAccessRuntimes/:runtimeName/query",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "diagnostics",
+                            "dataAccessRuntimes",
+                            ":runtimeName",
+                            "query"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4dcd634c-7698-4301-8603-a68bcfb8505c",
+                              "key": "runtimeName",
+                              "value": "<string>",
+                              "description": "(Required) The name of the data access runtime"
+                            }
+                          ]
+                        },
+                        "description": "Executes a query against diagnostic data collected by the WebLogic Diagnostic Framework. Supports querying harvested metrics, server log entries, and other diagnostic data sources."
+                      },
+                      "response": [
+                        {
+                          "id": "433691d1-b208-4add-85d1-ddd8a8fd1c44",
+                          "name": "Diagnostic data query results",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"query\": \"<string>\",\n  \"beginTimestamp\": \"<long>\",\n  \"endTimestamp\": \"<long>\",\n  \"maxRecords\": 100\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/diagnostics/dataAccessRuntimes/:runtimeName/query",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "diagnostics",
+                                "dataAccessRuntimes",
+                                ":runtimeName",
+                                "query"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "runtimeName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"columns\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"rows\": [\n    [\n      \"<string>\",\n      \"<string>\"\n    ],\n    [\n      \"<string>\",\n      \"<string>\"\n    ]\n  ],\n  \"totalRecords\": \"<integer>\",\n  \"returnedRecords\": \"<integer>\"\n}",
+                          "createdAt": "2026-10-22T01:54:05.000Z",
+                          "updatedAt": "2026-10-22T01:54:05.000Z",
+                          "uid": "35240-433691d1-b208-4add-85d1-ddd8a8fd1c44"
+                        },
+                        {
+                          "id": "746752de-fe3e-40f0-be80-02ff13b5ac01",
+                          "name": "Invalid request parameters",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"query\": \"<string>\",\n  \"beginTimestamp\": \"<long>\",\n  \"endTimestamp\": \"<long>\",\n  \"maxRecords\": 100\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/diagnostics/dataAccessRuntimes/:runtimeName/query",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "diagnostics",
+                                "dataAccessRuntimes",
+                                ":runtimeName",
+                                "query"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "runtimeName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:54:05.000Z",
+                          "updatedAt": "2026-10-22T01:54:05.000Z",
+                          "uid": "35240-746752de-fe3e-40f0-be80-02ff13b5ac01"
+                        },
+                        {
+                          "id": "5b5c17cd-d4d5-4e76-b914-95606e69df03",
+                          "name": "Authentication required or invalid credentials",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"query\": \"<string>\",\n  \"beginTimestamp\": \"<long>\",\n  \"endTimestamp\": \"<long>\",\n  \"maxRecords\": 100\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/diagnostics/dataAccessRuntimes/:runtimeName/query",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "diagnostics",
+                                "dataAccessRuntimes",
+                                ":runtimeName",
+                                "query"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "runtimeName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:54:05.000Z",
+                          "updatedAt": "2026-10-22T01:54:05.000Z",
+                          "uid": "35240-5b5c17cd-d4d5-4e76-b914-95606e69df03"
+                        },
+                        {
+                          "id": "ff6a1322-75df-4490-9498-fd58c231ef8a",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"query\": \"<string>\",\n  \"beginTimestamp\": \"<long>\",\n  \"endTimestamp\": \"<long>\",\n  \"maxRecords\": 100\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/diagnostics/dataAccessRuntimes/:runtimeName/query",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "diagnostics",
+                                "dataAccessRuntimes",
+                                ":runtimeName",
+                                "query"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "runtimeName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T01:54:05.000Z",
+                          "updatedAt": "2026-10-22T01:54:05.000Z",
+                          "uid": "35240-ff6a1322-75df-4490-9498-fd58c231ef8a"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:54:05.000Z",
+                      "updatedAt": "2026-10-22T01:54:05.000Z",
+                      "uid": "35240-73801563-753f-46b7-b4db-17d01de51b71"
+                    }
+                  ],
+                  "id": "1baa6310-fe9f-4b9b-bfb3-2889f29c1a0e",
+                  "createdAt": "2026-10-22T01:54:05.000Z",
+                  "updatedAt": "2026-10-22T01:54:05.000Z",
+                  "uid": "35240-1baa6310-fe9f-4b9b-bfb3-2889f29c1a0e"
+                }
+              ],
+              "id": "a7309d21-492e-4a7e-b52d-c86b4fb91d6e",
+              "createdAt": "2026-10-22T01:54:05.000Z",
+              "updatedAt": "2026-10-22T01:54:05.000Z",
+              "uid": "35240-a7309d21-492e-4a7e-b52d-c86b4fb91d6e"
+            },
+            {
+              "name": "Oracle WebLogic Server APIs List diagnostic data access runtimes",
+              "id": "3f523b40-0f63-4916-bf94-234eaa37d999",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/diagnostics/dataAccessRuntimes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "diagnostics",
+                    "dataAccessRuntimes"
+                  ]
+                },
+                "description": "Returns information about diagnostic data access runtimes that provide access to collected diagnostic data."
+              },
+              "response": [
+                {
+                  "id": "b3f95944-47b9-4a32-b454-3320ddc547dd",
+                  "name": "List of data access runtimes",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/diagnostics/dataAccessRuntimes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "diagnostics",
+                        "dataAccessRuntimes"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"availableDataTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"availableDataTypes\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:54:05.000Z",
+                  "updatedAt": "2026-10-22T01:54:05.000Z",
+                  "uid": "35240-b3f95944-47b9-4a32-b454-3320ddc547dd"
+                },
+                {
+                  "id": "07826cb4-a659-4e64-9a60-12092b24d487",
+                  "name": "Authentication required or invalid credentials",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/diagnostics/dataAccessRuntimes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "diagnostics",
+                        "dataAccessRuntimes"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:54:05.000Z",
+                  "updatedAt": "2026-10-22T01:54:05.000Z",
+                  "uid": "35240-07826cb4-a659-4e64-9a60-12092b24d487"
+                }
+              ],
+              "createdAt": "2026-10-22T01:54:05.000Z",
+              "updatedAt": "2026-10-22T01:54:05.000Z",
+              "uid": "35240-3f523b40-0f63-4916-bf94-234eaa37d999"
+            }
+          ],
+          "id": "4bd5323f-c115-4510-be60-fd43b56de8c7",
+          "createdAt": "2026-10-22T01:54:05.000Z",
+          "updatedAt": "2026-10-22T01:54:05.000Z",
+          "uid": "35240-4bd5323f-c115-4510-be60-fd43b56de8c7"
+        }
+      ],
+      "id": "d9c27ea9-2151-4f7b-86b3-e929441fd063",
+      "createdAt": "2026-10-22T01:54:05.000Z",
+      "updatedAt": "2026-10-22T01:54:05.000Z",
+      "uid": "35240-d9c27ea9-2151-4f7b-86b3-e929441fd063"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "7001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/management/weblogic/latest"
+    }
+  ]
+}

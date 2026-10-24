@@ -1,121 +1,131 @@
 {
+  "info": {
+    "_postman_id": "46e7192f-8d90-43a0-a210-a3b656994b01",
+    "name": "Oracle WebLogic Server Oracle WebLogic Monitoring and\u2026",
+    "description": "RESTful API for accessing runtime monitoring data, diagnostics information, and performance metrics for Oracle WebLogic Server domains. Provides read-only access to the domainRuntime and serverRuntime bean trees for monitoring server states, application runtimes, JDBC data source health, JMS statistics, thread pool utilization, and server lifecycle management operations.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:53:38.000Z",
+    "updatedAt": "2026-10-22T01:53:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-46e7192f-8d90-43a0-a210-a3b656994b01"
+  },
   "item": [
     {
-      "id": "57256d18-ca4b-4820-9906-0abde654f84d",
-      "name": "Tasks",
-      "description": {
-        "content": "Monitor asynchronous task status",
-        "type": "text/plain"
-      },
+      "name": "domainRuntime",
       "item": [
         {
-          "id": "79131d26-6139-4eeb-9c8b-a7ca6808297c",
-          "name": "Oracle WebLogic Server Get status of an asynchronous task",
-          "request": {
-            "name": "Oracle WebLogic Server Get status of an asynchronous task",
-            "description": {
-              "content": "Returns the current status of an asynchronous operation. Used to poll for completion of long-running operations like server start/stop.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "domainRuntime",
-                "tasks",
-                ":taskId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "taskId",
-                  "description": "(Required) Task identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "tasks",
+          "item": [
             {
-              "id": "3684b84f-50a0-4077-aed3-c1c9d39929a1",
-              "name": "Task status",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "domainRuntime",
-                    "tasks",
-                    ":taskId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "taskId",
-                      "description": "(Required) Task identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{taskId}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Oracle WebLogic Server Get status of an asynchronous task",
+                  "id": "fd32175e-8ca7-4cb9-a199-675b93c2d41e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/domainRuntime/tasks/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domainRuntime",
+                        "tasks",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f046da28-7cbc-4e10-a482-87a865f711d0",
+                          "key": "taskId",
+                          "value": "<string>",
+                          "description": "(Required) Task identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns the current status of an asynchronous operation. Used to poll for completion of long-running operations like server start/stop."
+                  },
+                  "response": [
+                    {
+                      "id": "4da4cc10-988d-42bc-83ce-b8e246397deb",
+                      "name": "Task status",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/domainRuntime/tasks/:taskId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "domainRuntime",
+                            "tasks",
+                            ":taskId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"taskStatus\": \"<string>\",\n  \"progress\": \"<string>\",\n  \"description\": \"<string>\",\n  \"operation\": \"<string>\",\n  \"running\": \"<boolean>\",\n  \"completed\": \"<boolean>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:53:39.000Z",
+                      "updatedAt": "2026-10-22T01:53:39.000Z",
+                      "uid": "35240-4da4cc10-988d-42bc-83ce-b8e246397deb"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:53:39.000Z",
+                  "updatedAt": "2026-10-22T01:53:39.000Z",
+                  "uid": "35240-fd32175e-8ca7-4cb9-a199-675b93c2d41e"
                 }
               ],
-              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"taskStatus\": \"string\",\n  \"progress\": \"string\",\n  \"description\": \"string\",\n  \"operation\": \"string\",\n  \"running\": true,\n  \"completed\": true,\n  \"startTime\": \"1967-09-18T02:19:41.851Z\",\n  \"endTime\": \"1992-10-04T05:17:01.168Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://WE.tjmK9zzv++xKO8gzMlQK0rxjZ,f6D-JMGQB6nMi9o.1,uhd\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://nQqlOhdUwgGbjYenQChR.fyopbXKVjumdRFSvrN+HNuI3hlGSDv5Tn369h9ssO2b29ava43AV6IuSJKL3.jLgLIAMtn9vEqR\",\n      \"title\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "eef04020-b555-4325-ae3f-5e97fd5a9fa5",
+              "createdAt": "2026-10-22T01:53:39.000Z",
+              "updatedAt": "2026-10-22T01:53:39.000Z",
+              "uid": "35240-eef04020-b555-4325-ae3f-5e97fd5a9fa5"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "f9c7ef1d-790f-4421-b9a6-a41c339c52b3",
+          "createdAt": "2026-10-22T01:53:39.000Z",
+          "updatedAt": "2026-10-22T01:53:39.000Z",
+          "uid": "35240-f9c7ef1d-790f-4421-b9a6-a41c339c52b3"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "http://localhost:7001/management/weblogic/latest",
-      "key": "baseUrl"
+      "id": "70e78567-71ba-4515-a7bb-3e91ded1d94b",
+      "createdAt": "2026-10-22T01:53:39.000Z",
+      "updatedAt": "2026-10-22T01:53:39.000Z",
+      "uid": "35240-70e78567-71ba-4515-a7bb-3e91ded1d94b"
     }
   ],
   "auth": {
@@ -123,21 +133,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "ec7dd9f4-6327-468e-a250-0a3a9f701543",
-    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Tasks API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:7001/management/weblogic/latest"
     }
-  }
+  ]
 }

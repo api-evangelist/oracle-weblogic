@@ -1,0 +1,292 @@
+{
+  "info": {
+    "_postman_id": "b71fd944-7751-4fc4-a61b-ab1cd86d18c7",
+    "name": "Oracle WebLogic Server APIs Oracle WebLogic Server\u2026",
+    "description": "RESTful API for deploying, undeploying, redeploying, and managing applications and shared libraries on Oracle WebLogic Server. Supports uploading application archives, deploying from the server file system, managing deployment plans, and controlling application lifecycle states across servers and clusters.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:54:33.000Z",
+    "updatedAt": "2026-10-22T01:54:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b71fd944-7751-4fc4-a61b-ab1cd86d18c7"
+  },
+  "item": [
+    {
+      "name": "domainRuntime",
+      "item": [
+        {
+          "name": "deploymentManager",
+          "item": [
+            {
+              "name": "upload",
+              "item": [
+                {
+                  "name": "Oracle WebLogic Server APIs Upload an application archive",
+                  "id": "444fdbaa-dbfa-4ab7-a2dd-610afc33431a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) Application archive file to upload",
+                          "key": "file",
+                          "type": "file",
+                          "value": null
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/domainRuntime/deploymentManager/upload",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domainRuntime",
+                        "deploymentManager",
+                        "upload"
+                      ]
+                    },
+                    "description": "Uploads an application archive (EAR, WAR, JAR) or deployment plan to the administration server upload directory for subsequent deployment."
+                  },
+                  "response": [
+                    {
+                      "id": "247d6bd6-6a05-4313-a803-dd065dd599fd",
+                      "name": "File uploaded successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) Application archive file to upload",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/domainRuntime/deploymentManager/upload",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "domainRuntime",
+                            "deploymentManager",
+                            "upload"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"sourcePath\": \"<string>\",\n  \"fileName\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:54:34.000Z",
+                      "updatedAt": "2026-10-22T01:54:34.000Z",
+                      "uid": "35240-247d6bd6-6a05-4313-a803-dd065dd599fd"
+                    },
+                    {
+                      "id": "b8ad7f43-5c43-45ea-acd5-668b2e6103bb",
+                      "name": "Invalid request parameters or body",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) Application archive file to upload",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/domainRuntime/deploymentManager/upload",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "domainRuntime",
+                            "deploymentManager",
+                            "upload"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:54:34.000Z",
+                      "updatedAt": "2026-10-22T01:54:34.000Z",
+                      "uid": "35240-b8ad7f43-5c43-45ea-acd5-668b2e6103bb"
+                    },
+                    {
+                      "id": "5b00db7b-d2a5-4a69-bea1-843d90720916",
+                      "name": "Authentication required or invalid credentials",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "description": "(Required) Application archive file to upload",
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/domainRuntime/deploymentManager/upload",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "domainRuntime",
+                            "deploymentManager",
+                            "upload"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:54:34.000Z",
+                      "updatedAt": "2026-10-22T01:54:34.000Z",
+                      "uid": "35240-5b00db7b-d2a5-4a69-bea1-843d90720916"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:54:34.000Z",
+                  "updatedAt": "2026-10-22T01:54:34.000Z",
+                  "uid": "35240-444fdbaa-dbfa-4ab7-a2dd-610afc33431a"
+                }
+              ],
+              "id": "fd77011b-851c-44e4-8d57-fca72a92406c",
+              "createdAt": "2026-10-22T01:54:34.000Z",
+              "updatedAt": "2026-10-22T01:54:34.000Z",
+              "uid": "35240-fd77011b-851c-44e4-8d57-fca72a92406c"
+            }
+          ],
+          "id": "3dfc4f03-7894-43e8-a7ba-6b830d428ed4",
+          "createdAt": "2026-10-22T01:54:34.000Z",
+          "updatedAt": "2026-10-22T01:54:34.000Z",
+          "uid": "35240-3dfc4f03-7894-43e8-a7ba-6b830d428ed4"
+        }
+      ],
+      "id": "37b42d35-7aad-4ca4-bf6c-7e4984433add",
+      "createdAt": "2026-10-22T01:54:34.000Z",
+      "updatedAt": "2026-10-22T01:54:34.000Z",
+      "uid": "35240-37b42d35-7aad-4ca4-bf6c-7e4984433add"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "host",
+      "value": "localhost"
+    },
+    {
+      "key": "port",
+      "value": "7001"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{host}}:{{port}}/management/weblogic/latest"
+    }
+  ]
+}

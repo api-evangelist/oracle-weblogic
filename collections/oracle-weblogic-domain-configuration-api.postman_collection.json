@@ -1,900 +1,1499 @@
 {
+  "info": {
+    "_postman_id": "4e8fe0e4-fea5-4270-9ed7-e8889ee1b928",
+    "name": "Oracle Weblogic Domain Configuration API",
+    "description": "Operations tagged Domain Configuration across 2 of this provider's published API definitions: oracle-weblogic-management-openapi.yml, weblogic-domain-configuration-api-openapi.yml. Each path carries the servers of the definition it was published in.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:51:56.000Z",
+    "updatedAt": "2026-10-22T01:51:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4e8fe0e4-fea5-4270-9ed7-e8889ee1b928"
+  },
   "item": [
     {
-      "id": "92b05552-9ae1-466e-b32e-79b3e07a6cbb",
-      "name": "Domain Configuration",
-      "description": {
-        "content": "View domain-level configuration",
-        "type": "text/plain"
-      },
+      "name": "edit",
       "item": [
         {
-          "id": "150d58ef-ec67-45e1-a3af-623d02ab6527",
-          "name": "Oracle WebLogic Server Get the edit tree root (domain configuration)",
-          "request": {
-            "name": "Oracle WebLogic Server Get the edit tree root (domain configuration)",
-            "description": {
-              "content": "Returns the root of the edit configuration tree representing the domain.",
-              "type": "text/plain"
+          "name": "virtualTargets",
+          "item": [
+            {
+              "name": "Oracle WebLogic Server List all virtual targets",
+              "id": "e6b1c35d-ec26-4477-9c55-d2aee91d930e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/edit/virtualTargets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "edit",
+                    "virtualTargets"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "ae3f66ce-ac3c-4a1e-95ff-3e81f0ddd821",
+                  "name": "Collection of virtual targets",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/virtualTargets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "virtualTargets"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"hostNames\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"uriPrefix\": \"<string>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"hostNames\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"uriPrefix\": \"<string>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:51:57.000Z",
+                  "updatedAt": "2026-10-22T01:51:57.000Z",
+                  "uid": "35240-ae3f66ce-ac3c-4a1e-95ff-3e81f0ddd821"
+                }
+              ],
+              "createdAt": "2026-10-22T01:51:57.000Z",
+              "updatedAt": "2026-10-22T01:51:57.000Z",
+              "uid": "35240-e6b1c35d-ec26-4477-9c55-d2aee91d930e"
             },
+            {
+              "name": "Oracle WebLogic Server Create a virtual target",
+              "id": "a2cf98b5-3f8d-4acb-a1ec-06df818fbd35",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"hostNames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"uriPrefix\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/edit/virtualTargets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "edit",
+                    "virtualTargets"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "fb261a9e-2bad-415c-9e24-b5e7266fe324",
+                  "name": "Virtual target created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"hostNames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"uriPrefix\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/virtualTargets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "virtualTargets"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:51:57.000Z",
+                  "updatedAt": "2026-10-22T01:51:57.000Z",
+                  "uid": "35240-fb261a9e-2bad-415c-9e24-b5e7266fe324"
+                }
+              ],
+              "createdAt": "2026-10-22T01:51:57.000Z",
+              "updatedAt": "2026-10-22T01:51:57.000Z",
+              "uid": "35240-a2cf98b5-3f8d-4acb-a1ec-06df818fbd35"
+            }
+          ],
+          "id": "b50aae6f-a66a-4b1c-aec4-c12d2698a77a",
+          "createdAt": "2026-10-22T01:51:57.000Z",
+          "updatedAt": "2026-10-22T01:51:57.000Z",
+          "uid": "35240-b50aae6f-a66a-4b1c-aec4-c12d2698a77a"
+        },
+        {
+          "name": "partitions",
+          "item": [
+            {
+              "name": "{partitionName}",
+              "item": [
+                {
+                  "name": "resourceGroups",
+                  "item": [
+                    {
+                      "name": "Oracle WebLogic Server List resource groups for a partition",
+                      "id": "ed405e17-8a9b-4385-b7c3-1526fccf121b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/partitions/:partitionName/resourceGroups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "partitions",
+                            ":partitionName",
+                            "resourceGroups"
+                          ],
+                          "variable": [
+                            {
+                              "id": "98d92620-5a15-4b57-8882-2f9f930b27d6",
+                              "key": "partitionName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the domain partition"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "7f02e49d-f509-4415-b483-791171653fc6",
+                          "name": "Collection of resource groups",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/partitions/:partitionName/resourceGroups",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "partitions",
+                                ":partitionName",
+                                "resourceGroups"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "partitionName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T01:51:57.000Z",
+                          "updatedAt": "2026-10-22T01:51:57.000Z",
+                          "uid": "35240-7f02e49d-f509-4415-b483-791171653fc6"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:51:57.000Z",
+                      "updatedAt": "2026-10-22T01:51:57.000Z",
+                      "uid": "35240-ed405e17-8a9b-4385-b7c3-1526fccf121b"
+                    },
+                    {
+                      "name": "Oracle WebLogic Server Create a resource group in a partition",
+                      "id": "83c43652-e478-4e2d-8f64-4dcbc2ec4caa",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                            "key": "X-Requested-By",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/edit/partitions/:partitionName/resourceGroups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "edit",
+                            "partitions",
+                            ":partitionName",
+                            "resourceGroups"
+                          ],
+                          "variable": [
+                            {
+                              "id": "a6b6ddc4-51f9-4bd4-9790-8b6948f6bbd6",
+                              "key": "partitionName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the domain partition"
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "50475ee4-a473-41d5-aa7d-71f1a757078f",
+                          "name": "Resource group created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                                "key": "X-Requested-By",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/edit/partitions/:partitionName/resourceGroups",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "edit",
+                                "partitions",
+                                ":partitionName",
+                                "resourceGroups"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "partitionName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T01:51:57.000Z",
+                          "updatedAt": "2026-10-22T01:51:57.000Z",
+                          "uid": "35240-50475ee4-a473-41d5-aa7d-71f1a757078f"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:51:57.000Z",
+                      "updatedAt": "2026-10-22T01:51:57.000Z",
+                      "uid": "35240-83c43652-e478-4e2d-8f64-4dcbc2ec4caa"
+                    }
+                  ],
+                  "id": "ee4b1ca5-fe8f-4d2e-95d0-2e4fee4b479a",
+                  "createdAt": "2026-10-22T01:51:57.000Z",
+                  "updatedAt": "2026-10-22T01:51:57.000Z",
+                  "uid": "35240-ee4b1ca5-fe8f-4d2e-95d0-2e4fee4b479a"
+                }
+              ],
+              "id": "c33f66a2-f9b8-41e2-bf2f-52b8dddb7b0f",
+              "createdAt": "2026-10-22T01:51:57.000Z",
+              "updatedAt": "2026-10-22T01:51:57.000Z",
+              "uid": "35240-c33f66a2-f9b8-41e2-bf2f-52b8dddb7b0f"
+            },
+            {
+              "name": "Oracle WebLogic Server List all partitions",
+              "id": "b3d31fd6-484e-4856-9c77-f4e63fb53dc5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/edit/partitions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "edit",
+                    "partitions"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "d9471336-8eca-405d-b093-8e574853f72f",
+                  "name": "Collection of partitions",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/partitions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "partitions"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"realm\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"primaryIdentityDomain\": \"<string>\",\n      \"availableTargets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"defaultTargets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"resourceManagerRef\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"name\": \"<string>\",\n      \"realm\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"primaryIdentityDomain\": \"<string>\",\n      \"availableTargets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"defaultTargets\": [\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"resourceManagerRef\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:51:57.000Z",
+                  "updatedAt": "2026-10-22T01:51:57.000Z",
+                  "uid": "35240-d9471336-8eca-405d-b093-8e574853f72f"
+                }
+              ],
+              "createdAt": "2026-10-22T01:51:57.000Z",
+              "updatedAt": "2026-10-22T01:51:57.000Z",
+              "uid": "35240-b3d31fd6-484e-4856-9c77-f4e63fb53dc5"
+            },
+            {
+              "name": "Oracle WebLogic Server Create a partition",
+              "id": "12ca25ea-94a0-43b9-8da1-ee1ec3ef5075",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                    "key": "X-Requested-By",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"realm\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"primaryIdentityDomain\": \"<string>\",\n  \"availableTargets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"defaultTargets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"resourceManagerRef\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/edit/partitions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "edit",
+                    "partitions"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "14965470-65fd-4cb9-b4ce-6d0433beb2cd",
+                  "name": "Partition created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) CSRF protection header required for POST and DELETE requests",
+                        "key": "X-Requested-By",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"realm\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"primaryIdentityDomain\": \"<string>\",\n  \"availableTargets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"defaultTargets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"resourceManagerRef\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/edit/partitions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "edit",
+                        "partitions"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T01:51:57.000Z",
+                  "updatedAt": "2026-10-22T01:51:57.000Z",
+                  "uid": "35240-14965470-65fd-4cb9-b4ce-6d0433beb2cd"
+                }
+              ],
+              "createdAt": "2026-10-22T01:51:57.000Z",
+              "updatedAt": "2026-10-22T01:51:57.000Z",
+              "uid": "35240-12ca25ea-94a0-43b9-8da1-ee1ec3ef5075"
+            }
+          ],
+          "id": "32159c23-9712-4402-9d8a-f70e0fc9c6cb",
+          "createdAt": "2026-10-22T01:51:57.000Z",
+          "updatedAt": "2026-10-22T01:51:57.000Z",
+          "uid": "35240-32159c23-9712-4402-9d8a-f70e0fc9c6cb"
+        },
+        {
+          "name": "Oracle WebLogic Server Get the edit tree root (domain configuration)",
+          "id": "065ead90-bbc0-4f8a-bd45-73d720627aac",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/edit?fields=<string>&links=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "edit"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "Comma-separated list of property names to include in the response",
                   "key": "fields",
-                  "value": "<string>",
-                  "description": "Comma-separated list of property names to include in the response"
+                  "value": "<string>"
                 },
                 {
-                  "disabled": false,
+                  "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.",
                   "key": "links",
-                  "value": "<string>",
-                  "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+                  "value": "<string>"
                 }
-              ],
-              "variable": []
+              ]
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+            "description": "Returns the root of the edit configuration tree representing the domain."
           },
           "response": [
             {
-              "id": "8d8b03c8-e11b-4820-9b7b-499c155ab0f6",
+              "id": "0df9a77d-fcef-4c60-9135-12e8de530ca5",
               "name": "Domain edit tree root",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/edit?fields=<string>&links=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "edit"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Comma-separated list of property names to include in the response",
                       "key": "fields",
-                      "value": "name,listenPort"
+                      "value": "<string>"
                     },
                     {
+                      "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.",
                       "key": "links",
-                      "value": "none"
+                      "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"configurationVersion\": \"string\",\n  \"domainVersion\": \"string\",\n  \"adminServerName\": \"string\",\n  \"productionModeEnabled\": false,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://IdnCgoOoEGxQRjZXXQAjhQnluus.jtwyvCicP,RWGYUOus0xVl4RbnvCLFRtuH+2.nwWKy8jPYe1,R\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://csBAhY.qdxAEdVRwS,Y8zzrKi.I8TIMWj.3WzsmzW1R+bNw8i\",\n      \"title\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"configurationVersion\": \"<string>\",\n  \"domainVersion\": \"<string>\",\n  \"adminServerName\": \"<string>\",\n  \"productionModeEnabled\": \"<boolean>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:51:57.000Z",
+              "updatedAt": "2026-10-22T01:51:57.000Z",
+              "uid": "35240-0df9a77d-fcef-4c60-9135-12e8de530ca5"
             }
           ],
-          "event": [],
+          "createdAt": "2026-10-22T01:51:57.000Z",
+          "updatedAt": "2026-10-22T01:51:57.000Z",
+          "uid": "35240-065ead90-bbc0-4f8a-bd45-73d720627aac"
+        }
+      ],
+      "id": "508cf69f-d49c-421e-aeae-11ffa2d77bdf",
+      "createdAt": "2026-10-22T01:51:57.000Z",
+      "updatedAt": "2026-10-22T01:51:57.000Z",
+      "uid": "35240-508cf69f-d49c-421e-aeae-11ffa2d77bdf"
+    },
+    {
+      "name": "serverConfig",
+      "item": [
+        {
+          "name": "Oracle WebLogic Server Get the server configuration tree root",
+          "id": "2c2a9999-944f-4222-9c24-c25bbe5e6bf1",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b2b15e75-7e69-4f33-88bb-2e647254788d",
-          "name": "Oracle WebLogic Server Get the server configuration tree root",
+          },
           "request": {
-            "name": "Oracle WebLogic Server Get the server configuration tree root",
-            "description": {
-              "content": "Returns the root of the current server configuration (read-only).",
-              "type": "text/plain"
-            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/serverConfig?fields=<string>&links=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "serverConfig"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "Comma-separated list of property names to include in the response",
                   "key": "fields",
-                  "value": "<string>",
-                  "description": "Comma-separated list of property names to include in the response"
+                  "value": "<string>"
                 },
                 {
-                  "disabled": false,
+                  "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.",
                   "key": "links",
-                  "value": "<string>",
-                  "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+                  "value": "<string>"
                 }
-              ],
-              "variable": []
+              ]
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+            "description": "Returns the root of the current server configuration (read-only)."
           },
           "response": [
             {
-              "id": "ecf4414a-9c54-43c1-827d-236f5db7c8bd",
+              "id": "b9e91cab-bd39-49e8-9b76-aa28fe4799d6",
               "name": "Server configuration root",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/serverConfig?fields=<string>&links=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "serverConfig"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Comma-separated list of property names to include in the response",
                       "key": "fields",
-                      "value": "name,listenPort"
+                      "value": "<string>"
                     },
                     {
+                      "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.",
                       "key": "links",
-                      "value": "none"
+                      "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"configurationVersion\": \"string\",\n  \"domainVersion\": \"string\",\n  \"adminServerName\": \"string\",\n  \"productionModeEnabled\": false,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://IdnCgoOoEGxQRjZXXQAjhQnluus.jtwyvCicP,RWGYUOus0xVl4RbnvCLFRtuH+2.nwWKy8jPYe1,R\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://csBAhY.qdxAEdVRwS,Y8zzrKi.I8TIMWj.3WzsmzW1R+bNw8i\",\n      \"title\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"configurationVersion\": \"<string>\",\n  \"domainVersion\": \"<string>\",\n  \"adminServerName\": \"<string>\",\n  \"productionModeEnabled\": \"<boolean>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:51:57.000Z",
+              "updatedAt": "2026-10-22T01:51:57.000Z",
+              "uid": "35240-b9e91cab-bd39-49e8-9b76-aa28fe4799d6"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:51:57.000Z",
+          "updatedAt": "2026-10-22T01:51:57.000Z",
+          "uid": "35240-2c2a9999-944f-4222-9c24-c25bbe5e6bf1"
+        }
+      ],
+      "id": "19ad861a-9d40-4c04-82fe-33f5ca57978e",
+      "createdAt": "2026-10-22T01:51:57.000Z",
+      "updatedAt": "2026-10-22T01:51:57.000Z",
+      "uid": "35240-19ad861a-9d40-4c04-82fe-33f5ca57978e"
+    },
+    {
+      "name": "domainConfig",
+      "item": [
+        {
+          "name": "servers",
+          "item": [
+            {
+              "name": "{serverName}",
+              "item": [
+                {
+                  "name": "Oracle WebLogic Server APIs Get a server configuration (read-only)",
+                  "id": "54c8b88d-6367-47e8-b5f3-5f1f526ff078",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/domainConfig/servers/:serverName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domainConfig",
+                        "servers",
+                        ":serverName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9e064096-f13e-4768-9a00-6af3d856e3e4",
+                          "key": "serverName",
+                          "value": "<string>",
+                          "description": "(Required) The name of the WebLogic Server instance"
+                        }
+                      ]
+                    },
+                    "description": "Returns the configuration of a specific server (read-only view)."
+                  },
+                  "response": [
+                    {
+                      "id": "b389f011-3dd1-47be-8e73-db057e67b1f2",
+                      "name": "Server configuration",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/domainConfig/servers/:serverName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "domainConfig",
+                            "servers",
+                            ":serverName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"listenAddress\": \"<string>\",\n  \"listenPort\": 7001,\n  \"SSLListenPort\": \"<integer>\",\n  \"cluster\": \"<string>\",\n  \"machine\": \"<string>\",\n  \"listenPortEnabled\": \"<boolean>\",\n  \"clientCertProxyEnabled\": \"<boolean>\",\n  \"startupMode\": \"ADMIN\",\n  \"autoRestart\": \"<boolean>\",\n  \"restartMax\": \"<integer>\",\n  \"javaCompiler\": \"<string>\",\n  \"stagingMode\": \"nostage\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T01:51:57.000Z",
+                      "updatedAt": "2026-10-22T01:51:57.000Z",
+                      "uid": "35240-b389f011-3dd1-47be-8e73-db057e67b1f2"
+                    },
+                    {
+                      "id": "eecf08ad-bcb8-4501-a7bb-5dda91cb0ef9",
+                      "name": "Authentication required or invalid credentials",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/domainConfig/servers/:serverName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "domainConfig",
+                            "servers",
+                            ":serverName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"o:errorPath\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:51:57.000Z",
+                      "updatedAt": "2026-10-22T01:51:57.000Z",
+                      "uid": "35240-eecf08ad-bcb8-4501-a7bb-5dda91cb0ef9"
+                    },
+                    {
+                      "id": "1c193f16-60c2-4419-a6c4-80ed1245ee32",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/domainConfig/servers/:serverName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "domainConfig",
+                            "servers",
+                            ":serverName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "serverName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"o:errorPath\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T01:51:57.000Z",
+                      "updatedAt": "2026-10-22T01:51:57.000Z",
+                      "uid": "35240-1c193f16-60c2-4419-a6c4-80ed1245ee32"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:51:57.000Z",
+                  "updatedAt": "2026-10-22T01:51:57.000Z",
+                  "uid": "35240-54c8b88d-6367-47e8-b5f3-5f1f526ff078"
+                }
+              ],
+              "id": "0012b8c4-f3f3-4165-b41b-654f8ac78729",
+              "createdAt": "2026-10-22T01:51:57.000Z",
+              "updatedAt": "2026-10-22T01:51:57.000Z",
+              "uid": "35240-0012b8c4-f3f3-4165-b41b-654f8ac78729"
+            },
+            {
+              "name": "Oracle WebLogic Server APIs List all server configurations (read-only)",
+              "id": "7e926870-a708-45da-8528-d66de2a5890a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/domainConfig/servers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "domainConfig",
+                    "servers"
+                  ]
+                },
+                "description": "Returns all server configurations in the domain (read-only view)."
+              },
+              "response": [
+                {
+                  "id": "e6fbbbe9-0d94-4006-a386-45c3325c2ab2",
+                  "name": "List of server configurations",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/domainConfig/servers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domainConfig",
+                        "servers"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"listenAddress\": \"<string>\",\n      \"listenPort\": 7001,\n      \"SSLListenPort\": \"<integer>\",\n      \"cluster\": \"<string>\",\n      \"machine\": \"<string>\",\n      \"listenPortEnabled\": \"<boolean>\",\n      \"clientCertProxyEnabled\": \"<boolean>\",\n      \"startupMode\": \"STANDBY\",\n      \"autoRestart\": \"<boolean>\",\n      \"restartMax\": \"<integer>\",\n      \"javaCompiler\": \"<string>\",\n      \"stagingMode\": \"nostage\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"listenAddress\": \"<string>\",\n      \"listenPort\": 7001,\n      \"SSLListenPort\": \"<integer>\",\n      \"cluster\": \"<string>\",\n      \"machine\": \"<string>\",\n      \"listenPortEnabled\": \"<boolean>\",\n      \"clientCertProxyEnabled\": \"<boolean>\",\n      \"startupMode\": \"RUNNING\",\n      \"autoRestart\": \"<boolean>\",\n      \"restartMax\": \"<integer>\",\n      \"javaCompiler\": \"<string>\",\n      \"stagingMode\": \"stage\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:51:57.000Z",
+                  "updatedAt": "2026-10-22T01:51:57.000Z",
+                  "uid": "35240-e6fbbbe9-0d94-4006-a386-45c3325c2ab2"
+                },
+                {
+                  "id": "be4a7884-87a7-44cf-b30e-29d28fcb004e",
+                  "name": "Authentication required or invalid credentials",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/domainConfig/servers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domainConfig",
+                        "servers"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"o:errorPath\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:51:57.000Z",
+                  "updatedAt": "2026-10-22T01:51:57.000Z",
+                  "uid": "35240-be4a7884-87a7-44cf-b30e-29d28fcb004e"
+                }
+              ],
+              "createdAt": "2026-10-22T01:51:57.000Z",
+              "updatedAt": "2026-10-22T01:51:57.000Z",
+              "uid": "35240-7e926870-a708-45da-8528-d66de2a5890a"
+            }
+          ],
+          "id": "2a66b497-eb38-427a-bdd5-6ec058bdf839",
+          "createdAt": "2026-10-22T01:51:57.000Z",
+          "updatedAt": "2026-10-22T01:51:57.000Z",
+          "uid": "35240-2a66b497-eb38-427a-bdd5-6ec058bdf839"
         },
         {
-          "id": "d068b40f-54c5-45b5-83ee-f270bac20f12",
+          "name": "clusters",
+          "item": [
+            {
+              "name": "Oracle WebLogic Server APIs List all cluster configurations (read-only)",
+              "id": "673edc8c-89e3-4ba1-a584-741fc627b725",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/domainConfig/clusters",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "domainConfig",
+                    "clusters"
+                  ]
+                },
+                "description": "Returns all cluster configurations in the domain (read-only view)."
+              },
+              "response": [
+                {
+                  "id": "75078789-fbf5-416a-b96e-489b77825472",
+                  "name": "List of cluster configurations",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/domainConfig/clusters",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domainConfig",
+                        "clusters"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"clusterMessagingMode\": \"multicast\",\n      \"clusterBroadcastChannel\": \"<string>\",\n      \"clusterAddress\": \"<string>\",\n      \"defaultLoadAlgorithm\": \"weight-based-affinity\",\n      \"weblogicPluginEnabled\": \"<boolean>\",\n      \"frontendHost\": \"<string>\",\n      \"frontendHTTPPort\": \"<integer>\",\n      \"frontendHTTPSPort\": \"<integer>\",\n      \"numberOfServersInClusterAddress\": \"<integer>\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"clusterMessagingMode\": \"unicast\",\n      \"clusterBroadcastChannel\": \"<string>\",\n      \"clusterAddress\": \"<string>\",\n      \"defaultLoadAlgorithm\": \"round-robin\",\n      \"weblogicPluginEnabled\": \"<boolean>\",\n      \"frontendHost\": \"<string>\",\n      \"frontendHTTPPort\": \"<integer>\",\n      \"frontendHTTPSPort\": \"<integer>\",\n      \"numberOfServersInClusterAddress\": \"<integer>\",\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"title\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:51:57.000Z",
+                  "updatedAt": "2026-10-22T01:51:57.000Z",
+                  "uid": "35240-75078789-fbf5-416a-b96e-489b77825472"
+                },
+                {
+                  "id": "cded7c11-2cbe-4c29-b044-506673041e27",
+                  "name": "Authentication required or invalid credentials",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/domainConfig/clusters",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domainConfig",
+                        "clusters"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"o:errorPath\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:51:57.000Z",
+                  "updatedAt": "2026-10-22T01:51:57.000Z",
+                  "uid": "35240-cded7c11-2cbe-4c29-b044-506673041e27"
+                }
+              ],
+              "createdAt": "2026-10-22T01:51:57.000Z",
+              "updatedAt": "2026-10-22T01:51:57.000Z",
+              "uid": "35240-673edc8c-89e3-4ba1-a584-741fc627b725"
+            }
+          ],
+          "id": "64a36a7e-c62d-48d5-a4f5-939924c2ddae",
+          "createdAt": "2026-10-22T01:51:57.000Z",
+          "updatedAt": "2026-10-22T01:51:57.000Z",
+          "uid": "35240-64a36a7e-c62d-48d5-a4f5-939924c2ddae"
+        },
+        {
+          "name": "securityConfiguration",
+          "item": [
+            {
+              "name": "Oracle WebLogic Server APIs Get domain security configuration",
+              "id": "789ab03a-1797-4de0-b074-da8590f5d30c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/domainConfig/securityConfiguration",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "domainConfig",
+                    "securityConfiguration"
+                  ]
+                },
+                "description": "Returns the security configuration of the domain including realms."
+              },
+              "response": [
+                {
+                  "id": "d0b15e8c-5efd-4200-868b-778ef2d38b0d",
+                  "name": "Security configuration",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/domainConfig/securityConfiguration",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domainConfig",
+                        "securityConfiguration"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"realms\": [\n    {\n      \"name\": \"<string>\",\n      \"authenticationProviders\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"authenticationProviders\": [\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"crossDomainSecurityEnabled\": \"<boolean>\",\n  \"webAppFilesCaseInsensitive\": \"false\"\n}",
+                  "createdAt": "2026-10-22T01:51:57.000Z",
+                  "updatedAt": "2026-10-22T01:51:57.000Z",
+                  "uid": "35240-d0b15e8c-5efd-4200-868b-778ef2d38b0d"
+                },
+                {
+                  "id": "8e7b724f-039b-4e06-a58b-b77abbc82e1c",
+                  "name": "Authentication required or invalid credentials",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/domainConfig/securityConfiguration",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "domainConfig",
+                        "securityConfiguration"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"status\": \"<integer>\",\n  \"detail\": \"<string>\",\n  \"o:errorPath\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T01:51:57.000Z",
+                  "updatedAt": "2026-10-22T01:51:57.000Z",
+                  "uid": "35240-8e7b724f-039b-4e06-a58b-b77abbc82e1c"
+                }
+              ],
+              "createdAt": "2026-10-22T01:51:57.000Z",
+              "updatedAt": "2026-10-22T01:51:57.000Z",
+              "uid": "35240-789ab03a-1797-4de0-b074-da8590f5d30c"
+            }
+          ],
+          "id": "c22352ff-a889-4620-982d-bc13783d79d9",
+          "createdAt": "2026-10-22T01:51:57.000Z",
+          "updatedAt": "2026-10-22T01:51:57.000Z",
+          "uid": "35240-c22352ff-a889-4620-982d-bc13783d79d9"
+        },
+        {
           "name": "Oracle WebLogic Server Get the last activated domain configuration",
+          "id": "a8bee38c-0895-4353-8efd-e2b3cd461c43",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Oracle WebLogic Server Get the last activated domain configuration",
-            "description": {
-              "content": "Returns the last activated domain configuration (read-only).",
-              "type": "text/plain"
-            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/domainConfig?fields=<string>&links=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "domainConfig"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "Comma-separated list of property names to include in the response",
                   "key": "fields",
-                  "value": "<string>",
-                  "description": "Comma-separated list of property names to include in the response"
+                  "value": "<string>"
                 },
                 {
-                  "disabled": false,
+                  "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.",
                   "key": "links",
-                  "value": "<string>",
-                  "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links."
+                  "value": "<string>"
                 }
-              ],
-              "variable": []
+              ]
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+            "description": "Returns the last activated domain configuration (read-only)."
           },
           "response": [
             {
-              "id": "0107d448-7ff3-4852-91c1-6c58186fccb7",
+              "id": "bbd2686a-7bd9-4e33-a239-fc55a2d2ae8b",
               "name": "Domain configuration root",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/domainConfig?fields=<string>&links=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "domainConfig"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Comma-separated list of property names to include in the response",
                       "key": "fields",
-                      "value": "name,listenPort"
+                      "value": "<string>"
                     },
                     {
+                      "description": "Comma-separated list of link relations to include (e.g., self, parent, canonical). Use 'none' to exclude all links.",
                       "key": "links",
-                      "value": "none"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"identity\": [\n    \"string\",\n    \"string\"\n  ],\n  \"name\": \"string\",\n  \"configurationVersion\": \"string\",\n  \"domainVersion\": \"string\",\n  \"adminServerName\": \"string\",\n  \"productionModeEnabled\": false,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://IdnCgoOoEGxQRjZXXQAjhQnluus.jtwyvCicP,RWGYUOus0xVl4RbnvCLFRtuH+2.nwWKy8jPYe1,R\",\n      \"title\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"http://csBAhY.qdxAEdVRwS,Y8zzrKi.I8TIMWj.3WzsmzW1R+bNw8i\",\n      \"title\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "674af1d4-72c2-4de9-b186-71864f2ea2b8",
-          "name": "Oracle WebLogic Server List all virtual targets",
-          "request": {
-            "name": "Oracle WebLogic Server List all virtual targets",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "virtualTargets"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "cd35c1e2-0e40-48ab-b73e-505c0dc81ed4",
-              "name": "Collection of virtual targets",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "virtualTargets"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"hostNames\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uriPrefix\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"hostNames\": [\n        \"string\",\n        \"string\"\n      ],\n      \"uriPrefix\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f1e04994-ccaa-475a-97bc-3c57db1a0c81",
-          "name": "Oracle WebLogic Server Create a virtual target",
-          "request": {
-            "name": "Oracle WebLogic Server Create a virtual target",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "virtualTargets"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"hostNames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"uriPrefix\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "852f0e61-547d-433c-b34d-f5084d104d3b",
-              "name": "Virtual target created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "virtualTargets"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"hostNames\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"uriPrefix\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "6a0fb01a-069a-4454-a418-2ab7581f3fed",
-          "name": "Oracle WebLogic Server List all partitions",
-          "request": {
-            "name": "Oracle WebLogic Server List all partitions",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "partitions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "070c9fef-d5a9-42ca-a9f3-feaa716109c0",
-              "name": "Collection of partitions",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "partitions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"realm\": [\n        \"string\",\n        \"string\"\n      ],\n      \"primaryIdentityDomain\": \"string\",\n      \"availableTargets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"defaultTargets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"resourceManagerRef\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"realm\": [\n        \"string\",\n        \"string\"\n      ],\n      \"primaryIdentityDomain\": \"string\",\n      \"availableTargets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"defaultTargets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ],\n      \"resourceManagerRef\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f4b63abe-e348-4707-86ea-20a87e80d94a",
-          "name": "Oracle WebLogic Server Create a partition",
-          "request": {
-            "name": "Oracle WebLogic Server Create a partition",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "partitions"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"realm\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"primaryIdentityDomain\": \"<string>\",\n  \"availableTargets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"defaultTargets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"resourceManagerRef\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "8f20c250-6ddf-4edd-88be-422315c96e26",
-              "name": "Partition created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "partitions"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"realm\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"primaryIdentityDomain\": \"<string>\",\n  \"availableTargets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"defaultTargets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"resourceManagerRef\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a7f23962-d8b6-4403-b071-da43f1bab192",
-          "name": "Oracle WebLogic Server List resource groups for a partition",
-          "request": {
-            "name": "Oracle WebLogic Server List resource groups for a partition",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "partitions",
-                ":partitionName",
-                "resourceGroups"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "partitionName",
-                  "description": "(Required) Name of the domain partition"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "9dc59b2a-9535-4aa2-89bd-74e8bf2c4d74",
-              "name": "Collection of resource groups",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "partitions",
-                    ":partitionName",
-                    "resourceGroups"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "partitionName",
-                      "description": "(Required) Name of the domain partition"
+                      "value": "<string>"
                     }
                   ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"items\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ],\n      \"name\": \"string\",\n      \"targets\": [\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"identity\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"identity\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"configurationVersion\": \"<string>\",\n  \"domainVersion\": \"<string>\",\n  \"adminServerName\": \"<string>\",\n  \"productionModeEnabled\": \"<boolean>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"title\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T01:51:57.000Z",
+              "updatedAt": "2026-10-22T01:51:57.000Z",
+              "uid": "35240-bbd2686a-7bd9-4e33-a239-fc55a2d2ae8b"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "082d50ad-1978-4bb4-abf6-a36fda8c8d9a",
-          "name": "Oracle WebLogic Server Create a resource group in a partition",
-          "request": {
-            "name": "Oracle WebLogic Server Create a resource group in a partition",
-            "description": {},
-            "url": {
-              "path": [
-                "edit",
-                "partitions",
-                ":partitionName",
-                "resourceGroups"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "partitionName",
-                  "description": "(Required) Name of the domain partition"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                "key": "X-Requested-By",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "27e835cb-7b10-4f1f-b376-bb68df3fea9d",
-              "name": "Resource group created",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "edit",
-                    "partitions",
-                    ":partitionName",
-                    "resourceGroups"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "partitionName",
-                      "description": "(Required) Name of the domain partition"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "(Required) CSRF protection header required for POST and DELETE requests",
-                    "key": "X-Requested-By",
-                    "value": "MyClient"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"name\": \"<string>\",\n  \"targets\": [\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"identity\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T01:51:57.000Z",
+          "updatedAt": "2026-10-22T01:51:57.000Z",
+          "uid": "35240-a8bee38c-0895-4353-8efd-e2b3cd461c43"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "http://localhost:7001/management/weblogic/latest",
-      "key": "baseUrl"
+      "id": "56f217a6-4dd5-4680-9ef9-d9e172c7adb8",
+      "createdAt": "2026-10-22T01:51:57.000Z",
+      "updatedAt": "2026-10-22T01:51:57.000Z",
+      "uid": "35240-56f217a6-4dd5-4680-9ef9-d9e172c7adb8"
     }
   ],
   "auth": {
@@ -902,21 +1501,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "f15ce160-a4bb-488d-83d9-30ed5b46c777",
-    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Domain Configuration API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:7001/management/weblogic/latest"
     }
-  }
+  ]
 }

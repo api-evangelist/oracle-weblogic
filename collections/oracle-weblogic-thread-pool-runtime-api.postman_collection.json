@@ -1,123 +1,142 @@
 {
+  "info": {
+    "_postman_id": "0f38741f-ba51-4068-b684-07c20c4ed9dd",
+    "name": "Oracle WebLogic Server Oracle WebLogic Monitoring and\u2026",
+    "description": "RESTful API for accessing runtime monitoring data, diagnostics information, and performance metrics for Oracle WebLogic Server domains. Provides read-only access to the domainRuntime and serverRuntime bean trees for monitoring server states, application runtimes, JDBC data source health, JMS statistics, thread pool utilization, and server lifecycle management operations.\n\nContact Support:\n Name: Oracle Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:53:43.000Z",
+    "updatedAt": "2026-10-22T01:53:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0f38741f-ba51-4068-b684-07c20c4ed9dd"
+  },
   "item": [
     {
-      "id": "0bd2da86-d7b8-4899-bc0c-e1e43eb39377",
-      "name": "Thread Pool Runtime",
-      "description": {
-        "content": "Monitor thread pool utilization",
-        "type": "text/plain"
-      },
+      "name": "domainRuntime",
       "item": [
         {
-          "id": "a46ffd02-5957-4c8f-b26b-fd1aedbc113d",
-          "name": "Oracle WebLogic Server Get thread pool runtime for a server",
-          "request": {
-            "name": "Oracle WebLogic Server Get thread pool runtime for a server",
-            "description": {
-              "content": "Returns thread pool statistics for the specified server.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "domainRuntime",
-                "serverRuntimes",
-                ":serverName",
-                "threadPoolRuntime"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "serverName",
-                  "description": "(Required) Name of the WebLogic Server instance"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "serverRuntimes",
+          "item": [
             {
-              "id": "fc171363-57f8-40b0-bf0c-91ea4a7e11ef",
-              "name": "Thread pool runtime",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "domainRuntime",
-                    "serverRuntimes",
-                    ":serverName",
-                    "threadPoolRuntime"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "serverName",
-                      "description": "(Required) Name of the WebLogic Server instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: basic",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Basic <credentials>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{serverName}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "threadPoolRuntime",
+                  "item": [
+                    {
+                      "name": "Oracle WebLogic Server Get thread pool runtime for a server",
+                      "id": "26925d0c-c2b7-454f-ac50-83e90288c35d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/domainRuntime/serverRuntimes/:serverName/threadPoolRuntime",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "domainRuntime",
+                            "serverRuntimes",
+                            ":serverName",
+                            "threadPoolRuntime"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c8d0892a-b99d-4899-a757-fcdf4115c388",
+                              "key": "serverName",
+                              "value": "<string>",
+                              "description": "(Required) Name of the WebLogic Server instance"
+                            }
+                          ]
+                        },
+                        "description": "Returns thread pool statistics for the specified server."
+                      },
+                      "response": [
+                        {
+                          "id": "614144cd-9a0c-482c-84a9-e39eac29ac96",
+                          "name": "Thread pool runtime",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/domainRuntime/serverRuntimes/:serverName/threadPoolRuntime",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "domainRuntime",
+                                "serverRuntimes",
+                                ":serverName",
+                                "threadPoolRuntime"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "serverName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"executeThreadTotalCount\": \"<integer>\",\n  \"executeThreadIdleCount\": \"<integer>\",\n  \"hoggingThreadCount\": \"<integer>\",\n  \"standbyThreadCount\": \"<integer>\",\n  \"pendingUserRequestCount\": \"<integer>\",\n  \"queueLength\": \"<integer>\",\n  \"completedRequestCount\": \"<integer>\",\n  \"throughput\": \"<number>\",\n  \"healthState\": {\n    \"state\": \"HEALTH_WARN\",\n    \"subsystemName\": \"<string>\",\n    \"partitionName\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:53:44.000Z",
+                          "updatedAt": "2026-10-22T01:53:44.000Z",
+                          "uid": "35240-614144cd-9a0c-482c-84a9-e39eac29ac96"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:53:44.000Z",
+                      "updatedAt": "2026-10-22T01:53:44.000Z",
+                      "uid": "35240-26925d0c-c2b7-454f-ac50-83e90288c35d"
+                    }
+                  ],
+                  "id": "d37378bb-ae83-41e3-9e3c-ae8cafa8d117",
+                  "createdAt": "2026-10-22T01:53:44.000Z",
+                  "updatedAt": "2026-10-22T01:53:44.000Z",
+                  "uid": "35240-d37378bb-ae83-41e3-9e3c-ae8cafa8d117"
                 }
               ],
-              "body": "{\n  \"name\": \"string\",\n  \"executeThreadTotalCount\": 1367,\n  \"executeThreadIdleCount\": 5249,\n  \"hoggingThreadCount\": 8621,\n  \"standbyThreadCount\": 9405,\n  \"pendingUserRequestCount\": 5325,\n  \"queueLength\": 1523,\n  \"completedRequestCount\": 7055,\n  \"throughput\": 9437.351511442002,\n  \"healthState\": {\n    \"state\": \"HEALTH_FAILED\",\n    \"subsystemName\": \"string\",\n    \"partitionName\": \"string\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "7837d371-5e76-40eb-96fc-ba9a93b91013",
+              "createdAt": "2026-10-22T01:53:44.000Z",
+              "updatedAt": "2026-10-22T01:53:44.000Z",
+              "uid": "35240-7837d371-5e76-40eb-96fc-ba9a93b91013"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "8a552a2e-f554-44e0-b716-b6ebc3a7efee",
+          "createdAt": "2026-10-22T01:53:44.000Z",
+          "updatedAt": "2026-10-22T01:53:44.000Z",
+          "uid": "35240-8a552a2e-f554-44e0-b716-b6ebc3a7efee"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "http://localhost:7001/management/weblogic/latest",
-      "key": "baseUrl"
+      "id": "1ad27a9f-eb48-4c25-9b2a-2515726b2c9a",
+      "createdAt": "2026-10-22T01:53:44.000Z",
+      "updatedAt": "2026-10-22T01:53:44.000Z",
+      "uid": "35240-1ad27a9f-eb48-4c25-9b2a-2515726b2c9a"
     }
   ],
   "auth": {
@@ -125,21 +144,20 @@
     "basic": [
       {
         "key": "username",
-        "value": "{{basicAuthUsername}}"
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
       },
       {
         "key": "password",
-        "value": "{{basicAuthPassword}}"
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "670ceece-c724-473c-98a6-1b0dc7d91876",
-    "name": "Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Thread Pool Runtime API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "RESTful API for deploying, undeploying, and managing application and library deployments on Oracle WebLogic Server. Supports deploying enterprise applications (EAR, WAR), shared libraries, and managing deployment lifecycle including start, stop, and redeploy operations. All deployment configuration changes require an active edit session with startEdit/activate workflow. Runtime deployment lifecycle operations (start/stop) are available through the domainRuntime tree.\n\nContact Support:\n Name: Oracle Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:7001/management/weblogic/latest"
     }
-  }
+  ]
 }
