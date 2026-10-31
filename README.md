@@ -1,4 +1,4 @@
-# Oracle WebLogic Server (oracle-weblogic)
+# Oracle WebLogic Server
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,163 +66,241 @@
 
 APIs for managing and monitoring Oracle WebLogic Server - a leading platform for building and deploying enterprise Java applications.
 
-**APIs.json:** [https://www.oracle.com/middleware/weblogic/](https://www.oracle.com/middleware/weblogic/)
+**Areas:** Application Server · Enterprise · Java EE · Middleware · Oracle
 
-## Tags
+## Oracle WebLogic Server on APIs.io
 
-- Application Server
-- Enterprise
-- Java EE
-- Middleware
-- Oracle
+Everything profiled for Oracle WebLogic Server is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/oracle-weblogic/](https://apis.io/providers/oracle-weblogic/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (33)
 
-- **Created:** 2024
-- **Modified:** 2026-05-19
+- [WebLogic WLST (WebLogic Scripting Tool) API](https://apis.io/apis/oracle-weblogic/weblogic-wlst-weblogic-scripting-tool-api/) — Python-based scripting interface for automating WebLogic Server administration tasks.
+- [WebLogic JMX API](https://apis.io/apis/oracle-weblogic/weblogic-jmx-api/) — Java Management Extensions API for programmatic management and monitoring of WebLogic Server.
+- [Oracle WebLogic Server Application Deployment API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-application-deployment-api/) — Deploy, configure, and manage application deployments
+- [Oracle WebLogic Server Application Deployments API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-application-deployments-api/) — Deploy, configure, and manage enterprise application deployments (EAR, WAR files)
+- [Oracle WebLogic Server Application Runtime API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-application-runtime-api/) — Monitor application deployment status and health
+- [Oracle WebLogic Server Clusters API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-clusters-api/) — Manage WebLogic Server clusters and dynamic servers
+- [Oracle WebLogic Server Data Sources API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-data-sources-api/) — Manage JDBC system resources and data sources
+- [Oracle WebLogic Server Deployment Configuration API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-deployment-configuration-api/) — Configure deployment targets and settings
+- [Oracle WebLogic Server Deployment Lifecycle API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-deployment-lifecycle-api/) — Start, stop, and manage deployed application lifecycle
+- [Oracle WebLogic Server Domain Configuration API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-domain-configuration-api/) — View domain-level configuration
+- [Oracle WebLogic Server Domain Runtime API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-domain-runtime-api/) — Domain-wide runtime monitoring available from the admin server
+- [Oracle WebLogic Server Edit Session API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-edit-session-api/) — Manage edit sessions for deployment changes
+- [Oracle WebLogic Server JDBC Runtime API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-jdbc-runtime-api/) — Monitor JDBC data source runtime statistics
+- [Oracle WebLogic Server JMS API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-jms-api/) — Manage JMS servers, system resources, queues, and connection factories
+- [Oracle WebLogic Server JMS Runtime API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-jms-runtime-api/) — Monitor JMS server and destination runtime statistics
+- [Oracle WebLogic Server Library Deployments API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-library-deployments-api/) — Deploy and manage shared library deployments
+- [Oracle WebLogic Server Machines API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-machines-api/) — Manage machines and Node Manager configuration
+- [Oracle WebLogic Server Runtime Search API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-runtime-search-api/) — Structured queries against runtime trees
+- [Oracle WebLogic Server Search API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-search-api/) — Query and search across configuration trees
+- [Oracle WebLogic Server Security API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-security-api/) — Manage security realms, authentication providers, and users
+- [Oracle WebLogic Server Lifecycle API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-server-lifecycle-api/) — Server lifecycle operations (start, stop, suspend, resume)
+- [Oracle WebLogic Server Runtime API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-server-runtime-api/) — Individual server runtime monitoring
+- [Oracle WebLogic Server Templates API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-server-templates-api/) — Manage server templates for dynamic server creation
+- [Oracle WebLogic Server Servers API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-servers-api/) — Manage WebLogic Server instances
+- [Oracle WebLogic Server Tasks API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-tasks-api/) — Monitor asynchronous task status
+- [Oracle WebLogic Server Thread Pool Runtime API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-thread-pool-runtime-api/) — Monitor thread pool utilization
+- [Oracle WebLogic Server Applications API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-applications-api/) — Application deployment monitoring
+- [Oracle WebLogic Server Deployment Operations API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-deployment-operations-api/) — Runtime deployment operations using the domain runtime deployment manager
+- [Oracle WebLogic Server Diagnostics API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-diagnostics-api/) — WebLogic Diagnostic Framework (WLDF) resources
+- [Oracle WebLogic Server Edit API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-edit-api/) — Configuration editing operations. An edit session must be started before making changes to the domain configuration. Changes are staged and then activated.
+- [Oracle WebLogic Server Health API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-health-api/) — Server and subsystem health checks
+- [Oracle WebLogic Server Lifecycle API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-lifecycle-api/) — Server lifecycle management operations including starting, stopping, suspending, and resuming servers.
+- [Oracle WebLogic Server Upload API](https://apis.io/apis/oracle-weblogic/oracle-weblogic-upload-api/) — Upload application archives to the administration server
 
-## APIs
+### Published properties
 
-### WebLogic RESTful Management Services API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-RESTful API for managing and monitoring WebLogic Server domains, servers, applications, and resources.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html)
-- **Base URL:** `http://localhost:7001/management/weblogic/latest`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Oracle Weblogic Agentic Access](https://apis.io/agentic-access/oracle-weblogic/oracle-weblogic-agentic-access/)
 
-- Management
-- Monitoring
-- REST
+#### JSON Schema (84)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/index.html)
-- [OpenAPI](openapi/oracle-weblogic-management-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/oracle-weblogic-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-weblogic-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Authentication](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/authentication.html)
-- [JSON Schema](json-schema/oracle-weblogic-server-configuration.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/oracle-weblogic-data-source.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/oracle-weblogic-jms-configuration.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/oracle-weblogic-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [AppDeployment](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-appdeployment/)
+- [AppDeploymentCreateRequest](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-appdeploymentcreaterequest/)
+- [AppDeploymentRuntime](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-appdeploymentruntime/)
+- [AppDeploymentUpdateRequest](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-appdeploymentupdaterequest/)
+- [ApplicationRuntime](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-applicationruntime/)
+- [AuthenticationProvider](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-authenticationprovider/)
+- [AuthenticationProviderCreateRequest](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-authenticationprovidercreaterequest/)
+- [Cluster](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-cluster/)
+- [ClusterCreateRequest](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-clustercreaterequest/)
+- [ClusterUpdateRequest](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-clusterupdaterequest/)
+- [ComponentRuntime](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-componentruntime/)
+- [Oracle WebLogic JDBC Data Source Configuration](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-data-source/)
+- [Oracle WebLogic Deployment Configuration](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-deployment/)
+- [Domain](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-domain/)
+- [Oracle WebLogic Domain Runtime](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-domain-runtime/)
+- [DomainRuntime](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-domainruntime/)
+- [DynamicServers](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-dynamicservers/)
+- [ErrorResponse](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-errorresponse/)
+- [FileStore](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-filestore/)
+- [FileStoreCreateRequest](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-filestorecreaterequest/)
+- [HealthState](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-healthstate/)
+- [Identity](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-identity/)
+- [JDBCDataSourceParams](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-jdbcdatasourceparams/)
+- [JDBCDataSourceRuntime](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-jdbcdatasourceruntime/)
+- [JDBCDriverParams](https://apis.io/schemas/oracle-weblogic/oracle-weblogic-jdbcdriverparams/)
+- …and 59 more published on APIs.io
 
-### WebLogic Monitoring and Diagnostics API
+#### JSON Structure (2)
 
-API for accessing runtime monitoring data, diagnostics information, and performance metrics.
+Data models expressed in JSON Structure.
 
-- **Human URL:** [https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html)
-- **Base URL:** `http://localhost:7001/management/weblogic/latest/domainRuntime`
+- [Oracle Weblogic Structure](https://apis.io/json-structure/oracle-weblogic/oracle-weblogic-structure/)
+- [Weblogic Server Configuration Structure](https://apis.io/json-structure/oracle-weblogic/weblogic-server-configuration-structure/)
 
-#### Tags
+#### JSON-LD (2)
 
-- Diagnostics
-- JMX
-- Metrics
-- Monitoring
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Oracle Weblogic Context](https://apis.io/jsonld/oracle-weblogic/oracle-weblogic-context/)
+- [Weblogic Context](https://apis.io/jsonld/oracle-weblogic/weblogic-context/)
 
-- [Documentation](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html)
-- [Guide](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlach/monitor.html)
-- [OpenAPI](openapi/oracle-weblogic-monitoring-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/oracle-weblogic-monitoring.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-weblogic-monitoring.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/oracle-weblogic-domain-runtime.json) — [JSON Schema](https://json-schema.org/specification)
+#### Vocabulary (1)
 
-### WebLogic Deployment API
+The provider's domain terms, defined.
 
-API for deploying, undeploying, and managing application deployments on WebLogic Server.
+- [Oracle WebLogic Server Domain Vocabulary](https://apis.io/vocabularies/oracle-weblogic/oracle-weblogic-vocabulary/)
 
-- **Human URL:** [https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/op-management-weblogic-latest-edit-appdeployments-post.html](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/op-management-weblogic-latest-edit-appdeployments-post.html)
-- **Base URL:** `http://localhost:7001/management/weblogic/latest/edit/appDeployments`
+#### Examples (1)
 
-#### Tags
+Example requests and responses.
 
-- Applications
-- Deployment
-- Lifecycle
+- [Oracle Weblogic Deployapplication Example](https://apis.io/examples/oracle-weblogic/oracle-weblogic-deployapplication-example/)
 
-#### Properties
+#### Collections (27)
 
-- [Documentation](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlrest/resources.html)
-- [Tutorial](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/index.html)
-- [OpenAPI](openapi/oracle-weblogic-deployment-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/oracle-weblogic-deployment.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-weblogic-deployment.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/oracle-weblogic-deployment.json) — [JSON Schema](https://json-schema.org/specification)
+Postman and Open Collection request collections.
 
-### WebLogic WLST (WebLogic Scripting Tool) API
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-application-deployment-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Application Deployments API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-application-deployments-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Application Runtime API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-application-runtime-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Clusters API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-clusters-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Data Sources API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-data-sources-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-deployment/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Deployment Configuration API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-deployment-configuration-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Deployment Lifecycle API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-deployment-lifecycle-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Domain Configuration API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-domain-configuration-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Domain Runtime API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-domain-runtime-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Edit Session API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-edit-session-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment JDBC Runtime API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-jdbc-runtime-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment JMS API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-jms-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment JMS Runtime API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-jms-runtime-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Library Deployments API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-library-deployments-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Machines API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-machines-api/)
+- [Oracle WebLogic Server Oracle WebLogic RESTful Management Services API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-management/)
+- [Oracle WebLogic Server Oracle WebLogic Monitoring and Diagnostics API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-monitoring/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Runtime Search API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-runtime-search-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Search API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-search-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Security API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-security-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Server Lifecycle API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-server-lifecycle-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Server Runtime API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-server-runtime-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Server Templates API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-server-templates-api/)
+- [Oracle WebLogic Server Oracle WebLogic Deployment Application Deployment Servers API](https://apis.io/collections/oracle-weblogic/open-oracle-weblogic-servers-api/)
+- …and 2 more published on APIs.io
 
-Python-based scripting interface for automating WebLogic Server administration tasks.
+#### Governance rules (1)
 
-- **Human URL:** [https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlstc/index.html](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlstc/index.html)
-- **Base URL:** `https://localhost:5556`
+Spectral rulesets for the provider's contracts.
 
-#### Tags
+- [Oracle WebLogic Server — jsonschema rules](https://apis.io/rules/oracle-weblogic/oracle-weblogic-jsonschema-spectral-rules/)
 
-- Administration
-- Automation
-- Python
-- Scripting
+#### Security (2)
 
-#### Properties
+Authentication, trust centre, and vulnerability disclosure.
 
-- [Documentation](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlstc/index.html)
-- [Reference](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlstg/index.html)
-- [Postman Collection](collections/oracle-weblogic-deployment.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-weblogic-deployment.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/oracle-weblogic-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-weblogic-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/oracle-weblogic-monitoring.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-weblogic-monitoring.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Oracle Weblogic Authentication](https://apis.io/security/oracle-weblogic/oracle-weblogic-authentication/)
+- [Oracle Weblogic Domain Security](https://apis.io/security/oracle-weblogic/oracle-weblogic-domain-security/)
 
-### WebLogic JMX API
+#### Plans and pricing (1)
 
-Java Management Extensions API for programmatic management and monitoring of WebLogic Server.
+Published plans, tiers and prices.
 
-- **Human URL:** [https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html)
-- **Base URL:** `service:jmx:rmi:///jndi/rmi://localhost:7001/jmxrmi`
+- [Oracle Weblogic Plans Pricing](https://apis.io/plans/oracle-weblogic/oracle-weblogic-plans-pricing/)
 
-#### Tags
+#### Rate limits (1)
 
-- Java
-- JMX
-- Management
-- MBeans
+Published request limits.
 
-#### Properties
+- [Oracle Weblogic Rate Limits](https://apis.io/rate-limits/oracle-weblogic/oracle-weblogic-rate-limits/)
 
-- [Documentation](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/index.html)
-- [API Reference](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/wlapi/index.html)
-- [Examples](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/jmxcu/examples.html)
-- [Postman Collection](collections/oracle-weblogic-deployment.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-weblogic-deployment.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/oracle-weblogic-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-weblogic-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/oracle-weblogic-monitoring.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-weblogic-monitoring.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### FinOps (1)
 
-## Common Properties
+What the API costs to run, by operation.
 
-- [Support](https://support.oracle.com/)
-- [Documentation](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/)
-- [Downloads](https://www.oracle.com/middleware/technologies/weblogic-server-downloads.html)
-- [Community](https://community.oracle.com/customerconnect/categories/appsuite-weblogic-server)
-- [License](https://www.oracle.com/downloads/licenses/standard-license.html)
-- [Blog](https://blogs.oracle.com/weblogicserver/)
+- [Oracle Weblogic Finops](https://apis.io/finops/oracle-weblogic/oracle-weblogic-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.oracle.com/middleware/technologies/weblogic.html)
-- [Terms of Service](https://www.oracle.com/legal/terms.html)
-- [Privacy Policy](https://www.oracle.com/legal/privacy/)
-- [GitHub Organization](https://github.com/oracle)
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/weblogic)
-- [YouTube](https://www.youtube.com/@OracleDevelopers)
-- [Sign Up](https://cloud.oracle.com/)
-- [Status Page](https://ocistatus.oraclecloud.com/)
+- [Documentation](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/)
+- [Support](https://support.oracle.com/)
+- [Blog](https://blogs.oracle.com/weblogicserver/)
+- [Terms of service](https://www.oracle.com/legal/terms.html)
+- [Privacy policy](https://www.oracle.com/legal/privacy/)
+- [GitHub](https://github.com/oracle)
+- [Status](https://ocistatus.oraclecloud.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 43.6** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 60.7 |
+| Contract quality | 65.6 |
+| Contract governance | 9.8 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 36.9 |
+| Access clarity | 42.1 |
+
+**Agent readiness 23.0** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/oracle-weblogic/](https://apis.io/providers/oracle-weblogic/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Oracle WebLogic Server: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/oracle-weblogic/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
